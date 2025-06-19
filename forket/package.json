@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/krasimir/forket/issues"
   },
-  "homepage": "https://github.com/krasimir/forket#readme"
+  "homepage": "https://github.com/krasimir/forket#readme",
+  "dependencies": {
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.12.1"
+  }
 }
