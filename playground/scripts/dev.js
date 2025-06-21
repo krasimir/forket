@@ -16,7 +16,7 @@ let restart = false;
 let processes = [];
 
 async function buildServer() {
-  const forket = Forket();
+  const forket = Forket({ type: "server" });
   const files = getAllFiles(SRC);
   try {
     await Promise.all(files.map(async (file) => {
@@ -37,7 +37,7 @@ async function buildServer() {
 }
 
 async function buildClient() {
-  const forket = Forket();
+  const forket = Forket({ type: "client" });
   try {
     await esbuild.build({
       entryPoints: [path.join(SRC, "/client.js")],

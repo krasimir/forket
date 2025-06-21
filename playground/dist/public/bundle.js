@@ -19293,13 +19293,19 @@
 
   // src/components/Products.tsx
   var import_react = __toESM(require_react());
-  function Products({ products }) {
+  function Products({ getProducts: getProducts2 }) {
     const [selected, setSelected] = (0, import_react.useState)([]);
-    const addToCart = (ids) => ({ products: ids.length });
+    const addToCart = (ids) => ({
+      products: ids.length
+    });
+    const { products } = (0, import_react.use)(getProducts2);
     function itemClicked(product) {
       const index = selected.indexOf(product.id);
       if (index === -1) {
-        setSelected([...selected, product.id]);
+        setSelected([
+          ...selected,
+          product.id
+        ]);
       } else {
         setSelected(selected.filter((id) => id !== product.id));
       }
@@ -19311,7 +19317,14 @@
     if (products.length === 0) {
       return null;
     }
-    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", {
+      key: product.id
+    }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", {
+      type: "checkbox",
+      onClick: (e) => itemClicked(product)
+    }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: buy
+    }, "Add to cart"));
   }
 
   // src/components/db.ts
@@ -19323,8 +19336,16 @@
 
   // src/components/App.tsx
   async function App() {
-    const { products } = await getProducts();
-    return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
+    return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement(Title, null)), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", {
+      id: "root"
+    }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Example"), /* @__PURE__ */ import_react2.default.createElement(import_react2.Suspense, {
+      fallback: /* @__PURE__ */ import_react2.default.createElement("p", null, "Loading products...")
+    }, /* @__PURE__ */ import_react2.default.createElement(Products, {
+      getProducts: getProducts()
+    })))));
+  }
+  function Title() {
+    return /* @__PURE__ */ import_react2.default.createElement("title", null, "React Example");
   }
 
   // src/client.tsx

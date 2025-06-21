@@ -32,8 +32,9 @@ __export(products_exports, {
 module.exports = __toCommonJS(products_exports);
 var import_fs = __toESM(require("fs"));
 var import_path = __toESM(require("path"));
+const TIMEOUT = 1e4;
 async function products_default(req, res) {
-  await new Promise((resolve) => setTimeout(resolve, 2e3));
+  await new Promise((resolve) => setTimeout(resolve, TIMEOUT));
   res.json({
     products: [
       {

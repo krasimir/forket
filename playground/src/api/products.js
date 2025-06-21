@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
 
+const TIMEOUT = 10000;
+
 export default async function (req, res) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, TIMEOUT));
   res.json({
     products: [
       {

@@ -32,9 +32,10 @@ __export(Products_exports, {
 });
 module.exports = __toCommonJS(Products_exports);
 var import_react = __toESM(require("react"));
-function Products({ products }) {
+function Products({ getProducts }) {
   const [selected, setSelected] = (0, import_react.useState)([]);
   const addToCart = (ids) => ({ products: ids.length });
+  const { products } = (0, import_react.use)(getProducts);
   function itemClicked(product) {
     const index = selected.indexOf(product.id);
     if (index === -1) {
