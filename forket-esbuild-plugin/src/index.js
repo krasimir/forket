@@ -1,5 +1,12 @@
 module.exports = function () {
   return {
-    name: 'forket',
+    plugin() {
+      return {
+        name: 'forket',
+        setup(build) {
+
+        }
+      }
+    }
   }
 }

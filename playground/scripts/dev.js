@@ -4,11 +4,13 @@ const spawn = require("child_process").spawn;
 const chokidar = require("chokidar");
 const chalk = require("chalk");
 const esbuild = require("esbuild");
+const Forket = require(path.join(__dirname, '..', '..', 'forket-esbuild-plugin', 'src', 'index.js'));
 
 const ROOT = process.cwd();
-const SRC = path.normalize(path.join(__dirname, "/../", "src"));
-const DIST = path.normalize(path.join(__dirname, "/../", "dist"));
-const SERVER_ENTRY_POINT = path.join(DIST, "index.js");
+const SRC = path.normalize(path.join(__dirname, "..", "src"));
+const DIST = path.normalize(path.join(__dirname, "..", "dist"));
+const SERVER_ENTRY_POINT = path.join(DIST, "server/server.js");
+const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 let serverProcess;
 let restart = false;
 let processes = [];
@@ -16,7 +18,8 @@ let processes = [];
 function runServer() {
   const run = async () => {
     console.log(chalk.yellow("Starting server..."));
-    await build();
+    await buildServer();
+    await buildClient();
     const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
     serverProcess = command(commandToExecute, ROOT, (code) => {
       serverProcess = null;
@@ -39,18 +42,37 @@ function runServer() {
 runServer();
 
 
-async function build() {
+async function buildServer() {
+  const forket = Forket();
+  const files = getAllFiles(SRC);
+  try {
+    await Promise.all(files.map(async (file) => {
+      const outfile = path.join(path.join(DIST, 'server'), path.relative(SRC, file).replace(/\.(ts|tsx|js|tsx)$/, ".js"));
+      await esbuild.build({
+        entryPoints: [file],
+        bundle: true,
+        outfile,
+        platform: "node",
+        plugins: [forket.plugin()]
+      });
+    }));
+    console.log(chalk.green(`🖥️ server build successfully`));
+  } catch (error) {
+    console.error(chalk.red(`Error compiling server: ${error.message}`));
+  }
+}
+async function buildClient() {
+  const forket = Forket();
   try {
     await esbuild.build({
-      entryPoints: [path.join(SRC, "/index.js")],
+      entryPoints: [path.join(SRC, "/client.js")],
       bundle: true,
-      outfile: SERVER_ENTRY_POINT,
-      platform: "node",
-      plugins: [
-        
-      ]
+      outfile: CLIENT_BUNDLE,
+      platform: "browser",
+      sourcemap: true,
+      plugins: [forket.plugin()]
     });
-    console.log(chalk.green(`🖥️ server build successfully`));
+    console.log(chalk.green(`🖥️ client build successfully`));
   } catch (error) {
     console.error(chalk.red(`Error compiling server: ${error.message}`));
   }
@@ -73,18 +95,20 @@ function command(cmd, cwd, onExit = (c) => {}) {
   processes.push(proc);
   return proc;
 };
-function copyDirectorySync(from, to) {
-  if (!fs.existsSync(to)) {
-    fs.mkdirSync(to, { recursive: true });
-  }
-  const files = fs.readdirSync(from);
-  files.forEach((file) => {
-    const fromPath = path.join(from, file);
-    const toPath = path.join(to, file);
-    if (fs.statSync(fromPath).isDirectory()) {
-      copyDirectorySync(fromPath, toPath);
-    } else {
-      fs.copyFileSync(fromPath, toPath);
+function getAllFiles(dir) {
+  const result = [];
+  function walk(currentDir) {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else {
+        result.push(fullPath);
+      }
     }
-  });
+  }
+  walk(dir);
+  return result;
 }
