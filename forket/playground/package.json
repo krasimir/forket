@@ -1,0 +1,15 @@
+{
+  "name": "forket-playground",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "clean": "rm -rf ./dist/*",
+    "dev": "npm run clean && node ./scripts/dev.js"
+  },
+  "dependencies": {
+    "chokidar": "3.5.2",
+    "express": "4.21.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}
