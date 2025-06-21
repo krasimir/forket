@@ -2,15 +2,10 @@ import React from "react";
 
 import Products from "./Products";
 
-let cache: any = null;
-
-async function getProducts() {
-  if (cache) return cache;
-  return cache = fetch("http://localhost:8087/api/products");  
-}
+import { getProducts } from "./db";
 
 export default async function App() {
-  const { products } = await getProducts().then(res => res.json());
+  const { products } = await getProducts();
 
   return (
     <html>
@@ -19,7 +14,7 @@ export default async function App() {
       </head>
       <body>
         <div id="root">
-          <h1>React Streaming Example</h1>
+          <h1>React Example</h1>
           <Products products={products} />
         </div>
       </body>

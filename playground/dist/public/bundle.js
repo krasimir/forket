@@ -5540,19 +5540,19 @@
             refCount: 0
           };
         }
-        function retainCache(cache2) {
-          cache2.controller.signal.aborted && console.warn(
+        function retainCache(cache) {
+          cache.controller.signal.aborted && console.warn(
             "A cache instance was retained after it was already freed. This likely indicates a bug in React."
           );
-          cache2.refCount++;
+          cache.refCount++;
         }
-        function releaseCache(cache2) {
-          cache2.refCount--;
-          0 > cache2.refCount && console.warn(
+        function releaseCache(cache) {
+          cache.refCount--;
+          0 > cache.refCount && console.warn(
             "A cache instance was released after it was already freed. This likely indicates a bug in React."
           );
-          0 === cache2.refCount && scheduleCallback$2(NormalPriority, function() {
-            cache2.controller.abort();
+          0 === cache.refCount && scheduleCallback$2(NormalPriority, function() {
+            cache.controller.abort();
           });
         }
         function entangleAsyncAction(transition, thenable) {
@@ -15605,24 +15605,24 @@
         }
         function getHydratableHoistableCache(type, keyAttribute, ownerDocument) {
           if (null === tagCaches) {
-            var cache2 = /* @__PURE__ */ new Map();
+            var cache = /* @__PURE__ */ new Map();
             var caches = tagCaches = /* @__PURE__ */ new Map();
-            caches.set(ownerDocument, cache2);
+            caches.set(ownerDocument, cache);
           } else
-            caches = tagCaches, cache2 = caches.get(ownerDocument), cache2 || (cache2 = /* @__PURE__ */ new Map(), caches.set(ownerDocument, cache2));
-          if (cache2.has(type)) return cache2;
-          cache2.set(type, null);
+            caches = tagCaches, cache = caches.get(ownerDocument), cache || (cache = /* @__PURE__ */ new Map(), caches.set(ownerDocument, cache));
+          if (cache.has(type)) return cache;
+          cache.set(type, null);
           ownerDocument = ownerDocument.getElementsByTagName(type);
           for (caches = 0; caches < ownerDocument.length; caches++) {
             var node = ownerDocument[caches];
             if (!(node[internalHoistableMarker] || node[internalInstanceKey] || "link" === type && "stylesheet" === node.getAttribute("rel")) && node.namespaceURI !== SVG_NAMESPACE) {
               var nodeKey = node.getAttribute(keyAttribute) || "";
               nodeKey = type + nodeKey;
-              var existing = cache2.get(nodeKey);
-              existing ? existing.push(node) : cache2.set(nodeKey, [node]);
+              var existing = cache.get(nodeKey);
+              existing ? existing.push(node) : cache.set(nodeKey, [node]);
             }
           }
-          return cache2;
+          return cache;
         }
         function mountHoistable(hoistableRoot, type, instance) {
           hoistableRoot = hoistableRoot.ownerDocument || hoistableRoot;
@@ -18795,8 +18795,8 @@
         }
         var DefaultAsyncDispatcher = {
           getCacheForType: function(resourceType) {
-            var cache2 = readContext(CacheContext), cacheForType = cache2.data.get(resourceType);
-            void 0 === cacheForType && (cacheForType = resourceType(), cache2.data.set(resourceType, cacheForType));
+            var cache = readContext(CacheContext), cacheForType = cache.data.get(resourceType);
+            void 0 === cacheForType && (cacheForType = resourceType(), cache.data.set(resourceType, cacheForType));
             return cacheForType;
           },
           getOwner: function() {
@@ -19314,15 +19314,17 @@
     return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
   }
 
-  // src/components/App.tsx
-  var cache = null;
+  // src/components/db.ts
   async function getProducts() {
-    if (cache) return cache;
-    return cache = fetch("http://localhost:8087/api/products");
+    const res = await fetch("http://localhost:8087/api/products");
+    const data = await res.json();
+    return data;
   }
+
+  // src/components/App.tsx
   async function App() {
-    const { products } = await getProducts().then((res) => res.json());
-    return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Streaming Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
+    const { products } = await getProducts();
+    return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
   }
 
   // src/client.tsx

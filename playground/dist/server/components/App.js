@@ -32,12 +32,8 @@ __export(App_exports, {
 module.exports = __toCommonJS(App_exports);
 var import_react = __toESM(require("react"));
 var import_Products = __toESM(require("./Products"));
-let cache = null;
-async function getProducts() {
-  if (cache) return cache;
-  return cache = fetch("http://localhost:8087/api/products");
-}
+var import_db = require("./db");
 async function App() {
-  const { products } = await getProducts().then((res) => res.json());
-  return /* @__PURE__ */ import_react.default.createElement("html", null, /* @__PURE__ */ import_react.default.createElement("head", null, /* @__PURE__ */ import_react.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react.default.createElement("body", null, /* @__PURE__ */ import_react.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "React Streaming Example"), /* @__PURE__ */ import_react.default.createElement(import_Products.default, { products }))));
+  const { products } = await (0, import_db.getProducts)();
+  return /* @__PURE__ */ import_react.default.createElement("html", null, /* @__PURE__ */ import_react.default.createElement("head", null, /* @__PURE__ */ import_react.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react.default.createElement("body", null, /* @__PURE__ */ import_react.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "React Example"), /* @__PURE__ */ import_react.default.createElement(import_Products.default, { products }))));
 }
