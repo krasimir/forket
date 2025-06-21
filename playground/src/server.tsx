@@ -1,8 +1,10 @@
 import React from "react";
 import path from "path";
-import { renderToString } from "react-dom/server";
+import { renderToPipeableStream } from "react-dom/server";
 import http from "http";
 import express from "express";
+
+import productsHandler from './api/products'
 
 import App from './components/App'
 
@@ -11,25 +13,19 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname, "..", "public")));
-
+app.get("/api/products", productsHandler);
 app.get("/", (req, res) => {
-  res.type("text/html");
-  res.send(
-    `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playground</title>
-</head>
-<body>
-    <div id="root">
-    ${renderToString(<App />)}
-    </div>
-    <script src="/bundle.js"></script>
-</body>
-</html>`
-  );
+  const stream = renderToPipeableStream(<App />, {
+    bootstrapScripts: ["/bundle.js"],
+    onShellReady() {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/html");
+      stream.pipe(res);
+    },
+    onError(err) {
+      console.error(err);
+    }
+  });
 });
 
 server.listen(port, () => {

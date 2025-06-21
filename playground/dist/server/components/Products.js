@@ -1,3 +1,4 @@
+"use client";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -1586,15 +1587,12 @@ var require_react = __commonJS({
   }
 });
 
-// src/components/App.tsx
-var App_exports = {};
-__export(App_exports, {
-  default: () => App
-});
-module.exports = __toCommonJS(App_exports);
-var import_react2 = __toESM(require_react());
-
 // src/components/Products.tsx
+var Products_exports = {};
+__export(Products_exports, {
+  default: () => Products
+});
+module.exports = __toCommonJS(Products_exports);
 var import_react = __toESM(require_react());
 function Products({ products }) {
   const [selected, setSelected] = (0, import_react.useState)([]);
@@ -1615,12 +1613,6 @@ function Products({ products }) {
     return null;
   }
   return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
-}
-
-// src/components/App.tsx
-async function App() {
-  const { products } = await fetch("/api/products").then((res) => res.json());
-  return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Streaming Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
 }
 /*! Bundled license information:
 

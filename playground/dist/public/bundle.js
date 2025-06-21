@@ -1473,7 +1473,7 @@
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React3 = require_react(), Internals = {
+        var React4 = require_react(), Internals = {
           d: {
             f: noop,
             r: function() {
@@ -1491,16 +1491,16 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
         exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
-        exports.createPortal = function(children, container2) {
+        exports.createPortal = function(children, container) {
           var key = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
-          if (!container2 || 1 !== container2.nodeType && 9 !== container2.nodeType && 11 !== container2.nodeType)
+          if (!container || 1 !== container.nodeType && 9 !== container.nodeType && 11 !== container.nodeType)
             throw Error("Target container is not a DOM element.");
-          return createPortal$1(children, container2, null, key);
+          return createPortal$1(children, container, null, key);
         };
         exports.flushSync = function(fn) {
           var previousTransition = ReactSharedInternals.T, previousUpdatePriority = Internals.p;
@@ -2947,7 +2947,7 @@
           "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React3.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React4.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -5857,7 +5857,7 @@
           null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
           return thenable;
         }
-        function use(usable) {
+        function use2(usable) {
           if (null !== usable && "object" === typeof usable) {
             if ("function" === typeof usable.then) return useThenable(usable);
             if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
@@ -13048,8 +13048,8 @@
               if (null === targetInst$jscomp$0) return;
               var nodeTag = targetInst$jscomp$0.tag;
               if (3 === nodeTag || 4 === nodeTag) {
-                var container2 = targetInst$jscomp$0.stateNode.containerInfo;
-                if (container2 === targetContainer || 8 === container2.nodeType && container2.parentNode === targetContainer)
+                var container = targetInst$jscomp$0.stateNode.containerInfo;
+                if (container === targetContainer || 8 === container.nodeType && container.parentNode === targetContainer)
                   break;
                 if (4 === nodeTag)
                   for (nodeTag = targetInst$jscomp$0.return; null !== nodeTag; ) {
@@ -13060,15 +13060,15 @@
                     }
                     nodeTag = nodeTag.return;
                   }
-                for (; null !== container2; ) {
-                  nodeTag = getClosestInstanceFromNode(container2);
+                for (; null !== container; ) {
+                  nodeTag = getClosestInstanceFromNode(container);
                   if (null === nodeTag) return;
                   grandTag = nodeTag.tag;
                   if (5 === grandTag || 6 === grandTag || 26 === grandTag || 27 === grandTag) {
                     targetInst$jscomp$0 = ancestorInst = nodeTag;
                     continue a;
                   }
-                  container2 = container2.parentNode;
+                  container = container.parentNode;
                 }
               }
               targetInst$jscomp$0 = targetInst$jscomp$0.return;
@@ -15169,8 +15169,8 @@
         function removeChild(parentInstance, child) {
           parentInstance.removeChild(child);
         }
-        function removeChildFromContainer(container2, child) {
-          8 === container2.nodeType ? container2.parentNode.removeChild(child) : container2.removeChild(child);
+        function removeChildFromContainer(container, child) {
+          8 === container.nodeType ? container.parentNode.removeChild(child) : container.removeChild(child);
         }
         function clearSuspenseBoundary(parentInstance, suspenseInstance) {
           var node = suspenseInstance, depth = 0;
@@ -15206,8 +15206,8 @@
         function unhideTextInstance(textInstance, text) {
           textInstance.nodeValue = text;
         }
-        function clearContainerSparingly(container2) {
-          var nextNode = container2.firstChild;
+        function clearContainerSparingly(container) {
+          var nextNode = container.firstChild;
           nextNode && 10 === nextNode.nodeType && (nextNode = nextNode.nextSibling);
           for (; nextNode; ) {
             var node = nextNode;
@@ -15225,7 +15225,7 @@
               case "LINK":
                 if ("stylesheet" === node.rel.toLowerCase()) continue;
             }
-            container2.removeChild(node);
+            container.removeChild(node);
           }
         }
         function canHydrateInstance(instance, type, props, inRootOrSingleton) {
@@ -15335,8 +15335,8 @@
           }
           return null;
         }
-        function commitHydratedContainer(container2) {
-          retryIfBlockedOn(container2);
+        function commitHydratedContainer(container) {
+          retryIfBlockedOn(container);
         }
         function commitHydratedSuspenseInstance(suspenseInstance) {
           retryIfBlockedOn(suspenseInstance);
@@ -15398,8 +15398,8 @@
           instance[internalInstanceKey] = internalInstanceHandle;
           instance[internalPropsKey] = props;
         }
-        function getHoistableRoot(container2) {
-          return "function" === typeof container2.getRootNode ? container2.getRootNode() : container2.ownerDocument;
+        function getHoistableRoot(container) {
+          return "function" === typeof container.getRootNode ? container.getRootNode() : container.ownerDocument;
         }
         function preconnectAs(rel, href, crossOrigin) {
           var ownerDocument = globalDocument;
@@ -15906,22 +15906,22 @@
           parentComponent = emptyContextObject;
           return parentComponent;
         }
-        function updateContainerSync(element, container2, parentComponent, callback) {
-          0 === container2.tag && flushPassiveEffects();
+        function updateContainerSync(element, container, parentComponent, callback) {
+          0 === container.tag && flushPassiveEffects();
           updateContainerImpl(
-            container2.current,
+            container.current,
             2,
             element,
-            container2,
+            container,
             parentComponent,
             callback
           );
           return 2;
         }
-        function updateContainerImpl(rootFiber, lane, element, container2, parentComponent, callback) {
+        function updateContainerImpl(rootFiber, lane, element, container, parentComponent, callback) {
           if (injectedHook && "function" === typeof injectedHook.onScheduleFiberRoot)
             try {
-              injectedHook.onScheduleFiberRoot(rendererID, container2, element);
+              injectedHook.onScheduleFiberRoot(rendererID, container, element);
             } catch (err) {
               hasLoggedError || (hasLoggedError = true, console.error(
                 "React instrumentation encountered an error: %s",
@@ -15930,19 +15930,19 @@
             }
           null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markRenderScheduled && injectedProfilingHooks.markRenderScheduled(lane);
           parentComponent = getContextForSubtree(parentComponent);
-          null === container2.context ? container2.context = parentComponent : container2.pendingContext = parentComponent;
+          null === container.context ? container.context = parentComponent : container.pendingContext = parentComponent;
           isRendering && null !== current && !didWarnAboutNestedUpdates && (didWarnAboutNestedUpdates = true, console.error(
             "Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.\n\nCheck the render method of %s.",
             getComponentNameFromFiber(current) || "Unknown"
           ));
-          container2 = createUpdate(lane);
-          container2.payload = { element };
+          container = createUpdate(lane);
+          container.payload = { element };
           callback = void 0 === callback ? null : callback;
           null !== callback && ("function" !== typeof callback && console.error(
             "Expected the last optional `callback` argument to be a function. Instead received: %s.",
             callback
-          ), container2.callback = callback);
-          element = enqueueUpdate(rootFiber, container2, lane);
+          ), container.callback = callback);
+          element = enqueueUpdate(rootFiber, container, lane);
           null !== element && (scheduleUpdateOnFiber(element, rootFiber, lane), entangleTransitions(element, rootFiber, lane));
         }
         function markRetryLaneImpl(fiber, retryLane) {
@@ -15974,22 +15974,22 @@
           }
           return map;
         }
-        function dispatchDiscreteEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
+        function dispatchDiscreteEvent(domEventName, eventSystemFlags, container, nativeEvent) {
           var prevTransition = ReactSharedInternals.T;
           ReactSharedInternals.T = null;
           var previousPriority = ReactDOMSharedInternals.p;
           try {
-            ReactDOMSharedInternals.p = DiscreteEventPriority, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
+            ReactDOMSharedInternals.p = DiscreteEventPriority, dispatchEvent(domEventName, eventSystemFlags, container, nativeEvent);
           } finally {
             ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
           }
         }
-        function dispatchContinuousEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
+        function dispatchContinuousEvent(domEventName, eventSystemFlags, container, nativeEvent) {
           var prevTransition = ReactSharedInternals.T;
           ReactSharedInternals.T = null;
           var previousPriority = ReactDOMSharedInternals.p;
           try {
-            ReactDOMSharedInternals.p = ContinuousEventPriority, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
+            ReactDOMSharedInternals.p = ContinuousEventPriority, dispatchEvent(domEventName, eventSystemFlags, container, nativeEvent);
           } finally {
             ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
           }
@@ -16409,25 +16409,25 @@
         function ReactDOMHydrationRoot(internalRoot) {
           this._internalRoot = internalRoot;
         }
-        function warnIfReactDOMContainerInDEV(container2) {
-          container2[internalContainerInstanceKey] && (container2._reactRootContainer ? console.error(
+        function warnIfReactDOMContainerInDEV(container) {
+          container[internalContainerInstanceKey] && (container._reactRootContainer ? console.error(
             "You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported."
           ) : console.error(
             "You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it."
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React3 = require_react(), ReactDOM2 = require_react_dom(), REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React4 = require_react(), ReactDOM = require_react_dom(), REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
         Symbol.for("react.scope");
         Symbol.for("react.debug_trace_mode");
         var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
         Symbol.for("react.legacy_hidden");
         Symbol.for("react.tracing_marker");
-        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, assign = Object.assign, disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
+        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, assign = Object.assign, disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
         disabledLog.__reactDisabledLog = true;
         var prefix, suffix, reentry = false;
         var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map)();
-        var current = null, isRendering = false, isArrayImpl = Array.isArray, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var current = null, isRendering = false, isArrayImpl = Array.isArray, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -17718,7 +17718,7 @@
         };
         var ContextOnlyDispatcher = {
           readContext,
-          use,
+          use: use2,
           useCallback: throwInvalidHookError,
           useContext: throwInvalidHookError,
           useEffect: throwInvalidHookError,
@@ -17746,7 +17746,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             mountHookTypesDev();
@@ -17877,7 +17877,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18002,7 +18002,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18127,7 +18127,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18255,7 +18255,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18404,7 +18404,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18553,7 +18553,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -19119,7 +19119,7 @@
           JSCompiler_OptimizeArgumentsArray_p3 = this._internalRoot;
           if (null !== JSCompiler_OptimizeArgumentsArray_p3) {
             this._internalRoot = null;
-            var container2 = JSCompiler_OptimizeArgumentsArray_p3.containerInfo;
+            var container = JSCompiler_OptimizeArgumentsArray_p3.containerInfo;
             (executionContext & (RenderContext | CommitContext)) !== NoContext && console.error(
               "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition."
             );
@@ -19130,7 +19130,7 @@
               null
             );
             flushSyncWork$1();
-            container2[internalContainerInstanceKey] = null;
+            container[internalContainerInstanceKey] = null;
           }
         };
         ReactDOMHydrationRoot.prototype.unstable_scheduleHydration = function(target) {
@@ -19143,7 +19143,7 @@
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React3.version;
+          var isomorphicReactPackageVersion = React4.version;
           if ("19.0.0" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.0.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -19199,10 +19199,10 @@
             "font-weight:bold"
           );
         }
-        exports.createRoot = function(container2, options) {
-          if (!isValidContainer(container2))
+        exports.createRoot = function(container, options) {
+          if (!isValidContainer(container))
             throw Error("Target container is not a DOM element.");
-          warnIfReactDOMContainerInDEV(container2);
+          warnIfReactDOMContainerInDEV(container);
           var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError, transitionCallbacks = null;
           null !== options && void 0 !== options && (options.hydrate ? console.warn(
             "hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead."
@@ -19210,7 +19210,7 @@
             "You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:\n\n  let root = createRoot(domContainer);\n  root.render(<App />);"
           ), true === options.unstable_strictMode && (isStrictMode = true), void 0 !== options.identifierPrefix && (identifierPrefix = options.identifierPrefix), void 0 !== options.onUncaughtError && (onUncaughtError = options.onUncaughtError), void 0 !== options.onCaughtError && (onCaughtError = options.onCaughtError), void 0 !== options.onRecoverableError && (onRecoverableError = options.onRecoverableError), void 0 !== options.unstable_transitionCallbacks && (transitionCallbacks = options.unstable_transitionCallbacks));
           options = createFiberRoot(
-            container2,
+            container,
             1,
             false,
             null,
@@ -19223,23 +19223,23 @@
             transitionCallbacks,
             null
           );
-          container2[internalContainerInstanceKey] = options.current;
+          container[internalContainerInstanceKey] = options.current;
           listenToAllSupportedEvents(
-            8 === container2.nodeType ? container2.parentNode : container2
+            8 === container.nodeType ? container.parentNode : container
           );
           return new ReactDOMRoot(options);
         };
-        exports.hydrateRoot = function(container2, initialChildren, options) {
-          if (!isValidContainer(container2))
+        exports.hydrateRoot = function(container, initialChildren, options) {
+          if (!isValidContainer(container))
             throw Error("Target container is not a DOM element.");
-          warnIfReactDOMContainerInDEV(container2);
+          warnIfReactDOMContainerInDEV(container);
           void 0 === initialChildren && console.error(
             "Must provide initial children as second argument to hydrateRoot. Example usage: hydrateRoot(domContainer, <App />)"
           );
           var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError, transitionCallbacks = null, formState = null;
           null !== options && void 0 !== options && (true === options.unstable_strictMode && (isStrictMode = true), void 0 !== options.identifierPrefix && (identifierPrefix = options.identifierPrefix), void 0 !== options.onUncaughtError && (onUncaughtError = options.onUncaughtError), void 0 !== options.onCaughtError && (onCaughtError = options.onCaughtError), void 0 !== options.onRecoverableError && (onRecoverableError = options.onRecoverableError), void 0 !== options.unstable_transitionCallbacks && (transitionCallbacks = options.unstable_transitionCallbacks), void 0 !== options.formState && (formState = options.formState));
           initialChildren = createFiberRoot(
-            container2,
+            container,
             1,
             true,
             initialChildren,
@@ -19261,8 +19261,8 @@
           initialChildren.current.lanes = isStrictMode;
           markRootUpdated$1(initialChildren, isStrictMode);
           ensureRootIsScheduled(initialChildren);
-          container2[internalContainerInstanceKey] = initialChildren.current;
-          listenToAllSupportedEvents(container2);
+          container[internalContainerInstanceKey] = initialChildren.current;
+          listenToAllSupportedEvents(container);
           return new ReactDOMHydrationRoot(initialChildren);
         };
         exports.version = "19.0.0";
@@ -19285,21 +19285,43 @@
   });
 
   // src/client.tsx
-  var import_react2 = __toESM(require_react());
+  var import_react3 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.tsx
+  var import_react2 = __toESM(require_react());
+
+  // src/components/Products.tsx
   var import_react = __toESM(require_react());
-  function App() {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h1", null, "Welcome to the Playground!"), /* @__PURE__ */ import_react.default.createElement("p", null, "This is a simple React application."));
+  function Products({ products }) {
+    const [selected, setSelected] = (0, import_react.useState)([]);
+    const addToCart = (ids) => ({ products: ids.length });
+    function itemClicked(product) {
+      const index = selected.indexOf(product.id);
+      if (index === -1) {
+        setSelected([...selected, product.id]);
+      } else {
+        setSelected(selected.filter((id) => id !== product.id));
+      }
+    }
+    async function buy() {
+      const { products: products2 } = await addToCart(selected);
+      alert(`Added ${products2} items to cart`);
+    }
+    if (products.length === 0) {
+      return null;
+    }
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
+  }
+
+  // src/components/App.tsx
+  async function App() {
+    const { products } = await fetch("/api/products").then((res) => res.json());
+    return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Streaming Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
   }
 
   // src/client.tsx
-  var container = document.getElementById("root");
-  if (container) {
-    const root = import_client.default.createRoot(container);
-    root.render(/* @__PURE__ */ import_react2.default.createElement(App, null));
-  }
+  (0, import_client.hydrateRoot)(document, /* @__PURE__ */ import_react3.default.createElement(App, null));
 })();
 /*! Bundled license information:
 

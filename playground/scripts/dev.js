@@ -15,33 +15,6 @@ let serverProcess;
 let restart = false;
 let processes = [];
 
-function runServer() {
-  const run = async () => {
-    console.log(chalk.yellow("Starting server..."));
-    await buildServer();
-    await buildClient();
-    const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
-    serverProcess = command(commandToExecute, ROOT, (code) => {
-      serverProcess = null;
-      if (code === null && restart) {
-        run();
-      }
-    });
-  };
-  run();
-  chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
-    restart = true;
-    if (serverProcess) {
-      serverProcess.kill();
-    } else {
-      run();
-    }
-  });
-}
-
-runServer();
-
-
 async function buildServer() {
   const forket = Forket();
   const files = getAllFiles(SRC);
@@ -61,6 +34,7 @@ async function buildServer() {
     console.error(chalk.red(`Error compiling server: ${error.message}`));
   }
 }
+
 async function buildClient() {
   const forket = Forket();
   try {
@@ -77,6 +51,7 @@ async function buildClient() {
     console.error(chalk.red(`Error compiling server: ${error.message}`));
   }
 }
+
 function command(cmd, cwd, onExit = (c) => {}) {
   const proc = spawn(cmd, {
     shell: true,
@@ -112,3 +87,28 @@ function getAllFiles(dir) {
   walk(dir);
   return result;
 }
+function runServer() {
+  const run = async () => {
+    console.log(chalk.yellow("Starting server..."));
+    await buildServer();
+    await buildClient();
+    const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
+    serverProcess = command(commandToExecute, ROOT, (code) => {
+      serverProcess = null;
+      if (code === null && restart) {
+        run();
+      }
+    });
+  };
+  run();
+  chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
+    restart = true;
+    if (serverProcess) {
+      serverProcess.kill();
+    } else {
+      run();
+    }
+  });
+}
+
+runServer();
