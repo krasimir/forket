@@ -2,21 +2,15 @@ import React from "react";
 
 import Products from "./Products";
 
-// export default function App() {
-//   return (
-//     <html>
-//       <head>
-//         <title>Forket</title>
-//       </head>
-//       <body>
-//         <h1>Hey, world</h1>
-//       </body>
-//     </html>
-//   );
-// }
+let cache: any = null;
+
+async function getProducts() {
+  if (cache) return cache;
+  return cache = fetch("http://localhost:8087/api/products");  
+}
 
 export default async function App() {
-  const { products } = await fetch("/api/products").then((res) => res.json());
+  const { products } = await getProducts().then(res => res.json());
 
   return (
     <html>

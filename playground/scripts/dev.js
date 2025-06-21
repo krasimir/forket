@@ -23,9 +23,10 @@ async function buildServer() {
       const outfile = path.join(path.join(DIST, 'server'), path.relative(SRC, file).replace(/\.(ts|tsx|js|tsx)$/, ".js"));
       await esbuild.build({
         entryPoints: [file],
-        bundle: true,
+        bundle: false,
         outfile,
         platform: "node",
+        format: "cjs",
         plugins: [forket.plugin()]
       });
     }));

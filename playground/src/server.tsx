@@ -13,6 +13,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname, "..", "public")));
+
 app.get("/api/products", productsHandler);
 app.get("/", (req, res) => {
   const stream = renderToPipeableStream(<App />, {

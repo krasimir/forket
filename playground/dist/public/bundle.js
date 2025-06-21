@@ -5540,19 +5540,19 @@
             refCount: 0
           };
         }
-        function retainCache(cache) {
-          cache.controller.signal.aborted && console.warn(
+        function retainCache(cache2) {
+          cache2.controller.signal.aborted && console.warn(
             "A cache instance was retained after it was already freed. This likely indicates a bug in React."
           );
-          cache.refCount++;
+          cache2.refCount++;
         }
-        function releaseCache(cache) {
-          cache.refCount--;
-          0 > cache.refCount && console.warn(
+        function releaseCache(cache2) {
+          cache2.refCount--;
+          0 > cache2.refCount && console.warn(
             "A cache instance was released after it was already freed. This likely indicates a bug in React."
           );
-          0 === cache.refCount && scheduleCallback$2(NormalPriority, function() {
-            cache.controller.abort();
+          0 === cache2.refCount && scheduleCallback$2(NormalPriority, function() {
+            cache2.controller.abort();
           });
         }
         function entangleAsyncAction(transition, thenable) {
@@ -15605,24 +15605,24 @@
         }
         function getHydratableHoistableCache(type, keyAttribute, ownerDocument) {
           if (null === tagCaches) {
-            var cache = /* @__PURE__ */ new Map();
+            var cache2 = /* @__PURE__ */ new Map();
             var caches = tagCaches = /* @__PURE__ */ new Map();
-            caches.set(ownerDocument, cache);
+            caches.set(ownerDocument, cache2);
           } else
-            caches = tagCaches, cache = caches.get(ownerDocument), cache || (cache = /* @__PURE__ */ new Map(), caches.set(ownerDocument, cache));
-          if (cache.has(type)) return cache;
-          cache.set(type, null);
+            caches = tagCaches, cache2 = caches.get(ownerDocument), cache2 || (cache2 = /* @__PURE__ */ new Map(), caches.set(ownerDocument, cache2));
+          if (cache2.has(type)) return cache2;
+          cache2.set(type, null);
           ownerDocument = ownerDocument.getElementsByTagName(type);
           for (caches = 0; caches < ownerDocument.length; caches++) {
             var node = ownerDocument[caches];
             if (!(node[internalHoistableMarker] || node[internalInstanceKey] || "link" === type && "stylesheet" === node.getAttribute("rel")) && node.namespaceURI !== SVG_NAMESPACE) {
               var nodeKey = node.getAttribute(keyAttribute) || "";
               nodeKey = type + nodeKey;
-              var existing = cache.get(nodeKey);
-              existing ? existing.push(node) : cache.set(nodeKey, [node]);
+              var existing = cache2.get(nodeKey);
+              existing ? existing.push(node) : cache2.set(nodeKey, [node]);
             }
           }
-          return cache;
+          return cache2;
         }
         function mountHoistable(hoistableRoot, type, instance) {
           hoistableRoot = hoistableRoot.ownerDocument || hoistableRoot;
@@ -18795,8 +18795,8 @@
         }
         var DefaultAsyncDispatcher = {
           getCacheForType: function(resourceType) {
-            var cache = readContext(CacheContext), cacheForType = cache.data.get(resourceType);
-            void 0 === cacheForType && (cacheForType = resourceType(), cache.data.set(resourceType, cacheForType));
+            var cache2 = readContext(CacheContext), cacheForType = cache2.data.get(resourceType);
+            void 0 === cacheForType && (cacheForType = resourceType(), cache2.data.set(resourceType, cacheForType));
             return cacheForType;
           },
           getOwner: function() {
@@ -19315,8 +19315,13 @@
   }
 
   // src/components/App.tsx
+  var cache = null;
+  async function getProducts() {
+    if (cache) return cache;
+    return cache = fetch("http://localhost:8087/api/products");
+  }
   async function App() {
-    const { products } = await fetch("/api/products").then((res) => res.json());
+    const { products } = await getProducts().then((res) => res.json());
     return /* @__PURE__ */ import_react2.default.createElement("html", null, /* @__PURE__ */ import_react2.default.createElement("head", null, /* @__PURE__ */ import_react2.default.createElement("title", null, "Forket")), /* @__PURE__ */ import_react2.default.createElement("body", null, /* @__PURE__ */ import_react2.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React Streaming Example"), /* @__PURE__ */ import_react2.default.createElement(Products, { products }))));
   }
 
