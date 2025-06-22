@@ -65,70 +65,75 @@ function init() {
     return transformed.code;
   }
   function processAST(ast, type) {
-    traverseNode(ast, {
-      FunctionDeclaration(node) {
-        const isAsync = node.async;
-        const funcName = node?.identifier?.value || "";
-        const isCapitalized = /^[A-Z]/.test(funcName);
-        const isClient = type === "client";
+    function ProcessFunction(node) {
+      const isAsync = node.async;
+      const funcName = node?.identifier?.value || "";
+      // const isCapitalized = /^[A-Z]/.test(funcName); // Nice to check but it is not valid for arrow functions
+      const isClient = type === "client";
+      
+      // debugging ...
+      // if (node.type === 'FunctionExpression') {
+      //   console.log(`Processing FunctionExpression: ${funcName} (async: ${isAsync}, jsx: ${containsJSXReturn(node)}, client: ${isClient})`);
+      // }
 
-        if (!isCapitalized || !isAsync) return;
-        if (!containsJSXReturn(node)) return;
-        if (!isClient) return;
+      if (!isAsync) return;
+      if (!containsJSXReturn(node)) return;
+      if (!isClient) return;
 
-        const templateId = `forket-${counter++}`;
-        const span = {
-          start: 1,
-          end: 0
-        };
-        const returnStmt = {
-          type: "ReturnStatement",
-          span,
-          argument: {
-            type: "JSXElement",
-            span: {
-              start: 33,
-              end: 45
-            },
-            opening: {
-              type: "JSXOpeningElement",
+      const templateId = `forket-${counter++}`;
+      const span = { start: 1, end: 0 };
+      const returnStmt = {
+        type: "ReturnStatement",
+        span,
+        argument: {
+          type: "JSXElement",
+          span: {
+            start: 33,
+            end: 45
+          },
+          opening: {
+            type: "JSXOpeningElement",
+            ctxt: 1,
+            span,
+            name: {
+              type: "Identifier",
+              value: "template",
               ctxt: 1,
-              span,
-              name: {
-                type: "Identifier",
-                value: "template",
-                ctxt: 1,
-                span
-              },
-              attributes: [
-                {
-                  type: "JSXAttribute",
-                  span,
-                  name: {
-                    type: "Identifier",
-                    span,
-                    value: "id"
-                  },
-                  value: {
-                    type: "StringLiteral",
-                    span,
-                    value: templateId,
-                    raw: '"' + templateId + '"'
-                  }
-                }
-              ],
-              selfClosing: true
+              span
             },
-            children: []
-          }
-        };
+            attributes: [
+              {
+                type: "JSXAttribute",
+                span,
+                name: {
+                  type: "Identifier",
+                  span,
+                  value: "id"
+                },
+                value: {
+                  type: "StringLiteral",
+                  span,
+                  value: templateId,
+                  raw: '"' + templateId + '"'
+                }
+              }
+            ],
+            selfClosing: true
+          },
+          children: []
+        }
+      };
 
-        // Replace body with our return
-        node.body.stmts = [returnStmt];
+      // Replace body with our return
+      node.body.stmts = [returnStmt];
 
-        // Remove async
-        node.async = false;
-      }
+      // Remove async
+      node.async = false;
+    }
+    traverseNode(ast, {
+      FunctionDeclaration: ProcessFunction,
+      ArrowFunctionExpression: ProcessFunction,
+      FunctionExpression: ProcessFunction
     });
   }
 
@@ -164,10 +169,10 @@ function traverseNode(node, visitors, parent = null) {
 function containsJSXReturn(node) {
   let found = false;
 
-  function deepCheck(n) {
+  function deepCheck(n, isInReturnScope = false) {
     if (!n || found) return;
 
-    if (n.type === "ReturnStatement" && n.argument?.type === "JSXElement") {
+    if (isInReturnScope && n.type === "JSXElement") {
       found = true;
       return;
     }
@@ -177,10 +182,10 @@ function containsJSXReturn(node) {
 
       if (Array.isArray(child)) {
         for (const c of child) {
-          if (c && typeof c.type === "string") deepCheck(c);
+          if (c && typeof c.type === "string") deepCheck(c, n.type === "ReturnStatement" || isInReturnScope);
         }
       } else if (child && typeof child.type === "string") {
-        deepCheck(child);
+        deepCheck(child, n.type === "ReturnStatement" || isInReturnScope);
       }
     }
   }

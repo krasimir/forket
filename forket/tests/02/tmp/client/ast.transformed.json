@@ -1,0 +1,370 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 269,
+    "end": 670
+  },
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 269,
+        "end": 302
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 278,
+            "end": 286
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 278,
+              "end": 286
+            },
+            "ctxt": 2,
+            "value": "useState",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 294,
+          "end": 301
+        },
+        "value": "react",
+        "raw": "'react'"
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 319,
+          "end": 322
+        },
+        "ctxt": 2,
+        "value": "App",
+        "optional": false
+      },
+      "declare": false,
+      "params": [],
+      "decorators": [],
+      "span": {
+        "start": 304,
+        "end": 367
+      },
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
+        "span": {
+          "start": 325,
+          "end": 367
+        },
+        "ctxt": 3,
+        "stmts": [
+          {
+            "type": "ReturnStatement",
+            "span": {
+              "start": 1,
+              "end": 0
+            },
+            "argument": {
+              "type": "JSXElement",
+              "span": {
+                "start": 33,
+                "end": 45
+              },
+              "opening": {
+                "type": "JSXOpeningElement",
+                "ctxt": 1,
+                "span": {
+                  "start": 1,
+                  "end": 0
+                },
+                "name": {
+                  "type": "Identifier",
+                  "value": "template",
+                  "ctxt": 1,
+                  "span": {
+                    "start": 1,
+                    "end": 0
+                  }
+                },
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "span": {
+                      "start": 1,
+                      "end": 0
+                    },
+                    "name": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 1,
+                        "end": 0
+                      },
+                      "value": "id"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 1,
+                        "end": 0
+                      },
+                      "value": "forket-1",
+                      "raw": "\"forket-1\""
+                    }
+                  }
+                ],
+                "selfClosing": true
+              },
+              "children": []
+            }
+          }
+        ]
+      },
+      "generator": false,
+      "async": false,
+      "typeParameters": null,
+      "returnType": null
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 368,
+        "end": 493
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 374,
+            "end": 493
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 374,
+              "end": 379
+            },
+            "ctxt": 2,
+            "value": "Comp2",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "ArrowFunctionExpression",
+            "span": {
+              "start": 382,
+              "end": 493
+            },
+            "ctxt": 0,
+            "params": [],
+            "body": {
+              "type": "BlockStatement",
+              "span": {
+                "start": 394,
+                "end": 493
+              },
+              "ctxt": 4,
+              "stmts": [
+                {
+                  "type": "ReturnStatement",
+                  "span": {
+                    "start": 1,
+                    "end": 0
+                  },
+                  "argument": {
+                    "type": "JSXElement",
+                    "span": {
+                      "start": 33,
+                      "end": 45
+                    },
+                    "opening": {
+                      "type": "JSXOpeningElement",
+                      "ctxt": 1,
+                      "span": {
+                        "start": 1,
+                        "end": 0
+                      },
+                      "name": {
+                        "type": "Identifier",
+                        "value": "template",
+                        "ctxt": 1,
+                        "span": {
+                          "start": 1,
+                          "end": 0
+                        }
+                      },
+                      "attributes": [
+                        {
+                          "type": "JSXAttribute",
+                          "span": {
+                            "start": 1,
+                            "end": 0
+                          },
+                          "name": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 1,
+                              "end": 0
+                            },
+                            "value": "id"
+                          },
+                          "value": {
+                            "type": "StringLiteral",
+                            "span": {
+                              "start": 1,
+                              "end": 0
+                            },
+                            "value": "forket-2",
+                            "raw": "\"forket-2\""
+                          }
+                        }
+                      ],
+                      "selfClosing": true
+                    },
+                    "children": []
+                  }
+                }
+              ]
+            },
+            "async": false,
+            "generator": false,
+            "typeParameters": null,
+            "returnType": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 494,
+        "end": 670
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 500,
+            "end": 669
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 500,
+              "end": 505
+            },
+            "ctxt": 2,
+            "value": "Comp3",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "ArrowFunctionExpression",
+            "span": {
+              "start": 508,
+              "end": 669
+            },
+            "ctxt": 0,
+            "params": [],
+            "body": {
+              "type": "BlockStatement",
+              "span": {
+                "start": 520,
+                "end": 669
+              },
+              "ctxt": 5,
+              "stmts": [
+                {
+                  "type": "ReturnStatement",
+                  "span": {
+                    "start": 1,
+                    "end": 0
+                  },
+                  "argument": {
+                    "type": "JSXElement",
+                    "span": {
+                      "start": 33,
+                      "end": 45
+                    },
+                    "opening": {
+                      "type": "JSXOpeningElement",
+                      "ctxt": 1,
+                      "span": {
+                        "start": 1,
+                        "end": 0
+                      },
+                      "name": {
+                        "type": "Identifier",
+                        "value": "template",
+                        "ctxt": 1,
+                        "span": {
+                          "start": 1,
+                          "end": 0
+                        }
+                      },
+                      "attributes": [
+                        {
+                          "type": "JSXAttribute",
+                          "span": {
+                            "start": 1,
+                            "end": 0
+                          },
+                          "name": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 1,
+                              "end": 0
+                            },
+                            "value": "id"
+                          },
+                          "value": {
+                            "type": "StringLiteral",
+                            "span": {
+                              "start": 1,
+                              "end": 0
+                            },
+                            "value": "forket-3",
+                            "raw": "\"forket-3\""
+                          }
+                        }
+                      ],
+                      "selfClosing": true
+                    },
+                    "children": []
+                  }
+                }
+              ]
+            },
+            "async": false,
+            "generator": false,
+            "typeParameters": null,
+            "returnType": null
+          },
+          "definite": false
+        }
+      ]
+    }
+  ],
+  "interpreter": null
+}

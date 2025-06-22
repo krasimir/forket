@@ -31,6 +31,7 @@ const Forket = require('../index');
           const outputClientGenerated = await transform(input, "client", inputFile, true);
           if (outputClientGenerated !== outputClient) {
             console.log(chalk.red(`Error: Output for client in ${dir} does not match expected output.`));
+            console.log(chalk.red(`---- Expected:\n${outputClient}\n---- Generated:\n${outputClientGenerated}`));
           } else {
             console.log(chalk.green(`Client transformation for ${dir} passed.`));
           }
@@ -41,7 +42,7 @@ const Forket = require('../index');
           const outputServerGenerated = await transform(input, "server", inputFile, true);
           if (outputServerGenerated !== outputServer) {
             console.log(chalk.red(`Error: Output for server in ${dir} does not match expected output.`));
-            console.log(chalk.red(`Expected:\n${outputServer}\nGenerated:\n${outputServerGenerated}`));
+            console.log(chalk.red(`---- Expected:\n${outputServer}\n---- Generated:\n${outputServerGenerated}`));
           } else {
             console.log(chalk.green(`Server transformation for ${dir} passed.`));
           }
