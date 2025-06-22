@@ -4,7 +4,7 @@
   "description": "𐂐",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./tests/tests.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,9 @@
   "dependencies": {
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.12.1"
+  },
+  "devDependencies": {
+    "arg": "^5.0.2",
+    "chalk": "4.1.2"
   }
 }

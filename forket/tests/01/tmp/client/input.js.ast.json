@@ -1,0 +1,107 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 1,
+    "end": 47
+  },
+  "body": [
+    {
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 16,
+          "end": 19
+        },
+        "ctxt": 2,
+        "value": "App",
+        "optional": false
+      },
+      "declare": false,
+      "params": [],
+      "decorators": [],
+      "span": {
+        "start": 1,
+        "end": 47
+      },
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
+        "span": {
+          "start": 22,
+          "end": 47
+        },
+        "ctxt": 3,
+        "stmts": [
+          {
+            "type": "ReturnStatement",
+            "span": {
+              "start": 26,
+              "end": 45
+            },
+            "argument": {
+              "type": "JSXElement",
+              "span": {
+                "start": 33,
+                "end": 45
+              },
+              "opening": {
+                "type": "JSXOpeningElement",
+                "name": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 34,
+                    "end": 35
+                  },
+                  "ctxt": 1,
+                  "value": "p",
+                  "optional": false
+                },
+                "span": {
+                  "start": 33,
+                  "end": 36
+                },
+                "attributes": [],
+                "selfClosing": false,
+                "typeArguments": null
+              },
+              "children": [
+                {
+                  "type": "JSXText",
+                  "span": {
+                    "start": 36,
+                    "end": 41
+                  },
+                  "value": "Hello",
+                  "raw": "Hello"
+                }
+              ],
+              "closing": {
+                "type": "JSXClosingElement",
+                "span": {
+                  "start": 41,
+                  "end": 45
+                },
+                "name": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 43,
+                    "end": 44
+                  },
+                  "ctxt": 1,
+                  "value": "p",
+                  "optional": false
+                }
+              }
+            }
+          }
+        ]
+      },
+      "generator": false,
+      "async": true,
+      "typeParameters": null,
+      "returnType": null
+    }
+  ],
+  "interpreter": null
+}
