@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs").promises;
 const { inspect } = require("util");
 
-const { transform } = require('../../forket/index')
+const Forket = require('../../forket/index')
 
 const FILTER_REGEXP = /\.m?(tsx|jsx)?$/;
 const POSSIBLE_TYPES = ["server", "client"];
@@ -18,6 +18,8 @@ module.exports = function (options = {}) {
       return {
         name: "forket",
         setup(build) {
+          const { transform } = Forket.init();
+
           build.onLoad({ filter: FILTER_REGEXP }, async (args) => {
             if (isServer) {
             } else {

@@ -4,108 +4,137 @@ const swc = require("@swc/core");
 
 const POSSIBLE_TYPES = ["server", "client"];
 
-async function transform(code, type, filepath = '', debug = false) {
-  if (!type || !POSSIBLE_TYPES.includes(type)) {
-    throw new Error(`Forket: Invalid type "${type}". Expected one of: ${POSSIBLE_TYPES.join(", ")}`);
-  }
+function init() {
+  let counter = 1;
 
-  const ROOT = filepath !== '' ? path.dirname(filepath) : process.cwd();
-
-  const { transform, parse, print } = swc;
-  const ast = await parse(code, {
-    syntax: "typescript", // or 'ecmascript'
-    tsx: true,
-    decorators: false
-  });
-
-  if (debug && filepath !== '') {
-    const tmpDir = path.join(ROOT, "tmp", type);
-    if (!fs.existsSync(tmpDir)) {
-      fs.mkdirSync(tmpDir, { recursive: true });
+  async function transform(code, type, filepath = "", debug = false) {
+    if (!type || !POSSIBLE_TYPES.includes(type)) {
+      throw new Error(`Forket: Invalid type "${type}". Expected one of: ${POSSIBLE_TYPES.join(", ")}`);
     }
-    fs.writeFileSync(path.join(tmpDir, path.basename(filepath) + ".input.js"), code);
-    fs.writeFileSync(path.join(tmpDir, path.basename(filepath) + ".ast.json"), JSON.stringify(ast, null, 2));
-  }
 
-  processAST(ast);
+    const ROOT = filepath !== "" ? path.dirname(filepath) : process.cwd();
 
-  const transformed = await transform(ast, {
-    jsc: {
-      target: "esnext", // "es3" | "es5" | "es2015" | "es2016" | "es2017" | "es2018" | "es2019" | "es2020" | "es2021" | "es2022" | "es2023" | "es2024" | "esnext"
-      transform: {
-        react: {
-          runtime: "classic",
-          pragma: "React.createElement",
-          pragmaFrag: "React.Fragment",
-          throwIfNamespace: true,
-          development: false,
-          useBuiltins: false
-        }
-      },
-      parser: {
-        syntax: "typescript", // or 'ecmascript'
-        tsx: true,
-        decorators: false
+    const { transform, parse, print } = swc;
+    const ast = await parse(code, {
+      syntax: "typescript", // or 'ecmascript'
+      tsx: true,
+      decorators: false
+    });
+    const shouldDebug = debug && filepath !== "";
+    const tmpDir = path.join(ROOT, "tmp", type);
+
+    if (shouldDebug) {
+      if (!fs.existsSync(tmpDir)) {
+        fs.mkdirSync(tmpDir, { recursive: true });
       }
+      fs.writeFileSync(path.join(tmpDir, "input.js"), code);
+      fs.writeFileSync(path.join(tmpDir, "ast.json"), JSON.stringify(ast, null, 2));
     }
-  });
 
-  if (debug && filepath !== '') {
-    const tmpDir = path.join(ROOT, "tmp", type);
-    if (!fs.existsSync(tmpDir)) {
-      fs.mkdirSync(tmpDir, { recursive: true });
+    const meta = processAST(ast, type);
+
+    if (shouldDebug) {
+      fs.writeFileSync(path.join(tmpDir, "ast.transformed.json"), JSON.stringify(ast, null, 2));
     }
-    fs.writeFileSync(path.join(tmpDir, path.basename(filepath) + ".output.js"), transformed.code);
+
+    const transformed = await transform(ast, {
+      jsc: {
+        target: "esnext", // "es3" | "es5" | "es2015" | "es2016" | "es2017" | "es2018" | "es2019" | "es2020" | "es2021" | "es2022" | "es2023" | "es2024" | "esnext"
+        transform: {
+          react: {
+            runtime: "classic",
+            pragma: "React.createElement",
+            pragmaFrag: "React.Fragment",
+            throwIfNamespace: true,
+            development: false,
+            useBuiltins: false
+          }
+        },
+        parser: {
+          syntax: "typescript", // or 'ecmascript'
+          tsx: true,
+          decorators: false
+        }
+      }
+    });
+
+    if (debug && filepath !== "") {
+      fs.writeFileSync(path.join(tmpDir, "output.js"), transformed.code);
+    }
+
+    return transformed.code;
+  }
+  function processAST(ast, type) {
+    traverseNode(ast, {
+      FunctionDeclaration(node) {
+        const isAsync = node.async;
+        const funcName = node?.identifier?.value || "";
+        const isCapitalized = /^[A-Z]/.test(funcName);
+        const isClient = type === "client";
+
+        if (!isCapitalized || !isAsync) return;
+        if (!containsJSXReturn(node)) return;
+        if (!isClient) return;
+
+        const templateId = `forket-${counter++}`;
+        const span = {
+          start: 1,
+          end: 0
+        };
+        const returnStmt = {
+          type: "ReturnStatement",
+          span,
+          argument: {
+            type: "JSXElement",
+            span: {
+              start: 33,
+              end: 45
+            },
+            opening: {
+              type: "JSXOpeningElement",
+              ctxt: 1,
+              span,
+              name: {
+                type: "Identifier",
+                value: "template",
+                ctxt: 1,
+                span
+              },
+              attributes: [
+                {
+                  type: "JSXAttribute",
+                  span,
+                  name: {
+                    type: "Identifier",
+                    span,
+                    value: "id"
+                  },
+                  value: {
+                    type: "StringLiteral",
+                    span,
+                    value: templateId,
+                    raw: '"' + templateId + '"'
+                  }
+                }
+              ],
+              selfClosing: true
+            },
+            children: []
+          }
+        };
+
+        // Replace body with our return
+        node.body.stmts = [returnStmt];
+
+        // Remove async
+        node.async = false;
+      }
+    });
   }
 
-  return transformed.code;
-}
-
-function processAST(ast) {
-  let counter = 0;
-  traverseNode(ast, {
-    FunctionDeclaration(node) {
-      const isAsync = node.async;
-      const isCapitalized = /^[A-Z]/.test(node?.id?.name);
-
-      if (!isCapitalized || !isAsync) return;
-      if (!containsJSXReturn(node)) return;
-
-      const id = `template-${counter++}`;
-
-      // Build: return <template id="template-0"></template>;
-      const templateId = `template-${counter++}`;
-      const returnStmt = {
-        type: "ReturnStatement",
-        argument: {
-          type: "JSXElement",
-          openingElement: {
-            type: "JSXOpeningElement",
-            name: { type: "JSXIdentifier", name: "template" },
-            attributes: [
-              {
-                type: "JSXAttribute",
-                name: { type: "JSXIdentifier", name: "id" },
-                value: { type: "StringLiteral", value: templateId }
-              }
-            ],
-            selfClosing: false
-          },
-          closingElement: {
-            type: "JSXClosingElement",
-            name: { type: "JSXIdentifier", name: "template" }
-          },
-          children: []
-        }
-      };
-
-      // Replace body with our return
-      node.body.body = [returnStmt];
-
-      // Remove async
-      node.async = false;
-    }
-  });
+  return {
+    transform
+  }
 }
 
 function traverseNode(node, visitors, parent = null) {
@@ -160,6 +189,6 @@ function containsJSXReturn(node) {
   return found;
 }
 
-module.exports = { 
-  transform
-}
+module.exports = {
+  init
+};

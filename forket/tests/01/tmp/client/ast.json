@@ -1,0 +1,132 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 1,
+    "end": 64
+  },
+  "body": [
+    {
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 16,
+          "end": 19
+        },
+        "ctxt": 2,
+        "value": "App",
+        "optional": false
+      },
+      "declare": false,
+      "params": [],
+      "decorators": [],
+      "span": {
+        "start": 1,
+        "end": 64
+      },
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
+        "span": {
+          "start": 22,
+          "end": 64
+        },
+        "ctxt": 3,
+        "stmts": [
+          {
+            "type": "ReturnStatement",
+            "span": {
+              "start": 26,
+              "end": 62
+            },
+            "argument": {
+              "type": "JSXElement",
+              "span": {
+                "start": 33,
+                "end": 62
+              },
+              "opening": {
+                "type": "JSXOpeningElement",
+                "name": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 34,
+                    "end": 35
+                  },
+                  "ctxt": 1,
+                  "value": "p",
+                  "optional": false
+                },
+                "span": {
+                  "start": 33,
+                  "end": 53
+                },
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "span": {
+                      "start": 36,
+                      "end": 52
+                    },
+                    "name": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 36,
+                        "end": 45
+                      },
+                      "value": "className"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 46,
+                        "end": 52
+                      },
+                      "value": "mt-1",
+                      "raw": "\"mt-1\""
+                    }
+                  }
+                ],
+                "selfClosing": false,
+                "typeArguments": null
+              },
+              "children": [
+                {
+                  "type": "JSXText",
+                  "span": {
+                    "start": 53,
+                    "end": 58
+                  },
+                  "value": "Hello",
+                  "raw": "Hello"
+                }
+              ],
+              "closing": {
+                "type": "JSXClosingElement",
+                "span": {
+                  "start": 58,
+                  "end": 62
+                },
+                "name": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 60,
+                    "end": 61
+                  },
+                  "ctxt": 1,
+                  "value": "p",
+                  "optional": false
+                }
+              }
+            }
+          }
+        ]
+      },
+      "generator": false,
+      "async": true,
+      "typeParameters": null,
+      "returnType": null
+    }
+  ],
+  "interpreter": null
+}

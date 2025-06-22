@@ -8,7 +8,7 @@ const args = arg({
   "--spec": String, // "01", "02" or "all"
   "--type": String // "server" or "client" (if not provided both will be tested)
 });
-const { transform } = require('../index');
+const Forket = require('../index');
 
 (async function () {
   if (args["--spec"] && args["--spec"] !== "all") {
@@ -22,6 +22,7 @@ const { transform } = require('../index');
     if (fs.statSync(path.join(__dirname, dir)).isDirectory()) {
       const inputFile = path.join(__dirname, dir, "input.js");
       const input = fs.readFileSync(inputFile, "utf8");
+      const { transform } = Forket.init();
 
       try {
 

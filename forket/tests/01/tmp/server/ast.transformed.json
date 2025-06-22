@@ -1,8 +1,8 @@
 {
   "type": "Module",
   "span": {
-    "start": 118,
-    "end": 164
+    "start": 135,
+    "end": 198
   },
   "body": [
     {
@@ -10,8 +10,8 @@
       "identifier": {
         "type": "Identifier",
         "span": {
-          "start": 133,
-          "end": 136
+          "start": 150,
+          "end": 153
         },
         "ctxt": 2,
         "value": "App",
@@ -21,47 +21,72 @@
       "params": [],
       "decorators": [],
       "span": {
-        "start": 118,
-        "end": 164
+        "start": 135,
+        "end": 198
       },
       "ctxt": 3,
       "body": {
         "type": "BlockStatement",
         "span": {
-          "start": 139,
-          "end": 164
+          "start": 156,
+          "end": 198
         },
         "ctxt": 3,
         "stmts": [
           {
             "type": "ReturnStatement",
             "span": {
-              "start": 143,
-              "end": 162
+              "start": 160,
+              "end": 196
             },
             "argument": {
               "type": "JSXElement",
               "span": {
-                "start": 150,
-                "end": 162
+                "start": 167,
+                "end": 196
               },
               "opening": {
                 "type": "JSXOpeningElement",
                 "name": {
                   "type": "Identifier",
                   "span": {
-                    "start": 151,
-                    "end": 152
+                    "start": 168,
+                    "end": 169
                   },
                   "ctxt": 1,
                   "value": "p",
                   "optional": false
                 },
                 "span": {
-                  "start": 150,
-                  "end": 153
+                  "start": 167,
+                  "end": 187
                 },
-                "attributes": [],
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "span": {
+                      "start": 170,
+                      "end": 186
+                    },
+                    "name": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 170,
+                        "end": 179
+                      },
+                      "value": "className"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 180,
+                        "end": 186
+                      },
+                      "value": "mt-1",
+                      "raw": "\"mt-1\""
+                    }
+                  }
+                ],
                 "selfClosing": false,
                 "typeArguments": null
               },
@@ -69,8 +94,8 @@
                 {
                   "type": "JSXText",
                   "span": {
-                    "start": 153,
-                    "end": 158
+                    "start": 187,
+                    "end": 192
                   },
                   "value": "Hello",
                   "raw": "Hello"
@@ -79,14 +104,14 @@
               "closing": {
                 "type": "JSXClosingElement",
                 "span": {
-                  "start": 158,
-                  "end": 162
+                  "start": 192,
+                  "end": 196
                 },
                 "name": {
                   "type": "Identifier",
                   "span": {
-                    "start": 160,
-                    "end": 161
+                    "start": 194,
+                    "end": 195
                   },
                   "ctxt": 1,
                   "value": "p",
