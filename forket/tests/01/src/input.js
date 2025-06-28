@@ -1,3 +1,6 @@
-async function App() {
-  return <p className="mt-1">Hello</p>
-}
+import React from "react";
+import { hydrateRoot } from "react-dom/client";
+
+import App from "./components/App";
+
+hydrateRoot(document, <App />);

@@ -2,130 +2,197 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 64
+    "end": 145
   },
   "body": [
     {
-      "type": "FunctionDeclaration",
-      "identifier": {
-        "type": "Identifier",
-        "span": {
-          "start": 16,
-          "end": 19
-        },
-        "ctxt": 2,
-        "value": "App",
-        "optional": false
-      },
-      "declare": false,
-      "params": [],
-      "decorators": [],
+      "type": "ImportDeclaration",
       "span": {
         "start": 1,
-        "end": 64
+        "end": 27
       },
-      "ctxt": 3,
-      "body": {
-        "type": "BlockStatement",
-        "span": {
-          "start": 22,
-          "end": 64
-        },
-        "ctxt": 3,
-        "stmts": [
-          {
-            "type": "ReturnStatement",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 8,
+            "end": 13
+          },
+          "local": {
+            "type": "Identifier",
             "span": {
-              "start": 26,
-              "end": 62
+              "start": 8,
+              "end": 13
             },
-            "argument": {
+            "ctxt": 2,
+            "value": "React",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 19,
+          "end": 26
+        },
+        "value": "react",
+        "raw": "\"react\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 28,
+        "end": 75
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 37,
+            "end": 48
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 37,
+              "end": 48
+            },
+            "ctxt": 2,
+            "value": "hydrateRoot",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 56,
+          "end": 74
+        },
+        "value": "react-dom/client",
+        "raw": "\"react-dom/client\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 77,
+        "end": 112
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 84,
+            "end": 87
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 84,
+              "end": 87
+            },
+            "ctxt": 2,
+            "value": "App",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 93,
+          "end": 111
+        },
+        "value": "./components/App",
+        "raw": "\"./components/App\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 114,
+        "end": 145
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 114,
+          "end": 144
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "Identifier",
+          "span": {
+            "start": 114,
+            "end": 125
+          },
+          "ctxt": 2,
+          "value": "hydrateRoot",
+          "optional": false
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "Identifier",
+              "span": {
+                "start": 126,
+                "end": 134
+              },
+              "ctxt": 1,
+              "value": "document",
+              "optional": false
+            }
+          },
+          {
+            "spread": null,
+            "expression": {
               "type": "JSXElement",
               "span": {
-                "start": 33,
-                "end": 62
+                "start": 136,
+                "end": 143
               },
               "opening": {
                 "type": "JSXOpeningElement",
                 "name": {
                   "type": "Identifier",
                   "span": {
-                    "start": 34,
-                    "end": 35
+                    "start": 137,
+                    "end": 140
                   },
-                  "ctxt": 1,
-                  "value": "p",
+                  "ctxt": 2,
+                  "value": "App",
                   "optional": false
                 },
                 "span": {
-                  "start": 33,
-                  "end": 53
+                  "start": 136,
+                  "end": 143
                 },
-                "attributes": [
-                  {
-                    "type": "JSXAttribute",
-                    "span": {
-                      "start": 36,
-                      "end": 52
-                    },
-                    "name": {
-                      "type": "Identifier",
-                      "span": {
-                        "start": 36,
-                        "end": 45
-                      },
-                      "value": "className"
-                    },
-                    "value": {
-                      "type": "StringLiteral",
-                      "span": {
-                        "start": 46,
-                        "end": 52
-                      },
-                      "value": "mt-1",
-                      "raw": "\"mt-1\""
-                    }
-                  }
-                ],
-                "selfClosing": false,
+                "attributes": [],
+                "selfClosing": true,
                 "typeArguments": null
               },
-              "children": [
-                {
-                  "type": "JSXText",
-                  "span": {
-                    "start": 53,
-                    "end": 58
-                  },
-                  "value": "Hello",
-                  "raw": "Hello"
-                }
-              ],
-              "closing": {
-                "type": "JSXClosingElement",
-                "span": {
-                  "start": 58,
-                  "end": 62
-                },
-                "name": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 60,
-                    "end": 61
-                  },
-                  "ctxt": 1,
-                  "value": "p",
-                  "optional": false
-                }
-              }
+              "children": [],
+              "closing": null
             }
           }
-        ]
-      },
-      "generator": false,
-      "async": true,
-      "typeParameters": null,
-      "returnType": null
+        ],
+        "typeArguments": null
+      }
     }
   ],
   "interpreter": null

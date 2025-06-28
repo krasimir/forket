@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs');
 const swc = require("@swc/core");
+const get = require("lodash/get");
 
 const POSSIBLE_TYPES = ["server", "client"];
 const span = { start: 1, end: 0 };
@@ -61,18 +62,35 @@ function init() {
 
     if (debug && filepath !== "") {
       fs.writeFileSync(path.join(tmpDir, "output.js"), transformed.code);
+      fs.writeFileSync(path.join(tmpDir, "meta.json"), JSON.stringify(meta, null, 2));
     }
 
-    return transformed.code;
+    return {
+      code: transformed.code,
+      meta
+    };
   }
-  function processAST(ast, type) {
 
-    function ProcessFunction(node) {
+  // Here's where the magic happens 🧙🏻‍♀️🔮🪄
+  function processAST(ast, type) {
+    let useClient = false;
+
+    function processImports(node) {
+      if (get(node, 'source.value') === "react-dom/client") {
+        useClient = true;
+      }
+    }
+    function processCallExpression(node) {
+      if (get(node, 'callee.value') === "require" && get(node, 'arguments[0].expression.value') === 'react-dom/client') {
+        useClient = true;
+      }
+    }
+    function processFunction(node) {
+      return;
       const isAsync = node.async;
       const funcName = node?.identifier?.value || "";
-      // const isCapitalized = /^[A-Z]/.test(funcName); // Nice to check but it is not valid for arrow functions
       const isClient = type === "client";
-      
+
       // debugging ...
       // console.log(`Processing FunctionExpression: ${funcName} (async: ${isAsync}, jsx: ${containsJSXReturn(node)}, client: ${isClient})`);
 
@@ -156,15 +174,21 @@ function init() {
     }
 
     traverseNode(ast, {
-      FunctionDeclaration: ProcessFunction,
-      ArrowFunctionExpression: ProcessFunction,
-      FunctionExpression: ProcessFunction
+      ImportDeclaration: processImports,
+      FunctionDeclaration: processFunction,
+      ArrowFunctionExpression: processFunction,
+      FunctionExpression: processFunction,
+      CallExpression: processCallExpression
     });
+
+    return {
+      useClient
+    };
   }
 
   return {
     transform
-  }
+  };
 }
 
 function traverseNode(node, visitors, parent = null) {

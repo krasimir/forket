@@ -1,5 +1,4 @@
-function App() {
-    return /*#__PURE__*/ React.createElement("template", {
-        id: "forket-2"
-    });
-}
+import React from "react";
+import { hydrateRoot } from "react-dom/client";
+import App from "./components/App";
+hydrateRoot(document, /*#__PURE__*/ React.createElement(App, null));

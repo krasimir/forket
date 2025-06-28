@@ -20,13 +20,14 @@ module.exports = function (options = {}) {
           const { transform } = Forket.init();
 
           build.onLoad({ filter: FILTER_REGEXP }, async (args) => {
-            console.log(args.path);
+            console.log('esbuild-plugin: processing file:', args.path);
             if (options.type === "server") {
             } else {
               const fileCode = await fs
                 .readFile(args.path, "utf8")
-                .catch((err) => printDiagnostics({ file: args.path, err }));              
-              return { contents: await transform(fileCode, options.type, args.path) };
+                .catch((err) => printDiagnostics({ file: args.path, err }));     
+              const { code, meta } = await transform(fileCode, options.type, args.path);         
+              return { contents: code };
             }
           });
         }
