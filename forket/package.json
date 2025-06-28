@@ -4,7 +4,8 @@
   "description": "𐂐",
   "main": "index.js",
   "scripts": {
-    "test": "node ./tests/tests.js"
+    "test": "node ./tests/tests.js",
+    "playground": "node ./playground/playground.js"
   },
   "repository": {
     "type": "git",

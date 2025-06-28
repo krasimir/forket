@@ -1,0 +1,65 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 1,
+    "end": 49
+  },
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "span": {
+        "start": 1,
+        "end": 49
+      },
+      "decl": {
+        "type": "FunctionExpression",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 25,
+            "end": 29
+          },
+          "ctxt": 2,
+          "value": "Test",
+          "optional": false
+        },
+        "params": [],
+        "decorators": [],
+        "span": {
+          "start": 16,
+          "end": 49
+        },
+        "ctxt": 3,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 32,
+            "end": 49
+          },
+          "ctxt": 3,
+          "stmts": [
+            {
+              "type": "ReturnStatement",
+              "span": {
+                "start": 36,
+                "end": 47
+              },
+              "argument": {
+                "type": "NullLiteral",
+                "span": {
+                  "start": 43,
+                  "end": 47
+                }
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": false,
+        "typeParameters": null,
+        "returnType": null
+      }
+    }
+  ],
+  "interpreter": null
+}

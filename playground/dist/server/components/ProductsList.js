@@ -1,3 +1,4 @@
+"use client";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -25,17 +26,29 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var Products_exports = {};
-__export(Products_exports, {
-  default: () => Products
+var ProductsList_exports = {};
+__export(ProductsList_exports, {
+  default: () => ProductsList
 });
-module.exports = __toCommonJS(Products_exports);
+module.exports = __toCommonJS(ProductsList_exports);
 var import_react = __toESM(require("react"));
-var import_db = require("./db");
-var import_ProductsList = __toESM(require("./ProductsList"));
-const CREDENTIALS = "secret";
-console.log(CREDENTIALS);
-async function Products() {
-  const { products } = await (0, import_db.getProducts)();
-  return /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { products });
+function ProductsList({ products }) {
+  const [selected, setSelected] = (0, import_react.useState)([]);
+  const addToCart = (ids) => ({ products: ids.length });
+  function itemClicked(product) {
+    const index = selected.indexOf(product.id);
+    if (index === -1) {
+      setSelected([...selected, product.id]);
+    } else {
+      setSelected(selected.filter((id) => id !== product.id));
+    }
+  }
+  async function buy() {
+    const { products: products2 } = await addToCart(selected);
+    alert(`Added ${products2} items to cart`);
+  }
+  if (products.length === 0) {
+    return null;
+  }
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
 }

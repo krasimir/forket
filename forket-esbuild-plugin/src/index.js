@@ -4,14 +4,13 @@ const { inspect } = require("util");
 
 const Forket = require('../../forket/index')
 
-const FILTER_REGEXP = /\.m?(tsx|jsx)?$/;
+const FILTER_REGEXP = /\.(tsx|jsx)?$/;
 const POSSIBLE_TYPES = ["server", "client"];
 
 module.exports = function (options = {}) {
   if (!options.type || !POSSIBLE_TYPES.includes(options.type)) {
     throw new Error(`Forket: Invalid type "${options.type}". Expected one of: ${POSSIBLE_TYPES.join(", ")}`);
   }
-  const isServer = options.type === "server";
 
   return {
     plugin() {
@@ -21,7 +20,8 @@ module.exports = function (options = {}) {
           const { transform } = Forket.init();
 
           build.onLoad({ filter: FILTER_REGEXP }, async (args) => {
-            if (isServer) {
+            console.log(args.path);
+            if (options.type === "server") {
             } else {
               const fileCode = await fs
                 .readFile(args.path, "utf8")

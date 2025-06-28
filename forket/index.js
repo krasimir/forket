@@ -3,6 +3,7 @@ const fs = require('fs');
 const swc = require("@swc/core");
 
 const POSSIBLE_TYPES = ["server", "client"];
+const span = { start: 1, end: 0 };
 
 function init() {
   let counter = 1;
@@ -65,6 +66,7 @@ function init() {
     return transformed.code;
   }
   function processAST(ast, type) {
+
     function ProcessFunction(node) {
       const isAsync = node.async;
       const funcName = node?.identifier?.value || "";
@@ -72,16 +74,36 @@ function init() {
       const isClient = type === "client";
       
       // debugging ...
-      // if (node.type === 'FunctionExpression') {
-      //   console.log(`Processing FunctionExpression: ${funcName} (async: ${isAsync}, jsx: ${containsJSXReturn(node)}, client: ${isClient})`);
-      // }
+      // console.log(`Processing FunctionExpression: ${funcName} (async: ${isAsync}, jsx: ${containsJSXReturn(node)}, client: ${isClient})`);
 
       if (!isAsync) return;
       if (!containsJSXReturn(node)) return;
-      if (!isClient) return;
 
       const templateId = `forket-${counter++}`;
-      const span = { start: 1, end: 0 };
+      // const body = {
+      //   type: "BlockStatement",
+      //   span: {
+      //     start: 32,
+      //     end: 49
+      //   },
+      //   ctxt: 3,
+      //   stmts: [
+      //     {
+      //       type: "ReturnStatement",
+      //       span: {
+      //         start: 36,
+      //         end: 47
+      //       },
+      //       argument: {
+      //         type: "NullLiteral",
+      //         span: {
+      //           start: 43,
+      //           end: 47
+      //         }
+      //       }
+      //     }
+      //   ]
+      // };
       const returnStmt = {
         type: "ReturnStatement",
         span,
@@ -103,6 +125,7 @@ function init() {
             },
             attributes: [
               {
+                // id="forket-<...>"
                 type: "JSXAttribute",
                 span,
                 name: {
@@ -126,10 +149,12 @@ function init() {
 
       // Replace body with our return
       node.body.stmts = [returnStmt];
+      // node.body = body;
 
       // Remove async
       node.async = false;
     }
+
     traverseNode(ast, {
       FunctionDeclaration: ProcessFunction,
       ArrowFunctionExpression: ProcessFunction,
@@ -192,6 +217,37 @@ function containsJSXReturn(node) {
 
   deepCheck(node.body); // pass the block body
   return found;
+}
+function importFragment(ast) {
+  const fragmentNode = {
+    type: "ImportDeclaration",
+    span,
+    specifiers: [
+      {
+        type: "ImportSpecifier",
+        span,
+        local: {
+          type: "Identifier",
+          span,
+          ctxt: 2,
+          value: "Fragment",
+          optional: false
+        },
+        imported: null,
+        isTypeOnly: false
+      }
+    ],
+    source: {
+      type: "StringLiteral",
+      span,
+      value: "react",
+      raw: "\"react\""
+    },
+    typeOnly: false,
+    with: null,
+    phase: "evaluation"
+  }
+  ast.body = [fragmentNode, ...ast.body];
 }
 
 module.exports = {

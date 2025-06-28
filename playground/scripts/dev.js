@@ -14,11 +14,13 @@ const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 let serverProcess;
 let restart = false;
 let processes = [];
+const ENABLE_FORKET = true;
 
 async function buildServer() {
   const forket = Forket({ type: "server" });
   const files = getAllFiles(SRC);
   try {
+    console.log(chalk.gray(`🖥️  server build started ...`));
     await Promise.all(files.map(async (file) => {
       const outfile = path.join(path.join(DIST, 'server'), path.relative(SRC, file).replace(/\.(ts|tsx|js|tsx)$/, ".js"));
       await esbuild.build({
@@ -27,10 +29,10 @@ async function buildServer() {
         outfile,
         platform: "node",
         format: "cjs",
-        plugins: [forket.plugin()]
+        plugins: ENABLE_FORKET ? [forket.plugin()] : []
       });
     }));
-    console.log(chalk.green(`🖥️ server build successfully`));
+    console.log(chalk.green(`🖥️  server build successfully`));
   } catch (error) {
     console.error(chalk.red(`Error compiling server: ${error.message}`));
   }
@@ -39,15 +41,16 @@ async function buildServer() {
 async function buildClient() {
   const forket = Forket({ type: "client" });
   try {
+    console.log(chalk.gray(`🖥️  client build started ...`));
     await esbuild.build({
       entryPoints: [path.join(SRC, "/client.js")],
       bundle: true,
       outfile: CLIENT_BUNDLE,
       platform: "browser",
       sourcemap: true,
-      plugins: [forket.plugin()]
+      plugins: ENABLE_FORKET ? [forket.plugin()] : []
     });
-    console.log(chalk.green(`🖥️ client build successfully`));
+    console.log(chalk.green(`🖥️  client build successfully`));
   } catch (error) {
     console.error(chalk.red(`Error compiling server: ${error.message}`));
   }

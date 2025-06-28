@@ -20,7 +20,7 @@ const Forket = require('../index');
   for(let i=0; i<dirs.length; i++) {
     const dir = dirs[i];
     if (fs.statSync(path.join(__dirname, dir)).isDirectory()) {
-      const inputFile = path.join(__dirname, dir, "input.js");
+      const inputFile = path.join(__dirname, dir, "src", "input.js");
       const input = fs.readFileSync(inputFile, "utf8");
       const { transform } = Forket.init();
 

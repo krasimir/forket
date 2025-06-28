@@ -36,94 +36,66 @@
           {
             "type": "ReturnStatement",
             "span": {
-              "start": 160,
-              "end": 196
+              "start": 1,
+              "end": 0
             },
             "argument": {
               "type": "JSXElement",
               "span": {
-                "start": 167,
-                "end": 196
+                "start": 33,
+                "end": 45
               },
               "opening": {
                 "type": "JSXOpeningElement",
+                "ctxt": 1,
+                "span": {
+                  "start": 1,
+                  "end": 0
+                },
                 "name": {
                   "type": "Identifier",
-                  "span": {
-                    "start": 168,
-                    "end": 169
-                  },
+                  "value": "template",
                   "ctxt": 1,
-                  "value": "p",
-                  "optional": false
-                },
-                "span": {
-                  "start": 167,
-                  "end": 187
+                  "span": {
+                    "start": 1,
+                    "end": 0
+                  }
                 },
                 "attributes": [
                   {
                     "type": "JSXAttribute",
                     "span": {
-                      "start": 170,
-                      "end": 186
+                      "start": 1,
+                      "end": 0
                     },
                     "name": {
                       "type": "Identifier",
                       "span": {
-                        "start": 170,
-                        "end": 179
+                        "start": 1,
+                        "end": 0
                       },
-                      "value": "className"
+                      "value": "id"
                     },
                     "value": {
                       "type": "StringLiteral",
                       "span": {
-                        "start": 180,
-                        "end": 186
+                        "start": 1,
+                        "end": 0
                       },
-                      "value": "mt-1",
-                      "raw": "\"mt-1\""
+                      "value": "forket-2",
+                      "raw": "\"forket-2\""
                     }
                   }
                 ],
-                "selfClosing": false,
-                "typeArguments": null
+                "selfClosing": true
               },
-              "children": [
-                {
-                  "type": "JSXText",
-                  "span": {
-                    "start": 187,
-                    "end": 192
-                  },
-                  "value": "Hello",
-                  "raw": "Hello"
-                }
-              ],
-              "closing": {
-                "type": "JSXClosingElement",
-                "span": {
-                  "start": 192,
-                  "end": 196
-                },
-                "name": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 194,
-                    "end": 195
-                  },
-                  "ctxt": 1,
-                  "value": "p",
-                  "optional": false
-                }
-              }
+              "children": []
             }
           }
         ]
       },
       "generator": false,
-      "async": true,
+      "async": false,
       "typeParameters": null,
       "returnType": null
     }

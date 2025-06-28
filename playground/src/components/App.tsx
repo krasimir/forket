@@ -2,9 +2,7 @@ import React, { Suspense } from "react";
 
 import Products from "./Products";
 
-import { getProducts } from "./db";
-
-export default async function App() {
+export default function App() {
   return (
     <html>
       <head>
@@ -12,10 +10,13 @@ export default async function App() {
       </head>
       <body>
         <div id="root">
-          <h1>React Example</h1>
-          <Suspense fallback={<p>Loading products...</p>}>
-            <Products getProducts={getProducts()} />
+          <header>
+            <h1>Hello world</h1>
+          </header>
+          <Suspense>
+            <Products />
           </Suspense>
+          <footer>I'm a footer</footer>
         </div>
       </body>
     </html>
