@@ -2,7 +2,7 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 145
+    "end": 261
   },
   "body": [
     {
@@ -86,21 +86,21 @@
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 77,
-        "end": 112
+        "start": 76,
+        "end": 111
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 84,
-            "end": 87
+            "start": 83,
+            "end": 86
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 84,
-              "end": 87
+              "start": 83,
+              "end": 86
             },
             "ctxt": 2,
             "value": "App",
@@ -111,8 +111,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 93,
-          "end": 111
+          "start": 92,
+          "end": 110
         },
         "value": "./components/App",
         "raw": "\"./components/App\""
@@ -122,23 +122,186 @@
       "phase": "evaluation"
     },
     {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 113,
+        "end": 166
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 119,
+            "end": 165
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 119,
+              "end": 132
+            },
+            "ctxt": 2,
+            "value": "anotherModule",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 135,
+              "end": 165
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "Identifier",
+              "span": {
+                "start": 135,
+                "end": 142
+              },
+              "ctxt": 1,
+              "value": "require",
+              "optional": false
+            },
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "StringLiteral",
+                  "span": {
+                    "start": 143,
+                    "end": 164
+                  },
+                  "value": "utils/anotherModule",
+                  "raw": "\"utils/anotherModule\""
+                }
+              }
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 177,
+          "end": 181
+        },
+        "ctxt": 2,
+        "value": "Test",
+        "optional": false
+      },
+      "declare": false,
+      "params": [],
+      "decorators": [],
+      "span": {
+        "start": 168,
+        "end": 228
+      },
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
+        "span": {
+          "start": 184,
+          "end": 228
+        },
+        "ctxt": 3,
+        "stmts": [
+          {
+            "type": "VariableDeclaration",
+            "span": {
+              "start": 188,
+              "end": 226
+            },
+            "ctxt": 0,
+            "kind": "const",
+            "declare": false,
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "span": {
+                  "start": 194,
+                  "end": 225
+                },
+                "id": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 194,
+                    "end": 195
+                  },
+                  "ctxt": 3,
+                  "value": "m",
+                  "optional": false,
+                  "typeAnnotation": null
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "span": {
+                    "start": 198,
+                    "end": 225
+                  },
+                  "ctxt": 0,
+                  "callee": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 198,
+                      "end": 205
+                    },
+                    "ctxt": 1,
+                    "value": "require",
+                    "optional": false
+                  },
+                  "arguments": [
+                    {
+                      "spread": null,
+                      "expression": {
+                        "type": "StringLiteral",
+                        "span": {
+                          "start": 206,
+                          "end": 224
+                        },
+                        "value": "utils/testModule",
+                        "raw": "'utils/testModule'"
+                      }
+                    }
+                  ],
+                  "typeArguments": null
+                },
+                "definite": false
+              }
+            ]
+          }
+        ]
+      },
+      "generator": false,
+      "async": false,
+      "typeParameters": null,
+      "returnType": null
+    },
+    {
       "type": "ExpressionStatement",
       "span": {
-        "start": 114,
-        "end": 145
+        "start": 230,
+        "end": 261
       },
       "expression": {
         "type": "CallExpression",
         "span": {
-          "start": 114,
-          "end": 144
+          "start": 230,
+          "end": 260
         },
         "ctxt": 0,
         "callee": {
           "type": "Identifier",
           "span": {
-            "start": 114,
-            "end": 125
+            "start": 230,
+            "end": 241
           },
           "ctxt": 2,
           "value": "hydrateRoot",
@@ -150,8 +313,8 @@
             "expression": {
               "type": "Identifier",
               "span": {
-                "start": 126,
-                "end": 134
+                "start": 242,
+                "end": 250
               },
               "ctxt": 1,
               "value": "document",
@@ -163,24 +326,24 @@
             "expression": {
               "type": "JSXElement",
               "span": {
-                "start": 136,
-                "end": 143
+                "start": 252,
+                "end": 259
               },
               "opening": {
                 "type": "JSXOpeningElement",
                 "name": {
                   "type": "Identifier",
                   "span": {
-                    "start": 137,
-                    "end": 140
+                    "start": 253,
+                    "end": 256
                   },
                   "ctxt": 2,
                   "value": "App",
                   "optional": false
                 },
                 "span": {
-                  "start": 136,
-                  "end": 143
+                  "start": 252,
+                  "end": 259
                 },
                 "attributes": [],
                 "selfClosing": true,

@@ -1,3 +1,20 @@
 {
-  "useClient": true
+  "useClient": true,
+  "imports": [
+    {
+      "source": "react"
+    },
+    {
+      "source": "react-dom/client"
+    },
+    {
+      "source": "./components/App"
+    },
+    {
+      "source": "utils/anotherModule"
+    },
+    {
+      "source": "utils/testModule"
+    }
+  ]
 }

@@ -6,6 +6,7 @@ const chalk = require("chalk");
 const esbuild = require("esbuild");
 const Forket = require(path.join(__dirname, '..', '..', 'forket-esbuild-plugin', 'src', 'index.js'));
 
+const ENABLE_FORKET = true;
 const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
@@ -14,7 +15,6 @@ const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 let serverProcess;
 let restart = false;
 let processes = [];
-const ENABLE_FORKET = true;
 
 async function buildServer() {
   const forket = Forket({ type: "server" });
@@ -43,7 +43,7 @@ async function buildClient() {
   try {
     console.log(chalk.gray(`🖥️  client build started ...`));
     await esbuild.build({
-      entryPoints: [path.join(SRC, "/client.js")],
+      entryPoints: [path.join(SRC, "/client.tsx")],
       bundle: true,
       outfile: CLIENT_BUNDLE,
       platform: "browser",

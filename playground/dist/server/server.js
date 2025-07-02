@@ -34,7 +34,6 @@ app.use(import_express.default.static(import_path.default.join(__dirname, "..", 
 app.get("/api/products", import_products.default);
 app.get("/", (req, res) => {
   const stream = (0, import_server.renderToPipeableStream)(/* @__PURE__ */ import_react.default.createElement(import_App.default, null), {
-    // bootstrapScripts: ["/bundle.js"],
     bootstrapScripts: [],
     onShellReady() {
       res.statusCode = 200;

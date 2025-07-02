@@ -34,11 +34,16 @@ module.exports = __toCommonJS(ProductsList_exports);
 var import_react = __toESM(require("react"));
 function ProductsList({ products }) {
   const [selected, setSelected] = (0, import_react.useState)([]);
-  const addToCart = (ids) => ({ products: ids.length });
+  const addToCart = (ids) => ({
+    products: ids.length
+  });
   function itemClicked(product) {
     const index = selected.indexOf(product.id);
     if (index === -1) {
-      setSelected([...selected, product.id]);
+      setSelected([
+        ...selected,
+        product.id
+      ]);
     } else {
       setSelected(selected.filter((id) => id !== product.id));
     }
@@ -50,5 +55,12 @@ function ProductsList({ products }) {
   if (products.length === 0) {
     return null;
   }
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", {
+    key: product.id
+  }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", {
+    type: "checkbox",
+    onClick: (e) => itemClicked(product)
+  }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", {
+    onClick: buy
+  }, "Add to cart"));
 }

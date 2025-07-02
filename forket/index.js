@@ -28,12 +28,16 @@ function init() {
     if (shouldDebug) {
       if (!fs.existsSync(tmpDir)) {
         fs.mkdirSync(tmpDir, { recursive: true });
+      } else {
+        fs.readdirSync(tmpDir).forEach(file => {
+          fs.unlinkSync(path.join(tmpDir, file));
+        });
       }
       fs.writeFileSync(path.join(tmpDir, "input.js"), code);
       fs.writeFileSync(path.join(tmpDir, "ast.json"), JSON.stringify(ast, null, 2));
     }
 
-    const meta = processAST(ast, type);
+    let meta = processAST(ast, type);
 
     if (shouldDebug) {
       fs.writeFileSync(path.join(tmpDir, "ast.transformed.json"), JSON.stringify(ast, null, 2));
@@ -63,6 +67,7 @@ function init() {
     if (debug && filepath !== "") {
       fs.writeFileSync(path.join(tmpDir, "output.js"), transformed.code);
       fs.writeFileSync(path.join(tmpDir, "meta.json"), JSON.stringify(meta, null, 2));
+      meta = Object.assign(meta, getDebugResults(tmpDir));
     }
 
     return {
@@ -74,15 +79,20 @@ function init() {
   // Here's where the magic happens 🧙🏻‍♀️🔮🪄
   function processAST(ast, type) {
     let useClient = false;
+    const imports = [];
 
     function processImports(node) {
       if (get(node, 'source.value') === "react-dom/client") {
         useClient = true;
       }
+      imports.push({ source: get(node, "source.value") });
     }
     function processCallExpression(node) {
-      if (get(node, 'callee.value') === "require" && get(node, 'arguments[0].expression.value') === 'react-dom/client') {
-        useClient = true;
+      if (get(node, 'callee.value') === "require") {
+        if (get(node, "arguments[0].expression.value") === "react-dom/client") {
+          useClient = true;
+        }
+        imports.push({ source: get(node, "arguments[0].expression.value") });
       }
     }
     function processFunction(node) {
@@ -172,17 +182,25 @@ function init() {
       // Remove async
       node.async = false;
     }
+    function processExpressionStatement(node) {
+      if (get(node, 'expression.type') === "StringLiteral" &&
+          get(node, 'expression.value') === "use client") {
+        useClient = true;
+      }
+    }
 
     traverseNode(ast, {
       ImportDeclaration: processImports,
       FunctionDeclaration: processFunction,
       ArrowFunctionExpression: processFunction,
       FunctionExpression: processFunction,
-      CallExpression: processCallExpression
+      CallExpression: processCallExpression,
+      ExpressionStatement: processExpressionStatement
     });
 
     return {
-      useClient
+      useClient,
+      imports
     };
   }
 
@@ -272,6 +290,14 @@ function importFragment(ast) {
     phase: "evaluation"
   }
   ast.body = [fragmentNode, ...ast.body];
+}
+function getDebugResults(dir) {
+  return {
+    ast: JSON.parse(fs.readFileSync(path.join(dir, "ast.json"), "utf8")),
+    astTransformed: JSON.parse(fs.readFileSync(path.join(dir, "ast.transformed.json"), "utf8")),
+    input: fs.readFileSync(path.join(dir, "input.js"), "utf8"),
+    output: fs.readFileSync(path.join(dir, "output.js"), "utf8")
+  };
 }
 
 module.exports = {
