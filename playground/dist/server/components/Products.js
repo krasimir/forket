@@ -37,7 +37,5 @@ const CREDENTIALS = "secret";
 console.log(CREDENTIALS);
 async function Products() {
   const { products } = await (0, import_db.getProducts)();
-  return /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, {
-    products
-  });
+  return /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { products });
 }

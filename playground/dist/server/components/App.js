@@ -33,9 +33,7 @@ module.exports = __toCommonJS(App_exports);
 var import_react = __toESM(require("react"));
 var import_Products = __toESM(require("./Products"));
 function App() {
-  return /* @__PURE__ */ import_react.default.createElement("html", null, /* @__PURE__ */ import_react.default.createElement("head", null, /* @__PURE__ */ import_react.default.createElement(Title, null)), /* @__PURE__ */ import_react.default.createElement("body", null, /* @__PURE__ */ import_react.default.createElement("div", {
-    id: "root"
-  }, /* @__PURE__ */ import_react.default.createElement("header", null, /* @__PURE__ */ import_react.default.createElement("h1", null, "Hello world")), /* @__PURE__ */ import_react.default.createElement(import_react.Suspense, null, /* @__PURE__ */ import_react.default.createElement(import_Products.default, null)), /* @__PURE__ */ import_react.default.createElement("footer", null, "I'm a footer"))));
+  return /* @__PURE__ */ import_react.default.createElement("html", null, /* @__PURE__ */ import_react.default.createElement("head", null, /* @__PURE__ */ import_react.default.createElement(Title, null)), /* @__PURE__ */ import_react.default.createElement("body", null, /* @__PURE__ */ import_react.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react.default.createElement("header", null, /* @__PURE__ */ import_react.default.createElement("h1", null, "Hello world")), /* @__PURE__ */ import_react.default.createElement(import_react.Suspense, null, /* @__PURE__ */ import_react.default.createElement(import_Products.default, null)), /* @__PURE__ */ import_react.default.createElement("footer", null, "I'm a footer"))));
 }
 function Title() {
   return /* @__PURE__ */ import_react.default.createElement("title", null, "React Example");
