@@ -2,6 +2,9 @@ const path = require('path')
 const fs = require('fs');
 const swc = require("@swc/core");
 const get = require("lodash/get");
+const chalk = require("chalk");
+const buildGraphs = require("./lib/graph.js");
+const traverseNode = require("./lib/utils/traverseNode.js");
 
 const POSSIBLE_TYPES = ["server", "client"];
 const span = { start: 1, end: 0 };
@@ -9,6 +12,11 @@ const span = { start: 1, end: 0 };
 function init() {
   let counter = 1;
 
+  async function process(ROOT) {
+    console.log(chalk.gray(`‎𐂐 Forketting ${ROOT}`));
+
+    const graphs = await buildGraphs(ROOT);
+  }
   async function transform(code, type, filepath = "", debug = false) {
     if (!type || !POSSIBLE_TYPES.includes(type)) {
       throw new Error(`Forket: Invalid type "${type}". Expected one of: ${POSSIBLE_TYPES.join(", ")}`);
@@ -75,7 +83,6 @@ function init() {
       meta
     };
   }
-
   // Here's where the magic happens 🧙🏻‍♀️🔮🪄
   function processAST(ast, type) {
     let useClient = false;
@@ -205,33 +212,9 @@ function init() {
   }
 
   return {
-    transform
+    transform,
+    process
   };
-}
-
-function traverseNode(node, visitors, parent = null) {
-  if (!node || typeof node.type !== "string") return;
-
-  const visitor = visitors[node.type];
-  if (visitor) {
-    visitor(node, parent);
-  }
-
-  for (const key in node) {
-    if (!node.hasOwnProperty(key)) continue;
-
-    const child = node[key];
-
-    if (Array.isArray(child)) {
-      child.forEach((c) => {
-        if (c && typeof c.type === "string") {
-          traverseNode(c, visitors, node);
-        }
-      });
-    } else if (child && typeof child.type === "string") {
-      traverseNode(child, visitors, node);
-    }
-  }
 }
 function containsJSXReturn(node) {
   let found = false;

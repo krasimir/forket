@@ -4,20 +4,18 @@ const spawn = require("child_process").spawn;
 const chokidar = require("chokidar");
 const chalk = require("chalk");
 const esbuild = require("esbuild");
-const Forket = require(path.join(__dirname, '..', '..', 'forket-esbuild-plugin', 'src', 'index.js'));
+const Forket = require(path.join(__dirname, '..', '..', 'forket', 'index.js'));
 
-const ENABLE_FORKET = true;
 const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 const SERVER_ENTRY_POINT = path.join(DIST, "server/server.js");
 const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 let serverProcess;
-let restart = false;
+let restart = false; 
 let processes = [];
 
 async function buildServer() {
-  const forket = Forket({ type: "server" });
   const files = getAllFiles(SRC);
   try {
     console.log(chalk.gray(`🖥️  server build started ...`));
@@ -29,7 +27,7 @@ async function buildServer() {
         outfile,
         platform: "node",
         format: "cjs",
-        plugins: ENABLE_FORKET ? [forket.plugin()] : []
+        plugins: []
       });
     }));
     console.log(chalk.green(`🖥️  server build successfully`));
@@ -39,7 +37,6 @@ async function buildServer() {
 }
 
 async function buildClient() {
-  const forket = Forket({ type: "client" });
   try {
     console.log(chalk.gray(`🖥️  client build started ...`));
     await esbuild.build({
@@ -48,7 +45,7 @@ async function buildClient() {
       outfile: CLIENT_BUNDLE,
       platform: "browser",
       sourcemap: true,
-      plugins: ENABLE_FORKET ? [forket.plugin()] : []
+      plugins: []
     });
     console.log(chalk.green(`🖥️  client build successfully`));
   } catch (error) {
@@ -93,26 +90,27 @@ function getAllFiles(dir) {
 }
 function runServer() {
   const run = async () => {
-    console.log(chalk.yellow("Starting server..."));
-    await buildServer();
-    await buildClient();
-    const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
-    serverProcess = command(commandToExecute, ROOT, (code) => {
-      serverProcess = null;
-      if (code === null && restart) {
-        run();
-      }
-    });
+    await Forket.init().process(SRC);
+    // await buildServer();
+    // await buildClient();
+    // const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
+    // console.log(chalk.yellow("Starting server..."));
+    // serverProcess = command(commandToExecute, ROOT, (code) => {
+    //   serverProcess = null;
+    //   if (code === null && restart) {
+    //     run();
+    //   }
+    // });
   };
   run();
-  chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
-    restart = true;
-    if (serverProcess) {
-      serverProcess.kill();
-    } else {
-      run();
-    }
-  });
+  // chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
+  //   restart = true;
+  //   if (serverProcess) {
+  //     serverProcess.kill();
+  //   } else {
+  //     run();
+  //   }
+  // });
 }
 
 runServer();
