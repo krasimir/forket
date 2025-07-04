@@ -8,6 +8,7 @@ const Forket = require(path.join(__dirname, '..', '..', 'forket', 'index.js'));
 
 const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
+const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 const SERVER_ENTRY_POINT = path.join(DIST, "server/server.js");
 const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
@@ -90,7 +91,10 @@ function getAllFiles(dir) {
 }
 function runServer() {
   const run = async () => {
-    await Forket.init().process(SRC);
+    await Forket({
+      sourceDir: SRC,
+      buildDir: BUILD,
+    }).process();
     // await buildServer();
     // await buildClient();
     // const commandToExecute = `node ${SERVER_ENTRY_POINT}`;

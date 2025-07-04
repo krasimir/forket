@@ -3,6 +3,7 @@ const path = require('path');
 const swc = require("@swc/core");
 const get = require("lodash/get");
 const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
+const { clearPath } = require("./utils/fsHelprs.js");
 
 const traverseNode = require("./utils/traverseNode.js");
 
@@ -80,17 +81,17 @@ async function processEntryPoint(entryPoint) {
 
   async function process(filePath) {
     DEBUGGING_MODULE_RESOLVING && console.log("Processing:", filePath);
-    let file = PROCESSED.get(filePath);
-    if (!file) {
-      file = await processFile(filePath);
-      PROCESSED.set(filePath, file);
+    let node = PROCESSED.get(filePath);
+    if (!node) {
+      node = await processFile(filePath);
+      PROCESSED.set(filePath, node);
     } else {
       DEBUGGING_MODULE_RESOLVING && console.log(`File "${filePath}" is already processed, skipping.`);
       return;
     }
-    DEBUGGING_MODULE_RESOLVING && console.log(file.imports);
-    for (let j = 0; j < file.imports.length; j++) {
-      const imp = file.imports[j];
+    DEBUGGING_MODULE_RESOLVING && console.log(node.imports);
+    for (let j = 0; j < node.imports.length; j++) {
+      const imp = node.imports[j];
       if (!imp.source) {
         continue;
       }
@@ -102,7 +103,7 @@ async function processEntryPoint(entryPoint) {
           RESOLVED.set(key, resolved);
         }
         if (resolved !== null) {
-          file.children.push(await process(resolved));
+          node.children.push(await process(resolved));
         } else {
           DEBUGGING_MODULE_RESOLVING && console.log(`Ignoring ${imp.source}`);
         }
@@ -111,27 +112,37 @@ async function processEntryPoint(entryPoint) {
         RESOLVED.set(key, null);
       }
     }
-    return file;
+    return node;
   }
-
   return process(entryPoint);
 }
 
+const api = {
+  async buildGraphs(dir) {
+    // finding the entry points for processing
+    const entryPoints = fs
+      .readdirSync(dir, { withFileTypes: true })
+      .filter((entry) => {
+        return entry.isFile() && VALID_ENTRY_POINTS.includes("." + (entry.name.split(".").pop() || ""));
+      })
+      .map((entry) => path.join(dir, entry.name));
 
-module.exports = async function (dir) {
-  // finding the entry points for processing
-  const entryPoints = fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter((entry) => {
-      return entry.isFile() && VALID_ENTRY_POINTS.includes('.' + (entry.name.split(".").pop() || ""));
-    })
-    .map((entry) => path.join(dir, entry.name));
-
-  // resolving the imports and building the graph
-  const graphs = [];
-  for (let i=0; i<entryPoints.length; i++) {
-    const entryPoint = entryPoints[i];
-    graphs.push(await processEntryPoint(entryPoint));
+    // resolving the imports and building the graph
+    const graphs = [];
+    for (let i = 0; i < entryPoints.length; i++) {
+      const entryPoint = entryPoints[i];
+      graphs.push(await processEntryPoint(entryPoint));
+    }
+    return graphs;
+  },
+  printGraph(node, indent = "") {
+    console.log(`${indent}${clearPath(node.file)}`);
+    if (node.children.length > 0) {
+      node.children.forEach((child) => {
+        api.printGraph(child, indent + "   ");
+      });
+    }
   }
-  return graphs;
-}
+};
+
+module.exports = api;
