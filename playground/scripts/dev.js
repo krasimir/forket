@@ -10,14 +10,14 @@ const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
-const SERVER_ENTRY_POINT = path.join(DIST, "server/server.js");
+const SERVER_ENTRY_POINT = path.join(DIST, "build", "server", "server.js");
 const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 let serverProcess;
 let restart = false; 
 let processes = [];
 
 async function buildServer() {
-  const files = getAllFiles(SRC);
+  const files = getAllFiles(path.join(BUILD, "server"));
   try {
     console.log(chalk.gray(`🖥️  server build started ...`));
     await Promise.all(files.map(async (file) => {
@@ -41,7 +41,7 @@ async function buildClient() {
   try {
     console.log(chalk.gray(`🖥️  client build started ...`));
     await esbuild.build({
-      entryPoints: [path.join(SRC, "/client.tsx")],
+      entryPoints: [path.join(BUILD, "client", "/client.tsx")],
       bundle: true,
       outfile: CLIENT_BUNDLE,
       platform: "browser",
