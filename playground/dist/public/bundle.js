@@ -5857,7 +5857,7 @@
           null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
           return thenable;
         }
-        function use(usable) {
+        function use2(usable) {
           if (null !== usable && "object" === typeof usable) {
             if ("function" === typeof usable.then) return useThenable(usable);
             if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
@@ -17718,7 +17718,7 @@
         };
         var ContextOnlyDispatcher = {
           readContext,
-          use,
+          use: use2,
           useCallback: throwInvalidHookError,
           useContext: throwInvalidHookError,
           useEffect: throwInvalidHookError,
@@ -17746,7 +17746,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             mountHookTypesDev();
@@ -17877,7 +17877,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18002,7 +18002,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18127,7 +18127,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18255,7 +18255,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18404,7 +18404,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18553,7 +18553,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -19284,37 +19284,32 @@
     }
   });
 
-  // src/client.tsx
+  // build/client/client.tsx
   var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
-  // src/components/App.tsx
+  // build/client/components/App.tsx
   var import_react3 = __toESM(require_react());
 
-  // src/components/Products.tsx
+  // build/client/components/Products.tsx
   var import_react2 = __toESM(require_react());
 
-  // src/components/db.ts
+  // build/client/components/db.ts
   async function getProducts() {
     const res = await fetch("http://localhost:8087/api/products");
     const data = await res.json();
     return data;
   }
 
-  // src/components/ProductsList.tsx
+  // build/client/components/ProductsList.tsx
   var import_react = __toESM(require_react());
   function ProductsList({ products }) {
     const [selected, setSelected] = (0, import_react.useState)([]);
-    const addToCart = (ids) => ({
-      products: ids.length
-    });
+    const addToCart = (ids) => ({ products: ids.length });
     function itemClicked(product) {
       const index = selected.indexOf(product.id);
       if (index === -1) {
-        setSelected([
-          ...selected,
-          product.id
-        ]);
+        setSelected([...selected, product.id]);
       } else {
         setSelected(selected.filter((id) => id !== product.id));
       }
@@ -19326,37 +19321,26 @@
     if (products.length === 0) {
       return null;
     }
-    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", {
-      key: product.id
-    }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", {
-      type: "checkbox",
-      onClick: (e) => itemClicked(product)
-    }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: buy
-    }, "Add to cart"));
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick: (e) => itemClicked(product) }), product.title)))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
   }
 
-  // src/components/Products.tsx
+  // build/client/components/Products.tsx
   var CREDENTIALS = "secret";
   console.log(CREDENTIALS);
   async function Products() {
     const { products } = await getProducts();
-    return /* @__PURE__ */ import_react2.default.createElement(ProductsList, {
-      products
-    });
+    return /* @__PURE__ */ import_react2.default.createElement(ProductsList, { products });
   }
 
-  // src/components/App.tsx
+  // build/client/components/App.tsx
   function App() {
-    return /* @__PURE__ */ import_react3.default.createElement("html", null, /* @__PURE__ */ import_react3.default.createElement("head", null, /* @__PURE__ */ import_react3.default.createElement(Title, null)), /* @__PURE__ */ import_react3.default.createElement("body", null, /* @__PURE__ */ import_react3.default.createElement("div", {
-      id: "root"
-    }, /* @__PURE__ */ import_react3.default.createElement("header", null, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Hello world")), /* @__PURE__ */ import_react3.default.createElement(import_react3.Suspense, null, /* @__PURE__ */ import_react3.default.createElement(Products, null)), /* @__PURE__ */ import_react3.default.createElement("footer", null, "I'm a footer"))));
+    return /* @__PURE__ */ import_react3.default.createElement("html", null, /* @__PURE__ */ import_react3.default.createElement("head", null, /* @__PURE__ */ import_react3.default.createElement(Title, null)), /* @__PURE__ */ import_react3.default.createElement("body", null, /* @__PURE__ */ import_react3.default.createElement("div", { id: "root" }, /* @__PURE__ */ import_react3.default.createElement("header", null, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Hello world")), /* @__PURE__ */ import_react3.default.createElement(import_react3.Suspense, null, /* @__PURE__ */ import_react3.default.createElement(Products, null)), /* @__PURE__ */ import_react3.default.createElement("footer", null, "I'm a footer"))));
   }
   function Title() {
     return /* @__PURE__ */ import_react3.default.createElement("title", null, "React Example");
   }
 
-  // src/client.tsx
+  // build/client/client.tsx
   (0, import_client.hydrateRoot)(document, /* @__PURE__ */ import_react4.default.createElement(App, null));
 })();
 /*! Bundled license information:
