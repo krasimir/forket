@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const { processEntryPoint } = require("../../lib/graph");
-const { snap, MODE } = require("../../lib/thanos");
+const { Thanos, MODE } = require("../../lib/thanos");
 const { setRoles } = require('../../lib/roles');
 
 module.exports = async function ({ test, xtest, testCase }) {
@@ -18,11 +18,12 @@ module.exports = async function ({ test, xtest, testCase }) {
             return false;
           }
         }
+        const thanos = Thanos();
         const filePath = path.join(__dirname, "cases", entry.name);
         const graph = await processEntryPoint(filePath);
         setRoles(graph);
         const mode = entry.name.includes("_server") ? MODE.SERVER : MODE.CLIENT;
-        const newContent = await snap([graph], filePath, read(filePath), mode);
+        const newContent = await thanos.snap([graph], filePath, read(filePath), mode);
         return {
           message: `${entry.name} (role: ${graph.role}) (mode: ${mode})`,
           newContent,

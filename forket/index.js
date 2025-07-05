@@ -3,7 +3,7 @@ const chalk = require("chalk");
 const { buildGraphs, printGraph } = require("./lib/graph.js");
 const { copyFolder, clearPath } = require("./lib/utils/fsHelpers.js");
 const { setRoles } = require('./lib/roles.js')
-const { snap, MODE } = require("./lib/thanos.js");
+const { Thanos, MODE } = require("./lib/thanos.js");
 
 module.exports = function (options = {}) {
   if (!options.sourceDir) {
@@ -21,15 +21,18 @@ module.exports = function (options = {}) {
     const graphs = await buildGraphs(options.sourceDir);
     graphs.forEach(setRoles);
 
+    let thanos = Thanos();
     const buildServerDir = path.join(options.buildDir, serverDirName);
     console.log(chalk.gray(`‎𐂐 (2) Forket: generating server code in ${clearPath(buildServerDir)}`));
     await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
-      return await snap(graphs, filePath, content, MODE.SERVER);
+      return await thanos.snap(graphs, filePath, content, MODE.SERVER);
     });
+
+    thanos = Thanos();
     const buildClientDir = path.join(options.buildDir, clientDirName);
     console.log(chalk.gray(`‎𐂐 (3) Forket: generating client code in ${clearPath(buildClientDir)}`));
     await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
-      return await snap(graphs, filePath, content, MODE.CLIENT);
+      return await thanos.snap(graphs, filePath, content, MODE.CLIENT);
     });
   }
 

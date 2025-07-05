@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const { buildGraphs, printGraph, toJSON } = require("../../lib/graph.js");
+const { buildGraphs, toJSON } = require("../../lib/graph.js");
 const { setRoles } = require('../../lib/roles.js');
 
 module.exports = async function ({ test }) {

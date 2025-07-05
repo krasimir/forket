@@ -1,40 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 
-import Products from "./Products";
+import Products from "./components/Products";
 
-export function App() {
-  return (
-    <html>
-      <head>
-        <Title />
-      </head>
-      <body>
-        <div id="root">
-          <header>
-            <h1>Hello world</h1>
-          </header>
-          <Suspense>
-            <Products />
-          </Suspense>
-          <footer>I'm a footer</footer>
-        </div>
-      </body>
-    </html>
-  );
-}
-
-export function AnotherComponent() {
-  return <div>Another Component</div>;
-}
-
-export const YetAnotherComponent = () => {
-  return <div>Yet Another Component</div>;
-}
-
-const TooBar = () => <p>Hey</p>;
-
-export default TooBar;
-
-function Title() {
-  return <title>React Example</title>;
+export default function App() {
+  return <template id="B:0"></template>;
 }
