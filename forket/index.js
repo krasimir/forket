@@ -2,6 +2,7 @@ const path = require('path');
 const chalk = require("chalk");
 const { buildGraphs, printGraph } = require("./lib/graph.js");
 const { copyFolder, clearPath } = require("./lib/utils/fsHelprs.js");
+const { setRoles } = require('./lib/roles.js')
 
 module.exports = function (options = {}) {
   if (!options.sourceDir) {
@@ -17,7 +18,7 @@ module.exports = function (options = {}) {
     console.log(chalk.gray(`‎𐂐 (1) Forket: processing ${clearPath(options.sourceDir)} ...`));
 
     const graphs = await buildGraphs(options.sourceDir);
-    // graphs.forEach(node => printGraph(node, ''));
+    graphs.forEach(setRoles);
 
     const buildServerDir = path.join(options.buildDir, serverDirName);
     console.log(chalk.gray(`‎𐂐 (2) Forket: generating server code in ${clearPath(buildServerDir)}`));

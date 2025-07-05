@@ -3,14 +3,14 @@ const path = require('path');
 const swc = require("@swc/core");
 const get = require("lodash/get");
 const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
+
 const { clearPath } = require("./utils/fsHelprs.js");
-
 const traverseNode = require("./utils/traverseNode.js");
+const { VALID_ENTRY_POINTS, ROLE_SERVER } = require("./constants.js");
 
-const VALID_ENTRY_POINTS = [".js", ".jsx", ".ts", ".tsx"];
 const DEBUGGING_MODULE_RESOLVING = false;
 
-async function processFile(file) {
+async function processFile(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
   const { parse } = swc;
   const ast = await parse(code, {
@@ -19,10 +19,11 @@ async function processFile(file) {
     decorators: false
   });
 
-  const { imports } = processAST(ast);
+  const astProps = processAST(ast);
 
   function processAST(ast, type) {
     const imports = [];
+    let useClient = false;
 
     function processImports(node) {
       imports.push({ source: get(node, "source.value") });
@@ -32,24 +33,32 @@ async function processFile(file) {
         imports.push({ source: get(node, "arguments[0].expression.value") });
       }
     }
+    function processExpressionStatement(node) {
+      if (get(node, "expression.type") === "StringLiteral" && get(node, "expression.value") === "use client") {
+        useClient = true;
+      }
+    }
 
     traverseNode(ast, {
       ImportDeclaration: processImports,
-      CallExpression: processCallExpression
+      CallExpression: processCallExpression,
+      ExpressionStatement: processExpressionStatement
     });
 
     return {
-      imports
+      imports,
+      useClient
     };
   }
 
-  return {
+  return Object.assign({
     file,
     code,
     ast,
-    imports,
-    children: []
-  };
+    children: [],
+    role: ROLE_SERVER,
+    parentNode
+  }, astProps);
 }
 async function resolveImports(host, request) {
   const fileSystem = new CachedInputFileSystem(fs, 4000);
@@ -79,11 +88,11 @@ async function processEntryPoint(entryPoint) {
   const PROCESSED = new Map();
   const RESOLVED = new Map();
 
-  async function process(filePath) {
+  async function process(filePath, parentNode = null) {
     DEBUGGING_MODULE_RESOLVING && console.log("Processing:", filePath);
     let node = PROCESSED.get(filePath);
     if (!node) {
-      node = await processFile(filePath);
+      node = await processFile(filePath, parentNode);
       PROCESSED.set(filePath, node);
     } else {
       DEBUGGING_MODULE_RESOLVING && console.log(`File "${filePath}" is already processed, skipping.`);
@@ -103,7 +112,7 @@ async function processEntryPoint(entryPoint) {
           RESOLVED.set(key, resolved);
         }
         if (resolved !== null) {
-          node.children.push(await process(resolved));
+          node.children.push(await process(resolved, node));
         } else {
           DEBUGGING_MODULE_RESOLVING && console.log(`Ignoring ${imp.source}`);
         }
@@ -136,7 +145,7 @@ const api = {
     return graphs;
   },
   printGraph(node, indent = "") {
-    console.log(`${indent}${clearPath(node.file)}`);
+    console.log(`${indent}${clearPath(node.file)} (${node.role})`);
     if (node.children.length > 0) {
       node.children.forEach((child) => {
         api.printGraph(child, indent + "   ");

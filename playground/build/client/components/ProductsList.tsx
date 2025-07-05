@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, use } from "react";
+import ProductListeItem from "./ProductListItem";
 
 type Product = {
   id: number;
@@ -36,10 +37,7 @@ export default function ProductsList({ products }: ProductsProps) {
       <ul>
         {products.map((product: any) => (
           <li key={product.id}>
-            <label>
-              <input type="checkbox" onClick={(e) => itemClicked(product)} />
-              {product.title}
-            </label>
+            <ProductListeItem title={product.title} onClick={(e) => itemClicked(product)}/>            
           </li>
         ))}
       </ul>

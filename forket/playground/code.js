@@ -1,8 +1,47 @@
-import React from "react";
-import { hydrateRoot } from "react-dom/client";
+"use client";
 
-const { hydrateRoot } = require('react-dom/client');
+import React, { useState, use } from "react";
+import ProductListeItem from "./ProductListItem";
 
-import App from "./components/App";
+type Product = {
+  id: number;
+  title: string;
+};
+type ProductsProps = {
+  products: Product[];
+};
 
-hydrateRoot(document, <App />);
+export default function ProductsList({ products }: ProductsProps) {
+  const [selected, setSelected] = useState<Number[]>([]);
+  const addToCart = (ids: Number[]) => ({ products: ids.length });
+
+  function itemClicked(product: Product) {
+    const index = selected.indexOf(product.id);
+    if (index === -1) {
+      setSelected([...selected, product.id]);
+    } else {
+      setSelected(selected.filter((id) => id !== product.id));
+    }
+  }
+  async function buy() {
+    const { products } = await addToCart(selected);
+    alert(`Added ${products} items to cart`);
+  }
+
+  if (products.length === 0) {
+    return null;
+  }
+  return (
+    <>
+      <p>Selected items: {selected.length}</p>
+      <ul>
+        {products.map((product: any) => (
+          <li key={product.id}>
+            <ProductListeItem title={product.title} onClick={(e) => itemClicked(product)}/>            
+          </li>
+        ))}
+      </ul>
+      <button onClick={buy}>Add to cart</button>
+    </>
+  );
+}

@@ -2,39 +2,93 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 199
+    "end": 1192
   },
   "body": [
     {
-      "type": "ImportDeclaration",
+      "type": "ExpressionStatement",
       "span": {
         "start": 1,
-        "end": 27
+        "end": 14
+      },
+      "expression": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 1,
+          "end": 13
+        },
+        "value": "use client",
+        "raw": "\"use client\""
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 16,
+        "end": 61
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 8,
-            "end": 13
+            "start": 23,
+            "end": 28
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 8,
-              "end": 13
+              "start": 23,
+              "end": 28
             },
             "ctxt": 2,
             "value": "React",
             "optional": false
           }
+        },
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 32,
+            "end": 40
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 32,
+              "end": 40
+            },
+            "ctxt": 2,
+            "value": "useState",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
+        },
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 42,
+            "end": 45
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 42,
+              "end": 45
+            },
+            "ctxt": 2,
+            "value": "use",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
         }
       ],
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 19,
-          "end": 26
+          "start": 53,
+          "end": 60
         },
         "value": "react",
         "raw": "\"react\""
@@ -46,147 +100,24 @@
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 28,
-        "end": 75
-      },
-      "specifiers": [
-        {
-          "type": "ImportSpecifier",
-          "span": {
-            "start": 37,
-            "end": 48
-          },
-          "local": {
-            "type": "Identifier",
-            "span": {
-              "start": 37,
-              "end": 48
-            },
-            "ctxt": 2,
-            "value": "hydrateRoot",
-            "optional": false
-          },
-          "imported": null,
-          "isTypeOnly": false
-        }
-      ],
-      "source": {
-        "type": "StringLiteral",
-        "span": {
-          "start": 56,
-          "end": 74
-        },
-        "value": "react-dom/client",
-        "raw": "\"react-dom/client\""
-      },
-      "typeOnly": false,
-      "with": null,
-      "phase": "evaluation"
-    },
-    {
-      "type": "VariableDeclaration",
-      "span": {
-        "start": 77,
-        "end": 129
-      },
-      "ctxt": 0,
-      "kind": "const",
-      "declare": false,
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "span": {
-            "start": 83,
-            "end": 128
-          },
-          "id": {
-            "type": "ObjectPattern",
-            "span": {
-              "start": 83,
-              "end": 98
-            },
-            "properties": [
-              {
-                "type": "AssignmentPatternProperty",
-                "span": {
-                  "start": 85,
-                  "end": 96
-                },
-                "key": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 85,
-                    "end": 96
-                  },
-                  "ctxt": 2,
-                  "value": "hydrateRoot",
-                  "optional": false,
-                  "typeAnnotation": null
-                },
-                "value": null
-              }
-            ],
-            "optional": false,
-            "typeAnnotation": null
-          },
-          "init": {
-            "type": "CallExpression",
-            "span": {
-              "start": 101,
-              "end": 128
-            },
-            "ctxt": 0,
-            "callee": {
-              "type": "Identifier",
-              "span": {
-                "start": 101,
-                "end": 108
-              },
-              "ctxt": 1,
-              "value": "require",
-              "optional": false
-            },
-            "arguments": [
-              {
-                "spread": null,
-                "expression": {
-                  "type": "StringLiteral",
-                  "span": {
-                    "start": 109,
-                    "end": 127
-                  },
-                  "value": "react-dom/client",
-                  "raw": "'react-dom/client'"
-                }
-              }
-            ],
-            "typeArguments": null
-          },
-          "definite": false
-        }
-      ]
-    },
-    {
-      "type": "ImportDeclaration",
-      "span": {
-        "start": 131,
-        "end": 166
+        "start": 62,
+        "end": 111
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 138,
-            "end": 141
+            "start": 69,
+            "end": 85
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 138,
-              "end": 141
+              "start": 69,
+              "end": 85
             },
             "ctxt": 2,
-            "value": "App",
+            "value": "ProductListeItem",
             "optional": false
           }
         }
@@ -194,87 +125,1957 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 147,
-          "end": 165
+          "start": 91,
+          "end": 110
         },
-        "value": "./components/App",
-        "raw": "\"./components/App\""
+        "value": "./ProductListItem",
+        "raw": "\"./ProductListItem\""
       },
       "typeOnly": false,
       "with": null,
       "phase": "evaluation"
     },
     {
-      "type": "ExpressionStatement",
+      "type": "TsTypeAliasDeclaration",
       "span": {
-        "start": 168,
-        "end": 199
+        "start": 113,
+        "end": 163
       },
-      "expression": {
-        "type": "CallExpression",
+      "declare": false,
+      "id": {
+        "type": "Identifier",
         "span": {
-          "start": 168,
-          "end": 198
+          "start": 118,
+          "end": 125
         },
-        "ctxt": 0,
-        "callee": {
-          "type": "Identifier",
-          "span": {
-            "start": 168,
-            "end": 179
-          },
-          "ctxt": 2,
-          "value": "hydrateRoot",
-          "optional": false
+        "ctxt": 2,
+        "value": "Product",
+        "optional": false
+      },
+      "typeParams": null,
+      "typeAnnotation": {
+        "type": "TsTypeLiteral",
+        "span": {
+          "start": 128,
+          "end": 162
         },
-        "arguments": [
+        "members": [
           {
-            "spread": null,
-            "expression": {
+            "type": "TsPropertySignature",
+            "span": {
+              "start": 132,
+              "end": 143
+            },
+            "readonly": false,
+            "key": {
               "type": "Identifier",
               "span": {
-                "start": 180,
-                "end": 188
+                "start": 132,
+                "end": 134
               },
-              "ctxt": 1,
-              "value": "document",
+              "ctxt": 0,
+              "value": "id",
               "optional": false
+            },
+            "computed": false,
+            "optional": false,
+            "typeAnnotation": {
+              "type": "TsTypeAnnotation",
+              "span": {
+                "start": 134,
+                "end": 142
+              },
+              "typeAnnotation": {
+                "type": "TsKeywordType",
+                "span": {
+                  "start": 136,
+                  "end": 142
+                },
+                "kind": "number"
+              }
             }
           },
           {
-            "spread": null,
-            "expression": {
-              "type": "JSXElement",
+            "type": "TsPropertySignature",
+            "span": {
+              "start": 146,
+              "end": 160
+            },
+            "readonly": false,
+            "key": {
+              "type": "Identifier",
               "span": {
-                "start": 190,
+                "start": 146,
+                "end": 151
+              },
+              "ctxt": 0,
+              "value": "title",
+              "optional": false
+            },
+            "computed": false,
+            "optional": false,
+            "typeAnnotation": {
+              "type": "TsTypeAnnotation",
+              "span": {
+                "start": 151,
+                "end": 159
+              },
+              "typeAnnotation": {
+                "type": "TsKeywordType",
+                "span": {
+                  "start": 153,
+                  "end": 159
+                },
+                "kind": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "TsTypeAliasDeclaration",
+      "span": {
+        "start": 164,
+        "end": 212
+      },
+      "declare": false,
+      "id": {
+        "type": "Identifier",
+        "span": {
+          "start": 169,
+          "end": 182
+        },
+        "ctxt": 2,
+        "value": "ProductsProps",
+        "optional": false
+      },
+      "typeParams": null,
+      "typeAnnotation": {
+        "type": "TsTypeLiteral",
+        "span": {
+          "start": 185,
+          "end": 211
+        },
+        "members": [
+          {
+            "type": "TsPropertySignature",
+            "span": {
+              "start": 189,
+              "end": 209
+            },
+            "readonly": false,
+            "key": {
+              "type": "Identifier",
+              "span": {
+                "start": 189,
                 "end": 197
               },
-              "opening": {
-                "type": "JSXOpeningElement",
-                "name": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 191,
-                    "end": 194
-                  },
-                  "ctxt": 2,
-                  "value": "App",
-                  "optional": false
-                },
-                "span": {
-                  "start": 190,
-                  "end": 197
-                },
-                "attributes": [],
-                "selfClosing": true,
-                "typeArguments": null
+              "ctxt": 0,
+              "value": "products",
+              "optional": false
+            },
+            "computed": false,
+            "optional": false,
+            "typeAnnotation": {
+              "type": "TsTypeAnnotation",
+              "span": {
+                "start": 197,
+                "end": 208
               },
-              "children": [],
-              "closing": null
+              "typeAnnotation": {
+                "type": "TsArrayType",
+                "span": {
+                  "start": 199,
+                  "end": 208
+                },
+                "elemType": {
+                  "type": "TsTypeReference",
+                  "span": {
+                    "start": 199,
+                    "end": 206
+                  },
+                  "typeName": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 199,
+                      "end": 206
+                    },
+                    "ctxt": 2,
+                    "value": "Product",
+                    "optional": false
+                  },
+                  "typeParams": null
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "span": {
+        "start": 214,
+        "end": 1192
+      },
+      "decl": {
+        "type": "FunctionExpression",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 238,
+            "end": 250
+          },
+          "ctxt": 2,
+          "value": "ProductsList",
+          "optional": false
+        },
+        "params": [
+          {
+            "type": "Parameter",
+            "span": {
+              "start": 251,
+              "end": 278
+            },
+            "decorators": [],
+            "pat": {
+              "type": "ObjectPattern",
+              "span": {
+                "start": 251,
+                "end": 278
+              },
+              "properties": [
+                {
+                  "type": "AssignmentPatternProperty",
+                  "span": {
+                    "start": 253,
+                    "end": 261
+                  },
+                  "key": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 253,
+                      "end": 261
+                    },
+                    "ctxt": 3,
+                    "value": "products",
+                    "optional": false,
+                    "typeAnnotation": null
+                  },
+                  "value": null
+                }
+              ],
+              "optional": false,
+              "typeAnnotation": {
+                "type": "TsTypeAnnotation",
+                "span": {
+                  "start": 263,
+                  "end": 278
+                },
+                "typeAnnotation": {
+                  "type": "TsTypeReference",
+                  "span": {
+                    "start": 265,
+                    "end": 278
+                  },
+                  "typeName": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 265,
+                      "end": 278
+                    },
+                    "ctxt": 2,
+                    "value": "ProductsProps",
+                    "optional": false
+                  },
+                  "typeParams": null
+                }
+              }
             }
           }
         ],
-        "typeArguments": null
+        "decorators": [],
+        "span": {
+          "start": 229,
+          "end": 1192
+        },
+        "ctxt": 3,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 280,
+            "end": 1192
+          },
+          "ctxt": 3,
+          "stmts": [
+            {
+              "type": "VariableDeclaration",
+              "span": {
+                "start": 284,
+                "end": 339
+              },
+              "ctxt": 0,
+              "kind": "const",
+              "declare": false,
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "span": {
+                    "start": 290,
+                    "end": 338
+                  },
+                  "id": {
+                    "type": "ArrayPattern",
+                    "span": {
+                      "start": 290,
+                      "end": 313
+                    },
+                    "elements": [
+                      {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 291,
+                          "end": 299
+                        },
+                        "ctxt": 3,
+                        "value": "selected",
+                        "optional": false,
+                        "typeAnnotation": null
+                      },
+                      {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 301,
+                          "end": 312
+                        },
+                        "ctxt": 3,
+                        "value": "setSelected",
+                        "optional": false,
+                        "typeAnnotation": null
+                      }
+                    ],
+                    "optional": false,
+                    "typeAnnotation": null
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "span": {
+                      "start": 316,
+                      "end": 338
+                    },
+                    "ctxt": 0,
+                    "callee": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 316,
+                        "end": 324
+                      },
+                      "ctxt": 2,
+                      "value": "useState",
+                      "optional": false
+                    },
+                    "arguments": [
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "ArrayExpression",
+                          "span": {
+                            "start": 335,
+                            "end": 337
+                          },
+                          "elements": []
+                        }
+                      }
+                    ],
+                    "typeArguments": {
+                      "type": "TsTypeParameterInstantiation",
+                      "span": {
+                        "start": 324,
+                        "end": 334
+                      },
+                      "params": [
+                        {
+                          "type": "TsArrayType",
+                          "span": {
+                            "start": 325,
+                            "end": 333
+                          },
+                          "elemType": {
+                            "type": "TsTypeReference",
+                            "span": {
+                              "start": 325,
+                              "end": 331
+                            },
+                            "typeName": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 325,
+                                "end": 331
+                              },
+                              "ctxt": 1,
+                              "value": "Number",
+                              "optional": false
+                            },
+                            "typeParams": null
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "definite": false
+                }
+              ]
+            },
+            {
+              "type": "VariableDeclaration",
+              "span": {
+                "start": 342,
+                "end": 406
+              },
+              "ctxt": 0,
+              "kind": "const",
+              "declare": false,
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "span": {
+                    "start": 348,
+                    "end": 405
+                  },
+                  "id": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 348,
+                      "end": 357
+                    },
+                    "ctxt": 3,
+                    "value": "addToCart",
+                    "optional": false,
+                    "typeAnnotation": null
+                  },
+                  "init": {
+                    "type": "ArrowFunctionExpression",
+                    "span": {
+                      "start": 360,
+                      "end": 405
+                    },
+                    "ctxt": 0,
+                    "params": [
+                      {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 361,
+                          "end": 374
+                        },
+                        "ctxt": 4,
+                        "value": "ids",
+                        "optional": false,
+                        "typeAnnotation": {
+                          "type": "TsTypeAnnotation",
+                          "span": {
+                            "start": 364,
+                            "end": 374
+                          },
+                          "typeAnnotation": {
+                            "type": "TsArrayType",
+                            "span": {
+                              "start": 366,
+                              "end": 374
+                            },
+                            "elemType": {
+                              "type": "TsTypeReference",
+                              "span": {
+                                "start": 366,
+                                "end": 372
+                              },
+                              "typeName": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 366,
+                                  "end": 372
+                                },
+                                "ctxt": 1,
+                                "value": "Number",
+                                "optional": false
+                              },
+                              "typeParams": null
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "body": {
+                      "type": "ParenthesisExpression",
+                      "span": {
+                        "start": 379,
+                        "end": 405
+                      },
+                      "expression": {
+                        "type": "ObjectExpression",
+                        "span": {
+                          "start": 380,
+                          "end": 404
+                        },
+                        "properties": [
+                          {
+                            "type": "KeyValueProperty",
+                            "key": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 382,
+                                "end": 390
+                              },
+                              "value": "products"
+                            },
+                            "value": {
+                              "type": "MemberExpression",
+                              "span": {
+                                "start": 392,
+                                "end": 402
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 392,
+                                  "end": 395
+                                },
+                                "ctxt": 4,
+                                "value": "ids",
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 396,
+                                  "end": 402
+                                },
+                                "value": "length"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "async": false,
+                    "generator": false,
+                    "typeParameters": null,
+                    "returnType": null
+                  },
+                  "definite": false
+                }
+              ]
+            },
+            {
+              "type": "FunctionDeclaration",
+              "identifier": {
+                "type": "Identifier",
+                "span": {
+                  "start": 419,
+                  "end": 430
+                },
+                "ctxt": 3,
+                "value": "itemClicked",
+                "optional": false
+              },
+              "declare": false,
+              "params": [
+                {
+                  "type": "Parameter",
+                  "span": {
+                    "start": 431,
+                    "end": 447
+                  },
+                  "decorators": [],
+                  "pat": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 431,
+                      "end": 438
+                    },
+                    "ctxt": 5,
+                    "value": "product",
+                    "optional": false,
+                    "typeAnnotation": {
+                      "type": "TsTypeAnnotation",
+                      "span": {
+                        "start": 438,
+                        "end": 447
+                      },
+                      "typeAnnotation": {
+                        "type": "TsTypeReference",
+                        "span": {
+                          "start": 440,
+                          "end": 447
+                        },
+                        "typeName": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 440,
+                            "end": 447
+                          },
+                          "ctxt": 2,
+                          "value": "Product",
+                          "optional": false
+                        },
+                        "typeParams": null
+                      }
+                    }
+                  }
+                }
+              ],
+              "decorators": [],
+              "span": {
+                "start": 410,
+                "end": 654
+              },
+              "ctxt": 5,
+              "body": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 449,
+                  "end": 654
+                },
+                "ctxt": 5,
+                "stmts": [
+                  {
+                    "type": "VariableDeclaration",
+                    "span": {
+                      "start": 455,
+                      "end": 498
+                    },
+                    "ctxt": 0,
+                    "kind": "const",
+                    "declare": false,
+                    "declarations": [
+                      {
+                        "type": "VariableDeclarator",
+                        "span": {
+                          "start": 461,
+                          "end": 497
+                        },
+                        "id": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 461,
+                            "end": 466
+                          },
+                          "ctxt": 5,
+                          "value": "index",
+                          "optional": false,
+                          "typeAnnotation": null
+                        },
+                        "init": {
+                          "type": "CallExpression",
+                          "span": {
+                            "start": 469,
+                            "end": 497
+                          },
+                          "ctxt": 0,
+                          "callee": {
+                            "type": "MemberExpression",
+                            "span": {
+                              "start": 469,
+                              "end": 485
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 469,
+                                "end": 477
+                              },
+                              "ctxt": 3,
+                              "value": "selected",
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 478,
+                                "end": 485
+                              },
+                              "value": "indexOf"
+                            }
+                          },
+                          "arguments": [
+                            {
+                              "spread": null,
+                              "expression": {
+                                "type": "MemberExpression",
+                                "span": {
+                                  "start": 486,
+                                  "end": 496
+                                },
+                                "object": {
+                                  "type": "Identifier",
+                                  "span": {
+                                    "start": 486,
+                                    "end": 493
+                                  },
+                                  "ctxt": 5,
+                                  "value": "product",
+                                  "optional": false
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "span": {
+                                    "start": 494,
+                                    "end": 496
+                                  },
+                                  "value": "id"
+                                }
+                              }
+                            }
+                          ],
+                          "typeArguments": null
+                        },
+                        "definite": false
+                      }
+                    ]
+                  },
+                  {
+                    "type": "IfStatement",
+                    "span": {
+                      "start": 503,
+                      "end": 650
+                    },
+                    "test": {
+                      "type": "BinaryExpression",
+                      "span": {
+                        "start": 507,
+                        "end": 519
+                      },
+                      "operator": "===",
+                      "left": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 507,
+                          "end": 512
+                        },
+                        "ctxt": 5,
+                        "value": "index",
+                        "optional": false
+                      },
+                      "right": {
+                        "type": "UnaryExpression",
+                        "span": {
+                          "start": 517,
+                          "end": 519
+                        },
+                        "operator": "-",
+                        "argument": {
+                          "type": "NumericLiteral",
+                          "span": {
+                            "start": 518,
+                            "end": 519
+                          },
+                          "value": 1,
+                          "raw": "1"
+                        }
+                      }
+                    },
+                    "consequent": {
+                      "type": "BlockStatement",
+                      "span": {
+                        "start": 521,
+                        "end": 574
+                      },
+                      "ctxt": 6,
+                      "stmts": [
+                        {
+                          "type": "ExpressionStatement",
+                          "span": {
+                            "start": 529,
+                            "end": 568
+                          },
+                          "expression": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 529,
+                              "end": 567
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 529,
+                                "end": 540
+                              },
+                              "ctxt": 3,
+                              "value": "setSelected",
+                              "optional": false
+                            },
+                            "arguments": [
+                              {
+                                "spread": null,
+                                "expression": {
+                                  "type": "ArrayExpression",
+                                  "span": {
+                                    "start": 541,
+                                    "end": 566
+                                  },
+                                  "elements": [
+                                    {
+                                      "spread": {
+                                        "start": 542,
+                                        "end": 545
+                                      },
+                                      "expression": {
+                                        "type": "Identifier",
+                                        "span": {
+                                          "start": 545,
+                                          "end": 553
+                                        },
+                                        "ctxt": 3,
+                                        "value": "selected",
+                                        "optional": false
+                                      }
+                                    },
+                                    {
+                                      "spread": null,
+                                      "expression": {
+                                        "type": "MemberExpression",
+                                        "span": {
+                                          "start": 555,
+                                          "end": 565
+                                        },
+                                        "object": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 555,
+                                            "end": 562
+                                          },
+                                          "ctxt": 5,
+                                          "value": "product",
+                                          "optional": false
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 563,
+                                            "end": 565
+                                          },
+                                          "value": "id"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "typeArguments": null
+                          }
+                        }
+                      ]
+                    },
+                    "alternate": {
+                      "type": "BlockStatement",
+                      "span": {
+                        "start": 580,
+                        "end": 650
+                      },
+                      "ctxt": 7,
+                      "stmts": [
+                        {
+                          "type": "ExpressionStatement",
+                          "span": {
+                            "start": 588,
+                            "end": 644
+                          },
+                          "expression": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 588,
+                              "end": 643
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 588,
+                                "end": 599
+                              },
+                              "ctxt": 3,
+                              "value": "setSelected",
+                              "optional": false
+                            },
+                            "arguments": [
+                              {
+                                "spread": null,
+                                "expression": {
+                                  "type": "CallExpression",
+                                  "span": {
+                                    "start": 600,
+                                    "end": 642
+                                  },
+                                  "ctxt": 0,
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "span": {
+                                      "start": 600,
+                                      "end": 615
+                                    },
+                                    "object": {
+                                      "type": "Identifier",
+                                      "span": {
+                                        "start": 600,
+                                        "end": 608
+                                      },
+                                      "ctxt": 3,
+                                      "value": "selected",
+                                      "optional": false
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "span": {
+                                        "start": 609,
+                                        "end": 615
+                                      },
+                                      "value": "filter"
+                                    }
+                                  },
+                                  "arguments": [
+                                    {
+                                      "spread": null,
+                                      "expression": {
+                                        "type": "ArrowFunctionExpression",
+                                        "span": {
+                                          "start": 616,
+                                          "end": 641
+                                        },
+                                        "ctxt": 0,
+                                        "params": [
+                                          {
+                                            "type": "Identifier",
+                                            "span": {
+                                              "start": 617,
+                                              "end": 619
+                                            },
+                                            "ctxt": 8,
+                                            "value": "id",
+                                            "optional": false,
+                                            "typeAnnotation": null
+                                          }
+                                        ],
+                                        "body": {
+                                          "type": "BinaryExpression",
+                                          "span": {
+                                            "start": 624,
+                                            "end": 641
+                                          },
+                                          "operator": "!==",
+                                          "left": {
+                                            "type": "Identifier",
+                                            "span": {
+                                              "start": 624,
+                                              "end": 626
+                                            },
+                                            "ctxt": 8,
+                                            "value": "id",
+                                            "optional": false
+                                          },
+                                          "right": {
+                                            "type": "MemberExpression",
+                                            "span": {
+                                              "start": 631,
+                                              "end": 641
+                                            },
+                                            "object": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 631,
+                                                "end": 638
+                                              },
+                                              "ctxt": 5,
+                                              "value": "product",
+                                              "optional": false
+                                            },
+                                            "property": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 639,
+                                                "end": 641
+                                              },
+                                              "value": "id"
+                                            }
+                                          }
+                                        },
+                                        "async": false,
+                                        "generator": false,
+                                        "typeParameters": null,
+                                        "returnType": null
+                                      }
+                                    }
+                                  ],
+                                  "typeArguments": null
+                                }
+                              }
+                            ],
+                            "typeArguments": null
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "generator": false,
+              "async": false,
+              "typeParameters": null,
+              "returnType": null
+            },
+            {
+              "type": "FunctionDeclaration",
+              "identifier": {
+                "type": "Identifier",
+                "span": {
+                  "start": 672,
+                  "end": 675
+                },
+                "ctxt": 3,
+                "value": "buy",
+                "optional": false
+              },
+              "declare": false,
+              "params": [],
+              "decorators": [],
+              "span": {
+                "start": 657,
+                "end": 781
+              },
+              "ctxt": 9,
+              "body": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 678,
+                  "end": 781
+                },
+                "ctxt": 9,
+                "stmts": [
+                  {
+                    "type": "VariableDeclaration",
+                    "span": {
+                      "start": 684,
+                      "end": 731
+                    },
+                    "ctxt": 0,
+                    "kind": "const",
+                    "declare": false,
+                    "declarations": [
+                      {
+                        "type": "VariableDeclarator",
+                        "span": {
+                          "start": 690,
+                          "end": 730
+                        },
+                        "id": {
+                          "type": "ObjectPattern",
+                          "span": {
+                            "start": 690,
+                            "end": 702
+                          },
+                          "properties": [
+                            {
+                              "type": "AssignmentPatternProperty",
+                              "span": {
+                                "start": 692,
+                                "end": 700
+                              },
+                              "key": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 692,
+                                  "end": 700
+                                },
+                                "ctxt": 9,
+                                "value": "products",
+                                "optional": false,
+                                "typeAnnotation": null
+                              },
+                              "value": null
+                            }
+                          ],
+                          "optional": false,
+                          "typeAnnotation": null
+                        },
+                        "init": {
+                          "type": "AwaitExpression",
+                          "span": {
+                            "start": 705,
+                            "end": 730
+                          },
+                          "argument": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 711,
+                              "end": 730
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 711,
+                                "end": 720
+                              },
+                              "ctxt": 3,
+                              "value": "addToCart",
+                              "optional": false
+                            },
+                            "arguments": [
+                              {
+                                "spread": null,
+                                "expression": {
+                                  "type": "Identifier",
+                                  "span": {
+                                    "start": 721,
+                                    "end": 729
+                                  },
+                                  "ctxt": 3,
+                                  "value": "selected",
+                                  "optional": false
+                                }
+                              }
+                            ],
+                            "typeArguments": null
+                          }
+                        },
+                        "definite": false
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 736,
+                      "end": 777
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "span": {
+                        "start": 736,
+                        "end": 776
+                      },
+                      "ctxt": 0,
+                      "callee": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 736,
+                          "end": 741
+                        },
+                        "ctxt": 1,
+                        "value": "alert",
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "TemplateLiteral",
+                            "span": {
+                              "start": 742,
+                              "end": 775
+                            },
+                            "expressions": [
+                              {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 751,
+                                  "end": 759
+                                },
+                                "ctxt": 9,
+                                "value": "products",
+                                "optional": false
+                              }
+                            ],
+                            "quasis": [
+                              {
+                                "type": "TemplateElement",
+                                "span": {
+                                  "start": 743,
+                                  "end": 749
+                                },
+                                "tail": false,
+                                "cooked": "Added ",
+                                "raw": "Added "
+                              },
+                              {
+                                "type": "TemplateElement",
+                                "span": {
+                                  "start": 760,
+                                  "end": 774
+                                },
+                                "tail": true,
+                                "cooked": " items to cart",
+                                "raw": " items to cart"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "typeArguments": null
+                    }
+                  }
+                ]
+              },
+              "generator": false,
+              "async": true,
+              "typeParameters": null,
+              "returnType": null
+            },
+            {
+              "type": "IfStatement",
+              "span": {
+                "start": 785,
+                "end": 834
+              },
+              "test": {
+                "type": "BinaryExpression",
+                "span": {
+                  "start": 789,
+                  "end": 810
+                },
+                "operator": "===",
+                "left": {
+                  "type": "MemberExpression",
+                  "span": {
+                    "start": 789,
+                    "end": 804
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 789,
+                      "end": 797
+                    },
+                    "ctxt": 3,
+                    "value": "products",
+                    "optional": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 798,
+                      "end": 804
+                    },
+                    "value": "length"
+                  }
+                },
+                "right": {
+                  "type": "NumericLiteral",
+                  "span": {
+                    "start": 809,
+                    "end": 810
+                  },
+                  "value": 0,
+                  "raw": "0"
+                }
+              },
+              "consequent": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 812,
+                  "end": 834
+                },
+                "ctxt": 10,
+                "stmts": [
+                  {
+                    "type": "ReturnStatement",
+                    "span": {
+                      "start": 818,
+                      "end": 830
+                    },
+                    "argument": {
+                      "type": "NullLiteral",
+                      "span": {
+                        "start": 825,
+                        "end": 829
+                      }
+                    }
+                  }
+                ]
+              },
+              "alternate": null
+            },
+            {
+              "type": "ReturnStatement",
+              "span": {
+                "start": 837,
+                "end": 1190
+              },
+              "argument": {
+                "type": "ParenthesisExpression",
+                "span": {
+                  "start": 844,
+                  "end": 1189
+                },
+                "expression": {
+                  "type": "JSXFragment",
+                  "span": {
+                    "start": 850,
+                    "end": 1185
+                  },
+                  "opening": {
+                    "type": "JSXOpeningFragment",
+                    "span": {
+                      "start": 850,
+                      "end": 852
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 852,
+                        "end": 859
+                      },
+                      "value": "\n      ",
+                      "raw": "\n      "
+                    },
+                    {
+                      "type": "JSXElement",
+                      "span": {
+                        "start": 859,
+                        "end": 899
+                      },
+                      "opening": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 860,
+                            "end": 861
+                          },
+                          "ctxt": 1,
+                          "value": "p",
+                          "optional": false
+                        },
+                        "span": {
+                          "start": 859,
+                          "end": 862
+                        },
+                        "attributes": [],
+                        "selfClosing": false,
+                        "typeArguments": null
+                      },
+                      "children": [
+                        {
+                          "type": "JSXText",
+                          "span": {
+                            "start": 862,
+                            "end": 878
+                          },
+                          "value": "Selected items: ",
+                          "raw": "Selected items: "
+                        },
+                        {
+                          "type": "JSXExpressionContainer",
+                          "span": {
+                            "start": 878,
+                            "end": 895
+                          },
+                          "expression": {
+                            "type": "MemberExpression",
+                            "span": {
+                              "start": 879,
+                              "end": 894
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 879,
+                                "end": 887
+                              },
+                              "ctxt": 3,
+                              "value": "selected",
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 888,
+                                "end": 894
+                              },
+                              "value": "length"
+                            }
+                          }
+                        }
+                      ],
+                      "closing": {
+                        "type": "JSXClosingElement",
+                        "span": {
+                          "start": 895,
+                          "end": 899
+                        },
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 897,
+                            "end": 898
+                          },
+                          "ctxt": 1,
+                          "value": "p",
+                          "optional": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 899,
+                        "end": 906
+                      },
+                      "value": "\n      ",
+                      "raw": "\n      "
+                    },
+                    {
+                      "type": "JSXElement",
+                      "span": {
+                        "start": 906,
+                        "end": 1128
+                      },
+                      "opening": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 907,
+                            "end": 909
+                          },
+                          "ctxt": 1,
+                          "value": "ul",
+                          "optional": false
+                        },
+                        "span": {
+                          "start": 906,
+                          "end": 910
+                        },
+                        "attributes": [],
+                        "selfClosing": false,
+                        "typeArguments": null
+                      },
+                      "children": [
+                        {
+                          "type": "JSXText",
+                          "span": {
+                            "start": 910,
+                            "end": 919
+                          },
+                          "value": "\n        ",
+                          "raw": "\n        "
+                        },
+                        {
+                          "type": "JSXExpressionContainer",
+                          "span": {
+                            "start": 919,
+                            "end": 1116
+                          },
+                          "expression": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 920,
+                              "end": 1115
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "MemberExpression",
+                              "span": {
+                                "start": 920,
+                                "end": 932
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 920,
+                                  "end": 928
+                                },
+                                "ctxt": 3,
+                                "value": "products",
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 929,
+                                  "end": 932
+                                },
+                                "value": "map"
+                              }
+                            },
+                            "arguments": [
+                              {
+                                "spread": null,
+                                "expression": {
+                                  "type": "ArrowFunctionExpression",
+                                  "span": {
+                                    "start": 933,
+                                    "end": 1114
+                                  },
+                                  "ctxt": 0,
+                                  "params": [
+                                    {
+                                      "type": "Identifier",
+                                      "span": {
+                                        "start": 934,
+                                        "end": 946
+                                      },
+                                      "ctxt": 11,
+                                      "value": "product",
+                                      "optional": false,
+                                      "typeAnnotation": {
+                                        "type": "TsTypeAnnotation",
+                                        "span": {
+                                          "start": 941,
+                                          "end": 946
+                                        },
+                                        "typeAnnotation": {
+                                          "type": "TsKeywordType",
+                                          "span": {
+                                            "start": 943,
+                                            "end": 946
+                                          },
+                                          "kind": "any"
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "body": {
+                                    "type": "ParenthesisExpression",
+                                    "span": {
+                                      "start": 951,
+                                      "end": 1114
+                                    },
+                                    "expression": {
+                                      "type": "JSXElement",
+                                      "span": {
+                                        "start": 963,
+                                        "end": 1104
+                                      },
+                                      "opening": {
+                                        "type": "JSXOpeningElement",
+                                        "name": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 964,
+                                            "end": 966
+                                          },
+                                          "ctxt": 1,
+                                          "value": "li",
+                                          "optional": false
+                                        },
+                                        "span": {
+                                          "start": 963,
+                                          "end": 984
+                                        },
+                                        "attributes": [
+                                          {
+                                            "type": "JSXAttribute",
+                                            "span": {
+                                              "start": 967,
+                                              "end": 983
+                                            },
+                                            "name": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 967,
+                                                "end": 970
+                                              },
+                                              "value": "key"
+                                            },
+                                            "value": {
+                                              "type": "JSXExpressionContainer",
+                                              "span": {
+                                                "start": 971,
+                                                "end": 983
+                                              },
+                                              "expression": {
+                                                "type": "MemberExpression",
+                                                "span": {
+                                                  "start": 972,
+                                                  "end": 982
+                                                },
+                                                "object": {
+                                                  "type": "Identifier",
+                                                  "span": {
+                                                    "start": 972,
+                                                    "end": 979
+                                                  },
+                                                  "ctxt": 11,
+                                                  "value": "product",
+                                                  "optional": false
+                                                },
+                                                "property": {
+                                                  "type": "Identifier",
+                                                  "span": {
+                                                    "start": 980,
+                                                    "end": 982
+                                                  },
+                                                  "value": "id"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        "selfClosing": false,
+                                        "typeArguments": null
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "JSXText",
+                                          "span": {
+                                            "start": 984,
+                                            "end": 997
+                                          },
+                                          "value": "\n            ",
+                                          "raw": "\n            "
+                                        },
+                                        {
+                                          "type": "JSXElement",
+                                          "span": {
+                                            "start": 997,
+                                            "end": 1076
+                                          },
+                                          "opening": {
+                                            "type": "JSXOpeningElement",
+                                            "name": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 998,
+                                                "end": 1014
+                                              },
+                                              "ctxt": 2,
+                                              "value": "ProductListeItem",
+                                              "optional": false
+                                            },
+                                            "span": {
+                                              "start": 997,
+                                              "end": 1076
+                                            },
+                                            "attributes": [
+                                              {
+                                                "type": "JSXAttribute",
+                                                "span": {
+                                                  "start": 1015,
+                                                  "end": 1036
+                                                },
+                                                "name": {
+                                                  "type": "Identifier",
+                                                  "span": {
+                                                    "start": 1015,
+                                                    "end": 1020
+                                                  },
+                                                  "value": "title"
+                                                },
+                                                "value": {
+                                                  "type": "JSXExpressionContainer",
+                                                  "span": {
+                                                    "start": 1021,
+                                                    "end": 1036
+                                                  },
+                                                  "expression": {
+                                                    "type": "MemberExpression",
+                                                    "span": {
+                                                      "start": 1022,
+                                                      "end": 1035
+                                                    },
+                                                    "object": {
+                                                      "type": "Identifier",
+                                                      "span": {
+                                                        "start": 1022,
+                                                        "end": 1029
+                                                      },
+                                                      "ctxt": 11,
+                                                      "value": "product",
+                                                      "optional": false
+                                                    },
+                                                    "property": {
+                                                      "type": "Identifier",
+                                                      "span": {
+                                                        "start": 1030,
+                                                        "end": 1035
+                                                      },
+                                                      "value": "title"
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "type": "JSXAttribute",
+                                                "span": {
+                                                  "start": 1037,
+                                                  "end": 1074
+                                                },
+                                                "name": {
+                                                  "type": "Identifier",
+                                                  "span": {
+                                                    "start": 1037,
+                                                    "end": 1044
+                                                  },
+                                                  "value": "onClick"
+                                                },
+                                                "value": {
+                                                  "type": "JSXExpressionContainer",
+                                                  "span": {
+                                                    "start": 1045,
+                                                    "end": 1074
+                                                  },
+                                                  "expression": {
+                                                    "type": "ArrowFunctionExpression",
+                                                    "span": {
+                                                      "start": 1046,
+                                                      "end": 1073
+                                                    },
+                                                    "ctxt": 0,
+                                                    "params": [
+                                                      {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 1047,
+                                                          "end": 1048
+                                                        },
+                                                        "ctxt": 12,
+                                                        "value": "e",
+                                                        "optional": false,
+                                                        "typeAnnotation": null
+                                                      }
+                                                    ],
+                                                    "body": {
+                                                      "type": "CallExpression",
+                                                      "span": {
+                                                        "start": 1053,
+                                                        "end": 1073
+                                                      },
+                                                      "ctxt": 0,
+                                                      "callee": {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 1053,
+                                                          "end": 1064
+                                                        },
+                                                        "ctxt": 3,
+                                                        "value": "itemClicked",
+                                                        "optional": false
+                                                      },
+                                                      "arguments": [
+                                                        {
+                                                          "spread": null,
+                                                          "expression": {
+                                                            "type": "Identifier",
+                                                            "span": {
+                                                              "start": 1065,
+                                                              "end": 1072
+                                                            },
+                                                            "ctxt": 11,
+                                                            "value": "product",
+                                                            "optional": false
+                                                          }
+                                                        }
+                                                      ],
+                                                      "typeArguments": null
+                                                    },
+                                                    "async": false,
+                                                    "generator": false,
+                                                    "typeParameters": null,
+                                                    "returnType": null
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "selfClosing": true,
+                                            "typeArguments": null
+                                          },
+                                          "children": [],
+                                          "closing": null
+                                        },
+                                        {
+                                          "type": "JSXText",
+                                          "span": {
+                                            "start": 1076,
+                                            "end": 1099
+                                          },
+                                          "value": "            \n          ",
+                                          "raw": "            \n          "
+                                        }
+                                      ],
+                                      "closing": {
+                                        "type": "JSXClosingElement",
+                                        "span": {
+                                          "start": 1099,
+                                          "end": 1104
+                                        },
+                                        "name": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 1101,
+                                            "end": 1103
+                                          },
+                                          "ctxt": 1,
+                                          "value": "li",
+                                          "optional": false
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "async": false,
+                                  "generator": false,
+                                  "typeParameters": null,
+                                  "returnType": null
+                                }
+                              }
+                            ],
+                            "typeArguments": null
+                          }
+                        },
+                        {
+                          "type": "JSXText",
+                          "span": {
+                            "start": 1116,
+                            "end": 1123
+                          },
+                          "value": "\n      ",
+                          "raw": "\n      "
+                        }
+                      ],
+                      "closing": {
+                        "type": "JSXClosingElement",
+                        "span": {
+                          "start": 1123,
+                          "end": 1128
+                        },
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1125,
+                            "end": 1127
+                          },
+                          "ctxt": 1,
+                          "value": "ul",
+                          "optional": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 1128,
+                        "end": 1135
+                      },
+                      "value": "\n      ",
+                      "raw": "\n      "
+                    },
+                    {
+                      "type": "JSXElement",
+                      "span": {
+                        "start": 1135,
+                        "end": 1177
+                      },
+                      "opening": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1136,
+                            "end": 1142
+                          },
+                          "ctxt": 1,
+                          "value": "button",
+                          "optional": false
+                        },
+                        "span": {
+                          "start": 1135,
+                          "end": 1157
+                        },
+                        "attributes": [
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 1143,
+                              "end": 1156
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 1143,
+                                "end": 1150
+                              },
+                              "value": "onClick"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "span": {
+                                "start": 1151,
+                                "end": 1156
+                              },
+                              "expression": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 1152,
+                                  "end": 1155
+                                },
+                                "ctxt": 3,
+                                "value": "buy",
+                                "optional": false
+                              }
+                            }
+                          }
+                        ],
+                        "selfClosing": false,
+                        "typeArguments": null
+                      },
+                      "children": [
+                        {
+                          "type": "JSXText",
+                          "span": {
+                            "start": 1157,
+                            "end": 1168
+                          },
+                          "value": "Add to cart",
+                          "raw": "Add to cart"
+                        }
+                      ],
+                      "closing": {
+                        "type": "JSXClosingElement",
+                        "span": {
+                          "start": 1168,
+                          "end": 1177
+                        },
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1170,
+                            "end": 1176
+                          },
+                          "ctxt": 1,
+                          "value": "button",
+                          "optional": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 1177,
+                        "end": 1182
+                      },
+                      "value": "\n    ",
+                      "raw": "\n    "
+                    }
+                  ],
+                  "closing": {
+                    "type": "JSXClosingFragment",
+                    "span": {
+                      "start": 1182,
+                      "end": 1185
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": false,
+        "typeParameters": null,
+        "returnType": null
       }
     }
   ],
