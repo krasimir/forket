@@ -57,9 +57,29 @@ function Thanos() {
           return n;
         } else if (n.type === "ExportDefaultDeclaration" && containsExportsThatHasJSX(n)) {
           if (get(n, "decl.type") === "FunctionExpression") {
-            n.decl = getTemplateMock(get(n, "decl.identifier.value"), "T:" + (id++));
+            n.decl = getFunctionExpressionTemplate(get(n, "decl.identifier.value"), "T:" + id++);
+            return n;
           }
-          return n;
+          return false;
+        } else if (n.type === "ExportDeclaration" && containsExportsThatHasJSX(n)) {
+          if (get(n, "declaration.type") === "FunctionDeclaration") {
+            n.declaration = getFunctionDeclarationTemplate(get(n, "declaration.identifier.value"), "T:" + id++);
+            return n;
+          } else if (get(n, "declaration.type") === "VariableDeclaration") {
+            let transformed = false;
+            function replacer(n) {
+              n.body = getReturnTemplateStatement("T:" + id++);
+              transformed = true;
+            }
+            traverseNode(n.declaration, {
+              FunctionExpression: replacer,
+              ArrowFunctionExpression: replacer
+            });
+            if (transformed) {
+              return n;
+            }
+          }
+          return false;
         } else if (
           (n.type === "ExportDefaultDeclaration" ||
             n.type === "ExportDeclaration" ||
@@ -137,7 +157,7 @@ function containsJSXReturn(node) {
   deepCheck(node); // pass the block body
   return found;
 }
-function getTemplateMock(funcName, id) {
+function getFunctionExpressionTemplate(funcName, id) {
   return {
     type: "FunctionExpression",
     identifier: {
@@ -157,96 +177,127 @@ function getTemplateMock(funcName, id) {
       end: 150
     },
     ctxt: 3,
-    body: {
-      type: "BlockStatement",
-      span: {
-        start: 106,
-        end: 150
-      },
-      ctxt: 3,
-      stmts: [
-        {
-          type: "ReturnStatement",
-          span: {
-            start: 110,
-            end: 148
-          },
-          argument: {
-            type: "JSXElement",
-            span: {
-              start: 117,
-              end: 147
-            },
-            opening: {
-              type: "JSXOpeningElement",
-              name: {
-                type: "Identifier",
-                span: {
-                  start: 118,
-                  end: 126
-                },
-                ctxt: 1,
-                value: "template",
-                optional: false
-              },
-              span: {
-                start: 117,
-                end: 136
-              },
-              attributes: [
-                {
-                  type: "JSXAttribute",
-                  span: {
-                    start: 127,
-                    end: 135
-                  },
-                  name: {
-                    type: "Identifier",
-                    span: {
-                      start: 127,
-                      end: 129
-                    },
-                    value: "id"
-                  },
-                  value: {
-                    type: "StringLiteral",
-                    span: {
-                      start: 130,
-                      end: 135
-                    },
-                    value: id,
-                    raw: `"${id}"`
-                  }
-                }
-              ],
-              selfClosing: false,
-              typeArguments: null
-            },
-            children: [],
-            closing: {
-              type: "JSXClosingElement",
-              span: {
-                start: 136,
-                end: 147
-              },
-              name: {
-                type: "Identifier",
-                span: {
-                  start: 138,
-                  end: 146
-                },
-                ctxt: 1,
-                value: "template",
-                optional: false
-              }
-            }
-          }
-        }
-      ]
-    },
+    body: getReturnTemplateStatement(id),
     generator: false,
     async: false,
     typeParameters: null,
     returnType: null
   };
+}
+function getFunctionDeclarationTemplate(funcName, id) {
+  return {
+    type: "FunctionDeclaration",
+    identifier: {
+      type: "Identifier",
+      span: {
+        start: 17,
+        end: 20
+      },
+      ctxt: 2,
+      value: funcName,
+      optional: false
+    },
+    declare: false,
+    params: [],
+    decorators: [],
+    span: {
+      start: 8,
+      end: 136
+    },
+    ctxt: 3,
+    body: getReturnTemplateStatement(id),
+    generator: false,
+    async: false,
+    typeParameters: null,
+    returnType: null
+  };
+}
+function getReturnTemplateStatement(id) {
+  return {
+    type: "BlockStatement",
+    span: {
+      start: 106,
+      end: 150
+    },
+    ctxt: 3,
+    stmts: [
+      {
+        type: "ReturnStatement",
+        span: {
+          start: 110,
+          end: 148
+        },
+        argument: {
+          type: "JSXElement",
+          span: {
+            start: 117,
+            end: 147
+          },
+          opening: {
+            type: "JSXOpeningElement",
+            name: {
+              type: "Identifier",
+              span: {
+                start: 118,
+                end: 126
+              },
+              ctxt: 1,
+              value: "template",
+              optional: false
+            },
+            span: {
+              start: 117,
+              end: 136
+            },
+            attributes: [
+              {
+                type: "JSXAttribute",
+                span: {
+                  start: 127,
+                  end: 135
+                },
+                name: {
+                  type: "Identifier",
+                  span: {
+                    start: 127,
+                    end: 129
+                  },
+                  value: "id"
+                },
+                value: {
+                  type: "StringLiteral",
+                  span: {
+                    start: 130,
+                    end: 135
+                  },
+                  value: id,
+                  raw: `"${id}"`
+                }
+              }
+            ],
+            selfClosing: false,
+            typeArguments: null
+          },
+          children: [],
+          closing: {
+            type: "JSXClosingElement",
+            span: {
+              start: 136,
+              end: 147
+            },
+            name: {
+              type: "Identifier",
+              span: {
+                start: 138,
+                end: 146
+              },
+              ctxt: 1,
+              value: "template",
+              optional: false
+            }
+          }
+        }
+      }
+    ]
+  }
 }

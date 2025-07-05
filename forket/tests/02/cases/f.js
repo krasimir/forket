@@ -5,8 +5,8 @@ export const A = () => {
       <p>This is a server component.</p>
     </div>
   );
-};
-export const B = function () {
+}
+export const B = function() {
   return (
     <div>
       <h1>Server Component</h1>
@@ -14,4 +14,4 @@ export const B = function () {
     </div>
   );
 };
-export const C = () => <p>foobar</p>
+export const C = () => <p>foobar</p>;
