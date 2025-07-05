@@ -1,8 +1,0 @@
-{
-  "useClient": false,
-  "imports": [
-    {
-      "source": "react"
-    }
-  ]
-}

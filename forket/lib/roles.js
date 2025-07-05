@@ -19,7 +19,7 @@ function setRoles(node) {
     }
   }
   visitNode(node);
-  printGraph(node);
+  // printGraph(node);
 }
 
 module.exports = {

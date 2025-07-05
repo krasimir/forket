@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import Products from "./Products";
 
-export function App() {
+export default function App() {
   return (
     <html>
       <head>
@@ -23,18 +23,10 @@ export function App() {
   );
 }
 
-export function AnotherComponent() {
-  return <div>Another Component</div>;
-}
-
-export const YetAnotherComponent = () => {
-  return <div>Yet Another Component</div>;
-}
-
-const TooBar = () => <p>Hey</p>;
-
-export default TooBar;
-
-function Title() {
+export function Title() {
   return <title>React Example</title>;
 }
+
+export const T = () => <p>Hey</p>
+
+

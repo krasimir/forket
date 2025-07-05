@@ -3,12 +3,11 @@ const path = require("path");
 const chalk = require('chalk');
 const arg = require("arg");
 
-
 let dirs = fs.readdirSync(__dirname)
 const args = arg({
   "--spec": String, // "01", "02" or "all"
+  "--case": String // "all" or specific case like "01_case1"
 });
-const Forket = require('../index');
 
 (async function () {
   if (args["--spec"] && args["--spec"] !== "all") {
@@ -19,17 +18,20 @@ const Forket = require('../index');
     const dir = dirs[i];
     if (fs.statSync(path.join(__dirname, dir)).isDirectory()) {
       const test = require(path.join(__dirname, dir, "test.js"));
-      const { transform } = Forket.init();
 
       try {
         await test({
-          transform,
-          test(message, condition) {
-            if (!condition()) {
-              console.log(chalk.red(`❌ ${dir}: ${message}`));
+          testCase: args["--case"] || 'all',
+          async test(message, condition) {
+            console.log(chalk.gray(`⏳ ${message}`));
+            if (!(await condition())) {
+              console.log(chalk.red(`❌ ${message}`));
             } else {
-              console.log(chalk.green(`✅ ${dir}: ${message}`));
+              console.log(chalk.green(`✅ ${message}`));
             }
+          },
+          xtest(message) {
+            console.log(chalk.yellow(`❗️ ${message} (skipped)`));
           }
         });
       } catch(err) {

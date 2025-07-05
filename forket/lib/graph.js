@@ -140,6 +140,8 @@ async function processEntryPoint(entryPoint) {
 }
 
 const api = {
+  processFile,
+  processEntryPoint,
   async buildGraphs(dir) {
     SEARCH_CACHE = new Map();
     RESOLVED_CACHE = new Map();
@@ -183,6 +185,16 @@ const api = {
       node.children.forEach((child) => {
         api.printGraph(child, indent + "   ");
       });
+    }
+  },
+  toJSON(node) {
+    return {
+      [clearPath(node.file)]: {
+        role: node.role,
+        children: node.children.map((child) => {
+          return api.toJSON(child);
+        })
+      }
     }
   }
 };
