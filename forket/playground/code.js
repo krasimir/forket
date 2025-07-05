@@ -1,47 +1,35 @@
-"use client";
+import React from "react";
+import path from "path";
+import { renderToPipeableStream } from "react-dom/server";
+import http from "http";
+import express from "express";
 
-import React, { useState, use } from "react";
-import ProductListeItem from "./ProductListItem";
+import productsHandler from "./api/products";
 
-type Product = {
-  id: number;
-  title: string;
-};
-type ProductsProps = {
-  products: Product[];
-};
+import App from "./components/App";
 
-export default function ProductsList({ products }: ProductsProps) {
-  const [selected, setSelected] = useState<Number[]>([]);
-  const addToCart = (ids: Number[]) => ({ products: ids.length });
+const port = 8087;
+const app = express();
+const server = http.createServer(app);
 
-  function itemClicked(product: Product) {
-    const index = selected.indexOf(product.id);
-    if (index === -1) {
-      setSelected([...selected, product.id]);
-    } else {
-      setSelected(selected.filter((id) => id !== product.id));
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.get("/api/products", productsHandler);
+app.get("/", (req, res) => {
+  const stream = renderToPipeableStream(<App />, {
+    // bootstrapScripts: ["/bundle.js"],
+    bootstrapScripts: [],
+    onShellReady() {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/html");
+      stream.pipe(res);
+    },
+    onError(err) {
+      console.error(err);
     }
-  }
-  async function buy() {
-    const { products } = await addToCart(selected);
-    alert(`Added ${products} items to cart`);
-  }
+  });
+});
 
-  if (products.length === 0) {
-    return null;
-  }
-  return (
-    <>
-      <p>Selected items: {selected.length}</p>
-      <ul>
-        {products.map((product: any) => (
-          <li key={product.id}>
-            <ProductListeItem title={product.title} onClick={(e) => itemClicked(product)}/>            
-          </li>
-        ))}
-      </ul>
-      <button onClick={buy}>Add to cart</button>
-    </>
-  );
-}
+server.listen(port, () => {
+  console.log(`App listening on port ${port}.`);
+});

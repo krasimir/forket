@@ -4,11 +4,21 @@ const swc = require("@swc/core");
 const get = require("lodash/get");
 const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
 
-const { clearPath } = require("./utils/fsHelprs.js");
+const { clearPath } = require("./utils/fsHelpers.js");
 const traverseNode = require("./utils/traverseNode.js");
-const { VALID_ENTRY_POINTS, ROLE_SERVER } = require("./constants.js");
+const { VALID_ENTRY_POINTS, ROLE } = require("./constants.js");
 
 const DEBUGGING_MODULE_RESOLVING = false;
+let SEARCH_CACHE = new Map();
+let RESOLVED_CACHE = new Map();
+
+const fileSystem = new CachedInputFileSystem(fs, 4000);
+const resolver = ResolverFactory.createResolver({
+  conditionNames: ["import", "require", "default"],
+  useSyncFileSystemCalls: false,
+  fileSystem,
+  extensions: VALID_ENTRY_POINTS
+});
 
 async function processFile(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
@@ -24,9 +34,13 @@ async function processFile(file, parentNode = null) {
   function processAST(ast, type) {
     const imports = [];
     let useClient = false;
+    let clientFile = false;
 
     function processImports(node) {
       imports.push({ source: get(node, "source.value") });
+      if (get(node, "source.value") === "react-dom/client") {
+        clientFile = true;
+      }
     }
     function processCallExpression(node) {
       if (get(node, 'callee.value') === "require") {
@@ -47,29 +61,28 @@ async function processFile(file, parentNode = null) {
 
     return {
       imports,
-      useClient
+      useClient,
+      clientFile
     };
   }
 
-  return Object.assign({
-    file,
-    code,
-    ast,
-    children: [],
-    role: ROLE_SERVER,
-    parentNode
-  }, astProps);
+  return Object.assign(
+    {
+      file,
+      code,
+      ast,
+      children: [],
+      role: ROLE.SERVER,
+      parentNode
+    },
+    astProps
+  );
 }
-async function resolveImports(host, request) {
-  const fileSystem = new CachedInputFileSystem(fs, 4000);
-  const resolver = ResolverFactory.createResolver({
-    conditionNames: ["import", "require", "default"],
-    useSyncFileSystemCalls: false,
-    fileSystem,
-    extensions: VALID_ENTRY_POINTS
-  });
-
+async function resolveImport(host, request) {
   return new Promise((resolve, reject) => {
+    if (RESOLVED_CACHE.has(`${host}:${request}`)) {
+      return resolve(RESOLVED_CACHE.get(`${host}:${request}`));
+    }
     resolver.resolve({}, path.dirname(host), request, {}, (err, result) => {
       if (err) {
         return reject(err);
@@ -80,6 +93,7 @@ async function resolveImports(host, request) {
       if (result.match(/node_modules/)) {
         return reject(new Error(`Module is somewhere in node_modules`));
       }
+      RESOLVED_CACHE.set(`${host}:${request}`, result);
       resolve(result);
     });
   });
@@ -87,7 +101,6 @@ async function resolveImports(host, request) {
 async function processEntryPoint(entryPoint) {
   const PROCESSED = new Map();
   const RESOLVED = new Map();
-
   async function process(filePath, parentNode = null) {
     DEBUGGING_MODULE_RESOLVING && console.log("Processing:", filePath);
     let node = PROCESSED.get(filePath);
@@ -108,7 +121,7 @@ async function processEntryPoint(entryPoint) {
       try {
         let resolved = RESOLVED.get(key);
         if (typeof resolved === "undefined") {
-          resolved = await resolveImports(filePath, imp.source);
+          resolved = await resolveImport(filePath, imp.source);
           RESOLVED.set(key, resolved);
         }
         if (resolved !== null) {
@@ -128,6 +141,8 @@ async function processEntryPoint(entryPoint) {
 
 const api = {
   async buildGraphs(dir) {
+    SEARCH_CACHE = new Map();
+    RESOLVED_CACHE = new Map();
     // finding the entry points for processing
     const entryPoints = fs
       .readdirSync(dir, { withFileTypes: true })
@@ -144,6 +159,24 @@ const api = {
     }
     return graphs;
   },
+  getNode(node, filePath) {
+    if (SEARCH_CACHE.has(filePath)) {
+      return SEARCH_CACHE.get(filePath);
+    }
+    if (node.file === filePath) {
+      SEARCH_CACHE.set(filePath, node);
+      return node;
+    }
+    for (let i = 0; i < node.children.length; i++) {
+      const child = node.children[i];
+      const found = api.getNode(child, filePath);
+      if (found) {
+        return found;
+      }
+    }
+    return null;
+  },
+  resolveImport,
   printGraph(node, indent = "") {
     console.log(`${indent}${clearPath(node.file)} (${node.role})`);
     if (node.children.length > 0) {

@@ -21,7 +21,9 @@ async function copyFolder(src, dest, transformFile) {
         if (typeof transformFile === "function") {
           const content = await fs.readFile(srcPath);
           const transformed = await transformFile(srcPath, content);
-          await fs.writeFile(destPath, transformed);
+          if (transformed !== false && transformed !== null && transformed !== undefined) {
+            await fs.writeFile(destPath, transformed);
+          }
         } else {
           await pipeline(createReadStream(srcPath), createWriteStream(destPath));
         }
