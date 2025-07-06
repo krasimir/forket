@@ -17,8 +17,8 @@ app.use(express.static(path.join(__dirname, "..", "..", "public")));
 app.get("/api/products", productsHandler);
 app.get("/", (req, res) => {
   const stream = renderToPipeableStream(<App />, {
-    bootstrapScripts: ["/bundle.js"],
-    // bootstrapScripts: [],
+    // bootstrapScripts: ["/bundle.js"],
+    bootstrapScripts: [],
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");

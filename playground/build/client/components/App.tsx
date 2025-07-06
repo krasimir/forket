@@ -1,7 +1,8 @@
+import React from "react";
 import Products from "./Products";
 export default function App() {
-    return <template id="T:0"></template>;
+    return <span id="T:0"></span>;
 }
 export function Title() {
-    return <template id="T:1"></template>;
+    return <span id="T:1"></span>;
 }

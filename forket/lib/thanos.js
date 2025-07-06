@@ -285,7 +285,7 @@ function getReturnTemplateStatement(id) {
                 end: 126
               },
               ctxt: 1,
-              value: "template",
+              value: "span",
               optional: false
             },
             span: {
@@ -335,14 +335,14 @@ function getReturnTemplateStatement(id) {
                 end: 146
               },
               ctxt: 1,
-              value: "template",
+              value: "span",
               optional: false
             }
           }
         }
       }
     ]
-  }
+  };
 }
 function getReactInTheScope() {
   return {

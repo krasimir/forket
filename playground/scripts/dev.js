@@ -95,26 +95,26 @@ function runServer() {
       sourceDir: SRC,
       buildDir: BUILD,
     }).process();
-    // await buildServer();
-    // await buildClient();
-    // const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
-    // console.log(chalk.yellow("Starting server..."));
-    // serverProcess = command(commandToExecute, ROOT, (code) => {
-    //   serverProcess = null;
-    //   if (code === null && restart) {
-    //     run();
-    //   }
-    // });
+    await buildServer();
+    await buildClient();
+    const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
+    console.log(chalk.yellow("Starting server..."));
+    serverProcess = command(commandToExecute, ROOT, (code) => {
+      serverProcess = null;
+      if (code === null && restart) {
+        run();
+      }
+    });
   };
   run();
-  // chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
-  //   restart = true;
-  //   if (serverProcess) {
-  //     serverProcess.kill();
-  //   } else {
-  //     run();
-  //   }
-  // });
+  chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
+    restart = true;
+    if (serverProcess) {
+      serverProcess.kill();
+    } else {
+      run();
+    }
+  });
 }
 
 runServer();
