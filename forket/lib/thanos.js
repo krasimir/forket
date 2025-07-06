@@ -1,7 +1,6 @@
-const get = require("lodash/get");
 const swc = require("@swc/core");
 
-const { getNode, resolveImport } = require("./graph");
+const { getNode, resolveImport, printGraph } = require("./graph");
 const { ROLE } = require("./constants.js");
 const traverseNode = require("./utils/traverseNode.js");
 
@@ -51,24 +50,51 @@ function Thanos() {
 
     /* **** Transforming the AST **** */
     importsToKeep = importsToKeep.map((imp) => imp.source);
+    const nodesToPrepend = [];
     node.ast.body = node.ast.body
-      .map((n) => {
-        if (n.type === "ImportDeclaration" && importsToKeep.includes(get(n, "source.value"))) {
+      .map((n, index) => {
+        if (n.type === "ImportDeclaration" && importsToKeep.includes(n?.source?.value)) {
           return n;
         } else if (n.type === "ExportDefaultDeclaration" && containsExportsThatHasJSX(n)) {
-          if (get(n, "decl.type") === "FunctionExpression") {
-            n.decl = getFunctionExpressionTemplate(get(n, "decl.identifier.value"), "T:" + id++);
+          if (n?.decl?.type === "FunctionExpression") {
+            n.decl = getFunctionExpressionTemplate(n?.decl?.identifier?.value, getId());
             return n;
           }
           return false;
-        } else if (n.type === "ExportDeclaration" && containsExportsThatHasJSX(n)) {
-          if (get(n, "declaration.type") === "FunctionDeclaration") {
-            n.declaration = getFunctionDeclarationTemplate(get(n, "declaration.identifier.value"), "T:" + id++);
+        } else if (n.type === "ExportDefaultExpression" && n?.expression?.type === "Identifier") {
+          let keepit = false;
+          function FunctionDeclaration(_n) {
+            if (_n?.identifier?.value === n?.expression?.value && containsExportsThatHasJSX(_n)) {
+              keepit = true;
+              nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.identifier?.value, getId()) });
+            }
+          }
+          function VariableDeclarator(_n) {
+            if (
+              _n?.id?.type === "Identifier" &&
+              _n?.id?.value === n?.expression?.value &&
+              (_n?.init?.type === "FunctionExpression" || _n?.init?.type === "ArrowFunctionExpression") &&
+              containsExportsThatHasJSX(_n?.init)
+            ) {
+              keepit = true;
+              nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.id?.value, getId()) });
+            }
+          }
+          traverseNode(node.ast, {
+            FunctionDeclaration,
+            VariableDeclarator
+          });
+          if (keepit) {
             return n;
-          } else if (get(n, "declaration.type") === "VariableDeclaration") {
+          }
+        } else if (n.type === "ExportDeclaration" && containsExportsThatHasJSX(n)) {
+          if (n?.declaration?.type === "FunctionDeclaration") {
+            n.declaration = getFunctionDeclarationTemplate(n?.declaration?.identifier?.value, getId());
+            return n;
+          } else if (n?.declaration?.type === "VariableDeclaration") {
             let transformed = false;
             function replacer(n) {
-              n.body = getReturnTemplateStatement("T:" + id++);
+              n.body = getReturnTemplateStatement(getId());
               transformed = true;
             }
             traverseNode(n.declaration, {
@@ -80,23 +106,22 @@ function Thanos() {
             }
           }
           return false;
-        } else if (
-          (n.type === "ExportDefaultDeclaration" ||
-            n.type === "ExportDeclaration" ||
-            n.type === "ExportNamedDeclaration") &&
-          containsExportsThatHasJSX(n)
-        ) {
-          return n;
         }
         return false;
       })
       .filter(Boolean);
 
     /* **** Generating the transformed code **** */
+    nodesToPrepend.forEach(({ index, node: n }) => {
+      node.ast.body.splice(index-1, 0, n);
+    });
     const transformed = await swc.print(node.ast, {
       minify: false
     });
     return transformed.code;
+  }
+  function getId() {
+    return "T:" + id++;
   }
 
   return {
