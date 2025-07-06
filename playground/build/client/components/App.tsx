@@ -1,5 +1,7 @@
 import Products from "./Products";
-export function Title() {
-    return <title>React Example</title>;
+export default function App() {
+    return <template id="T:0"></template>;
 }
-export const T = ()=><p>Hey</p>;
+export function Title() {
+    return <template id="T:1"></template>;
+}

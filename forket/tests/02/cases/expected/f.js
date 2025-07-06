@@ -1,3 +1,4 @@
+import React from "react";
 export const A = ()=>{
     return <template id="T:0"></template>;
 };

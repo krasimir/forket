@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const swc = require("@swc/core");
 const get = require("lodash/get");
-const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
+const { CachedInputFileSystem, ResolverFactory, Resolver } = require("enhanced-resolve");
 
 const { clearPath } = require("./utils/fsHelpers.js");
 const traverseNode = require("./utils/traverseNode.js");
 const { VALID_ENTRY_POINTS, ROLE } = require("./constants.js");
+const { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } = require("./utils/errors.js");
 
 const DEBUGGING_MODULE_RESOLVING = false;
 let SEARCH_CACHE = new Map();
@@ -85,19 +86,20 @@ async function resolveImport(host, request) {
     }
     resolver.resolve({}, path.dirname(host), request, {}, (err, result) => {
       if (err) {
-        return reject(err);
+        return reject(new ResolverError(err.message));
       }
       if (!result) {
-        return reject(new Error(`Module "${request}" is not found in "${host}"`));
+        return reject(new ResolverModuleNotFoundError());
       }
       if (result.match(/node_modules/)) {
-        return reject(new Error(`Module is somewhere in node_modules`));
+        return reject(new ResolverIsInNodeModulesError());
       }
       RESOLVED_CACHE.set(`${host}:${request}`, result);
       resolve(result);
     });
   });
 }
+
 async function processEntryPoint(entryPoint) {
   const PROCESSED = new Map();
   const RESOLVED = new Map();

@@ -44,20 +44,27 @@ function Thanos() {
           importsToKeep.push(imp);
         }
       } catch (err) {
-        // console.log(`ignoring ${imp.source}`);
+        // console.log(`ignoring ${imp.source} error: ${err.message}`);
       }
     }
+    importsToKeep = importsToKeep.map((imp) => imp.source);
 
     /* **** Transforming the AST **** */
-    importsToKeep = importsToKeep.map((imp) => imp.source);
+
     const nodesToPrepend = [];
+    let containsJSX = false;
+    let directive = null;
+
     node.ast.body = node.ast.body
       .map((n, index) => {
-        if (n.type === "ImportDeclaration" && importsToKeep.includes(n?.source?.value)) {
+        if (n.type === "ExpressionStatement" && n?.expression?.type === "StringLiteral") {
+          directive = n;
+        } else if (n.type === "ImportDeclaration" && importsToKeep.includes(n?.source?.value)) {
           return n;
         } else if (n.type === "ExportDefaultDeclaration" && containsExportsThatHasJSX(n)) {
           if (n?.decl?.type === "FunctionExpression") {
             n.decl = getFunctionExpressionTemplate(n?.decl?.identifier?.value, getId());
+            containsJSX = true;
             return n;
           }
           return false;
@@ -66,6 +73,7 @@ function Thanos() {
           function FunctionDeclaration(_n) {
             if (_n?.identifier?.value === n?.expression?.value && containsExportsThatHasJSX(_n)) {
               keepit = true;
+              containsJSX = true;
               nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.identifier?.value, getId()) });
             }
           }
@@ -77,6 +85,7 @@ function Thanos() {
               containsExportsThatHasJSX(_n?.init)
             ) {
               keepit = true;
+              containsJSX = true;
               nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.id?.value, getId()) });
             }
           }
@@ -89,11 +98,13 @@ function Thanos() {
           }
         } else if (n.type === "ExportDeclaration" && containsExportsThatHasJSX(n)) {
           if (n?.declaration?.type === "FunctionDeclaration") {
+            containsJSX = true;
             n.declaration = getFunctionDeclarationTemplate(n?.declaration?.identifier?.value, getId());
             return n;
           } else if (n?.declaration?.type === "VariableDeclaration") {
             let transformed = false;
             function replacer(n) {
+              containsJSX = true;
               n.body = getReturnTemplateStatement(getId());
               transformed = true;
             }
@@ -110,11 +121,18 @@ function Thanos() {
         return false;
       })
       .filter(Boolean);
+    
+    nodesToPrepend.forEach(({ index, node: n }) => {
+      node.ast.body.splice(index - 1, 0, n);
+    });
+    if (containsJSX) {
+      node.ast.body = [getReactInTheScope(), ...node.ast.body];
+    }
+    if (directive) {
+      node.ast.body = [directive, ...node.ast.body];
+    }
 
     /* **** Generating the transformed code **** */
-    nodesToPrepend.forEach(({ index, node: n }) => {
-      node.ast.body.splice(index-1, 0, n);
-    });
     const transformed = await swc.print(node.ast, {
       minify: false
     });
@@ -325,4 +343,44 @@ function getReturnTemplateStatement(id) {
       }
     ]
   }
+}
+function getReactInTheScope() {
+  return {
+    type: "ImportDeclaration",
+    span: {
+      start: 1,
+      end: 27
+    },
+    specifiers: [
+      {
+        type: "ImportDefaultSpecifier",
+        span: {
+          start: 8,
+          end: 13
+        },
+        local: {
+          type: "Identifier",
+          span: {
+            start: 8,
+            end: 13
+          },
+          ctxt: 2,
+          value: "React",
+          optional: false
+        }
+      }
+    ],
+    source: {
+      type: "StringLiteral",
+      span: {
+        start: 19,
+        end: 26
+      },
+      value: "react",
+      raw: '"react"'
+    },
+    typeOnly: false,
+    with: null,
+    phase: "evaluation"
+  };
 }
