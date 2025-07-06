@@ -1,14 +1,59 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = async function ({ transform, test }) {
-  const inputFile = path.join(__dirname, "src", "input.js");
-  const result = await transform(fs.readFileSync(inputFile, "utf8"), "client", inputFile, true);
+const { buildGraphs, toJSON } = require("../../lib/graph.js");
+const { setRoles } = require('../../lib/roles.js');
 
-  test('Should recognize the file for client usage because of "react-dom/client" usage', () => {
-    return result.meta.useClient;
+module.exports = async function ({ test }) {
+  const [ graph ] = await buildGraphs(path.join(__dirname, "src"));
+  setRoles(graph);
+  
+  await test("Should properly find the import/require statements", () => {
+    return graph.imports.map((i) => i.source).join(",") === "react,react-dom/client,./components/App,./foobar";
   });
-  test('Should properly find the import/require statements', () => {
-    return result.meta.imports.map(i => i.source).join(',') === 'react,react-dom/client,./components/App,utils/anotherModule,utils/testModule';
+  await test("Should build a graph and properly set the roles", () => {
+    return (
+      JSON.stringify(toJSON(graph)) ===
+      JSON.stringify({
+        "/tests/01/src/index.ts": {
+          role: "client_file",
+          children: [
+            {
+              "/tests/01/src/components/App.tsx": {
+                role: "server",
+                children: [
+                  {
+                    "/tests/01/src/components/Products.tsx": {
+                      role: "server",
+                      children: [
+                        {
+                          "/tests/01/src/components/db.ts": {
+                            role: "server",
+                            children: []
+                          }
+                        },
+                        {
+                          "/tests/01/src/components/ProductsList.tsx": {
+                            role: "client_component",
+                            children: [
+                              {
+                                "/tests/01/src/components/ProductListItem.tsx": {
+                                  role: "client_component",
+                                  children: []
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      })
+    );
   });
 };

@@ -5,5 +5,5 @@
 
 ```
 > npm run test
-> npm run test --spec=01 --type=server
+> npm run test --spec=01 --case=f
 ```
