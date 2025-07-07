@@ -13,7 +13,6 @@ function Thanos() {
   let id = 0;
 
   async function snap(graphs, filePath, content, mode) {
-    console.log("--> Thanos.snap", filePath, mode);
     if (mode === MODE.CLIENT) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
@@ -32,11 +31,22 @@ function Thanos() {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
         if (node) {
-          console.log(i, node.file, node.role);
+          console.log(node.imports);
+          if (node.imports && node.imports.length > 0) {
+            for(let j=0; j<node.imports.length; j++) {
+              
+            }
+          }
         }
       }
       return content;
     }
+  }
+  async function transformImportForStreaming(graph, node) {
+    console.log("------->", node.file, node.imports);
+
+    /* **** Finding out who is importing it **** */
+
   }
   async function transformForClientUsage(graph, node) {
     console.log("------->", node.file);

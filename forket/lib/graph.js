@@ -9,7 +9,6 @@ const traverseNode = require("./utils/traverseNode.js");
 const { VALID_ENTRY_POINTS, ROLE } = require("./constants.js");
 const { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } = require("./utils/errors.js");
 
-const DEBUGGING_MODULE_RESOLVING = false;
 let SEARCH_CACHE = new Map();
 let RESOLVED_CACHE = new Map();
 
@@ -22,7 +21,7 @@ const resolver = ResolverFactory.createResolver({
 });
 let nodeId = 0;
 
-async function processFile(file, parentNode = null) {
+async function createNode(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
   const { parse } = swc;
   const ast = await parse(code, {
@@ -81,6 +80,102 @@ async function processFile(file, parentNode = null) {
     astProps
   );
 }
+function getNode(node, filePath) {
+  if (SEARCH_CACHE.has(node.id + filePath)) {
+    return SEARCH_CACHE.get(node.id + filePath);
+  }
+  if (node.file === filePath) {
+    SEARCH_CACHE.set(node.id + filePath, node);
+    return node;
+  }
+  for (let i = 0; i < node.children.length; i++) {
+    const child = node.children[i];
+    const found = api.getNode(child, filePath);
+    if (found) {
+      SEARCH_CACHE.set(node.id + filePath, found);
+      return found;
+    }
+  }
+  return null;
+}
+async function getGraph(entryPoint) {
+  const PROCESSED = new Map();
+  const RESOLVED = new Map();
+  async function process(filePath, parentNode = null) {
+    // console.log("Processing:", filePath);
+    let node = PROCESSED.get(filePath);
+    if (!node) {
+      node = await createNode(filePath, parentNode);
+      PROCESSED.set(filePath, node);
+    } else {
+      // console.log(`File "${filePath}" is already processed, skipping.`);
+      return;
+    }
+    // console.log(node.imports);
+    for (let j = 0; j < node.imports.length; j++) {
+      const imp = node.imports[j];
+      if (!imp.source) {
+        continue;
+      }
+      const key = `${path.dirname(filePath)}:${imp.source}`;
+      try {
+        let resolved = RESOLVED.get(key);
+        if (typeof resolved === "undefined") {
+          resolved = await resolveImport(filePath, imp.source);
+          RESOLVED.set(key, resolved);
+        }
+        if (resolved !== null) {
+          imp.resolvedTo = resolved;
+          node.children.push(await process(resolved, node));
+        } else {
+          // console.log(`Ignoring ${imp.source}`);
+        }
+      } catch (err) {
+        // console.log(`Ignoring ${imp.source}`);
+        RESOLVED.set(key, null);
+      }
+    }
+    return node;
+  }
+  return process(entryPoint);
+}
+async function getGraphs(dir) {
+  SEARCH_CACHE = new Map();
+  RESOLVED_CACHE = new Map();
+  // finding the entry points for processing
+  const entryPoints = fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => {
+      return entry.isFile() && VALID_ENTRY_POINTS.includes("." + (entry.name.split(".").pop() || ""));
+    })
+    .map((entry) => path.join(dir, entry.name));
+
+  // resolving the imports and building the graph
+  const graphs = [];
+  for (let i = 0; i < entryPoints.length; i++) {
+    const entryPoint = entryPoints[i];
+    graphs.push(await getGraph(entryPoint));
+  }
+  return graphs;
+}
+function printGraph(node, indent = "") {
+  console.log(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`);
+  if (node.children.length > 0) {
+    node.children.forEach((child) => {
+      api.printGraph(child, indent + "   ");
+    });
+  }
+}
+function toJSON(node) {
+  return {
+    [clearPath(node.file)]: {
+      role: node.role,
+      children: node.children.map((child) => {
+        return api.toJSON(child);
+      })
+    }
+  };
+}
 async function resolveImport(host, request) {
   return new Promise((resolve, reject) => {
     if (RESOLVED_CACHE.has(`${host}:${request}`)) {
@@ -102,106 +197,14 @@ async function resolveImport(host, request) {
   });
 }
 
-async function processEntryPoint(entryPoint) {
-  const PROCESSED = new Map();
-  const RESOLVED = new Map();
-  async function process(filePath, parentNode = null) {
-    DEBUGGING_MODULE_RESOLVING && console.log("Processing:", filePath);
-    let node = PROCESSED.get(filePath);
-    if (!node) {
-      node = await processFile(filePath, parentNode);
-      PROCESSED.set(filePath, node);
-    } else {
-      DEBUGGING_MODULE_RESOLVING && console.log(`File "${filePath}" is already processed, skipping.`);
-      return;
-    }
-    DEBUGGING_MODULE_RESOLVING && console.log(node.imports);
-    for (let j = 0; j < node.imports.length; j++) {
-      const imp = node.imports[j];
-      if (!imp.source) {
-        continue;
-      }
-      const key = `${path.dirname(filePath)}:${imp.source}`;
-      try {
-        let resolved = RESOLVED.get(key);
-        if (typeof resolved === "undefined") {
-          resolved = await resolveImport(filePath, imp.source);
-          RESOLVED.set(key, resolved);
-        }
-        if (resolved !== null) {
-          node.children.push(await process(resolved, node));
-        } else {
-          DEBUGGING_MODULE_RESOLVING && console.log(`Ignoring ${imp.source}`);
-        }
-      } catch (err) {
-        DEBUGGING_MODULE_RESOLVING && console.log(`Ignoring ${imp.source}`);
-        RESOLVED.set(key, null);
-      }
-    }
-    return node;
-  }
-  return process(entryPoint);
-}
-
 const api = {
-  processFile,
-  processEntryPoint,
-  async buildGraphs(dir) {
-    SEARCH_CACHE = new Map();
-    RESOLVED_CACHE = new Map();
-    // finding the entry points for processing
-    const entryPoints = fs
-      .readdirSync(dir, { withFileTypes: true })
-      .filter((entry) => {
-        return entry.isFile() && VALID_ENTRY_POINTS.includes("." + (entry.name.split(".").pop() || ""));
-      })
-      .map((entry) => path.join(dir, entry.name));
-
-    // resolving the imports and building the graph
-    const graphs = [];
-    for (let i = 0; i < entryPoints.length; i++) {
-      const entryPoint = entryPoints[i];
-      graphs.push(await processEntryPoint(entryPoint));
-    }
-    return graphs;
-  },
-  getNode(node, filePath) {
-    if (SEARCH_CACHE.has(node.id + filePath)) {
-      return SEARCH_CACHE.get(node.id + filePath);
-    }
-    if (node.file === filePath) {
-      SEARCH_CACHE.set(node.id + filePath, node);
-      return node;
-    }
-    for (let i = 0; i < node.children.length; i++) {
-      const child = node.children[i];
-      const found = api.getNode(child, filePath);
-      if (found) {
-        SEARCH_CACHE.set(node.id + filePath, found);
-        return found;
-      }
-    }
-    return null;
-  },
+  createNode,
+  getGraph,
+  getGraphs,
+  getNode,
   resolveImport,
-  printGraph(node, indent = "") {
-    console.log(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`);
-    if (node.children.length > 0) {
-      node.children.forEach((child) => {
-        api.printGraph(child, indent + "   ");
-      });
-    }
-  },
-  toJSON(node) {
-    return {
-      [clearPath(node.file)]: {
-        role: node.role,
-        children: node.children.map((child) => {
-          return api.toJSON(child);
-        })
-      }
-    }
-  }
+  printGraph,
+  toJSON
 };
 
 module.exports = api;

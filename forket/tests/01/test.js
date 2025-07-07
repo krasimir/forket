@@ -1,11 +1,11 @@
 const path = require('path');
 const fs = require('fs');
 
-const { buildGraphs, toJSON } = require("../../lib/graph.js");
+const { getGraphs, toJSON } = require("../../lib/graph.js");
 const { setRoles } = require('../../lib/roles.js');
 
 module.exports = async function ({ test }) {
-  const [ graph ] = await buildGraphs(path.join(__dirname, "src"));
+  const [graph] = await getGraphs(path.join(__dirname, "src"));
   setRoles(graph);
   
   await test("Should properly find the import/require statements", () => {
