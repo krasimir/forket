@@ -20,6 +20,7 @@ const resolver = ResolverFactory.createResolver({
   fileSystem,
   extensions: VALID_ENTRY_POINTS
 });
+let nodeId = 0;
 
 async function processFile(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
@@ -69,6 +70,7 @@ async function processFile(file, parentNode = null) {
 
   return Object.assign(
     {
+      id: ++nodeId,
       file,
       code,
       ast,
@@ -164,17 +166,18 @@ const api = {
     return graphs;
   },
   getNode(node, filePath) {
-    if (SEARCH_CACHE.has(filePath)) {
-      return SEARCH_CACHE.get(filePath);
+    if (SEARCH_CACHE.has(node.id + filePath)) {
+      return SEARCH_CACHE.get(node.id + filePath);
     }
     if (node.file === filePath) {
-      SEARCH_CACHE.set(filePath, node);
+      SEARCH_CACHE.set(node.id + filePath, node);
       return node;
     }
     for (let i = 0; i < node.children.length; i++) {
       const child = node.children[i];
       const found = api.getNode(child, filePath);
       if (found) {
+        SEARCH_CACHE.set(node.id + filePath, found);
         return found;
       }
     }
@@ -182,7 +185,7 @@ const api = {
   },
   resolveImport,
   printGraph(node, indent = "") {
-    console.log(`${indent}${clearPath(node.file)} (${node.role})`);
+    console.log(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`);
     if (node.children.length > 0) {
       node.children.forEach((child) => {
         api.printGraph(child, indent + "   ");

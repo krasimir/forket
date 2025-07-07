@@ -28,12 +28,12 @@ module.exports = function (options = {}) {
       return await thanos.snap(graphs, filePath, content, MODE.SERVER);
     });
 
-    thanos = Thanos();
-    const buildClientDir = path.join(options.buildDir, clientDirName);
-    console.log(chalk.gray(`‎𐂐 (3) Forket: generating client code in ${clearPath(buildClientDir)}`));
-    await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
-      return await thanos.snap(graphs, filePath, content, MODE.CLIENT);
-    });
+    // thanos = Thanos();
+    // const buildClientDir = path.join(options.buildDir, clientDirName);
+    // console.log(chalk.gray(`‎𐂐 (3) Forket: generating client code in ${clearPath(buildClientDir)}`));
+    // await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
+    //   return await thanos.snap(graphs, filePath, content, MODE.CLIENT);
+    // });
   }
 
   return {

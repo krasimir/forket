@@ -13,6 +13,7 @@ function Thanos() {
   let id = 0;
 
   async function snap(graphs, filePath, content, mode) {
+    console.log("--> Thanos.snap", filePath, mode);
     if (mode === MODE.CLIENT) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
@@ -27,6 +28,13 @@ function Thanos() {
       }
       return false;
     } else {
+      for (let i = 0; i < graphs.length; i++) {
+        const graph = graphs[i];
+        const node = getNode(graph, filePath);
+        if (node) {
+          console.log(i, node.file, node.role);
+        }
+      }
       return content;
     }
   }
