@@ -31,10 +31,12 @@ function Thanos() {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
         if (node) {
-          console.log(node.imports);
-          if (node.imports && node.imports.length > 0) {
-            for(let j=0; j<node.imports.length; j++) {
-              
+          for(let j=0; j<(node?.imports || []).length; j++) {
+            if (node.imports[j].resolvedTo) {
+              const importedNode = getNode(graph, node.imports[j].resolvedTo);
+              if (importedNode && importedNode.role === ROLE.CLIENT_COMPONENT) {
+                return await createClientBoundary(graph, node, node.imports[j], importedNode);
+              }
             }
           }
         }
@@ -42,11 +44,40 @@ function Thanos() {
       return content;
     }
   }
-  async function transformImportForStreaming(graph, node) {
-    console.log("------->", node.file, node.imports);
+  async function createClientBoundary(graph, node, imp, importedNode) {
+    console.log("------->", node.file, imp.source);
 
-    /* **** Finding out who is importing it **** */
+    const componentsToClientBoundaries = [];
 
+    node.ast.body = node.ast.body
+      .map((n, index) => {
+        if (n.type === "ImportDeclaration") {
+          if (n?.source?.value === imp.source) {
+            (n?.specifiers || []).forEach(specifier => {
+              if (specifier.type === "ImportDefaultSpecifier" && specifier.local.value) {
+                componentsToClientBoundaries.push(specifier.local.value);
+              }
+            })
+            return false;
+          }
+          return n;
+        }
+        return n;
+      })
+      .filter(Boolean);
+    
+    if (componentsToClientBoundaries.length > 0) {
+      componentsToClientBoundaries.forEach(compName => {
+        insertAfterImports(node.ast, getClientBoundaryReplacement(getId(),compName));
+      })
+      insertAfterImports(node.ast, getClientBoundaryComponent());
+    }
+
+    /* **** Generating the transformed code **** */
+    const transformed = await swc.print(node.ast, {
+      minify: false
+    });
+    return transformed.code;
   }
   async function transformForClientUsage(graph, node) {
     console.log("------->", node.file);
@@ -171,6 +202,30 @@ module.exports = {
 };
 
 /* **** Utilities **** */
+function insertAfterImports(ast, node) {
+  if (!ast.body) {
+    return;
+  }
+  let detectedImports = false;
+  for(let i = 0; i < ast.body.length; i++) {
+    const n = ast.body[i];
+    if (
+      n.type === "ImportDeclaration" ||
+      (n.type === "VariableDeclaration" && n?.init?.type === "CallExpression" && n?.init?.callee?.value === "require")
+    ) {
+      detectedImports = true;
+    }
+    if (detectedImports && n.type !== "ImportDeclaration") {
+      ast.body.splice(i, 0, node);
+      return;
+    }
+  }
+  if (!detectedImports) {
+    ast.body.unshift(node);
+  } else {
+    ast.body.push(node);
+  }
+}
 function containsExportsThatHasJSX(node) {
   let result = false;
   function processReturn(n) {
@@ -400,5 +455,379 @@ function getReactInTheScope() {
     typeOnly: false,
     with: null,
     phase: "evaluation"
+  };
+}
+function getClientBoundaryComponent() {
+  return {
+    type: "FunctionDeclaration",
+    identifier: {
+      type: "Identifier",
+      span: {
+        start: 10,
+        end: 24
+      },
+      ctxt: 2,
+      value: "ClientBoundary",
+      optional: false
+    },
+    declare: false,
+    params: [
+      {
+        type: "Parameter",
+        span: {
+          start: 25,
+          end: 27
+        },
+        decorators: [],
+        pat: {
+          type: "Identifier",
+          span: {
+            start: 25,
+            end: 27
+          },
+          ctxt: 3,
+          value: "id",
+          optional: false,
+          typeAnnotation: null
+        }
+      },
+      {
+        type: "Parameter",
+        span: {
+          start: 29,
+          end: 42
+        },
+        decorators: [],
+        pat: {
+          type: "Identifier",
+          span: {
+            start: 29,
+            end: 42
+          },
+          ctxt: 3,
+          value: "componentName",
+          optional: false,
+          typeAnnotation: null
+        }
+      }
+    ],
+    decorators: [],
+    span: {
+      start: 1,
+      end: 192
+    },
+    ctxt: 3,
+    body: {
+      type: "BlockStatement",
+      span: {
+        start: 44,
+        end: 192
+      },
+      ctxt: 3,
+      stmts: [
+        {
+          type: "ReturnStatement",
+          span: {
+            start: 48,
+            end: 190
+          },
+          argument: {
+            type: "ArrowFunctionExpression",
+            span: {
+              start: 55,
+              end: 189
+            },
+            ctxt: 0,
+            params: [
+              {
+                type: "Identifier",
+                span: {
+                  start: 56,
+                  end: 61
+                },
+                ctxt: 4,
+                value: "props",
+                optional: false,
+                typeAnnotation: null
+              }
+            ],
+            body: {
+              type: "ParenthesisExpression",
+              span: {
+                start: 66,
+                end: 189
+              },
+              expression: {
+                type: "JSXElement",
+                span: {
+                  start: 72,
+                  end: 185
+                },
+                opening: {
+                  type: "JSXOpeningElement",
+                  name: {
+                    type: "Identifier",
+                    span: {
+                      start: 73,
+                      end: 81
+                    },
+                    ctxt: 1,
+                    value: "template",
+                    optional: false
+                  },
+                  span: {
+                    start: 72,
+                    end: 185
+                  },
+                  attributes: [
+                    {
+                      type: "JSXAttribute",
+                      span: {
+                        start: 82,
+                        end: 103
+                      },
+                      name: {
+                        type: "Identifier",
+                        span: {
+                          start: 82,
+                          end: 103
+                        },
+                        value: "data-client-component"
+                      },
+                      value: null
+                    },
+                    {
+                      type: "JSXAttribute",
+                      span: {
+                        start: 104,
+                        end: 116
+                      },
+                      name: {
+                        type: "Identifier",
+                        span: {
+                          start: 104,
+                          end: 111
+                        },
+                        value: "data-id"
+                      },
+                      value: {
+                        type: "JSXExpressionContainer",
+                        span: {
+                          start: 112,
+                          end: 116
+                        },
+                        expression: {
+                          type: "Identifier",
+                          span: {
+                            start: 113,
+                            end: 115
+                          },
+                          ctxt: 3,
+                          value: "id",
+                          optional: false
+                        }
+                      }
+                    },
+                    {
+                      type: "JSXAttribute",
+                      span: {
+                        start: 117,
+                        end: 147
+                      },
+                      name: {
+                        type: "Identifier",
+                        span: {
+                          start: 117,
+                          end: 131
+                        },
+                        value: "data-component"
+                      },
+                      value: {
+                        type: "JSXExpressionContainer",
+                        span: {
+                          start: 132,
+                          end: 147
+                        },
+                        expression: {
+                          type: "Identifier",
+                          span: {
+                            start: 133,
+                            end: 146
+                          },
+                          ctxt: 3,
+                          value: "componentName",
+                          optional: false
+                        }
+                      }
+                    },
+                    {
+                      type: "JSXAttribute",
+                      span: {
+                        start: 148,
+                        end: 182
+                      },
+                      name: {
+                        type: "Identifier",
+                        span: {
+                          start: 148,
+                          end: 158
+                        },
+                        value: "data-props"
+                      },
+                      value: {
+                        type: "JSXExpressionContainer",
+                        span: {
+                          start: 159,
+                          end: 182
+                        },
+                        expression: {
+                          type: "CallExpression",
+                          span: {
+                            start: 160,
+                            end: 181
+                          },
+                          ctxt: 0,
+                          callee: {
+                            type: "MemberExpression",
+                            span: {
+                              start: 160,
+                              end: 174
+                            },
+                            object: {
+                              type: "Identifier",
+                              span: {
+                                start: 160,
+                                end: 164
+                              },
+                              ctxt: 1,
+                              value: "JSON",
+                              optional: false
+                            },
+                            property: {
+                              type: "Identifier",
+                              span: {
+                                start: 165,
+                                end: 174
+                              },
+                              value: "stringify"
+                            }
+                          },
+                          arguments: [
+                            {
+                              spread: null,
+                              expression: {
+                                type: "Identifier",
+                                span: {
+                                  start: 175,
+                                  end: 180
+                                },
+                                ctxt: 4,
+                                value: "props",
+                                optional: false
+                              }
+                            }
+                          ],
+                          typeArguments: null
+                        }
+                      }
+                    }
+                  ],
+                  selfClosing: true,
+                  typeArguments: null
+                },
+                children: [],
+                closing: null
+              }
+            },
+            async: false,
+            generator: false,
+            typeParameters: null,
+            returnType: null
+          }
+        }
+      ]
+    },
+    generator: false,
+    async: false,
+    typeParameters: null,
+    returnType: null
+  };
+}
+function getClientBoundaryReplacement(id, componentName) {
+  return {
+    type: "VariableDeclaration",
+    span: {
+      start: 1,
+      end: 58
+    },
+    ctxt: 0,
+    kind: "const",
+    declare: false,
+    declarations: [
+      {
+        type: "VariableDeclarator",
+        span: {
+          start: 7,
+          end: 57
+        },
+        id: {
+          type: "Identifier",
+          span: {
+            start: 7,
+            end: 18
+          },
+          ctxt: 2,
+          value: componentName,
+          optional: false,
+          typeAnnotation: null
+        },
+        init: {
+          type: "CallExpression",
+          span: {
+            start: 21,
+            end: 57
+          },
+          ctxt: 0,
+          callee: {
+            type: "Identifier",
+            span: {
+              start: 21,
+              end: 35
+            },
+            ctxt: 1,
+            value: "ClientBoundary",
+            optional: false
+          },
+          arguments: [
+            {
+              spread: null,
+              expression: {
+                type: "StringLiteral",
+                span: {
+                  start: 36,
+                  end: 41
+                },
+                value: id,
+                raw: `"${id}"`
+              }
+            },
+            {
+              spread: null,
+              expression: {
+                type: "StringLiteral",
+                span: {
+                  start: 43,
+                  end: 56
+                },
+                value: componentName,
+                raw: `"${componentName}"`
+              }
+            }
+          ],
+          typeArguments: null
+        },
+        definite: false
+      }
+    ]
   };
 }

@@ -1,10 +1,1 @@
-/* test */
-"use client";
-
-import React from "react";
-import App from "./components/App";
-
-const T = () => {
-  return <div>My Component</div>;
-};
-export default T;
+const ProductList = ClientBoundary("T:0", "ProductList");
