@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const swc = require("@swc/core");
 const get = require("lodash/get");
-const { CachedInputFileSystem, ResolverFactory, Resolver } = require("enhanced-resolve");
+const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
 
 const { clearPath } = require("./utils/fsHelpers.js");
 const traverseNode = require("./utils/traverseNode.js");
@@ -35,13 +35,9 @@ async function createNode(file, parentNode = null) {
   function processAST(ast, type) {
     const imports = [];
     let useClient = false;
-    let clientFile = false;
 
     function processImports(node) {
       imports.push({ source: get(node, "source.value") });
-      if (get(node, "source.value") === "react-dom/client") {
-        clientFile = true;
-      }
     }
     function processCallExpression(node) {
       if (get(node, 'callee.value') === "require") {
@@ -62,8 +58,7 @@ async function createNode(file, parentNode = null) {
 
     return {
       imports,
-      useClient,
-      clientFile
+      useClient
     };
   }
 

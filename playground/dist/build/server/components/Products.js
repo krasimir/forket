@@ -35,7 +35,7 @@ var import_db = require("./db");
 function ClientBoundary(id, componentName) {
   return (props) => /* @__PURE__ */ import_react.default.createElement("template", { "data-client-component": true, "data-id": id, "data-component": componentName, "data-props": JSON.stringify(props) });
 }
-const ProductsList = ClientBoundary("T:1", "ProductsList");
+const ProductsList = ClientBoundary("T:0", "ProductsList");
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS);
 async function Products() {

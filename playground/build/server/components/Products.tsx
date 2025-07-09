@@ -3,7 +3,7 @@ import { getProducts } from "./db";
 function ClientBoundary(id, componentName) {
     return (props)=>(<template data-client-component data-id={id} data-component={componentName} data-props={JSON.stringify(props)}/>);
 }
-const ProductsList = ClientBoundary("T:1", "ProductsList");
+const ProductsList = ClientBoundary("T:0", "ProductsList");
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS);
 export default async function Products() {

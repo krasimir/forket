@@ -13,16 +13,20 @@ function Thanos() {
   let id = 0;
 
   async function snap(graphs, filePath, content, mode) {
-    if (mode === MODE.CLIENT) {
+    if (mode === MODE.SERVER) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
-        if (node) {
-          if (node.role === ROLE.CLIENT_COMPONENT || node.role === ROLE.CLIENT_FILE) {
-            return content;
-          } else {
-            return await transformForClientUsage(graph, node);
+        for (let j = 0; j < (node?.imports || []).length; j++) {
+          if (node.imports[j].resolvedTo) {
+            const importedNode = getNode(graph, node.imports[j].resolvedTo);
+            if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
+              return await createClientBoundary(graph, node, node.imports[j], importedNode);
+            }
           }
+        }
+        if (node?.role === ROLE.SERVER) {
+          return content;
         }
       }
       return false;
@@ -31,21 +35,18 @@ function Thanos() {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
         if (node) {
-          for(let j=0; j<(node?.imports || []).length; j++) {
-            if (node.imports[j].resolvedTo) {
-              const importedNode = getNode(graph, node.imports[j].resolvedTo);
-              if (importedNode && importedNode.role === ROLE.CLIENT_COMPONENT) {
-                return await createClientBoundary(graph, node, node.imports[j], importedNode);
-              }
-            }
+          if (node.role === ROLE.CLIENT) {
+            return content;
+          } else {
+            // return await transformForClientUsage(graph, node);
           }
         }
       }
-      return content;
+      return false;
     }
   }
   async function createClientBoundary(graph, node, imp, importedNode) {
-    console.log("------->", node.file, imp.source);
+    console.log("------->", node.file, imp.source, node?.parentNode?.role);
 
     const componentsToClientBoundaries = [];
 

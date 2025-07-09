@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../build/client/client.tsx"],
+  "sourcesContent": ["'use client';\n\nconsole.log('entry point')"],
+  "mappings": ";;;AAEA,UAAQ,IAAI,aAAa;",
+  "names": []
+}
