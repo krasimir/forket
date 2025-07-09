@@ -30,7 +30,7 @@ export default function ProductsList({ products, children }: ProductsProps) {
   }
 
   if (products.length === 0) {
-    return null;
+    return <div>No products yet ...</div>;
   }
   return (
     <>

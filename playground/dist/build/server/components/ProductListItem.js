@@ -25,20 +25,12 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var Products_exports = {};
-__export(Products_exports, {
-  default: () => Products
+var ProductListItem_exports = {};
+__export(ProductListItem_exports, {
+  default: () => ProductListeItem
 });
-module.exports = __toCommonJS(Products_exports);
+module.exports = __toCommonJS(ProductListItem_exports);
 var import_react = __toESM(require("react"));
-var import_db = require("./db");
-var import_ProductsList = __toESM(require("./ProductsList"));
-const CREDENTIALS = "secret";
-console.log(CREDENTIALS);
-async function Products() {
-  const { products } = await (0, import_db.getProducts)();
-  return /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { products }, /* @__PURE__ */ import_react.default.createElement(ListOfProducts, { n: products.length }));
-}
-function ListOfProducts({ n }) {
-  return /* @__PURE__ */ import_react.default.createElement("p", null, "All products: ", n);
+function ProductListeItem({ title, onClick }) {
+  return /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick }), title);
 }

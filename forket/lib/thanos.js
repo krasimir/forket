@@ -21,7 +21,8 @@ function Thanos() {
           if (node.imports[j].resolvedTo) {
             const importedNode = getNode(graph, node.imports[j].resolvedTo);
             if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
-              return await createClientBoundary(graph, node, node.imports[j], importedNode);
+              return content;
+              // return await createClientBoundary(graph, node, node.imports[j], importedNode);
             }
           }
         }
@@ -29,7 +30,7 @@ function Thanos() {
           return content;
         }
       }
-      return false;
+      return content;
     } else {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
