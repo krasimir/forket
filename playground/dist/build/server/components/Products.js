@@ -32,21 +32,25 @@ __export(Products_exports, {
 module.exports = __toCommonJS(Products_exports);
 var import_react = __toESM(require("react"));
 var import_db = require("./db");
-function ClientBoundary(id, componentName) {
-  return (props) => /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("template", { "data-client-component": true, "data-id": id, "data-component": componentName, "data-props": JSON.stringify(props) }), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
+var import_ProductsList = __toESM(require("./ProductsList"));
+function serialize$Props(props) {
+  return JSON.stringify(props);
+}
+function ProductsListBoundary(props) {
+  const serializedProps = serialize$Props(props);
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-  if (typeof $FRSC !== 'undefined') return $FRSC("${id}");
+  if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList", ${serializedProps}]);
   if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-  $FRSC_.push("${id}");
-  })();`
+  $FRSC_.push(["f_0", "ProductsList", ${serializedProps}]);
+})();`
   } }));
 }
-const ProductsList = ClientBoundary("T:0", "ProductsList");
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS);
 async function Products() {
   const { products } = await (0, import_db.getProducts)();
-  return /* @__PURE__ */ import_react.default.createElement(ProductsList, { products }, /* @__PURE__ */ import_react.default.createElement(ListOfProducts, { n: products.length }));
+  return /* @__PURE__ */ import_react.default.createElement(ProductsListBoundary, { products }, /* @__PURE__ */ import_react.default.createElement(ListOfProducts, { n: products.length }));
 }
 function ListOfProducts({ n }) {
   return /* @__PURE__ */ import_react.default.createElement("p", null, "All products: ", n);

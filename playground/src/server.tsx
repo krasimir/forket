@@ -9,25 +9,23 @@ import productsHandler from './api/products'
 import App from './components/App'
 
 const port = 8087;
+// const TIMEOUT = 10000;
+const TIMEOUT = 500;
 const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname, "..", "..", "public")));
 
-app.get("/api/products", productsHandler);
+app.get("/api/products", productsHandler(TIMEOUT));
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(<App />, {
-    bootstrapScripts: ["/bundle.js"],
+    // bootstrapScripts: ["/bundle.js"],
     // bootstrapScripts: [],
-    bootstrapScriptContent: replacer(),
+    // bootstrapScriptContent: replacer(),
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
-      const originalWrite = res.write;
-      res.write = (chunk: any) => {
-        // console.log(chunk.toString());
-        originalWrite.call(res, chunk);
-      };
+      processChunk(res);
       pipe(res);
     },
     onError(err) {
@@ -39,7 +37,29 @@ app.get("/", (req, res) => {
 server.listen(port, () => {
   console.log(`App listening on port ${port}.`);
 });
-
+function processChunk(res) {
+  function replaceAllBoundaryTags(html) {
+    return html
+      .replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`)
+      .replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`);
+  }
+  const originalWrite = res.write;
+  res.write = (chunk: any) => {
+    let str: string;
+    if (Buffer.isBuffer(chunk)) {
+      str = chunk.toString("utf8");
+    } else if (chunk instanceof Uint8Array) {
+      str = Buffer.from(chunk).toString("utf8");
+    } else if (typeof chunk === "string") {
+      str = chunk;
+    } else {
+      console.warn("Unknown chunk type:", chunk);
+      str = String(chunk);
+    }
+    str = replaceAllBoundaryTags(str);
+    originalWrite.call(res, Buffer.from(str, 'utf8'));
+  };
+}
 function replacer() {
   return `function FRSC_init() {
   console.log('FRSC_init')
@@ -61,9 +81,12 @@ function replacer() {
         console.warn("Component not found:", componentName);
         return;
       }
-      console.log(props);
-      const element = React.createElement(Component, {products:[]});
-      window.hydrateRoot(template, element);
+      const element = React.createElement(Component, props);
+      const host = document.createElement("div");
+      const root = createRoot(host);
+      root.render(element);
+      template.replaceWith(host);
+      // window.hydrateRoot(template, element);
     }
     if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
       window.$FRSC_.forEach(window.$FRSC);

@@ -28,22 +28,20 @@ var import_express = __toESM(require("express"));
 var import_products = __toESM(require("./api/products"));
 var import_App = __toESM(require("./components/App"));
 const port = 8087;
+const TIMEOUT = 500;
 const app = (0, import_express.default)();
 const server = import_http.default.createServer(app);
 app.use(import_express.default.static(import_path.default.join(__dirname, "..", "..", "public")));
-app.get("/api/products", import_products.default);
+app.get("/api/products", (0, import_products.default)(TIMEOUT));
 app.get("/", (req, res) => {
   const { pipe, abort } = (0, import_server.renderToPipeableStream)(/* @__PURE__ */ import_react.default.createElement(import_App.default, null), {
-    bootstrapScripts: ["/bundle.js"],
+    // bootstrapScripts: ["/bundle.js"],
     // bootstrapScripts: [],
-    bootstrapScriptContent: replacer(),
+    // bootstrapScriptContent: replacer(),
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
-      const originalWrite = res.write;
-      res.write = (chunk) => {
-        originalWrite.call(res, chunk);
-      };
+      processChunk(res);
       pipe(res);
     },
     onError(err) {
@@ -54,6 +52,27 @@ app.get("/", (req, res) => {
 server.listen(port, () => {
   console.log(`App listening on port ${port}.`);
 });
+function processChunk(res) {
+  function replaceAllBoundaryTags(html) {
+    return html.replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`).replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`);
+  }
+  const originalWrite = res.write;
+  res.write = (chunk) => {
+    let str;
+    if (Buffer.isBuffer(chunk)) {
+      str = chunk.toString("utf8");
+    } else if (chunk instanceof Uint8Array) {
+      str = Buffer.from(chunk).toString("utf8");
+    } else if (typeof chunk === "string") {
+      str = chunk;
+    } else {
+      console.warn("Unknown chunk type:", chunk);
+      str = String(chunk);
+    }
+    str = replaceAllBoundaryTags(str);
+    originalWrite.call(res, Buffer.from(str, "utf8"));
+  };
+}
 function replacer() {
   return `function FRSC_init() {
   console.log('FRSC_init')
@@ -75,9 +94,12 @@ function replacer() {
         console.warn("Component not found:", componentName);
         return;
       }
-      console.log(props);
-      const element = React.createElement(Component, {products:[]});
-      window.hydrateRoot(template, element);
+      const element = React.createElement(Component, props);
+      const host = document.createElement("div");
+      const root = createRoot(host);
+      root.render(element);
+      template.replaceWith(host);
+      // window.hydrateRoot(template, element);
     }
     if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
       window.$FRSC_.forEach(window.$FRSC);

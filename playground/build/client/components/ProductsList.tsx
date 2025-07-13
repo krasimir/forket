@@ -35,7 +35,7 @@ export default function ProductsList({ products, children }: ProductsProps) {
   return (
     <>
       {children}
-      <p>Selected items: {selected.length}</p>
+      <p data-id="cooler">Selected items: {selected.length}</p>
       <ul>
         {products.map((product: any) => (
           <li key={product.id}>

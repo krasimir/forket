@@ -1,8 +1,6 @@
-var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -16,24 +14,13 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var products_exports = {};
 __export(products_exports, {
   default: () => products_default
 });
 module.exports = __toCommonJS(products_exports);
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-const TIMEOUT = 500;
-async function products_default(req, res) {
+var products_default = (TIMEOUT) => async function(req, res) {
   await new Promise((resolve) => setTimeout(resolve, TIMEOUT));
   res.json({
     products: [
@@ -632,4 +619,4 @@ async function products_default(req, res) {
     skip: 0,
     limit: 23
   });
-}
+};

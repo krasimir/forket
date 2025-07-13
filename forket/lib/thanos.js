@@ -27,10 +27,9 @@ function Thanos() {
               }
             }
           }
-          return content;
         }
       }
-      return false;
+      return content;
     } else {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
@@ -47,36 +46,50 @@ function Thanos() {
     }
   }
   async function createClientBoundary(graph, node, imp, importedNode) {
-    console.log("------->", node.file, imp.source, node?.parentNode?.role);
+    console.log("------->", imp.source);
 
     const componentsToClientBoundaries = [];
 
+    // Finding out the exact name of the component/s
     node.ast.body = node.ast.body
       .map((n, index) => {
         if (n.type === "ImportDeclaration") {
           if (n?.source?.value === imp.source) {
-            for (let i=0; i < (n?.specifiers || []).length; i++) {
+            for (let i = 0; i < (n?.specifiers || []).length; i++) {
               let specifier = n.specifiers[i];
               if (specifier.type === "ImportDefaultSpecifier" && specifier.local.value) {
                 componentsToClientBoundaries.push(specifier.local.value);
-                return false;
               }
             }
           }
-          return n;
         }
         return n;
       })
       .filter(Boolean);
-    
+
+    // Replacing the default export with the client boundary component
+    traverseNode(node.ast, {
+      JSXOpeningElement(n) {
+        if (n?.name?.value && componentsToClientBoundaries.includes(n.name.value)) {
+          n.name.value = `${n.name.value}Boundary`;
+        }
+      },
+      JSXClosingElement(n) {
+        if (n?.name?.value && componentsToClientBoundaries.includes(n.name.value)) {
+          n.name.value = `${n.name.value}Boundary`;
+        }
+      }
+    });
+
+    // Creating the client boundary component
     if (componentsToClientBoundaries.length > 0) {
-      componentsToClientBoundaries.forEach(compName => {
-        insertAfterImports(node.ast, getClientBoundaryReplacement(getId(),compName));
-      })
-      insertAfterImports(node.ast, getClientBoundaryComponent());
+      componentsToClientBoundaries.forEach((compName) => {
+        insertAfterImports(node.ast, getClientBoundaryReplacement(getId(), compName));
+      });
+      insertAfterImports(node.ast, getPropsSerializer());
     }
 
-    /* **** Generating the transformed code **** */
+    // Generating the new code
     const transformed = await swc.print(node.ast, {
       minify: false
     });
@@ -191,7 +204,7 @@ function Thanos() {
     return transformed.code;
   }
   function getId() {
-    return "T:" + id++;
+    return "f_" + id++;
   }
 
   return {
@@ -460,17 +473,17 @@ function getReactInTheScope() {
     phase: "evaluation"
   };
 }
-function getClientBoundaryComponent() {
+function getClientBoundaryReplacement(id, componentName) {
   return {
     type: "FunctionDeclaration",
     identifier: {
       type: "Identifier",
       span: {
         start: 10,
-        end: 24
+        end: 30
       },
       ctxt: 2,
-      value: "ClientBoundary",
+      value: componentName + "Boundary",
       optional: false
     },
     declare: false,
@@ -478,37 +491,18 @@ function getClientBoundaryComponent() {
       {
         type: "Parameter",
         span: {
-          start: 25,
-          end: 27
+          start: 31,
+          end: 36
         },
         decorators: [],
         pat: {
           type: "Identifier",
           span: {
-            start: 25,
-            end: 27
+            start: 31,
+            end: 36
           },
           ctxt: 3,
-          value: "id",
-          optional: false,
-          typeAnnotation: null
-        }
-      },
-      {
-        type: "Parameter",
-        span: {
-          start: 29,
-          end: 42
-        },
-        decorators: [],
-        pat: {
-          type: "Identifier",
-          span: {
-            start: 29,
-            end: 42
-          },
-          ctxt: 3,
-          value: "componentName",
+          value: "props",
           optional: false,
           typeAnnotation: null
         }
@@ -517,419 +511,390 @@ function getClientBoundaryComponent() {
     decorators: [],
     span: {
       start: 1,
-      end: 458
+      end: 488
     },
     ctxt: 3,
     body: {
       type: "BlockStatement",
       span: {
-        start: 44,
-        end: 458
+        start: 38,
+        end: 488
       },
       ctxt: 3,
       stmts: [
         {
-          type: "ReturnStatement",
+          type: "VariableDeclaration",
           span: {
-            start: 48,
-            end: 456
+            start: 42,
+            end: 89
           },
-          argument: {
-            type: "ArrowFunctionExpression",
-            span: {
-              start: 55,
-              end: 455
-            },
-            ctxt: 0,
-            params: [
-              {
+          ctxt: 0,
+          kind: "const",
+          declare: false,
+          declarations: [
+            {
+              type: "VariableDeclarator",
+              span: {
+                start: 48,
+                end: 88
+              },
+              id: {
                 type: "Identifier",
                 span: {
-                  start: 56,
-                  end: 61
+                  start: 48,
+                  end: 63
                 },
-                ctxt: 4,
-                value: "props",
+                ctxt: 3,
+                value: "serializedProps",
                 optional: false,
                 typeAnnotation: null
-              }
-            ],
-            body: {
-              type: "ParenthesisExpression",
-              span: {
-                start: 66,
-                end: 455
               },
-              expression: {
-                type: "JSXFragment",
+              init: {
+                type: "CallExpression",
                 span: {
-                  start: 72,
-                  end: 451
+                  start: 66,
+                  end: 88
                 },
-                opening: {
-                  type: "JSXOpeningFragment",
+                ctxt: 0,
+                callee: {
+                  type: "Identifier",
                   span: {
-                    start: 72,
-                    end: 74
-                  }
+                    start: 66,
+                    end: 81
+                  },
+                  ctxt: 2,
+                  value: "serialize$Props",
+                  optional: false
                 },
-                children: [
+                arguments: [
                   {
-                    type: "JSXText",
-                    span: {
-                      start: 74,
-                      end: 81
-                    },
-                    value: "\n      ",
-                    raw: "\n      "
-                  },
-                  {
-                    type: "JSXElement",
-                    span: {
-                      start: 81,
-                      end: 194
-                    },
-                    opening: {
-                      type: "JSXOpeningElement",
-                      name: {
-                        type: "Identifier",
-                        span: {
-                          start: 82,
-                          end: 90
-                        },
-                        ctxt: 1,
-                        value: "template",
-                        optional: false
-                      },
+                    spread: null,
+                    expression: {
+                      type: "Identifier",
                       span: {
-                        start: 81,
-                        end: 194
+                        start: 82,
+                        end: 87
                       },
-                      attributes: [
-                        {
-                          type: "JSXAttribute",
-                          span: {
-                            start: 91,
-                            end: 112
-                          },
-                          name: {
-                            type: "Identifier",
-                            span: {
-                              start: 91,
-                              end: 112
-                            },
-                            value: "data-client-component"
-                          },
-                          value: null
-                        },
-                        {
-                          type: "JSXAttribute",
-                          span: {
-                            start: 113,
-                            end: 125
-                          },
-                          name: {
-                            type: "Identifier",
-                            span: {
-                              start: 113,
-                              end: 120
-                            },
-                            value: "data-id"
-                          },
-                          value: {
-                            type: "JSXExpressionContainer",
-                            span: {
-                              start: 121,
-                              end: 125
-                            },
-                            expression: {
-                              type: "Identifier",
-                              span: {
-                                start: 122,
-                                end: 124
-                              },
-                              ctxt: 3,
-                              value: "id",
-                              optional: false
-                            }
-                          }
-                        },
-                        {
-                          type: "JSXAttribute",
-                          span: {
-                            start: 126,
-                            end: 156
-                          },
-                          name: {
-                            type: "Identifier",
-                            span: {
-                              start: 126,
-                              end: 140
-                            },
-                            value: "data-component"
-                          },
-                          value: {
-                            type: "JSXExpressionContainer",
-                            span: {
-                              start: 141,
-                              end: 156
-                            },
-                            expression: {
-                              type: "Identifier",
-                              span: {
-                                start: 142,
-                                end: 155
-                              },
-                              ctxt: 3,
-                              value: "componentName",
-                              optional: false
-                            }
-                          }
-                        },
-                        {
-                          type: "JSXAttribute",
-                          span: {
-                            start: 157,
-                            end: 191
-                          },
-                          name: {
-                            type: "Identifier",
-                            span: {
-                              start: 157,
-                              end: 167
-                            },
-                            value: "data-props"
-                          },
-                          value: {
-                            type: "JSXExpressionContainer",
-                            span: {
-                              start: 168,
-                              end: 191
-                            },
-                            expression: {
-                              type: "CallExpression",
-                              span: {
-                                start: 169,
-                                end: 190
-                              },
-                              ctxt: 0,
-                              callee: {
-                                type: "MemberExpression",
-                                span: {
-                                  start: 169,
-                                  end: 183
-                                },
-                                object: {
-                                  type: "Identifier",
-                                  span: {
-                                    start: 169,
-                                    end: 173
-                                  },
-                                  ctxt: 1,
-                                  value: "JSON",
-                                  optional: false
-                                },
-                                property: {
-                                  type: "Identifier",
-                                  span: {
-                                    start: 174,
-                                    end: 183
-                                  },
-                                  value: "stringify"
-                                }
-                              },
-                              arguments: [
-                                {
-                                  spread: null,
-                                  expression: {
-                                    type: "Identifier",
-                                    span: {
-                                      start: 184,
-                                      end: 189
-                                    },
-                                    ctxt: 4,
-                                    value: "props",
-                                    optional: false
-                                  }
-                                }
-                              ],
-                              typeArguments: null
-                            }
-                          }
-                        }
-                      ],
-                      selfClosing: true,
-                      typeArguments: null
-                    },
-                    children: [],
-                    closing: null
-                  },
-                  {
-                    type: "JSXText",
-                    span: {
-                      start: 194,
-                      end: 201
-                    },
-                    value: "\n      ",
-                    raw: "\n      "
-                  },
-                  {
-                    type: "JSXElement",
-                    span: {
-                      start: 201,
-                      end: 443
-                    },
-                    opening: {
-                      type: "JSXOpeningElement",
-                      name: {
-                        type: "Identifier",
-                        span: {
-                          start: 202,
-                          end: 208
-                        },
-                        ctxt: 1,
-                        value: "script",
-                        optional: false
-                      },
-                      span: {
-                        start: 201,
-                        end: 443
-                      },
-                      attributes: [
-                        {
-                          type: "JSXAttribute",
-                          span: {
-                            start: 217,
-                            end: 434
-                          },
-                          name: {
-                            type: "Identifier",
-                            span: {
-                              start: 217,
-                              end: 240
-                            },
-                            value: "dangerouslySetInnerHTML"
-                          },
-                          value: {
-                            type: "JSXExpressionContainer",
-                            span: {
-                              start: 241,
-                              end: 434
-                            },
-                            expression: {
-                              type: "ObjectExpression",
-                              span: {
-                                start: 242,
-                                end: 433
-                              },
-                              properties: [
-                                {
-                                  type: "KeyValueProperty",
-                                  key: {
-                                    type: "Identifier",
-                                    span: {
-                                      start: 254,
-                                      end: 260
-                                    },
-                                    value: "__html"
-                                  },
-                                  value: {
-                                    type: "TemplateLiteral",
-                                    span: {
-                                      start: 262,
-                                      end: 423
-                                    },
-                                    expressions: [
-                                      {
-                                        type: "Identifier",
-                                        span: {
-                                          start: 330,
-                                          end: 332
-                                        },
-                                        ctxt: 3,
-                                        value: "id",
-                                        optional: false
-                                      },
-                                      {
-                                        type: "Identifier",
-                                        span: {
-                                          start: 408,
-                                          end: 410
-                                        },
-                                        ctxt: 3,
-                                        value: "id",
-                                        optional: false
-                                      }
-                                    ],
-                                    quasis: [
-                                      {
-                                        type: "TemplateElement",
-                                        span: {
-                                          start: 263,
-                                          end: 328
-                                        },
-                                        tail: false,
-                                        cooked: "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC(\"",
-                                        raw: "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC(\""
-                                      },
-                                      {
-                                        type: "TemplateElement",
-                                        span: {
-                                          start: 333,
-                                          end: 406
-                                        },
-                                        tail: false,
-                                        cooked:
-                                          "\");\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push(\"",
-                                        raw: "\");\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push(\""
-                                      },
-                                      {
-                                        type: "TemplateElement",
-                                        span: {
-                                          start: 411,
-                                          end: 422
-                                        },
-                                        tail: true,
-                                        cooked: '");\n  })();',
-                                        raw: '");\n  })();'
-                                      }
-                                    ]
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      ],
-                      selfClosing: true,
-                      typeArguments: null
-                    },
-                    children: [],
-                    closing: null
-                  },
-                  {
-                    type: "JSXText",
-                    span: {
-                      start: 443,
-                      end: 448
-                    },
-                    value: "\n    ",
-                    raw: "\n    "
+                      ctxt: 3,
+                      value: "props",
+                      optional: false
+                    }
                   }
                 ],
-                closing: {
-                  type: "JSXClosingFragment",
+                typeArguments: null
+              },
+              definite: false
+            }
+          ]
+        },
+        {
+          type: "ReturnStatement",
+          span: {
+            start: 92,
+            end: 486
+          },
+          argument: {
+            type: "ParenthesisExpression",
+            span: {
+              start: 99,
+              end: 485
+            },
+            expression: {
+              type: "JSXFragment",
+              span: {
+                start: 105,
+                end: 481
+              },
+              opening: {
+                type: "JSXOpeningFragment",
+                span: {
+                  start: 105,
+                  end: 107
+                }
+              },
+              children: [
+                {
+                  type: "JSXText",
                   span: {
-                    start: 448,
-                    end: 451
+                    start: 107,
+                    end: 114
+                  },
+                  value: "\n      ",
+                  raw: "\n      "
+                },
+                {
+                  type: "JSXElement",
+                  span: {
+                    start: 114,
+                    end: 186
+                  },
+                  opening: {
+                    type: "JSXOpeningElement",
+                    name: {
+                      type: "Identifier",
+                      span: {
+                        start: 115,
+                        end: 127
+                      },
+                      ctxt: 1,
+                      value: "boundary_" + id,
+                      optional: false
+                    },
+                    span: {
+                      start: 114,
+                      end: 128
+                    },
+                    attributes: [],
+                    selfClosing: false,
+                    typeArguments: null
+                  },
+                  children: [
+                    {
+                      type: "JSXText",
+                      span: {
+                        start: 128,
+                        end: 137
+                      },
+                      value: "\n        ",
+                      raw: "\n        "
+                    },
+                    {
+                      type: "JSXElement",
+                      span: {
+                        start: 137,
+                        end: 164
+                      },
+                      opening: {
+                        type: "JSXOpeningElement",
+                        name: {
+                          type: "Identifier",
+                          span: {
+                            start: 138,
+                            end: 150
+                          },
+                          ctxt: 1,
+                          value: componentName,
+                          optional: false
+                        },
+                        span: {
+                          start: 137,
+                          end: 164
+                        },
+                        attributes: [
+                          {
+                            type: "SpreadElement",
+                            spread: {
+                              start: 152,
+                              end: 155
+                            },
+                            arguments: {
+                              type: "Identifier",
+                              span: {
+                                start: 155,
+                                end: 160
+                              },
+                              ctxt: 3,
+                              value: "props",
+                              optional: false
+                            }
+                          }
+                        ],
+                        selfClosing: true,
+                        typeArguments: null
+                      },
+                      children: [],
+                      closing: null
+                    },
+                    {
+                      type: "JSXText",
+                      span: {
+                        start: 164,
+                        end: 171
+                      },
+                      value: "\n      ",
+                      raw: "\n      "
+                    }
+                  ],
+                  closing: {
+                    type: "JSXClosingElement",
+                    span: {
+                      start: 171,
+                      end: 186
+                    },
+                    name: {
+                      type: "Identifier",
+                      span: {
+                        start: 173,
+                        end: 185
+                      },
+                      ctxt: 1,
+                      value: "boundary_" + id,
+                      optional: false
+                    }
                   }
+                },
+                {
+                  type: "JSXText",
+                  span: {
+                    start: 186,
+                    end: 193
+                  },
+                  value: "\n      ",
+                  raw: "\n      "
+                },
+                {
+                  type: "JSXElement",
+                  span: {
+                    start: 193,
+                    end: 473
+                  },
+                  opening: {
+                    type: "JSXOpeningElement",
+                    name: {
+                      type: "Identifier",
+                      span: {
+                        start: 194,
+                        end: 200
+                      },
+                      ctxt: 1,
+                      value: "script",
+                      optional: false
+                    },
+                    span: {
+                      start: 193,
+                      end: 473
+                    },
+                    attributes: [
+                      {
+                        type: "JSXAttribute",
+                        span: {
+                          start: 209,
+                          end: 464
+                        },
+                        name: {
+                          type: "Identifier",
+                          span: {
+                            start: 209,
+                            end: 232
+                          },
+                          value: "dangerouslySetInnerHTML"
+                        },
+                        value: {
+                          type: "JSXExpressionContainer",
+                          span: {
+                            start: 233,
+                            end: 464
+                          },
+                          expression: {
+                            type: "ObjectExpression",
+                            span: {
+                              start: 234,
+                              end: 463
+                            },
+                            properties: [
+                              {
+                                type: "KeyValueProperty",
+                                key: {
+                                  type: "Identifier",
+                                  span: {
+                                    start: 246,
+                                    end: 252
+                                  },
+                                  value: "__html"
+                                },
+                                value: {
+                                  type: "TemplateLiteral",
+                                  span: {
+                                    start: 254,
+                                    end: 453
+                                  },
+                                  expressions: [
+                                    {
+                                      type: "Identifier",
+                                      span: {
+                                        start: 329,
+                                        end: 344
+                                      },
+                                      ctxt: 3,
+                                      value: "serializedProps",
+                                      optional: false
+                                    },
+                                    {
+                                      type: "Identifier",
+                                      span: {
+                                        start: 427,
+                                        end: 442
+                                      },
+                                      ctxt: 3,
+                                      value: "serializedProps",
+                                      optional: false
+                                    }
+                                  ],
+                                  quasis: [
+                                    {
+                                      type: "TemplateElement",
+                                      span: {
+                                        start: 255,
+                                        end: 327
+                                      },
+                                      tail: false,
+                                      cooked:
+                                        "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC([\"" + id + "\", \"" + componentName + "\", ",
+                                      raw: "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC([\"" + id + "\", \"" + componentName + "\", "
+                                    },
+                                    {
+                                      type: "TemplateElement",
+                                      span: {
+                                        start: 345,
+                                        end: 425
+                                      },
+                                      tail: false,
+                                      cooked:
+                                        "]);\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push([\"" + id + "\", \"" + componentName + "\"",
+                                      raw: "]);\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push([\"" + id + "\", \"" + componentName + "\", "
+                                    },
+                                    {
+                                      type: "TemplateElement",
+                                      span: {
+                                        start: 443,
+                                        end: 452
+                                      },
+                                      tail: true,
+                                      cooked: "]);\n})();",
+                                      raw: "]);\n})();"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    selfClosing: true,
+                    typeArguments: null
+                  },
+                  children: [],
+                  closing: null
+                },
+                {
+                  type: "JSXText",
+                  span: {
+                    start: 473,
+                    end: 478
+                  },
+                  value: "\n    ",
+                  raw: "\n    "
+                }
+              ],
+              closing: {
+                type: "JSXClosingFragment",
+                span: {
+                  start: 478,
+                  end: 481
                 }
               }
-            },
-            async: false,
-            generator: false,
-            typeParameters: null,
-            returnType: null
+            }
           }
         }
       ]
@@ -940,81 +905,116 @@ function getClientBoundaryComponent() {
     returnType: null
   };
 }
-function getClientBoundaryReplacement(id, componentName) {
+function getPropsSerializer() {
   return {
-    type: "VariableDeclaration",
-    span: {
-      start: 1,
-      end: 58
+    type: "FunctionDeclaration",
+    identifier: {
+      type: "Identifier",
+      span: {
+        start: 171,
+        end: 186
+      },
+      ctxt: 2,
+      value: "serialize$Props",
+      optional: false
     },
-    ctxt: 0,
-    kind: "const",
     declare: false,
-    declarations: [
+    params: [
       {
-        type: "VariableDeclarator",
+        type: "Parameter",
         span: {
-          start: 7,
-          end: 57
+          start: 187,
+          end: 192
         },
-        id: {
+        decorators: [],
+        pat: {
           type: "Identifier",
           span: {
-            start: 7,
-            end: 18
+            start: 187,
+            end: 192
           },
-          ctxt: 2,
-          value: componentName,
+          ctxt: 4,
+          value: "props",
           optional: false,
           typeAnnotation: null
-        },
-        init: {
-          type: "CallExpression",
-          span: {
-            start: 21,
-            end: 57
-          },
-          ctxt: 0,
-          callee: {
-            type: "Identifier",
-            span: {
-              start: 21,
-              end: 35
-            },
-            ctxt: 1,
-            value: "ClientBoundary",
-            optional: false
-          },
-          arguments: [
-            {
-              spread: null,
-              expression: {
-                type: "StringLiteral",
-                span: {
-                  start: 36,
-                  end: 41
-                },
-                value: id,
-                raw: `"${id}"`
-              }
-            },
-            {
-              spread: null,
-              expression: {
-                type: "StringLiteral",
-                span: {
-                  start: 43,
-                  end: 56
-                },
-                value: componentName,
-                raw: `"${componentName}"`
-              }
-            }
-          ],
-          typeArguments: null
-        },
-        definite: false
+        }
       }
-    ]
+    ],
+    decorators: [],
+    span: {
+      start: 162,
+      end: 229
+    },
+    ctxt: 4,
+    body: {
+      type: "BlockStatement",
+      span: {
+        start: 194,
+        end: 229
+      },
+      ctxt: 4,
+      stmts: [
+        {
+          type: "ReturnStatement",
+          span: {
+            start: 198,
+            end: 227
+          },
+          argument: {
+            type: "CallExpression",
+            span: {
+              start: 205,
+              end: 226
+            },
+            ctxt: 0,
+            callee: {
+              type: "MemberExpression",
+              span: {
+                start: 205,
+                end: 219
+              },
+              object: {
+                type: "Identifier",
+                span: {
+                  start: 205,
+                  end: 209
+                },
+                ctxt: 1,
+                value: "JSON",
+                optional: false
+              },
+              property: {
+                type: "Identifier",
+                span: {
+                  start: 210,
+                  end: 219
+                },
+                value: "stringify"
+              }
+            },
+            arguments: [
+              {
+                spread: null,
+                expression: {
+                  type: "Identifier",
+                  span: {
+                    start: 220,
+                    end: 225
+                  },
+                  ctxt: 4,
+                  value: "props",
+                  optional: false
+                }
+              }
+            ],
+            typeArguments: null
+          }
+        }
+      ]
+    },
+    generator: false,
+    async: false,
+    typeParameters: null,
+    returnType: null
   };
 }

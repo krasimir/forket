@@ -19317,13 +19317,14 @@
     if (products.length === 0) {
       return /* @__PURE__ */ import_react2.default.createElement("div", null, "No products yet ...");
     }
-    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, children, /* @__PURE__ */ import_react2.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react2.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react2.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react2.default.createElement(ProductListeItem, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react2.default.createElement("button", { onClick: buy }, "Add to cart"));
+    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, children, /* @__PURE__ */ import_react2.default.createElement("p", { "data-id": "cooler" }, "Selected items: ", selected.length), /* @__PURE__ */ import_react2.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react2.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react2.default.createElement(ProductListeItem, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react2.default.createElement("button", { onClick: buy }, "Add to cart"));
   }
 
   // build/client/client.tsx
   console.log("Client-side code loaded");
   window.React = import_react3.default;
   window.hydrateRoot = import_client.hydrateRoot;
+  window.createRoot = import_client.createRoot;
   window.ProductsList = ProductsList;
 })();
 /*! Bundled license information:

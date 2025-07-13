@@ -1,12 +1,22 @@
-function ClientBoundary(id, componentName) {
-  return (props) => (
+function ProductsListBoundary(props) {
+  const serializedProps = serialize$Props(props);
+  return (
     <>
-      <template data-client-component data-id={id} data-component={componentName} data-props={JSON.stringify(props)} />
+      <boundary_f_1>
+        <ProductsList {...props} />
+      </boundary_f_1>
       <script
         dangerouslySetInnerHTML={{
-          __html: `!function(){if("undefined"!=typeof $FRSC)return $FRSC("T:0");"undefined"==typeof $FRSC_&&($FRSC_=[]),$FRSC_.push("T:0")}();`
+          __html: `(function () {
+  if (typeof $FRSC !== 'undefined') return $FRSC(["f_1", ${serializedProps}]);
+  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+  $FRSC_.push(["f_1", ${serializedProps}]);
+})();`
         }}
       />
     </>
   );
+}
+function serialize$Props(props) {
+  return JSON.stringify(props);
 }
