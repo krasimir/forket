@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, "..", "..", "public")));
 app.get("/api/products", productsHandler(TIMEOUT));
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(<App />, {
-    // bootstrapScripts: ["/bundle.js"],
+    bootstrapScripts: ["/bundle.js"],
     // bootstrapScripts: [],
-    // bootstrapScriptContent: replacer(),
+    bootstrapScriptContent: replacer(),
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
@@ -61,36 +61,72 @@ function processChunk(res) {
   };
 }
 function replacer() {
-  return `function FRSC_init() {
-  console.log('FRSC_init')
+  return `
+function FRSC_init() {
   if (typeof window.$FRSC === "undefined") {
-    window.$FRSC = function (id) {
-      const template = document.querySelector(\`[data-client-component][data-id="\${id}"]\`);
-      if (!template) {
-        console.warn("No client component found for id:", id);
+    window.$FRSC = function (data) {
+      const id = data[0];
+      const compoName = data[1];
+      const props = { products: data[2].products };
+      const boundary = findCommentBoundary(id);
+      if (!boundary.start || !boundary.end) {
+        console.warn("Boundary comments not found for id:", id);
         return;
       }
-      const props = JSON.parse(template.getAttribute("data-props") || "{}");
-      const componentName = template.getAttribute("data-component");
-      if (!componentName) {
-        console.warn("No component name found for id:", id);
-        return;
-      }
-      const Component = window[componentName];
-      if (typeof Component !== "function") {
-        console.warn("Component not found:", componentName);
-        return;
-      }
-      const element = React.createElement(Component, props);
-      const host = document.createElement("div");
-      const root = createRoot(host);
-      root.render(element);
-      template.replaceWith(host);
-      // window.hydrateRoot(template, element);
+      let fragment = extractDomBetween(boundary.start, boundary.end)
+      const container = document.createElement("div");
+      container.style.display = 'contents';
+      container.appendChild(fragment);
+      boundary.end.parentNode.insertBefore(container, boundary.end);
+      hydrateComponentBetweenMarkers(compoName, props, container);
+      boundary.end.parentNode.removeChild(boundary.start);
+      boundary.end.parentNode.removeChild(boundary.end);
     }
     if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
       window.$FRSC_.forEach(window.$FRSC);
     }
+  }
+  function hydrateComponentBetweenMarkers(componentName, props, container) {
+    console.log('Hydrating component', componentName);
+
+    const Component = window[componentName];
+
+    hydrateRoot(container, React.createElement(Component, props));
+  }
+  function findCommentBoundary(id) {
+    const iterator = document.createNodeIterator(
+      document.body,
+      NodeFilter.SHOW_COMMENT,
+      null
+    );
+
+    let start = null;
+    let end = null;
+
+    let currentNode;
+    while ((currentNode = iterator.nextNode())) {
+      const nodeValue = currentNode.nodeValue.trim();
+      if (nodeValue === '$' + id) {
+        start = currentNode;
+      } else if (nodeValue === '/$' + id) {
+        end = currentNode;
+        break;
+      }
+    }
+
+    return { start, end };
+  }
+  function extractDomBetween(startComment, endComment) {
+    const fragment = document.createDocumentFragment();
+    let current = startComment.nextSibling;
+
+    while (current && current !== endComment) {
+      const next = current.nextSibling;
+      fragment.appendChild(current);
+      current = next;
+    }
+
+    return fragment;
   }
 };
 window.addEventListener('load', FRSC_init)`;

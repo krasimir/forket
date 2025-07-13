@@ -9,10 +9,10 @@ type Product = {
 };
 type ProductsProps = {
   products: Product[];
-  children: any
+  children?: any
 };
 
-export default function ProductsList({ products, children }: ProductsProps) {
+export default function ProductsList({ products }: ProductsProps) {
   const [selected, setSelected] = useState<Number[]>([]);
   const addToCart = (ids: Number[]) => ({ products: ids.length });
 
@@ -34,8 +34,7 @@ export default function ProductsList({ products, children }: ProductsProps) {
   }
   return (
     <>
-      {children}
-      <p data-id="cooler">Selected items: {selected.length}</p>
+      <p>Selected items: {selected.length}</p>
       <ul>
         {products.map((product: any) => (
           <li key={product.id}>

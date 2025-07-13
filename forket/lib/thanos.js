@@ -3,7 +3,6 @@ const swc = require("@swc/core");
 const { getNode, resolveImport, printGraph } = require("./graph");
 const { ROLE } = require("./constants.js");
 const traverseNode = require("./utils/traverseNode.js");
-const CODE = new Map();
 
 const MODE = {
   CLIENT: "client",
