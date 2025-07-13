@@ -1,9 +1,12 @@
+const fs = require("fs");
 const path = require('path');
 const chalk = require("chalk");
 const { getGraphs, printGraph } = require("./lib/graph.js");
 const { copyFolder, clearPath } = require("./lib/utils/fsHelpers.js");
 const { setRoles } = require('./lib/roles.js')
 const { Thanos, MODE } = require("./lib/thanos.js");
+
+const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.js")).toString("utf8");
 
 module.exports = function (options = {}) {
   if (!options.sourceDir) {
@@ -41,4 +44,8 @@ module.exports = function (options = {}) {
     getGraphs,
     printGraph
   };
+}
+
+module.exports.client = function () {
+  return clientReplacerCode;
 }

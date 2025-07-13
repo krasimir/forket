@@ -2,84 +2,485 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 58
+    "end": 458
   },
   "body": [
     {
-      "type": "VariableDeclaration",
-      "span": {
-        "start": 1,
-        "end": 58
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 10,
+          "end": 24
+        },
+        "ctxt": 2,
+        "value": "ClientBoundary",
+        "optional": false
       },
-      "ctxt": 0,
-      "kind": "const",
       "declare": false,
-      "declarations": [
+      "params": [
         {
-          "type": "VariableDeclarator",
+          "type": "Parameter",
           "span": {
-            "start": 7,
-            "end": 57
+            "start": 25,
+            "end": 27
           },
-          "id": {
+          "decorators": [],
+          "pat": {
             "type": "Identifier",
             "span": {
-              "start": 7,
-              "end": 18
+              "start": 25,
+              "end": 27
             },
-            "ctxt": 2,
-            "value": "ProductList",
+            "ctxt": 3,
+            "value": "id",
             "optional": false,
             "typeAnnotation": null
+          }
+        },
+        {
+          "type": "Parameter",
+          "span": {
+            "start": 29,
+            "end": 42
           },
-          "init": {
-            "type": "CallExpression",
+          "decorators": [],
+          "pat": {
+            "type": "Identifier",
             "span": {
-              "start": 21,
-              "end": 57
+              "start": 29,
+              "end": 42
             },
-            "ctxt": 0,
-            "callee": {
-              "type": "Identifier",
-              "span": {
-                "start": 21,
-                "end": 35
-              },
-              "ctxt": 1,
-              "value": "ClientBoundary",
-              "optional": false
-            },
-            "arguments": [
-              {
-                "spread": null,
-                "expression": {
-                  "type": "StringLiteral",
-                  "span": {
-                    "start": 36,
-                    "end": 41
-                  },
-                  "value": "T:0",
-                  "raw": "\"T:0\""
-                }
-              },
-              {
-                "spread": null,
-                "expression": {
-                  "type": "StringLiteral",
-                  "span": {
-                    "start": 43,
-                    "end": 56
-                  },
-                  "value": "ProductList",
-                  "raw": "\"ProductList\""
-                }
-              }
-            ],
-            "typeArguments": null
-          },
-          "definite": false
+            "ctxt": 3,
+            "value": "componentName",
+            "optional": false,
+            "typeAnnotation": null
+          }
         }
-      ]
+      ],
+      "decorators": [],
+      "span": {
+        "start": 1,
+        "end": 458
+      },
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
+        "span": {
+          "start": 44,
+          "end": 458
+        },
+        "ctxt": 3,
+        "stmts": [
+          {
+            "type": "ReturnStatement",
+            "span": {
+              "start": 48,
+              "end": 456
+            },
+            "argument": {
+              "type": "ArrowFunctionExpression",
+              "span": {
+                "start": 55,
+                "end": 455
+              },
+              "ctxt": 0,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 56,
+                    "end": 61
+                  },
+                  "ctxt": 4,
+                  "value": "props",
+                  "optional": false,
+                  "typeAnnotation": null
+                }
+              ],
+              "body": {
+                "type": "ParenthesisExpression",
+                "span": {
+                  "start": 66,
+                  "end": 455
+                },
+                "expression": {
+                  "type": "JSXFragment",
+                  "span": {
+                    "start": 72,
+                    "end": 451
+                  },
+                  "opening": {
+                    "type": "JSXOpeningFragment",
+                    "span": {
+                      "start": 72,
+                      "end": 74
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 74,
+                        "end": 81
+                      },
+                      "value": "\n      ",
+                      "raw": "\n      "
+                    },
+                    {
+                      "type": "JSXElement",
+                      "span": {
+                        "start": 81,
+                        "end": 194
+                      },
+                      "opening": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 82,
+                            "end": 90
+                          },
+                          "ctxt": 1,
+                          "value": "template",
+                          "optional": false
+                        },
+                        "span": {
+                          "start": 81,
+                          "end": 194
+                        },
+                        "attributes": [
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 91,
+                              "end": 112
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 91,
+                                "end": 112
+                              },
+                              "value": "data-client-component"
+                            },
+                            "value": null
+                          },
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 113,
+                              "end": 125
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 113,
+                                "end": 120
+                              },
+                              "value": "data-id"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "span": {
+                                "start": 121,
+                                "end": 125
+                              },
+                              "expression": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 122,
+                                  "end": 124
+                                },
+                                "ctxt": 3,
+                                "value": "id",
+                                "optional": false
+                              }
+                            }
+                          },
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 126,
+                              "end": 156
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 126,
+                                "end": 140
+                              },
+                              "value": "data-component"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "span": {
+                                "start": 141,
+                                "end": 156
+                              },
+                              "expression": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 142,
+                                  "end": 155
+                                },
+                                "ctxt": 3,
+                                "value": "componentName",
+                                "optional": false
+                              }
+                            }
+                          },
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 157,
+                              "end": 191
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 157,
+                                "end": 167
+                              },
+                              "value": "data-props"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "span": {
+                                "start": 168,
+                                "end": 191
+                              },
+                              "expression": {
+                                "type": "CallExpression",
+                                "span": {
+                                  "start": 169,
+                                  "end": 190
+                                },
+                                "ctxt": 0,
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "span": {
+                                    "start": 169,
+                                    "end": 183
+                                  },
+                                  "object": {
+                                    "type": "Identifier",
+                                    "span": {
+                                      "start": 169,
+                                      "end": 173
+                                    },
+                                    "ctxt": 1,
+                                    "value": "JSON",
+                                    "optional": false
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "span": {
+                                      "start": 174,
+                                      "end": 183
+                                    },
+                                    "value": "stringify"
+                                  }
+                                },
+                                "arguments": [
+                                  {
+                                    "spread": null,
+                                    "expression": {
+                                      "type": "Identifier",
+                                      "span": {
+                                        "start": 184,
+                                        "end": 189
+                                      },
+                                      "ctxt": 4,
+                                      "value": "props",
+                                      "optional": false
+                                    }
+                                  }
+                                ],
+                                "typeArguments": null
+                              }
+                            }
+                          }
+                        ],
+                        "selfClosing": true,
+                        "typeArguments": null
+                      },
+                      "children": [],
+                      "closing": null
+                    },
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 194,
+                        "end": 201
+                      },
+                      "value": "\n      ",
+                      "raw": "\n      "
+                    },
+                    {
+                      "type": "JSXElement",
+                      "span": {
+                        "start": 201,
+                        "end": 443
+                      },
+                      "opening": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 202,
+                            "end": 208
+                          },
+                          "ctxt": 1,
+                          "value": "script",
+                          "optional": false
+                        },
+                        "span": {
+                          "start": 201,
+                          "end": 443
+                        },
+                        "attributes": [
+                          {
+                            "type": "JSXAttribute",
+                            "span": {
+                              "start": 217,
+                              "end": 434
+                            },
+                            "name": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 217,
+                                "end": 240
+                              },
+                              "value": "dangerouslySetInnerHTML"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "span": {
+                                "start": 241,
+                                "end": 434
+                              },
+                              "expression": {
+                                "type": "ObjectExpression",
+                                "span": {
+                                  "start": 242,
+                                  "end": 433
+                                },
+                                "properties": [
+                                  {
+                                    "type": "KeyValueProperty",
+                                    "key": {
+                                      "type": "Identifier",
+                                      "span": {
+                                        "start": 254,
+                                        "end": 260
+                                      },
+                                      "value": "__html"
+                                    },
+                                    "value": {
+                                      "type": "TemplateLiteral",
+                                      "span": {
+                                        "start": 262,
+                                        "end": 423
+                                      },
+                                      "expressions": [
+                                        {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 330,
+                                            "end": 332
+                                          },
+                                          "ctxt": 3,
+                                          "value": "id",
+                                          "optional": false
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 408,
+                                            "end": 410
+                                          },
+                                          "ctxt": 3,
+                                          "value": "id",
+                                          "optional": false
+                                        }
+                                      ],
+                                      "quasis": [
+                                        {
+                                          "type": "TemplateElement",
+                                          "span": {
+                                            "start": 263,
+                                            "end": 328
+                                          },
+                                          "tail": false,
+                                          "cooked": "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC(\"",
+                                          "raw": "(function () {\n  if (typeof $FRSC !== 'undefined') return $FRSC(\""
+                                        },
+                                        {
+                                          "type": "TemplateElement",
+                                          "span": {
+                                            "start": 333,
+                                            "end": 406
+                                          },
+                                          "tail": false,
+                                          "cooked": "\");\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push(\"",
+                                          "raw": "\");\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push(\""
+                                        },
+                                        {
+                                          "type": "TemplateElement",
+                                          "span": {
+                                            "start": 411,
+                                            "end": 422
+                                          },
+                                          "tail": true,
+                                          "cooked": "\");\n  })();",
+                                          "raw": "\");\n  })();"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "selfClosing": true,
+                        "typeArguments": null
+                      },
+                      "children": [],
+                      "closing": null
+                    },
+                    {
+                      "type": "JSXText",
+                      "span": {
+                        "start": 443,
+                        "end": 448
+                      },
+                      "value": "\n    ",
+                      "raw": "\n    "
+                    }
+                  ],
+                  "closing": {
+                    "type": "JSXClosingFragment",
+                    "span": {
+                      "start": 448,
+                      "end": 451
+                    }
+                  }
+                }
+              },
+              "async": false,
+              "generator": false,
+              "typeParameters": null,
+              "returnType": null
+            }
+          }
+        ]
+      },
+      "generator": false,
+      "async": false,
+      "typeParameters": null,
+      "returnType": null
     }
   ],
   "interpreter": null
