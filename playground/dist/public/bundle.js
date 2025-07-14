@@ -19299,7 +19299,7 @@
   }
 
   // build/client/components/ProductsList.tsx
-  function ProductsList({ products }) {
+  function ProductsList({ products, children }) {
     const [selected, setSelected] = (0, import_react2.useState)([]);
     const addToCart = (ids) => ({ products: ids.length });
     function itemClicked(product) {
@@ -19317,7 +19317,7 @@
     if (products.length === 0) {
       return /* @__PURE__ */ import_react2.default.createElement("div", null, "No products yet ...");
     }
-    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react2.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react2.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react2.default.createElement(ProductListeItem, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react2.default.createElement("button", { onClick: buy }, "Add to cart"));
+    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, children, /* @__PURE__ */ import_react2.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react2.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react2.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react2.default.createElement(ProductListeItem, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react2.default.createElement("button", { onClick: buy }, "Add to cart"));
   }
 
   // build/client/client.tsx

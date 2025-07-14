@@ -80,7 +80,7 @@ function FRSC_init() {
     window.$FRSC = function (data) {
       const id = data[0];
       const compoName = data[1];
-      const props = { products: data[2].products };
+      const props = data[2];
       const boundary = findCommentBoundary(id);
       if (!boundary.start || !boundary.end) {
         console.warn("Boundary comments not found for id:", id);
