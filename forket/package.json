@@ -4,8 +4,10 @@
   "description": "𐂐",
   "main": "index.js",
   "scripts": {
+    "build": "npm run generate-ast-helpers",
     "test": "node ./tests/tests.js",
-    "playground": "node ./playground/playground.js"
+    "playground": "node ./playground/playground.js",
+    "generate-ast-helpers": "node ./lib/ast/generate.js"
   },
   "repository": {
     "type": "git",
