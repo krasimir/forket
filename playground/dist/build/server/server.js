@@ -54,7 +54,8 @@ server.listen(port, () => {
 });
 function processChunk(res) {
   function replaceAllBoundaryTags(html) {
-    return html.replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`).replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`);
+    html = html.replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`).replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`).replace(/<boundary_children_f_(\d+)>/, (_, n) => `<script type="forket/children" id="f_${n}_children">`).replace(/<\/boundary_children_f_(\d+)>/, (_, n) => `</script>`);
+    return html;
   }
   const originalWrite = res.write;
   res.write = (chunk) => {
@@ -81,11 +82,23 @@ function FRSC_init() {
       const id = data[0];
       const compoName = data[1];
       const props = data[2];
+      console.log('Trying to hydrate component', compoName, id);
       const boundary = findCommentBoundary(id);
       if (!boundary.start || !boundary.end) {
         console.warn("Boundary comments not found for id:", id);
         return;
       }
+      // const childrenProp = document.querySelector("#" + id + "_children");
+      // if (childrenProp) {
+      //   const childrenHTML = childrenProp.textContent;
+      //   props.children = React.createElement(
+      //     React.Fragment,
+      //     {
+      //       dangerouslySetInnerHTML: { __html: childrenHTML }
+      //     }
+      //   );
+      //   childrenProp.parentNode.removeChild(childrenProp);
+      // }
       let fragment = extractDomBetween(boundary.start, boundary.end)
       const container = document.createElement("div");
       container.style.display = 'contents';
@@ -100,7 +113,6 @@ function FRSC_init() {
     }
   }
   function hydrateComponentBetweenMarkers(componentName, props, container) {
-    console.log('Hydrating component', componentName);
 
     const Component = window[componentName];
 

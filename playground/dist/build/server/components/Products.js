@@ -61,7 +61,7 @@ function serialize$Props(props) {
 function ProductsListBoundary(props) {
   const serializedProps = JSON.stringify(serialize$Props(props));
   const children = props.children || [];
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children: /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children) })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
   const serializedProps = ${serializedProps};
   if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList", serializedProps]);

@@ -10,6 +10,7 @@ const FILES = [
       let json = JSON.stringify(ast.body[0], null, 2);
       json = json.replace(/"\ProductsListBoundary"/g, 'componentName + "Boundary"');
       json = json.replace(/"boundary_f_1"/g, '"boundary_" + id');
+      json = json.replace(/"boundary_children_f_1"/g, '"boundary_children_" + id');
       json = json.replace(/"value": "ProductsList"/g, '"value": componentName');
       json = json.replace(/\\"f_1\\"/g, '\\"" + id + "\\"');
       json = json.replace(/\\"ProductsList\\"/g, '\\"" + componentName + "\\"');
