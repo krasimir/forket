@@ -1,16 +1,16 @@
-import React from 'react';
-import { getProducts } from "./db";
-import ProductsList from "./ProductsList";
+import React from "react";
+import { getProducts } from "./components/db";
+import ProductsList from "./components/ProductsList";
 
 const CREDENTIALS = "secret";
-console.log(CREDENTIALS)
+console.log(CREDENTIALS);
 
 export default async function Products() {
   const { products } = await getProducts();
 
   return (
     <ProductsList products={products}>
-      <ListOfProducts n={products.length}/>
+      <ListOfProducts n={products.length} />
     </ProductsList>
   );
 }

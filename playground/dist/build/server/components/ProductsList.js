@@ -33,7 +33,7 @@ __export(ProductsList_exports, {
 module.exports = __toCommonJS(ProductsList_exports);
 var import_react = __toESM(require("react"));
 var import_ProductListItem = __toESM(require("./ProductListItem"));
-function ProductsList({ products }) {
+function ProductsList({ products, children }) {
   const [selected, setSelected] = (0, import_react.useState)([]);
   const addToCart = (ids) => ({ products: ids.length });
   function itemClicked(product) {
@@ -49,7 +49,7 @@ function ProductsList({ products }) {
     alert(`Added ${products2} items to cart`);
   }
   if (products.length === 0) {
-    return null;
+    return /* @__PURE__ */ import_react.default.createElement("div", null, "No products yet ...");
   }
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement(import_ProductListItem.default, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, children, /* @__PURE__ */ import_react.default.createElement("p", null, "Selected items: ", selected.length), /* @__PURE__ */ import_react.default.createElement("ul", null, products.map((product) => /* @__PURE__ */ import_react.default.createElement("li", { key: product.id }, /* @__PURE__ */ import_react.default.createElement(import_ProductListItem.default, { title: product.title, onClick: (e) => itemClicked(product) })))), /* @__PURE__ */ import_react.default.createElement("button", { onClick: buy }, "Add to cart"));
 }
