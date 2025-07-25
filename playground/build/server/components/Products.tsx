@@ -31,7 +31,8 @@ function ProductsListBoundary(props) {
     const children = props.children || [];
     return (<>
       <boundary_f_0>
-        <ProductsList {...props} children={<boundary_children_f_0>{children}</boundary_children_f_0>}/>
+        <boundary_children_f_0>{children}</boundary_children_f_0>
+        <ProductsList {...props} children={children}/>
       </boundary_f_0>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {

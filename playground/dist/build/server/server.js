@@ -88,23 +88,18 @@ function FRSC_init() {
         console.warn("Boundary comments not found for id:", id);
         return;
       }
-      // const childrenProp = document.querySelector("#" + id + "_children");
-      // if (childrenProp) {
-      //   const childrenHTML = childrenProp.textContent;
-      //   props.children = React.createElement(
-      //     React.Fragment,
-      //     {
-      //       dangerouslySetInnerHTML: { __html: childrenHTML }
-      //     }
-      //   );
-      //   childrenProp.parentNode.removeChild(childrenProp);
-      // }
+      const childrenProp = document.querySelector("#" + id + "_children");
+      let childrenElements = null;
+      if (childrenProp) {
+        const childrenHTML = childrenProp.textContent;
+        childrenElements = htmlToReactElements(childrenHTML);
+      }
       let fragment = extractDomBetween(boundary.start, boundary.end)
       const container = document.createElement("div");
       container.style.display = 'contents';
       container.appendChild(fragment);
       boundary.end.parentNode.insertBefore(container, boundary.end);
-      hydrateComponentBetweenMarkers(compoName, props, container);
+      hydrateComponentBetweenMarkers(compoName, props, container, childrenElements);
       boundary.end.parentNode.removeChild(boundary.start);
       boundary.end.parentNode.removeChild(boundary.end);
     }
@@ -112,11 +107,9 @@ function FRSC_init() {
       window.$FRSC_.forEach(window.$FRSC);
     }
   }
-  function hydrateComponentBetweenMarkers(componentName, props, container) {
-
+  function hydrateComponentBetweenMarkers(componentName, props, container, children) {
     const Component = window[componentName];
-
-    hydrateRoot(container, React.createElement(Component, props));
+    hydrateRoot(container, React.createElement(Component, props, children));
   }
   function findCommentBoundary(id) {
     const iterator = document.createNodeIterator(
@@ -152,6 +145,38 @@ function FRSC_init() {
     }
 
     return fragment;
+  }
+  function htmlToReactElements(html) {
+    const container = document.createElement('template');
+    container.innerHTML = html.trim();
+
+    const nodes = Array.from(container.content.childNodes);
+
+    return nodes.map((node, index) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const tag = node.tagName.toLowerCase();
+
+        const props = { key: index };
+
+        // Extract attributes
+        for (const attr of node.attributes) {
+          props[attr.name] = attr.value;
+        }
+
+        // Inner content is preserved as raw HTML
+        props.dangerouslySetInnerHTML = { __html: node.innerHTML };
+
+        return React.createElement(tag, props);
+      }
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent.trim();
+        return text ? text : null;
+      }
+
+      // Skip comment nodes
+      return null;
+    }).filter(Boolean);
   }
 };
 window.addEventListener('load', FRSC_init)`;

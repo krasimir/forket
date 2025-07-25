@@ -4,9 +4,8 @@ function ProductsListBoundary(props) {
   return (
     <>
       <boundary_f_1>
-        <ProductsList {...props} children={
-          <boundary_children_f_1>{children}</boundary_children_f_1>
-        } />
+        <boundary_children_f_1>{children}</boundary_children_f_1>
+        <ProductsList {...props} children={children} />
       </boundary_f_1>
       <script
         dangerouslySetInnerHTML={{
