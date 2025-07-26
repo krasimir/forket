@@ -1,4 +1,4 @@
-function serialize$Props(props) {
+function forketSerializeProps(props) {
   function isValidElement(obj) {
     const keys = Object.keys(obj);
     return (
@@ -12,7 +12,7 @@ function serialize$Props(props) {
   if (props == null || typeof props !== "object") return props;
 
   if (Array.isArray(props)) {
-    return props.map(serialize$Props);
+    return props.map(forketSerializeProps);
   }
   if (isValidElement(props)) {
     return false; // Do not serialize React elements
@@ -24,9 +24,9 @@ function serialize$Props(props) {
     if (typeof value === "function") {
       continue;
     }
-    const serializedProp = serialize$Props(value);
+    const serializedProp = forketSerializeProps(value);
     if (serializedProp !== false) {
-      serialized[key] = serialize$Props(value);
+      serialized[key] = forketSerializeProps(value);
     }
   }
 

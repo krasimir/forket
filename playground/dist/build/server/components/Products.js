@@ -33,14 +33,14 @@ module.exports = __toCommonJS(Products_exports);
 var import_react = __toESM(require("react"));
 var import_db = require("./db");
 var import_ProductsList = __toESM(require("./ProductsList"));
-function serialize$Props(props) {
+function forketSerializeProps(props) {
   function isValidElement(obj) {
     const keys = Object.keys(obj);
     return typeof obj === "object" && obj !== null && keys.includes("_owner") && keys.includes("_store") && keys.includes("props");
   }
   if (props == null || typeof props !== "object") return props;
   if (Array.isArray(props)) {
-    return props.map(serialize$Props);
+    return props.map(forketSerializeProps);
   }
   if (isValidElement(props)) {
     return false;
@@ -51,17 +51,17 @@ function serialize$Props(props) {
     if (typeof value === "function") {
       continue;
     }
-    const serializedProp = serialize$Props(value);
+    const serializedProp = forketSerializeProps(value);
     if (serializedProp !== false) {
-      serialized[key] = serialize$Props(value);
+      serialized[key] = forketSerializeProps(value);
     }
   }
   return serialized;
 }
 function ProductsListBoundary(props) {
-  const serializedProps = JSON.stringify(serialize$Props(props));
+  const serializedProps = JSON.stringify(forketSerializeProps(props));
   const children = props.children || [];
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
   const serializedProps = ${serializedProps};
   if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList", serializedProps]);

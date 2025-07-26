@@ -1,5 +1,5 @@
 function ProductsListBoundary(props) {
-  const serializedProps = serialize$Props(props);
+  const serializedProps = forketSerializeProps(props);
   return (
     <>
       <boundary_f_1>
@@ -17,6 +17,6 @@ function ProductsListBoundary(props) {
     </>
   );
 }
-function serialize$Props(props) {
+function forketSerializeProps(props) {
   return JSON.stringify(props);
 }

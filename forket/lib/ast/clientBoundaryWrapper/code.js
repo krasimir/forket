@@ -1,10 +1,10 @@
-function ProductsListBoundary(props) {
-  const serializedProps = JSON.stringify(serialize$Props(props));
+function ComponentName(props) {
+  const serializedProps = JSON.stringify(forketSerializeProps(props));
   const children = props.children || [];
   return (
     <>
+      <boundary_children_f_1>{children}</boundary_children_f_1>
       <boundary_f_1>
-        <boundary_children_f_1>{children}</boundary_children_f_1>
         <ProductsList {...props} children={children} />
       </boundary_f_1>
       <script

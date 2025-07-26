@@ -6,8 +6,8 @@ module.exports = function (id, componentName) {
   "identifier": {
     "type": "Identifier",
     "span": {
-      "start": 10,
-      "end": 30
+      "start": 847,
+      "end": 860
     },
     "ctxt": 2,
     "value": componentName + "Boundary",
@@ -18,15 +18,15 @@ module.exports = function (id, componentName) {
     {
       "type": "Parameter",
       "span": {
-        "start": 31,
-        "end": 36
+        "start": 861,
+        "end": 866
       },
       "decorators": [],
       "pat": {
         "type": "Identifier",
         "span": {
-          "start": 31,
-          "end": 36
+          "start": 861,
+          "end": 866
         },
         "ctxt": 3,
         "value": "props",
@@ -37,23 +37,23 @@ module.exports = function (id, componentName) {
   ],
   "decorators": [],
   "span": {
-    "start": 1,
-    "end": 703
+    "start": 838,
+    "end": 1536
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
-      "start": 38,
-      "end": 703
+      "start": 868,
+      "end": 1536
     },
     "ctxt": 3,
     "stmts": [
       {
         "type": "VariableDeclaration",
         "span": {
-          "start": 42,
-          "end": 105
+          "start": 872,
+          "end": 940
         },
         "ctxt": 0,
         "kind": "const",
@@ -62,14 +62,14 @@ module.exports = function (id, componentName) {
           {
             "type": "VariableDeclarator",
             "span": {
-              "start": 48,
-              "end": 104
+              "start": 878,
+              "end": 939
             },
             "id": {
               "type": "Identifier",
               "span": {
-                "start": 48,
-                "end": 63
+                "start": 878,
+                "end": 893
               },
               "ctxt": 3,
               "value": "serializedProps",
@@ -79,21 +79,21 @@ module.exports = function (id, componentName) {
             "init": {
               "type": "CallExpression",
               "span": {
-                "start": 66,
-                "end": 104
+                "start": 896,
+                "end": 939
               },
               "ctxt": 0,
               "callee": {
                 "type": "MemberExpression",
                 "span": {
-                  "start": 66,
-                  "end": 80
+                  "start": 896,
+                  "end": 910
                 },
                 "object": {
                   "type": "Identifier",
                   "span": {
-                    "start": 66,
-                    "end": 70
+                    "start": 896,
+                    "end": 900
                   },
                   "ctxt": 1,
                   "value": "JSON",
@@ -102,8 +102,8 @@ module.exports = function (id, componentName) {
                 "property": {
                   "type": "Identifier",
                   "span": {
-                    "start": 71,
-                    "end": 80
+                    "start": 901,
+                    "end": 910
                   },
                   "value": "stringify"
                 }
@@ -114,18 +114,18 @@ module.exports = function (id, componentName) {
                   "expression": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 81,
-                      "end": 103
+                      "start": 911,
+                      "end": 938
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "Identifier",
                       "span": {
-                        "start": 81,
-                        "end": 96
+                        "start": 911,
+                        "end": 931
                       },
                       "ctxt": 1,
-                      "value": "serialize$Props",
+                      "value": "forketSerializeProps",
                       "optional": false
                     },
                     "arguments": [
@@ -134,8 +134,8 @@ module.exports = function (id, componentName) {
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 97,
-                            "end": 102
+                            "start": 932,
+                            "end": 937
                           },
                           "ctxt": 3,
                           "value": "props",
@@ -156,8 +156,8 @@ module.exports = function (id, componentName) {
       {
         "type": "VariableDeclaration",
         "span": {
-          "start": 108,
-          "end": 146
+          "start": 943,
+          "end": 981
         },
         "ctxt": 0,
         "kind": "const",
@@ -166,14 +166,14 @@ module.exports = function (id, componentName) {
           {
             "type": "VariableDeclarator",
             "span": {
-              "start": 114,
-              "end": 145
+              "start": 949,
+              "end": 980
             },
             "id": {
               "type": "Identifier",
               "span": {
-                "start": 114,
-                "end": 122
+                "start": 949,
+                "end": 957
               },
               "ctxt": 3,
               "value": "children",
@@ -183,21 +183,21 @@ module.exports = function (id, componentName) {
             "init": {
               "type": "BinaryExpression",
               "span": {
-                "start": 125,
-                "end": 145
+                "start": 960,
+                "end": 980
               },
               "operator": "||",
               "left": {
                 "type": "MemberExpression",
                 "span": {
-                  "start": 125,
-                  "end": 139
+                  "start": 960,
+                  "end": 974
                 },
                 "object": {
                   "type": "Identifier",
                   "span": {
-                    "start": 125,
-                    "end": 130
+                    "start": 960,
+                    "end": 965
                   },
                   "ctxt": 3,
                   "value": "props",
@@ -206,8 +206,8 @@ module.exports = function (id, componentName) {
                 "property": {
                   "type": "Identifier",
                   "span": {
-                    "start": 131,
-                    "end": 139
+                    "start": 966,
+                    "end": 974
                   },
                   "value": "children"
                 }
@@ -215,8 +215,8 @@ module.exports = function (id, componentName) {
               "right": {
                 "type": "ArrayExpression",
                 "span": {
-                  "start": 143,
-                  "end": 145
+                  "start": 978,
+                  "end": 980
                 },
                 "elements": []
               }
@@ -228,34 +228,34 @@ module.exports = function (id, componentName) {
       {
         "type": "ReturnStatement",
         "span": {
-          "start": 149,
-          "end": 701
+          "start": 984,
+          "end": 1534
         },
         "argument": {
           "type": "ParenthesisExpression",
           "span": {
-            "start": 156,
-            "end": 700
+            "start": 991,
+            "end": 1533
           },
           "expression": {
             "type": "JSXFragment",
             "span": {
-              "start": 162,
-              "end": 696
+              "start": 997,
+              "end": 1529
             },
             "opening": {
               "type": "JSXOpeningFragment",
               "span": {
-                "start": 162,
-                "end": 164
+                "start": 997,
+                "end": 999
               }
             },
             "children": [
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 164,
-                  "end": 171
+                  "start": 999,
+                  "end": 1006
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -263,24 +263,96 @@ module.exports = function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 171,
-                  "end": 329
+                  "start": 1006,
+                  "end": 1063
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 172,
-                      "end": 184
+                      "start": 1007,
+                      "end": 1028
+                    },
+                    "ctxt": 1,
+                    "value": "boundary_children_" + id,
+                    "optional": false
+                  },
+                  "span": {
+                    "start": 1006,
+                    "end": 1029
+                  },
+                  "attributes": [],
+                  "selfClosing": false,
+                  "typeArguments": null
+                },
+                "children": [
+                  {
+                    "type": "JSXExpressionContainer",
+                    "span": {
+                      "start": 1029,
+                      "end": 1039
+                    },
+                    "expression": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 1030,
+                        "end": 1038
+                      },
+                      "ctxt": 3,
+                      "value": "children",
+                      "optional": false
+                    }
+                  }
+                ],
+                "closing": {
+                  "type": "JSXClosingElement",
+                  "span": {
+                    "start": 1039,
+                    "end": 1063
+                  },
+                  "name": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 1041,
+                      "end": 1062
+                    },
+                    "ctxt": 1,
+                    "value": "boundary_children_" + id,
+                    "optional": false
+                  }
+                }
+              },
+              {
+                "type": "JSXText",
+                "span": {
+                  "start": 1063,
+                  "end": 1070
+                },
+                "value": "\n      ",
+                "raw": "\n      "
+              },
+              {
+                "type": "JSXElement",
+                "span": {
+                  "start": 1070,
+                  "end": 1162
+                },
+                "opening": {
+                  "type": "JSXOpeningElement",
+                  "name": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 1071,
+                      "end": 1083
                     },
                     "ctxt": 1,
                     "value": "boundary_" + id,
                     "optional": false
                   },
                   "span": {
-                    "start": 171,
-                    "end": 185
+                    "start": 1070,
+                    "end": 1084
                   },
                   "attributes": [],
                   "selfClosing": false,
@@ -290,8 +362,8 @@ module.exports = function (id, componentName) {
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 185,
-                      "end": 194
+                      "start": 1084,
+                      "end": 1093
                     },
                     "value": "\n        ",
                     "raw": "\n        "
@@ -299,109 +371,37 @@ module.exports = function (id, componentName) {
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 194,
-                      "end": 251
+                      "start": 1093,
+                      "end": 1140
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 195,
-                          "end": 216
-                        },
-                        "ctxt": 1,
-                        "value": "boundary_children_" + id,
-                        "optional": false
-                      },
-                      "span": {
-                        "start": 194,
-                        "end": 217
-                      },
-                      "attributes": [],
-                      "selfClosing": false,
-                      "typeArguments": null
-                    },
-                    "children": [
-                      {
-                        "type": "JSXExpressionContainer",
-                        "span": {
-                          "start": 217,
-                          "end": 227
-                        },
-                        "expression": {
-                          "type": "Identifier",
-                          "span": {
-                            "start": 218,
-                            "end": 226
-                          },
-                          "ctxt": 3,
-                          "value": "children",
-                          "optional": false
-                        }
-                      }
-                    ],
-                    "closing": {
-                      "type": "JSXClosingElement",
-                      "span": {
-                        "start": 227,
-                        "end": 251
-                      },
-                      "name": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 229,
-                          "end": 250
-                        },
-                        "ctxt": 1,
-                        "value": "boundary_children_" + id,
-                        "optional": false
-                      }
-                    }
-                  },
-                  {
-                    "type": "JSXText",
-                    "span": {
-                      "start": 251,
-                      "end": 260
-                    },
-                    "value": "\n        ",
-                    "raw": "\n        "
-                  },
-                  {
-                    "type": "JSXElement",
-                    "span": {
-                      "start": 260,
-                      "end": 307
-                    },
-                    "opening": {
-                      "type": "JSXOpeningElement",
-                      "name": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 261,
-                          "end": 273
+                          "start": 1094,
+                          "end": 1106
                         },
                         "ctxt": 1,
                         "value": componentName,
                         "optional": false
                       },
                       "span": {
-                        "start": 260,
-                        "end": 307
+                        "start": 1093,
+                        "end": 1140
                       },
                       "attributes": [
                         {
                           "type": "SpreadElement",
                           "spread": {
-                            "start": 275,
-                            "end": 278
+                            "start": 1108,
+                            "end": 1111
                           },
                           "arguments": {
                             "type": "Identifier",
                             "span": {
-                              "start": 278,
-                              "end": 283
+                              "start": 1111,
+                              "end": 1116
                             },
                             "ctxt": 3,
                             "value": "props",
@@ -411,28 +411,28 @@ module.exports = function (id, componentName) {
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 285,
-                            "end": 304
+                            "start": 1118,
+                            "end": 1137
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 285,
-                              "end": 293
+                              "start": 1118,
+                              "end": 1126
                             },
                             "value": "children"
                           },
                           "value": {
                             "type": "JSXExpressionContainer",
                             "span": {
-                              "start": 294,
-                              "end": 304
+                              "start": 1127,
+                              "end": 1137
                             },
                             "expression": {
                               "type": "Identifier",
                               "span": {
-                                "start": 295,
-                                "end": 303
+                                "start": 1128,
+                                "end": 1136
                               },
                               "ctxt": 3,
                               "value": "children",
@@ -450,8 +450,8 @@ module.exports = function (id, componentName) {
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 307,
-                      "end": 314
+                      "start": 1140,
+                      "end": 1147
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -460,14 +460,14 @@ module.exports = function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 314,
-                    "end": 329
+                    "start": 1147,
+                    "end": 1162
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 316,
-                      "end": 328
+                      "start": 1149,
+                      "end": 1161
                     },
                     "ctxt": 1,
                     "value": "boundary_" + id,
@@ -478,8 +478,8 @@ module.exports = function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 329,
-                  "end": 336
+                  "start": 1162,
+                  "end": 1169
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -487,51 +487,51 @@ module.exports = function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 336,
-                  "end": 688
+                  "start": 1169,
+                  "end": 1521
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 337,
-                      "end": 343
+                      "start": 1170,
+                      "end": 1176
                     },
                     "ctxt": 1,
                     "value": "script",
                     "optional": false
                   },
                   "span": {
-                    "start": 336,
-                    "end": 688
+                    "start": 1169,
+                    "end": 1521
                   },
                   "attributes": [
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 352,
-                        "end": 679
+                        "start": 1185,
+                        "end": 1512
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 352,
-                          "end": 375
+                          "start": 1185,
+                          "end": 1208
                         },
                         "value": "dangerouslySetInnerHTML"
                       },
                       "value": {
                         "type": "JSXExpressionContainer",
                         "span": {
-                          "start": 376,
-                          "end": 679
+                          "start": 1209,
+                          "end": 1512
                         },
                         "expression": {
                           "type": "ObjectExpression",
                           "span": {
-                            "start": 377,
-                            "end": 678
+                            "start": 1210,
+                            "end": 1511
                           },
                           "properties": [
                             {
@@ -539,23 +539,23 @@ module.exports = function (id, componentName) {
                               "key": {
                                 "type": "Identifier",
                                 "span": {
-                                  "start": 389,
-                                  "end": 395
+                                  "start": 1222,
+                                  "end": 1228
                                 },
                                 "value": "__html"
                               },
                               "value": {
                                 "type": "TemplateLiteral",
                                 "span": {
-                                  "start": 397,
-                                  "end": 668
+                                  "start": 1230,
+                                  "end": 1501
                                 },
                                 "expressions": [
                                   {
                                     "type": "Identifier",
                                     "span": {
-                                      "start": 441,
-                                      "end": 456
+                                      "start": 1274,
+                                      "end": 1289
                                     },
                                     "ctxt": 3,
                                     "value": "serializedProps",
@@ -566,8 +566,8 @@ module.exports = function (id, componentName) {
                                   {
                                     "type": "TemplateElement",
                                     "span": {
-                                      "start": 398,
-                                      "end": 439
+                                      "start": 1231,
+                                      "end": 1272
                                     },
                                     "tail": false,
                                     "cooked": "(function () {\n  const serializedProps = ",
@@ -576,8 +576,8 @@ module.exports = function (id, componentName) {
                                   {
                                     "type": "TemplateElement",
                                     "span": {
-                                      "start": 457,
-                                      "end": 667
+                                      "start": 1290,
+                                      "end": 1500
                                     },
                                     "tail": true,
                                     "cooked": ";\n  if (typeof $FRSC !== 'undefined') return $FRSC([\"" + id + "\", \"" + componentName + "\", serializedProps]);\n  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n  $FRSC_.push([\"" + id + "\", \"" + componentName + "\", serializedProps]);\n})();",
@@ -600,8 +600,8 @@ module.exports = function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 688,
-                  "end": 693
+                  "start": 1521,
+                  "end": 1526
                 },
                 "value": "\n    ",
                 "raw": "\n    "
@@ -610,8 +610,8 @@ module.exports = function (id, componentName) {
             "closing": {
               "type": "JSXClosingFragment",
               "span": {
-                "start": 693,
-                "end": 696
+                "start": 1526,
+                "end": 1529
               }
             }
           }

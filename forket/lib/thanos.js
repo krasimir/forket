@@ -38,8 +38,6 @@ function Thanos() {
         if (node) {
           if (node.role === ROLE.CLIENT) {
             return content;
-          } else {
-            // return await transformForClientUsage(graph, node);
           }
         }
       }
@@ -91,114 +89,6 @@ function Thanos() {
     }
 
     // Generating the new code
-    const transformed = await swc.print(node.ast, {
-      minify: false
-    });
-    return transformed.code;
-  }
-  async function transformForClientUsage(graph, node) {
-    console.log("------->", node.file);
-
-    /* **** Keeping the imports that are targetting files into the graph **** */
-    let importsToKeep = [];
-    for (let i = 0; i < node.imports.length; i++) {
-      const imp = node.imports[i];
-      try {
-        const resolved = await resolveImport(node.file, imp.source);
-        const importedNode = getNode(graph, resolved);
-        if (importedNode) {
-          importsToKeep.push(imp);
-        }
-      } catch (err) {
-        // console.log(`ignoring ${imp.source} error: ${err.message}`);
-      }
-    }
-    importsToKeep = importsToKeep.map((imp) => imp.source);
-
-    /* **** Transforming the AST **** */
-
-    const nodesToPrepend = [];
-    let containsJSX = false;
-    let directive = null;
-
-    node.ast.body = node.ast.body
-      .map((n, index) => {
-        if (n.type === "ExpressionStatement" && n?.expression?.type === "StringLiteral") {
-          directive = n;
-        } else if (n.type === "ImportDeclaration" && importsToKeep.includes(n?.source?.value)) {
-          return n;
-        } else if (n.type === "ExportDefaultDeclaration" && containsExportsThatHasJSX(n)) {
-          if (n?.decl?.type === "FunctionExpression") {
-            n.decl = getFunctionExpressionTemplate(n?.decl?.identifier?.value, getId());
-            containsJSX = true;
-            return n;
-          }
-          return false;
-        } else if (n.type === "ExportDefaultExpression" && n?.expression?.type === "Identifier") {
-          let keepit = false;
-          function FunctionDeclaration(_n) {
-            if (_n?.identifier?.value === n?.expression?.value && containsExportsThatHasJSX(_n)) {
-              keepit = true;
-              containsJSX = true;
-              nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.identifier?.value, getId()) });
-            }
-          }
-          function VariableDeclarator(_n) {
-            if (
-              _n?.id?.type === "Identifier" &&
-              _n?.id?.value === n?.expression?.value &&
-              (_n?.init?.type === "FunctionExpression" || _n?.init?.type === "ArrowFunctionExpression") &&
-              containsExportsThatHasJSX(_n?.init)
-            ) {
-              keepit = true;
-              containsJSX = true;
-              nodesToPrepend.push({ index, node: getFunctionDeclarationTemplate(_n?.id?.value, getId()) });
-            }
-          }
-          traverseNode(node.ast, {
-            FunctionDeclaration,
-            VariableDeclarator
-          });
-          if (keepit) {
-            return n;
-          }
-        } else if (n.type === "ExportDeclaration" && containsExportsThatHasJSX(n)) {
-          if (n?.declaration?.type === "FunctionDeclaration") {
-            containsJSX = true;
-            n.declaration = getFunctionDeclarationTemplate(n?.declaration?.identifier?.value, getId());
-            return n;
-          } else if (n?.declaration?.type === "VariableDeclaration") {
-            let transformed = false;
-            function replacer(n) {
-              containsJSX = true;
-              n.body = getReturnTemplateStatement(getId());
-              transformed = true;
-            }
-            traverseNode(n.declaration, {
-              FunctionExpression: replacer,
-              ArrowFunctionExpression: replacer
-            });
-            if (transformed) {
-              return n;
-            }
-          }
-          return false;
-        }
-        return false;
-      })
-      .filter(Boolean);
-    
-    nodesToPrepend.forEach(({ index, node: n }) => {
-      node.ast.body.splice(index - 1, 0, n);
-    });
-    if (containsJSX) {
-      node.ast.body = [getReactInTheScope(), ...node.ast.body];
-    }
-    if (directive) {
-      node.ast.body = [directive, ...node.ast.body];
-    }
-
-    /* **** Generating the transformed code **** */
     const transformed = await swc.print(node.ast, {
       minify: false
     });
