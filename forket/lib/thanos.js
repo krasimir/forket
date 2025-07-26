@@ -45,7 +45,7 @@ function Thanos() {
     }
   }
   async function createClientBoundary(graph, node, imp, importedNode) {
-    console.log("------->", imp.source);
+    console.log("𐂐 Client boundary: ", imp.source);
 
     const componentsToClientBoundaries = [];
 
