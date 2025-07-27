@@ -5,6 +5,7 @@ const { getGraphs, printGraph } = require("./lib/graph.js");
 const { copyFolder, clearPath } = require("./lib/utils/fsHelpers.js");
 const { setRoles } = require('./lib/roles.js')
 const { Thanos, MODE } = require("./lib/thanos.js");
+const processChunk = require('./lib/server/processChunk.js')
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.js")).toString("utf8");
 
@@ -49,3 +50,4 @@ module.exports = function (options = {}) {
 module.exports.client = function () {
   return clientReplacerCode;
 }
+module.exports.processChunk = processChunk;
