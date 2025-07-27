@@ -61,14 +61,15 @@ function forketSerializeProps(props) {
 function ProductsListBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props));
   const children = props.children || [];
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })), /* @__PURE__ */ import_react.default.createElement("script", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement("boundary_props_f_0", { dangerouslySetInnerHTML: {
+    __html: serializedProps
+  } }), /* @__PURE__ */ import_react.default.createElement("boundary_setup_f_0", { dangerouslySetInnerHTML: {
     __html: `(function () {
-  const serializedProps = ${serializedProps};
-  if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList", serializedProps]);
-  if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-  $FRSC_.push(["f_0", "ProductsList", serializedProps]);
-})();`
-  } }));
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList"]);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(["f_0", "ProductsList"]);
+        })();`
+  } }), /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })));
 }
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS);

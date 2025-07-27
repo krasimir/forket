@@ -43,7 +43,11 @@ function processChunk(res) {
       .replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`)
       .replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`)
       .replace(/<boundary_children_f_(\d+)>/, (_, n) => `<script type="forket/children" id="f_${n}_children">`)
-      .replace(/<\/boundary_children_f_(\d+)>/, (_, n) => `</script>`);
+      .replace(/<\/boundary_children_f_(\d+)>/, (_, n) => `</script>`)
+      .replace(/<boundary_props_f_(\d+)>/, (_, n) => `<script type="forket/props" id="f_${n}_props">`)
+      .replace(/<\/boundary_props_f_(\d+)>/, (_, n) => `</script>`)
+      .replace(/<boundary_setup_f_(\d+)>/, (_, n) => `<script id="f_${n}_setup">`)
+      .replace(/<\/boundary_setup_f_(\d+)>/, (_, n) => `</script>`);
 
     return html;
   }
@@ -69,19 +73,32 @@ function replacer() {
 function FRSC_init() {
   if (typeof window.$FRSC === "undefined") {
     window.$FRSC = function (data) {
+      function getContentFromScriptById(id, isJSON) {
+        const script = document.getElementById(id);
+        if (!script) {
+          return null;
+        }
+        let content = script.textContent;
+        if (isJSON && content) {
+          try {
+            content = JSON.parse(content);
+          } catch (e) {}
+        }
+        return content;
+      }
+      let childrenElements;
       const id = data[0];
       const compoName = data[1];
-      const props = data[2];
-      console.log('Trying to hydrate component', compoName, id);
+      let props = getContentFromScriptById(id + "_props", true);
+      const childrenHTML = getContentFromScriptById(id + "_children");
+      
+      console.log('Trying to hydrate component', compoName, id, props, childrenHTML);
       const boundary = findCommentBoundary(id);
       if (!boundary.start || !boundary.end) {
         console.warn("Boundary comments not found for id:", id);
         return;
       }
-      const childrenProp = document.querySelector("#" + id + "_children");
-      let childrenElements = null;
-      if (childrenProp) {
-        const childrenHTML = childrenProp.textContent;
+      if (childrenHTML){ 
         childrenElements = htmlToReactElements(childrenHTML);
       }
       let fragment = extractDomBetween(boundary.start, boundary.end)

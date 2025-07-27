@@ -106,7 +106,6 @@ async function getGraph(entryPoint) {
       // console.log(`File "${filePath}" is already processed, skipping.`);
       return;
     }
-    // console.log(node.imports);
     for (let j = 0; j < node.imports.length; j++) {
       const imp = node.imports[j];
       if (!imp.source) {
