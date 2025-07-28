@@ -9,13 +9,13 @@ export default function App() {
         <Title />
       </head>
       <body>
-        <div id="root">
+        <div>
           <header>
             <h1>Hello world</h1>
           </header>
-          {/* <Suspense> */}
+          <Suspense>
             <Products />
-          {/* </Suspense> */}
+          </Suspense>
           <footer>I'm a footer</footer>
         </div>
       </body>

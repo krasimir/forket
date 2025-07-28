@@ -7,7 +7,7 @@ const { setRoles } = require('./lib/roles.js')
 const { Thanos, MODE } = require("./lib/thanos.js");
 const processChunk = require('./lib/server/processChunk.js')
 
-const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.js")).toString("utf8");
+const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
 
 module.exports = function (options = {}) {
   if (!options.sourceDir) {
