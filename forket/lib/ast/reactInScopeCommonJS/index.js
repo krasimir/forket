@@ -5,8 +5,8 @@ module.exports = function () {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1586,
-      "end": 1617
+      "start": 1,
+      "end": 32
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ module.exports = function () {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 1592,
-          "end": 1616
+          "start": 7,
+          "end": 31
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 1592,
-            "end": 1597
+            "start": 7,
+            "end": 12
           },
           "ctxt": 2,
           "value": "React",
@@ -32,15 +32,15 @@ module.exports = function () {
         "init": {
           "type": "CallExpression",
           "span": {
-            "start": 1600,
-            "end": 1616
+            "start": 15,
+            "end": 31
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 1600,
-              "end": 1607
+              "start": 15,
+              "end": 22
             },
             "ctxt": 1,
             "value": "require",
@@ -52,8 +52,8 @@ module.exports = function () {
               "expression": {
                 "type": "StringLiteral",
                 "span": {
-                  "start": 1608,
-                  "end": 1615
+                  "start": 23,
+                  "end": 30
                 },
                 "value": "react",
                 "raw": "\"react\""
@@ -69,8 +69,8 @@ module.exports = function () {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1618,
-      "end": 1669
+      "start": 33,
+      "end": 84
     },
     "ctxt": 0,
     "kind": "const",
@@ -79,14 +79,14 @@ module.exports = function () {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 1624,
-          "end": 1668
+          "start": 39,
+          "end": 83
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 1624,
-            "end": 1638
+            "start": 39,
+            "end": 53
           },
           "ctxt": 2,
           "value": "ReactDOMClient",
@@ -96,15 +96,15 @@ module.exports = function () {
         "init": {
           "type": "CallExpression",
           "span": {
-            "start": 1641,
-            "end": 1668
+            "start": 56,
+            "end": 83
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 1641,
-              "end": 1648
+              "start": 56,
+              "end": 63
             },
             "ctxt": 1,
             "value": "require",
@@ -116,8 +116,8 @@ module.exports = function () {
               "expression": {
                 "type": "StringLiteral",
                 "span": {
-                  "start": 1649,
-                  "end": 1667
+                  "start": 64,
+                  "end": 82
                 },
                 "value": "react-dom/client",
                 "raw": "\"react-dom/client\""
@@ -129,106 +129,6 @@ module.exports = function () {
         "definite": false
       }
     ]
-  },
-  {
-    "type": "ExpressionStatement",
-    "span": {
-      "start": 1671,
-      "end": 1692
-    },
-    "expression": {
-      "type": "AssignmentExpression",
-      "span": {
-        "start": 1671,
-        "end": 1691
-      },
-      "operator": "=",
-      "left": {
-        "type": "MemberExpression",
-        "span": {
-          "start": 1671,
-          "end": 1683
-        },
-        "object": {
-          "type": "Identifier",
-          "span": {
-            "start": 1671,
-            "end": 1677
-          },
-          "ctxt": 1,
-          "value": "window",
-          "optional": false
-        },
-        "property": {
-          "type": "Identifier",
-          "span": {
-            "start": 1678,
-            "end": 1683
-          },
-          "value": "React"
-        }
-      },
-      "right": {
-        "type": "Identifier",
-        "span": {
-          "start": 1686,
-          "end": 1691
-        },
-        "ctxt": 2,
-        "value": "React",
-        "optional": false
-      }
-    }
-  },
-  {
-    "type": "ExpressionStatement",
-    "span": {
-      "start": 1693,
-      "end": 1732
-    },
-    "expression": {
-      "type": "AssignmentExpression",
-      "span": {
-        "start": 1693,
-        "end": 1731
-      },
-      "operator": "=",
-      "left": {
-        "type": "MemberExpression",
-        "span": {
-          "start": 1693,
-          "end": 1714
-        },
-        "object": {
-          "type": "Identifier",
-          "span": {
-            "start": 1693,
-            "end": 1699
-          },
-          "ctxt": 1,
-          "value": "window",
-          "optional": false
-        },
-        "property": {
-          "type": "Identifier",
-          "span": {
-            "start": 1700,
-            "end": 1714
-          },
-          "value": "ReactDOMClient"
-        }
-      },
-      "right": {
-        "type": "Identifier",
-        "span": {
-          "start": 1717,
-          "end": 1731
-        },
-        "ctxt": 2,
-        "value": "ReactDOMClient",
-        "optional": false
-      }
-    }
   }
 ]
 }

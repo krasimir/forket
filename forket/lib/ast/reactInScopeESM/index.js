@@ -5,21 +5,21 @@ module.exports = function () {
   {
     "type": "ImportDeclaration",
     "span": {
-      "start": 1733,
-      "end": 1759
+      "start": 833,
+      "end": 859
     },
     "specifiers": [
       {
         "type": "ImportDefaultSpecifier",
         "span": {
-          "start": 1740,
-          "end": 1745
+          "start": 840,
+          "end": 845
         },
         "local": {
           "type": "Identifier",
           "span": {
-            "start": 1740,
-            "end": 1745
+            "start": 840,
+            "end": 845
           },
           "ctxt": 2,
           "value": "React",
@@ -30,8 +30,8 @@ module.exports = function () {
     "source": {
       "type": "StringLiteral",
       "span": {
-        "start": 1751,
-        "end": 1758
+        "start": 851,
+        "end": 858
       },
       "value": "react",
       "raw": "\"react\""
@@ -43,21 +43,21 @@ module.exports = function () {
   {
     "type": "ImportDeclaration",
     "span": {
-      "start": 1760,
-      "end": 1806
+      "start": 860,
+      "end": 906
     },
     "specifiers": [
       {
         "type": "ImportDefaultSpecifier",
         "span": {
-          "start": 1767,
-          "end": 1781
+          "start": 867,
+          "end": 881
         },
         "local": {
           "type": "Identifier",
           "span": {
-            "start": 1767,
-            "end": 1781
+            "start": 867,
+            "end": 881
           },
           "ctxt": 2,
           "value": "ReactDOMClient",
@@ -68,8 +68,8 @@ module.exports = function () {
     "source": {
       "type": "StringLiteral",
       "span": {
-        "start": 1787,
-        "end": 1805
+        "start": 887,
+        "end": 905
       },
       "value": "react-dom/client",
       "raw": "\"react-dom/client\""
@@ -77,106 +77,6 @@ module.exports = function () {
     "typeOnly": false,
     "with": null,
     "phase": "evaluation"
-  },
-  {
-    "type": "ExpressionStatement",
-    "span": {
-      "start": 1808,
-      "end": 1829
-    },
-    "expression": {
-      "type": "AssignmentExpression",
-      "span": {
-        "start": 1808,
-        "end": 1828
-      },
-      "operator": "=",
-      "left": {
-        "type": "MemberExpression",
-        "span": {
-          "start": 1808,
-          "end": 1820
-        },
-        "object": {
-          "type": "Identifier",
-          "span": {
-            "start": 1808,
-            "end": 1814
-          },
-          "ctxt": 1,
-          "value": "window",
-          "optional": false
-        },
-        "property": {
-          "type": "Identifier",
-          "span": {
-            "start": 1815,
-            "end": 1820
-          },
-          "value": "React"
-        }
-      },
-      "right": {
-        "type": "Identifier",
-        "span": {
-          "start": 1823,
-          "end": 1828
-        },
-        "ctxt": 2,
-        "value": "React",
-        "optional": false
-      }
-    }
-  },
-  {
-    "type": "ExpressionStatement",
-    "span": {
-      "start": 1830,
-      "end": 1869
-    },
-    "expression": {
-      "type": "AssignmentExpression",
-      "span": {
-        "start": 1830,
-        "end": 1868
-      },
-      "operator": "=",
-      "left": {
-        "type": "MemberExpression",
-        "span": {
-          "start": 1830,
-          "end": 1851
-        },
-        "object": {
-          "type": "Identifier",
-          "span": {
-            "start": 1830,
-            "end": 1836
-          },
-          "ctxt": 1,
-          "value": "window",
-          "optional": false
-        },
-        "property": {
-          "type": "Identifier",
-          "span": {
-            "start": 1837,
-            "end": 1851
-          },
-          "value": "ReactDOMClient"
-        }
-      },
-      "right": {
-        "type": "Identifier",
-        "span": {
-          "start": 1854,
-          "end": 1868
-        },
-        "ctxt": 2,
-        "value": "ReactDOMClient",
-        "optional": false
-      }
-    }
   }
 ]
 }

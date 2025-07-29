@@ -16,7 +16,6 @@ function setRoles(node) {
     }
   }
   visitNode(node);
-  printGraph(node);
 }
 
 module.exports = {
