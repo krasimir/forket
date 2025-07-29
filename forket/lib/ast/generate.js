@@ -28,6 +28,22 @@ const FILES = [
   return ${JSON.stringify(ast.body[0], null, 2)}
 }`;
     }
+  },
+  {
+    codeFile: path.join(__dirname, "reactInScopeCommonJS", "/code.js"),
+    generator: function (ast) {
+      return `module.exports = function () {
+  return ${JSON.stringify(ast.body, null, 2)}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "reactInScopeESM", "/code.js"),
+    generator: function (ast) {
+      return `module.exports = function () {
+  return ${JSON.stringify(ast.body, null, 2)}
+}`;
+    }
   }
 ];
 

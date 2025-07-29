@@ -27,7 +27,9 @@
     "enhanced-resolve": "5.18.2",
     "esbuild": "0.25.0",
     "lodash": "4.17.21",
-    "p-limit": "3.1.0"
+    "p-limit": "3.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@types/node": "24.0.8",

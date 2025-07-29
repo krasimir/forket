@@ -5,6 +5,9 @@ const { ROLE } = require("./constants.js");
 const traverseNode = require("./utils/traverseNode.js");
 const getClientBoundaryWrapper = require('./ast/clientBoundaryWrapper');
 const getPropsSerializer = require('./ast/propsSerializer');
+const getReactInScopeCommonJS = require('./ast/reactInScopeCommonJS');
+const getReactInScopeESM = require('./ast/reactInScopeESM');
+const defineModuleSystem = require('./utils/defineModuleSystem');
 
 const MODE = {
   CLIENT: "client",
@@ -36,6 +39,10 @@ function Thanos() {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
         if (node) {
+          if (!node.parentNode && node.role === ROLE.CLIENT) {
+            console.log("𐂐 Client entry point", filePath);
+            return exposeReactAPI(node);
+          }
           if (node.role === ROLE.CLIENT) {
             return content;
           }
@@ -94,6 +101,17 @@ function Thanos() {
     });
     return transformed.code;
   }
+  async function exposeReactAPI(node) {
+    if (defineModuleSystem(node.ast) === "commonjs") {
+      insertAfterImports(node.ast, getReactInScopeCommonJS());
+    } else {
+      insertAfterImports(node.ast, getReactInScopeESM());
+    }
+    const transformed = await swc.print(node.ast, {
+      minify: false
+    });
+    return transformed.code;
+  }
   function getId() {
     return "f_" + id++;
   }
@@ -123,14 +141,26 @@ function insertAfterImports(ast, node) {
       detectedImports = true;
     }
     if (detectedImports && n.type !== "ImportDeclaration") {
-      ast.body.splice(i, 0, node);
+      if (Array.isArray(node)) {
+        ast.body.splice(i, 0, ...node);
+      } else {
+        ast.body.splice(i, 0, node);
+      }
       return;
     }
   }
   if (!detectedImports) {
-    ast.body.unshift(node);
+    if (Array.isArray(node)) {
+      ast.body = node.concat(ast.body);
+    } else {
+      ast.body.unshift(node);
+    }
   } else {
-    ast.body.push(node);
+    if (Array.isArray(node)) {
+      ast.body = ast.body.concat(node);
+    } else {
+      ast.body.push(node);
+    }
   }
 }
 function containsExportsThatHasJSX(node) {
@@ -322,45 +352,5 @@ function getReturnTemplateStatement(id) {
         }
       }
     ]
-  };
-}
-function getReactInTheScope() {
-  return {
-    type: "ImportDeclaration",
-    span: {
-      start: 1,
-      end: 27
-    },
-    specifiers: [
-      {
-        type: "ImportDefaultSpecifier",
-        span: {
-          start: 8,
-          end: 13
-        },
-        local: {
-          type: "Identifier",
-          span: {
-            start: 8,
-            end: 13
-          },
-          ctxt: 2,
-          value: "React",
-          optional: false
-        }
-      }
-    ],
-    source: {
-      type: "StringLiteral",
-      span: {
-        start: 19,
-        end: 26
-      },
-      value: "react",
-      raw: '"react"'
-    },
-    typeOnly: false,
-    with: null,
-    phase: "evaluation"
   };
 }

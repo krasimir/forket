@@ -1,38 +1,39 @@
 (function () {
   function FRSC_init() {
+    const d = document;
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
-        let childrenElements;
         const id = data[0];
         const componentName = data[1];
         const props = getContentFromScriptById(id + "_props", true);
-        const childrenHTML = getContentFromScriptById(id + "_children");
+        let children = getContentFromScriptById(id + "_children");
+        if (children) {
+          children = htmlToReactElements(children);
+        }
 
-        console.log("Hydrating", componentName, id, props, childrenHTML);
+        console.log(componentName + "(" + id + ")", props, children);
+
         const boundary = findCommentBoundary(id);
         if (!boundary.start || !boundary.end) {
           console.warn("Boundary comments not found for id:", id);
           return;
         }
-        if (childrenHTML) {
-          childrenElements = htmlToReactElements(childrenHTML);
-        }
         let fragment = extractDomBetween(boundary.start, boundary.end);
-        const container = document.createElement("div");
+        const container = d.createElement("div");
         container.style.display = "contents";
         container.appendChild(fragment);
         boundary.end.parentNode.insertBefore(container, boundary.end);
-        hydrateComponentBetweenMarkers(componentName, props, container, childrenElements);
+        hydrateComponentBetweenMarkers(componentName, props, container, children);
         boundary.end.parentNode.removeChild(boundary.start);
         boundary.end.parentNode.removeChild(boundary.end);
-        removeScriptById(id + "_setup");
+        removeById(id + "_setup");
       };
       if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
         window.$FRSC_.forEach(window.$FRSC);
       }
     }
     function getContentFromScriptById(id, isJSON) {
-      const script = document.getElementById(id);
+      const script = d.getElementById(id);
       if (!script) {
         return null;
       }
@@ -45,18 +46,14 @@
       script.parentNode.removeChild(script);
       return content;
     }
-    function removeScriptById(id) {
-      const script = document.getElementById(id);
-      if (script) {
-        script.parentNode.removeChild(script);
+    function removeById(id) {
+      const el = d.getElementById(id);
+      if (el) {
+        el.parentNode.removeChild(el);
       }
     }
-    function hydrateComponentBetweenMarkers(componentName, props, container, children) {
-      const Component = window[componentName];
-      hydrateRoot(container, React.createElement(Component, props, children));
-    }
     function findCommentBoundary(id) {
-      const iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_COMMENT, null);
+      const iterator = d.createNodeIterator(d.body, NodeFilter.SHOW_COMMENT, null);
 
       let start = null;
       let end = null;
@@ -75,7 +72,7 @@
       return { start, end };
     }
     function extractDomBetween(startComment, endComment) {
-      const fragment = document.createDocumentFragment();
+      const fragment = d.createDocumentFragment();
       let current = startComment.nextSibling;
 
       while (current && current !== endComment) {
@@ -83,11 +80,14 @@
         fragment.appendChild(current);
         current = next;
       }
-
       return fragment;
     }
+    function hydrateComponentBetweenMarkers(componentName, props, container, children) {
+      const Component = window[componentName];
+      ReactDOMClient.hydrateRoot(container, React.createElement(Component, props, children));
+    }
     function htmlToReactElements(html) {
-      const container = document.createElement("template");
+      const container = d.createElement("template");
       container.innerHTML = html.trim();
 
       const nodes = Array.from(container.content.childNodes);
