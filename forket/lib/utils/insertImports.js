@@ -1,4 +1,4 @@
-module.exports = function insertAfterImports(ast, node) {
+module.exports = function insertImports(ast, node) {
   if (!ast.body) {
     return;
   }

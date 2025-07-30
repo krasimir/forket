@@ -9,7 +9,7 @@ const getPropsSerializer = require('./ast/propsSerializer');
 const getReactInScopeCommonJS = require('./ast/reactInScopeCommonJS');
 const getReactInScopeESM = require('./ast/reactInScopeESM');
 const defineModuleSystem = require('./utils/defineModuleSystem');
-const insertAfterImports = require('./utils/insertAfterImports');
+const insertImports = require("./utils/insertImports");
 
 const MODE = {
   CLIENT: "client",
@@ -95,9 +95,9 @@ function Thanos() {
     // Creating the client boundary component
     if (componentsToClientBoundaries.length > 0) {
       componentsToClientBoundaries.forEach((compName) => {
-        insertAfterImports(node.ast, getClientBoundaryWrapper(getId(), compName));
+        insertImports(node.ast, getClientBoundaryWrapper(getId(), compName));
       });
-      insertAfterImports(node.ast, getPropsSerializer());
+      insertImports(node.ast, getPropsSerializer());
     }
 
     // Generating the new code
@@ -109,9 +109,9 @@ function Thanos() {
   async function enhanceClientEntryPoint(node) {
     console.log(chalk.yellow("  - Client entry point: " + node.file));
     if (defineModuleSystem(node.ast) === "commonjs") {
-      insertAfterImports(node.ast, getReactInScopeCommonJS());
+      insertImports(node.ast, getReactInScopeCommonJS());
     } else {
-      insertAfterImports(node.ast, getReactInScopeESM());
+      insertImports(node.ast, getReactInScopeESM());
     }
     const transformed = await swc.print(node.ast, {
       minify: false
