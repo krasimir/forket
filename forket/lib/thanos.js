@@ -10,6 +10,7 @@ const getReactInScopeCommonJS = require('./ast/reactInScopeCommonJS');
 const getReactInScopeESM = require('./ast/reactInScopeESM');
 const defineModuleSystem = require('./utils/defineModuleSystem');
 const insertImports = require("./utils/insertImports");
+const exposeReactLibs = require("./utils/exposeReactLibs.js");
 
 const MODE = {
   CLIENT: "client",
@@ -113,6 +114,7 @@ function Thanos() {
     } else {
       insertImports(node.ast, getReactInScopeESM());
     }
+    exposeReactLibs(node.ast);
     const transformed = await swc.print(node.ast, {
       minify: false
     });
