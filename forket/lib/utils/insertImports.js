@@ -2,35 +2,17 @@ module.exports = function insertImports(ast, node) {
   if (!ast.body) {
     return;
   }
-  let detectedImports = false;
-  for (let i = 0; i < ast.body.length; i++) {
-    const n = ast.body[i];
-    if (
-      n.type === "ImportDeclaration" ||
-      (n.type === "VariableDeclaration" && n?.init?.type === "CallExpression" && n?.init?.callee?.value === "require")
-    ) {
-      detectedImports = true;
-    }
-    if (detectedImports && n.type !== "ImportDeclaration") {
-      if (Array.isArray(node)) {
-        ast.body.splice(i, 0, ...node);
-      } else {
-        ast.body.splice(i, 0, node);
-      }
-      return;
-    }
+  if (!Array.isArray(ast.body)) {
+    node = [node];
   }
-  if (!detectedImports) {
-    if (Array.isArray(node)) {
-      ast.body = node.concat(ast.body);
-    } else {
-      ast.body.unshift(node);
-    }
+  if (
+    ast.body.length > 0 &&
+    ast.body[0].type === "ExpressionStatement" &&
+    ast.body[0].expression.type === "StringLiteral"
+  ) {
+    const rest = ast.body.slice(1);
+    ast.body = [ast.body[0]].concat(node).concat(rest);
   } else {
-    if (Array.isArray(node)) {
-      ast.body = ast.body.concat(node);
-    } else {
-      ast.body.push(node);
-    }
+    ast.body = node.concat(ast.body);
   }
 };

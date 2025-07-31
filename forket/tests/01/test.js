@@ -60,15 +60,21 @@ module.exports = async function ({ test, toAST, toCode }) {
       })
     );
   });
-  await test("Should properly insert imports #1", async () => {
-    const baseAST = await toAST(path.join(__dirname, "import_cases", "a.js"));
-    const expected = fs.readFileSync(path.join(__dirname, "import_cases", "a.expected.js"), "utf8");
-    if (defineModuleSystem(baseAST) === "commonjs") {
-      insertImports(baseAST, getReactInScopeCommonJS());
-    } else {
-      insertImports(baseAST, getReactInScopeESM());
+  await test("Should properly insert imports statements", async () => {
+    const cases = ['a', 'b', 'c'];
+    for(let i=0; i<cases.length; i++) {
+      const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + '.js'));
+      const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
+      if (defineModuleSystem(baseAST) === "commonjs") {
+        insertImports(baseAST, getReactInScopeCommonJS());
+      } else {
+        insertImports(baseAST, getReactInScopeESM());
+      }
+      const result = await toCode(baseAST);
+      if (expected !== result) {
+        return false;
+      };
     }
-    const result = await toCode(baseAST);
-    console.log(result);
+    return true;
   });
 };
