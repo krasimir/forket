@@ -9,7 +9,7 @@ export default function App() {
         <Title />
       </head>
       <body>
-        <div id="root">
+        <div>
           <header>
             <h1>Hello world</h1>
           </header>

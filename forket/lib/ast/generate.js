@@ -11,6 +11,8 @@ const FILES = [
       json = json.replace(/"\ComponentName"/g, 'componentName + "Boundary"');
       json = json.replace(/"boundary_f_1"/g, '"boundary_" + id');
       json = json.replace(/"boundary_children_f_1"/g, '"boundary_children_" + id');
+      json = json.replace(/"boundary_props_f_1"/g, '"boundary_props_" + id');
+      json = json.replace(/"boundary_setup_f_1"/g, '"boundary_setup_" + id');
       json = json.replace(/"value": "ProductsList"/g, '"value": componentName');
       json = json.replace(/\\"f_1\\"/g, '\\"" + id + "\\"');
       json = json.replace(/\\"ProductsList\\"/g, '\\"" + componentName + "\\"');
@@ -24,6 +26,41 @@ const FILES = [
     generator: function (ast) {
       return `module.exports = function () {
   return ${JSON.stringify(ast.body[0], null, 2)}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "importCommonJS", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"React"/g, "what");
+      json = json.replace(/"react"/g, "where");
+      json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
+      return `module.exports = function (what, where) {
+  return ${json}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "importESM", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"React"/g, "what");
+      json = json.replace(/"react"/g, "where");
+      json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
+      return `module.exports = function (what, where) {
+  return ${json}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "exposeGlobal", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"Foo"/g, "windowKey");
+      json = json.replace(/"Bar"/g, "value");
+      return `module.exports = function (windowKey, value) {
+  return ${json}
 }`;
     }
   }

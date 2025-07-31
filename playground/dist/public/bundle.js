@@ -19321,10 +19321,8 @@
   }
 
   // build/client/client.tsx
-  console.log("Client-side code loaded");
   window.React = import_react3.default;
-  window.hydrateRoot = import_client.hydrateRoot;
-  window.createRoot = import_client.createRoot;
+  window.ReactDOMClient = import_client.default;
   window.ProductsList = ProductsList;
 })();
 /*! Bundled license information:

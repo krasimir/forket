@@ -37,6 +37,10 @@ async function createNode(file, parentNode = null) {
     let useClient = false;
 
     function processImports(node) {
+      if (get(node, "source.value").match(/\/\.\.\/\.\.\/forket/)) {
+        // Ignoring the Forket source import that we use while developing with the playground
+        return;
+      }
       imports.push({ source: get(node, "source.value") });
     }
     function processCallExpression(node) {
@@ -106,7 +110,6 @@ async function getGraph(entryPoint) {
       // console.log(`File "${filePath}" is already processed, skipping.`);
       return;
     }
-    // console.log(node.imports);
     for (let j = 0; j < node.imports.length; j++) {
       const imp = node.imports[j];
       if (!imp.source) {

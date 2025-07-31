@@ -3,8 +3,13 @@ const fs = require('fs');
 
 const { getGraphs, toJSON } = require("../../lib/graph.js");
 const { setRoles } = require('../../lib/roles.js');
+const insertImports = require('../../lib/utils/insertImports.js');
+const defineModuleSystem=require('../../lib/utils/defineModuleSystem.js');
+const importCommonJS = require("../../lib/ast/importCommonJS");
+const importESM = require("../../lib/ast/importESM");
+const exposeGlobal = require('../../lib/ast/exposeGlobal');
 
-module.exports = async function ({ test }) {
+module.exports = async function ({ test, toAST, toCode }) {
   const [graph] = await getGraphs(path.join(__dirname, "src"));
   setRoles(graph);
   
@@ -16,7 +21,7 @@ module.exports = async function ({ test }) {
       JSON.stringify(toJSON(graph)) ===
       JSON.stringify({
         "/tests/01/src/index.ts": {
-          role: "client_file",
+          role: "server",
           children: [
             {
               "/tests/01/src/components/App.tsx": {
@@ -34,11 +39,11 @@ module.exports = async function ({ test }) {
                         },
                         {
                           "/tests/01/src/components/ProductsList.tsx": {
-                            role: "client_component",
+                            role: "client",
                             children: [
                               {
                                 "/tests/01/src/components/ProductListItem.tsx": {
-                                  role: "client_component",
+                                  role: "client",
                                   children: []
                                 }
                               }
@@ -55,5 +60,43 @@ module.exports = async function ({ test }) {
         }
       })
     );
+  });
+  await test("Should properly insert imports statements", async () => {
+    const cases = ['a', 'b', 'c', 'd'];
+    for(let i=0; i<cases.length; i++) {
+      const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + '.js'));
+      const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
+      if (defineModuleSystem(baseAST) === "commonjs") {
+        insertImports(baseAST, importCommonJS("ReactDOMClient", "react-dom/client"));
+        insertImports(baseAST, importCommonJS('React', 'react'));
+      } else {
+        insertImports(baseAST, importESM("ReactDOMClient", "react-dom/client"));
+        insertImports(baseAST, importESM('React', 'react'));
+      }
+      const result = await toCode(baseAST);
+      if (expected !== result) {
+        console.log(`(${cases[i]}) Expected:\n${expected}`);
+        console.log(`Result:\n${result}`);
+        return false;
+      };
+    }
+    return true;
+  });
+  await test("Should properly expose React libs", async () => {
+    const cases = ["a"];
+    for (let i = 0; i < cases.length; i++) {
+      const baseAST = await toAST(path.join(__dirname, "exposeReact", cases[i] + ".js"));
+      const expected = fs.readFileSync(path.join(__dirname, "exposeReact", cases[i] + ".expected.js"), "utf8");
+      baseAST.body = baseAST.body
+        .concat(exposeGlobal("React", "React"))
+        .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"));
+      const result = await toCode(baseAST);
+      if (expected !== result) {
+        console.log(`(${cases[i]}) Expected:\n${expected}`);
+        console.log(`Result:\n${result}`);
+        return false;
+      }
+    }
+    return true;
   });
 };

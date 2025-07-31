@@ -4,10 +4,11 @@
   "description": "𐂐",
   "main": "index.js",
   "scripts": {
-    "build": "npm run generate-ast-helpers",
+    "build": "npm run generate-ast-helpers && npm run minify-forket-client",
     "test": "node ./tests/tests.js",
     "playground": "node ./playground/playground.js",
-    "generate-ast-helpers": "node ./lib/ast/generate.js"
+    "generate-ast-helpers": "node ./lib/ast/generate.js",
+    "minify-forket-client": "uglifyjs ./lib/client/replacer.js -c -m -o ./lib/client/replacer.min.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,13 @@
     "enhanced-resolve": "5.18.2",
     "esbuild": "0.25.0",
     "lodash": "4.17.21",
-    "p-limit": "3.1.0"
+    "p-limit": "3.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@types/node": "24.0.8",
-    "arg": "5.0.2"
+    "arg": "5.0.2",
+    "uglify-js": "^3.19.3"
   }
 }

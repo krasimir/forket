@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require('chalk');
 const arg = require("arg");
+const swc = require("@swc/core");
 
 let dirs = fs.readdirSync(__dirname)
 const args = arg({
@@ -32,6 +33,21 @@ const args = arg({
           },
           xtest(message) {
             console.log(chalk.yellow(`❗️ ${message} (skipped)`));
+          },
+          async toAST(filePath) {
+            const code = fs.readFileSync(filePath, "utf8");
+            const ast = await swc.parse(code, {
+              syntax: "typescript", // or 'ecmascript'
+              tsx: true,
+              decorators: false
+            });
+            return ast;
+          },
+          async toCode(ast) {
+            const transformed = await swc.print(ast, {
+              minify: false
+            });
+            return transformed.code;
           }
         });
       } catch(err) {
