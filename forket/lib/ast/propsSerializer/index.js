@@ -6,8 +6,8 @@ module.exports = function () {
   "identifier": {
     "type": "Identifier",
     "span": {
-      "start": 917,
-      "end": 937
+      "start": 758,
+      "end": 778
     },
     "ctxt": 2,
     "value": "forketSerializeProps",
@@ -18,15 +18,15 @@ module.exports = function () {
     {
       "type": "Parameter",
       "span": {
-        "start": 938,
-        "end": 943
+        "start": 779,
+        "end": 784
       },
       "decorators": [],
       "pat": {
         "type": "Identifier",
         "span": {
-          "start": 938,
-          "end": 943
+          "start": 779,
+          "end": 784
         },
         "ctxt": 3,
         "value": "props",
@@ -37,15 +37,15 @@ module.exports = function () {
   ],
   "decorators": [],
   "span": {
-    "start": 908,
-    "end": 1744
+    "start": 749,
+    "end": 1585
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
-      "start": 945,
-      "end": 1744
+      "start": 786,
+      "end": 1585
     },
     "ctxt": 3,
     "stmts": [
@@ -54,8 +54,8 @@ module.exports = function () {
         "identifier": {
           "type": "Identifier",
           "span": {
-            "start": 958,
-            "end": 972
+            "start": 799,
+            "end": 813
           },
           "ctxt": 3,
           "value": "isValidElement",
@@ -66,15 +66,15 @@ module.exports = function () {
           {
             "type": "Parameter",
             "span": {
-              "start": 973,
-              "end": 976
+              "start": 814,
+              "end": 817
             },
             "decorators": [],
             "pat": {
               "type": "Identifier",
               "span": {
-                "start": 973,
-                "end": 976
+                "start": 814,
+                "end": 817
               },
               "ctxt": 4,
               "value": "obj",
@@ -85,23 +85,23 @@ module.exports = function () {
         ],
         "decorators": [],
         "span": {
-          "start": 949,
-          "end": 1188
+          "start": 790,
+          "end": 1029
         },
         "ctxt": 4,
         "body": {
           "type": "BlockStatement",
           "span": {
-            "start": 978,
-            "end": 1188
+            "start": 819,
+            "end": 1029
           },
           "ctxt": 4,
           "stmts": [
             {
               "type": "VariableDeclaration",
               "span": {
-                "start": 984,
-                "end": 1014
+                "start": 825,
+                "end": 855
               },
               "ctxt": 0,
               "kind": "const",
@@ -110,14 +110,14 @@ module.exports = function () {
                 {
                   "type": "VariableDeclarator",
                   "span": {
-                    "start": 990,
-                    "end": 1013
+                    "start": 831,
+                    "end": 854
                   },
                   "id": {
                     "type": "Identifier",
                     "span": {
-                      "start": 990,
-                      "end": 994
+                      "start": 831,
+                      "end": 835
                     },
                     "ctxt": 4,
                     "value": "keys",
@@ -127,21 +127,21 @@ module.exports = function () {
                   "init": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 997,
-                      "end": 1013
+                      "start": 838,
+                      "end": 854
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "MemberExpression",
                       "span": {
-                        "start": 997,
-                        "end": 1008
+                        "start": 838,
+                        "end": 849
                       },
                       "object": {
                         "type": "Identifier",
                         "span": {
-                          "start": 997,
-                          "end": 1003
+                          "start": 838,
+                          "end": 844
                         },
                         "ctxt": 1,
                         "value": "Object",
@@ -150,8 +150,8 @@ module.exports = function () {
                       "property": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1004,
-                          "end": 1008
+                          "start": 845,
+                          "end": 849
                         },
                         "value": "keys"
                       }
@@ -162,8 +162,8 @@ module.exports = function () {
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1009,
-                            "end": 1012
+                            "start": 850,
+                            "end": 853
                           },
                           "ctxt": 4,
                           "value": "obj",
@@ -180,62 +180,62 @@ module.exports = function () {
             {
               "type": "ReturnStatement",
               "span": {
-                "start": 1019,
-                "end": 1184
+                "start": 860,
+                "end": 1025
               },
               "argument": {
                 "type": "ParenthesisExpression",
                 "span": {
-                  "start": 1026,
-                  "end": 1183
+                  "start": 867,
+                  "end": 1024
                 },
                 "expression": {
                   "type": "BinaryExpression",
                   "span": {
-                    "start": 1034,
-                    "end": 1177
+                    "start": 875,
+                    "end": 1018
                   },
                   "operator": "&&",
                   "left": {
                     "type": "BinaryExpression",
                     "span": {
-                      "start": 1034,
-                      "end": 1145
+                      "start": 875,
+                      "end": 986
                     },
                     "operator": "&&",
                     "left": {
                       "type": "BinaryExpression",
                       "span": {
-                        "start": 1034,
-                        "end": 1112
+                        "start": 875,
+                        "end": 953
                       },
                       "operator": "&&",
                       "left": {
                         "type": "BinaryExpression",
                         "span": {
-                          "start": 1034,
-                          "end": 1079
+                          "start": 875,
+                          "end": 920
                         },
                         "operator": "&&",
                         "left": {
                           "type": "BinaryExpression",
                           "span": {
-                            "start": 1034,
-                            "end": 1057
+                            "start": 875,
+                            "end": 898
                           },
                           "operator": "===",
                           "left": {
                             "type": "UnaryExpression",
                             "span": {
-                              "start": 1034,
-                              "end": 1044
+                              "start": 875,
+                              "end": 885
                             },
                             "operator": "typeof",
                             "argument": {
                               "type": "Identifier",
                               "span": {
-                                "start": 1041,
-                                "end": 1044
+                                "start": 882,
+                                "end": 885
                               },
                               "ctxt": 4,
                               "value": "obj",
@@ -245,8 +245,8 @@ module.exports = function () {
                           "right": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 1049,
-                              "end": 1057
+                              "start": 890,
+                              "end": 898
                             },
                             "value": "object",
                             "raw": "\"object\""
@@ -255,15 +255,15 @@ module.exports = function () {
                         "right": {
                           "type": "BinaryExpression",
                           "span": {
-                            "start": 1067,
-                            "end": 1079
+                            "start": 908,
+                            "end": 920
                           },
                           "operator": "!==",
                           "left": {
                             "type": "Identifier",
                             "span": {
-                              "start": 1067,
-                              "end": 1070
+                              "start": 908,
+                              "end": 911
                             },
                             "ctxt": 4,
                             "value": "obj",
@@ -272,8 +272,8 @@ module.exports = function () {
                           "right": {
                             "type": "NullLiteral",
                             "span": {
-                              "start": 1075,
-                              "end": 1079
+                              "start": 916,
+                              "end": 920
                             }
                           }
                         }
@@ -281,21 +281,21 @@ module.exports = function () {
                       "right": {
                         "type": "CallExpression",
                         "span": {
-                          "start": 1089,
-                          "end": 1112
+                          "start": 930,
+                          "end": 953
                         },
                         "ctxt": 0,
                         "callee": {
                           "type": "MemberExpression",
                           "span": {
-                            "start": 1089,
-                            "end": 1102
+                            "start": 930,
+                            "end": 943
                           },
                           "object": {
                             "type": "Identifier",
                             "span": {
-                              "start": 1089,
-                              "end": 1093
+                              "start": 930,
+                              "end": 934
                             },
                             "ctxt": 4,
                             "value": "keys",
@@ -304,8 +304,8 @@ module.exports = function () {
                           "property": {
                             "type": "Identifier",
                             "span": {
-                              "start": 1094,
-                              "end": 1102
+                              "start": 935,
+                              "end": 943
                             },
                             "value": "includes"
                           }
@@ -316,8 +316,8 @@ module.exports = function () {
                             "expression": {
                               "type": "StringLiteral",
                               "span": {
-                                "start": 1103,
-                                "end": 1111
+                                "start": 944,
+                                "end": 952
                               },
                               "value": "_owner",
                               "raw": "\"_owner\""
@@ -330,21 +330,21 @@ module.exports = function () {
                     "right": {
                       "type": "CallExpression",
                       "span": {
-                        "start": 1122,
-                        "end": 1145
+                        "start": 963,
+                        "end": 986
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 1122,
-                          "end": 1135
+                          "start": 963,
+                          "end": 976
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1122,
-                            "end": 1126
+                            "start": 963,
+                            "end": 967
                           },
                           "ctxt": 4,
                           "value": "keys",
@@ -353,8 +353,8 @@ module.exports = function () {
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1127,
-                            "end": 1135
+                            "start": 968,
+                            "end": 976
                           },
                           "value": "includes"
                         }
@@ -365,8 +365,8 @@ module.exports = function () {
                           "expression": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 1136,
-                              "end": 1144
+                              "start": 977,
+                              "end": 985
                             },
                             "value": "_store",
                             "raw": "\"_store\""
@@ -379,21 +379,21 @@ module.exports = function () {
                   "right": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 1155,
-                      "end": 1177
+                      "start": 996,
+                      "end": 1018
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "MemberExpression",
                       "span": {
-                        "start": 1155,
-                        "end": 1168
+                        "start": 996,
+                        "end": 1009
                       },
                       "object": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1155,
-                          "end": 1159
+                          "start": 996,
+                          "end": 1000
                         },
                         "ctxt": 4,
                         "value": "keys",
@@ -402,8 +402,8 @@ module.exports = function () {
                       "property": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1160,
-                          "end": 1168
+                          "start": 1001,
+                          "end": 1009
                         },
                         "value": "includes"
                       }
@@ -414,8 +414,8 @@ module.exports = function () {
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 1169,
-                            "end": 1176
+                            "start": 1010,
+                            "end": 1017
                           },
                           "value": "props",
                           "raw": "\"props\""
@@ -437,28 +437,28 @@ module.exports = function () {
       {
         "type": "IfStatement",
         "span": {
-          "start": 1191,
-          "end": 1252
+          "start": 1032,
+          "end": 1093
         },
         "test": {
           "type": "BinaryExpression",
           "span": {
-            "start": 1195,
-            "end": 1237
+            "start": 1036,
+            "end": 1078
           },
           "operator": "||",
           "left": {
             "type": "BinaryExpression",
             "span": {
-              "start": 1195,
-              "end": 1208
+              "start": 1036,
+              "end": 1049
             },
             "operator": "==",
             "left": {
               "type": "Identifier",
               "span": {
-                "start": 1195,
-                "end": 1200
+                "start": 1036,
+                "end": 1041
               },
               "ctxt": 3,
               "value": "props",
@@ -467,30 +467,30 @@ module.exports = function () {
             "right": {
               "type": "NullLiteral",
               "span": {
-                "start": 1204,
-                "end": 1208
+                "start": 1045,
+                "end": 1049
               }
             }
           },
           "right": {
             "type": "BinaryExpression",
             "span": {
-              "start": 1212,
-              "end": 1237
+              "start": 1053,
+              "end": 1078
             },
             "operator": "!==",
             "left": {
               "type": "UnaryExpression",
               "span": {
-                "start": 1212,
-                "end": 1224
+                "start": 1053,
+                "end": 1065
               },
               "operator": "typeof",
               "argument": {
                 "type": "Identifier",
                 "span": {
-                  "start": 1219,
-                  "end": 1224
+                  "start": 1060,
+                  "end": 1065
                 },
                 "ctxt": 3,
                 "value": "props",
@@ -500,8 +500,8 @@ module.exports = function () {
             "right": {
               "type": "StringLiteral",
               "span": {
-                "start": 1229,
-                "end": 1237
+                "start": 1070,
+                "end": 1078
               },
               "value": "object",
               "raw": "\"object\""
@@ -511,14 +511,14 @@ module.exports = function () {
         "consequent": {
           "type": "ReturnStatement",
           "span": {
-            "start": 1239,
-            "end": 1252
+            "start": 1080,
+            "end": 1093
           },
           "argument": {
             "type": "Identifier",
             "span": {
-              "start": 1246,
-              "end": 1251
+              "start": 1087,
+              "end": 1092
             },
             "ctxt": 3,
             "value": "props",
@@ -530,27 +530,27 @@ module.exports = function () {
       {
         "type": "IfStatement",
         "span": {
-          "start": 1256,
-          "end": 1331
+          "start": 1097,
+          "end": 1172
         },
         "test": {
           "type": "CallExpression",
           "span": {
-            "start": 1260,
-            "end": 1280
+            "start": 1101,
+            "end": 1121
           },
           "ctxt": 0,
           "callee": {
             "type": "MemberExpression",
             "span": {
-              "start": 1260,
-              "end": 1273
+              "start": 1101,
+              "end": 1114
             },
             "object": {
               "type": "Identifier",
               "span": {
-                "start": 1260,
-                "end": 1265
+                "start": 1101,
+                "end": 1106
               },
               "ctxt": 1,
               "value": "Array",
@@ -559,8 +559,8 @@ module.exports = function () {
             "property": {
               "type": "Identifier",
               "span": {
-                "start": 1266,
-                "end": 1273
+                "start": 1107,
+                "end": 1114
               },
               "value": "isArray"
             }
@@ -571,8 +571,8 @@ module.exports = function () {
               "expression": {
                 "type": "Identifier",
                 "span": {
-                  "start": 1274,
-                  "end": 1279
+                  "start": 1115,
+                  "end": 1120
                 },
                 "ctxt": 3,
                 "value": "props",
@@ -585,35 +585,35 @@ module.exports = function () {
         "consequent": {
           "type": "BlockStatement",
           "span": {
-            "start": 1282,
-            "end": 1331
+            "start": 1123,
+            "end": 1172
           },
           "ctxt": 5,
           "stmts": [
             {
               "type": "ReturnStatement",
               "span": {
-                "start": 1288,
-                "end": 1327
+                "start": 1129,
+                "end": 1168
               },
               "argument": {
                 "type": "CallExpression",
                 "span": {
-                  "start": 1295,
-                  "end": 1326
+                  "start": 1136,
+                  "end": 1167
                 },
                 "ctxt": 0,
                 "callee": {
                   "type": "MemberExpression",
                   "span": {
-                    "start": 1295,
-                    "end": 1304
+                    "start": 1136,
+                    "end": 1145
                   },
                   "object": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1295,
-                      "end": 1300
+                      "start": 1136,
+                      "end": 1141
                     },
                     "ctxt": 3,
                     "value": "props",
@@ -622,8 +622,8 @@ module.exports = function () {
                   "property": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1301,
-                      "end": 1304
+                      "start": 1142,
+                      "end": 1145
                     },
                     "value": "map"
                   }
@@ -634,8 +634,8 @@ module.exports = function () {
                     "expression": {
                       "type": "Identifier",
                       "span": {
-                        "start": 1305,
-                        "end": 1325
+                        "start": 1146,
+                        "end": 1166
                       },
                       "ctxt": 2,
                       "value": "forketSerializeProps",
@@ -653,21 +653,21 @@ module.exports = function () {
       {
         "type": "IfStatement",
         "span": {
-          "start": 1334,
-          "end": 1419
+          "start": 1175,
+          "end": 1260
         },
         "test": {
           "type": "CallExpression",
           "span": {
-            "start": 1338,
-            "end": 1359
+            "start": 1179,
+            "end": 1200
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 1338,
-              "end": 1352
+              "start": 1179,
+              "end": 1193
             },
             "ctxt": 3,
             "value": "isValidElement",
@@ -679,8 +679,8 @@ module.exports = function () {
               "expression": {
                 "type": "Identifier",
                 "span": {
-                  "start": 1353,
-                  "end": 1358
+                  "start": 1194,
+                  "end": 1199
                 },
                 "ctxt": 3,
                 "value": "props",
@@ -693,22 +693,22 @@ module.exports = function () {
         "consequent": {
           "type": "BlockStatement",
           "span": {
-            "start": 1361,
-            "end": 1419
+            "start": 1202,
+            "end": 1260
           },
           "ctxt": 6,
           "stmts": [
             {
               "type": "ReturnStatement",
               "span": {
-                "start": 1367,
-                "end": 1380
+                "start": 1208,
+                "end": 1221
               },
               "argument": {
                 "type": "BooleanLiteral",
                 "span": {
-                  "start": 1374,
-                  "end": 1379
+                  "start": 1215,
+                  "end": 1220
                 },
                 "value": false
               }
@@ -720,8 +720,8 @@ module.exports = function () {
       {
         "type": "VariableDeclaration",
         "span": {
-          "start": 1423,
-          "end": 1445
+          "start": 1264,
+          "end": 1286
         },
         "ctxt": 0,
         "kind": "const",
@@ -730,14 +730,14 @@ module.exports = function () {
           {
             "type": "VariableDeclarator",
             "span": {
-              "start": 1429,
-              "end": 1444
+              "start": 1270,
+              "end": 1285
             },
             "id": {
               "type": "Identifier",
               "span": {
-                "start": 1429,
-                "end": 1439
+                "start": 1270,
+                "end": 1280
               },
               "ctxt": 3,
               "value": "serialized",
@@ -747,8 +747,8 @@ module.exports = function () {
             "init": {
               "type": "ObjectExpression",
               "span": {
-                "start": 1442,
-                "end": 1444
+                "start": 1283,
+                "end": 1285
               },
               "properties": []
             },
@@ -759,14 +759,14 @@ module.exports = function () {
       {
         "type": "ForInStatement",
         "span": {
-          "start": 1448,
-          "end": 1720
+          "start": 1289,
+          "end": 1561
         },
         "left": {
           "type": "VariableDeclaration",
           "span": {
-            "start": 1453,
-            "end": 1462
+            "start": 1294,
+            "end": 1303
           },
           "ctxt": 0,
           "kind": "const",
@@ -775,14 +775,14 @@ module.exports = function () {
             {
               "type": "VariableDeclarator",
               "span": {
-                "start": 1459,
-                "end": 1462
+                "start": 1300,
+                "end": 1303
               },
               "id": {
                 "type": "Identifier",
                 "span": {
-                  "start": 1459,
-                  "end": 1462
+                  "start": 1300,
+                  "end": 1303
                 },
                 "ctxt": 7,
                 "value": "key",
@@ -797,8 +797,8 @@ module.exports = function () {
         "right": {
           "type": "Identifier",
           "span": {
-            "start": 1466,
-            "end": 1471
+            "start": 1307,
+            "end": 1312
           },
           "ctxt": 3,
           "value": "props",
@@ -807,16 +807,16 @@ module.exports = function () {
         "body": {
           "type": "BlockStatement",
           "span": {
-            "start": 1473,
-            "end": 1720
+            "start": 1314,
+            "end": 1561
           },
           "ctxt": 8,
           "stmts": [
             {
               "type": "VariableDeclaration",
               "span": {
-                "start": 1479,
-                "end": 1504
+                "start": 1320,
+                "end": 1345
               },
               "ctxt": 0,
               "kind": "const",
@@ -825,14 +825,14 @@ module.exports = function () {
                 {
                   "type": "VariableDeclarator",
                   "span": {
-                    "start": 1485,
-                    "end": 1503
+                    "start": 1326,
+                    "end": 1344
                   },
                   "id": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1485,
-                      "end": 1490
+                      "start": 1326,
+                      "end": 1331
                     },
                     "ctxt": 8,
                     "value": "value",
@@ -842,14 +842,14 @@ module.exports = function () {
                   "init": {
                     "type": "MemberExpression",
                     "span": {
-                      "start": 1493,
-                      "end": 1503
+                      "start": 1334,
+                      "end": 1344
                     },
                     "object": {
                       "type": "Identifier",
                       "span": {
-                        "start": 1493,
-                        "end": 1498
+                        "start": 1334,
+                        "end": 1339
                       },
                       "ctxt": 3,
                       "value": "props",
@@ -858,14 +858,14 @@ module.exports = function () {
                     "property": {
                       "type": "Computed",
                       "span": {
-                        "start": 1498,
-                        "end": 1503
+                        "start": 1339,
+                        "end": 1344
                       },
                       "expression": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1499,
-                          "end": 1502
+                          "start": 1340,
+                          "end": 1343
                         },
                         "ctxt": 7,
                         "value": "key",
@@ -880,28 +880,28 @@ module.exports = function () {
             {
               "type": "IfStatement",
               "span": {
-                "start": 1509,
-                "end": 1565
+                "start": 1350,
+                "end": 1406
               },
               "test": {
                 "type": "BinaryExpression",
                 "span": {
-                  "start": 1513,
-                  "end": 1540
+                  "start": 1354,
+                  "end": 1381
                 },
                 "operator": "===",
                 "left": {
                   "type": "UnaryExpression",
                   "span": {
-                    "start": 1513,
-                    "end": 1525
+                    "start": 1354,
+                    "end": 1366
                   },
                   "operator": "typeof",
                   "argument": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1520,
-                      "end": 1525
+                      "start": 1361,
+                      "end": 1366
                     },
                     "ctxt": 8,
                     "value": "value",
@@ -911,8 +911,8 @@ module.exports = function () {
                 "right": {
                   "type": "StringLiteral",
                   "span": {
-                    "start": 1530,
-                    "end": 1540
+                    "start": 1371,
+                    "end": 1381
                   },
                   "value": "function",
                   "raw": "\"function\""
@@ -921,16 +921,16 @@ module.exports = function () {
               "consequent": {
                 "type": "BlockStatement",
                 "span": {
-                  "start": 1542,
-                  "end": 1565
+                  "start": 1383,
+                  "end": 1406
                 },
                 "ctxt": 9,
                 "stmts": [
                   {
                     "type": "ContinueStatement",
                     "span": {
-                      "start": 1550,
-                      "end": 1559
+                      "start": 1391,
+                      "end": 1400
                     },
                     "label": null
                   }
@@ -941,8 +941,8 @@ module.exports = function () {
             {
               "type": "VariableDeclaration",
               "span": {
-                "start": 1570,
-                "end": 1621
+                "start": 1411,
+                "end": 1462
               },
               "ctxt": 0,
               "kind": "const",
@@ -951,14 +951,14 @@ module.exports = function () {
                 {
                   "type": "VariableDeclarator",
                   "span": {
-                    "start": 1576,
-                    "end": 1620
+                    "start": 1417,
+                    "end": 1461
                   },
                   "id": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1576,
-                      "end": 1590
+                      "start": 1417,
+                      "end": 1431
                     },
                     "ctxt": 8,
                     "value": "serializedProp",
@@ -968,15 +968,15 @@ module.exports = function () {
                   "init": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 1593,
-                      "end": 1620
+                      "start": 1434,
+                      "end": 1461
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "Identifier",
                       "span": {
-                        "start": 1593,
-                        "end": 1613
+                        "start": 1434,
+                        "end": 1454
                       },
                       "ctxt": 2,
                       "value": "forketSerializeProps",
@@ -988,8 +988,8 @@ module.exports = function () {
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1614,
-                            "end": 1619
+                            "start": 1455,
+                            "end": 1460
                           },
                           "ctxt": 8,
                           "value": "value",
@@ -1006,21 +1006,21 @@ module.exports = function () {
             {
               "type": "IfStatement",
               "span": {
-                "start": 1626,
-                "end": 1716
+                "start": 1467,
+                "end": 1557
               },
               "test": {
                 "type": "BinaryExpression",
                 "span": {
-                  "start": 1630,
-                  "end": 1654
+                  "start": 1471,
+                  "end": 1495
                 },
                 "operator": "!==",
                 "left": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1630,
-                    "end": 1644
+                    "start": 1471,
+                    "end": 1485
                   },
                   "ctxt": 8,
                   "value": "serializedProp",
@@ -1029,8 +1029,8 @@ module.exports = function () {
                 "right": {
                   "type": "BooleanLiteral",
                   "span": {
-                    "start": 1649,
-                    "end": 1654
+                    "start": 1490,
+                    "end": 1495
                   },
                   "value": false
                 }
@@ -1038,35 +1038,35 @@ module.exports = function () {
               "consequent": {
                 "type": "BlockStatement",
                 "span": {
-                  "start": 1656,
-                  "end": 1716
+                  "start": 1497,
+                  "end": 1557
                 },
                 "ctxt": 10,
                 "stmts": [
                   {
                     "type": "ExpressionStatement",
                     "span": {
-                      "start": 1664,
-                      "end": 1710
+                      "start": 1505,
+                      "end": 1551
                     },
                     "expression": {
                       "type": "AssignmentExpression",
                       "span": {
-                        "start": 1664,
-                        "end": 1709
+                        "start": 1505,
+                        "end": 1550
                       },
                       "operator": "=",
                       "left": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 1664,
-                          "end": 1679
+                          "start": 1505,
+                          "end": 1520
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1664,
-                            "end": 1674
+                            "start": 1505,
+                            "end": 1515
                           },
                           "ctxt": 3,
                           "value": "serialized",
@@ -1075,14 +1075,14 @@ module.exports = function () {
                         "property": {
                           "type": "Computed",
                           "span": {
-                            "start": 1674,
-                            "end": 1679
+                            "start": 1515,
+                            "end": 1520
                           },
                           "expression": {
                             "type": "Identifier",
                             "span": {
-                              "start": 1675,
-                              "end": 1678
+                              "start": 1516,
+                              "end": 1519
                             },
                             "ctxt": 7,
                             "value": "key",
@@ -1093,15 +1093,15 @@ module.exports = function () {
                       "right": {
                         "type": "CallExpression",
                         "span": {
-                          "start": 1682,
-                          "end": 1709
+                          "start": 1523,
+                          "end": 1550
                         },
                         "ctxt": 0,
                         "callee": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1682,
-                            "end": 1702
+                            "start": 1523,
+                            "end": 1543
                           },
                           "ctxt": 2,
                           "value": "forketSerializeProps",
@@ -1113,8 +1113,8 @@ module.exports = function () {
                             "expression": {
                               "type": "Identifier",
                               "span": {
-                                "start": 1703,
-                                "end": 1708
+                                "start": 1544,
+                                "end": 1549
                               },
                               "ctxt": 8,
                               "value": "value",
@@ -1136,14 +1136,14 @@ module.exports = function () {
       {
         "type": "ReturnStatement",
         "span": {
-          "start": 1724,
-          "end": 1742
+          "start": 1565,
+          "end": 1583
         },
         "argument": {
           "type": "Identifier",
           "span": {
-            "start": 1731,
-            "end": 1741
+            "start": 1572,
+            "end": 1582
           },
           "ctxt": 3,
           "value": "serialized",

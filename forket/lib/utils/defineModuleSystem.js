@@ -1,10 +1,10 @@
 const traverseNode = require("./traverseNode");
 
-module.exports = function detectModuleSystem(node) {
+module.exports = function defineModuleSystem(ast) {
   let usesESM = false;
   let usesCommonJS = false;
 
-  traverseNode(node.ast, {
+  traverseNode(ast, {
     ImportDeclaration() {
       usesESM = true;
     },
@@ -14,8 +14,8 @@ module.exports = function detectModuleSystem(node) {
     ExportDefaultDeclaration() {
       usesESM = true;
     },
-    CallExpression(path) {
-      if (path.callee.value === "require") {
+    CallExpression(node) {
+      if (node?.callee?.value === "require") {
         usesCommonJS = true;
       }
     },
@@ -35,4 +35,4 @@ module.exports = function detectModuleSystem(node) {
   if (usesESM && !usesCommonJS) return "esm";
   if (usesCommonJS && !usesESM) return "commonjs";
   return "mixed";
-}
+};

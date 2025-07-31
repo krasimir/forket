@@ -30,26 +30,37 @@ const FILES = [
     }
   },
   {
-    codeFile: path.join(__dirname, "reactInScopeCommonJS", "/code.js"),
+    codeFile: path.join(__dirname, "importCommonJS", "/code.js"),
     generator: function (ast) {
-      return `module.exports = function () {
-  return ${JSON.stringify(ast.body, null, 2)}
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"React"/g, "what");
+      json = json.replace(/"react"/g, "where");
+      json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
+      return `module.exports = function (what, where) {
+  return ${json}
 }`;
     }
   },
   {
-    codeFile: path.join(__dirname, "reactInScopeESM", "/code.js"),
+    codeFile: path.join(__dirname, "importESM", "/code.js"),
     generator: function (ast) {
-      return `module.exports = function () {
-  return ${JSON.stringify(ast.body, null, 2)}
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"React"/g, "what");
+      json = json.replace(/"react"/g, "where");
+      json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
+      return `module.exports = function (what, where) {
+  return ${json}
 }`;
     }
   },
   {
-    codeFile: path.join(__dirname, "exposeReact", "/code.js"),
+    codeFile: path.join(__dirname, "exposeGlobal", "/code.js"),
     generator: function (ast) {
-      return `module.exports = function () {
-  return ${JSON.stringify(ast.body, null, 2)}
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"Foo"/g, "windowKey");
+      json = json.replace(/"Bar"/g, "value");
+      return `module.exports = function (windowKey, value) {
+  return ${json}
 }`;
     }
   }

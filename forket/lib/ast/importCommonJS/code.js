@@ -1,0 +1,1 @@
+const React = require("react");

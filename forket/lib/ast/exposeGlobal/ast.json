@@ -1,0 +1,60 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 1646,
+    "end": 1663
+  },
+  "body": [
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 1646,
+        "end": 1663
+      },
+      "expression": {
+        "type": "AssignmentExpression",
+        "span": {
+          "start": 1646,
+          "end": 1662
+        },
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 1646,
+            "end": 1656
+          },
+          "object": {
+            "type": "Identifier",
+            "span": {
+              "start": 1646,
+              "end": 1652
+            },
+            "ctxt": 1,
+            "value": "window",
+            "optional": false
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 1653,
+              "end": 1656
+            },
+            "value": "Foo"
+          }
+        },
+        "right": {
+          "type": "Identifier",
+          "span": {
+            "start": 1659,
+            "end": 1662
+          },
+          "ctxt": 1,
+          "value": "Bar",
+          "optional": false
+        }
+      }
+    }
+  ],
+  "interpreter": null
+}

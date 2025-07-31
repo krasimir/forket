@@ -29,9 +29,8 @@ function Thanos() {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
                 console.log(chalk.gray("  - Client boundary: " + node.imports[j].source));
-                clientBoundaries.push(importedNode);
-                await createClientBoundary(graph, node, node.imports[j], importedNode);
-                // Generating the new code
+                const compNames = await createClientBoundary(graph, node, node.imports[j], importedNode);
+                clientBoundaries.push({ compNames, importedNode });
                 const transformed = await swc.print(node.ast, {
                   minify: false
                 });
@@ -100,6 +99,8 @@ function Thanos() {
       });
       insertImports(node.ast, getPropsSerializer());
     }
+
+    return componentsToClientBoundaries;
   }
   function getId() {
     return "f_" + id++;
