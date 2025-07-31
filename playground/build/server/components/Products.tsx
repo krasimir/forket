@@ -1,6 +1,3 @@
-import React from 'react';
-import { getProducts } from "./db";
-import ProductsList from "./ProductsList";
 function forketSerializeProps(props) {
     function isValidElement(obj) {
         const keys = Object.keys(obj);
@@ -46,6 +43,9 @@ function ProductsListBoundary(props) {
       </boundary_f_0>
     </>);
 }
+import React from 'react';
+import { getProducts } from "./db";
+import ProductsList from "./ProductsList";
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS);
 export default async function Products() {

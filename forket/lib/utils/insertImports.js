@@ -2,7 +2,7 @@ module.exports = function insertImports(ast, node) {
   if (!ast.body) {
     return;
   }
-  if (!Array.isArray(ast.body)) {
+  if (!Array.isArray(node)) {
     node = [node];
   }
   if (

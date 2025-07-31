@@ -7,7 +7,7 @@ const insertImports = require('../../lib/utils/insertImports.js');
 const defineModuleSystem=require('../../lib/utils/defineModuleSystem.js');
 const getReactInScopeCommonJS = require("../../lib/ast/reactInScopeCommonJS");
 const getReactInScopeESM = require("../../lib/ast/reactInScopeESM");
-const exposeReactLibs=require('../../lib/utils/exposeReactLibs.js');
+const exposeReactLibs = require('../../lib/utils/exposeReactLibs.js');
 
 module.exports = async function ({ test, toAST, toCode }) {
   const [graph] = await getGraphs(path.join(__dirname, "src"));
@@ -81,9 +81,9 @@ module.exports = async function ({ test, toAST, toCode }) {
   await test("Should properly expose React libs", async () => {
     const cases = ["a"];
     for (let i = 0; i < cases.length; i++) {
-      const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + ".js"));
-      const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
-      exposeReactLibs(baseAST);      
+      const baseAST = await toAST(path.join(__dirname, "exposeReact", cases[i] + ".js"));
+      const expected = fs.readFileSync(path.join(__dirname, "exposeReact", cases[i] + ".expected.js"), "utf8");
+      exposeReactLibs(baseAST);
       const result = await toCode(baseAST);
       if (expected !== result) {
         return false;

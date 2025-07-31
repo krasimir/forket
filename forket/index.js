@@ -6,7 +6,7 @@ const { copyFolder, clearPath } = require("./lib/utils/fsHelpers.js");
 const { setRoles } = require('./lib/roles.js')
 const { Thanos, MODE } = require("./lib/thanos.js");
 const processChunk = require('./lib/server/processChunk.js');
-const injectClientBoundaries = require("./lib/utils/injectClientBoundaries.js");
+const setupClientEntryPoints = require("./lib/utils/setupClientEntryPoints.js");
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
 
@@ -43,7 +43,12 @@ module.exports = function (options = {}) {
       return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT);
     });
 
-    injectClientBoundaries(thanosServer.clientBoundaries, thanosClient.clientEntryPoints);
+    await setupClientEntryPoints(
+      options.sourceDir,
+      buildClientDir,
+      thanosServer.clientBoundaries,
+      thanosClient.clientEntryPoints
+    );
 
   }
 

@@ -6,11 +6,7 @@ const { ROLE } = require("./constants.js");
 const traverseNode = require("./utils/traverseNode.js");
 const getClientBoundaryWrapper = require('./ast/clientBoundaryWrapper');
 const getPropsSerializer = require('./ast/propsSerializer');
-const getReactInScopeCommonJS = require('./ast/reactInScopeCommonJS');
-const getReactInScopeESM = require('./ast/reactInScopeESM');
-const defineModuleSystem = require('./utils/defineModuleSystem');
 const insertImports = require("./utils/insertImports");
-const exposeReactLibs = require("./utils/exposeReactLibs.js");
 
 const MODE = {
   CLIENT: "client",
@@ -32,8 +28,14 @@ function Thanos() {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
+                console.log(chalk.gray("  - Client boundary: " + node.imports[j].source));
                 clientBoundaries.push(importedNode);
-                return await createClientBoundary(graph, node, node.imports[j], importedNode);
+                await createClientBoundary(graph, node, node.imports[j], importedNode);
+                // Generating the new code
+                const transformed = await swc.print(node.ast, {
+                  minify: false
+                });
+                return transformed.code;
               }
             }
           }
@@ -45,11 +47,11 @@ function Thanos() {
         const graph = graphs[i];
         const node = getNode(graph, filePath);
         if (node) {
-          if (!node.parentNode && node.role === ROLE.CLIENT) {
-            clientEntryPoints.push(node);
-            return enhanceClientEntryPoint(node);
-          }
           if (node.role === ROLE.CLIENT) {
+            if (!node.parentNode) {
+              console.log(chalk.gray("  - Client entry point: " + node.file));
+              clientEntryPoints.push(node);
+            }
             return content;
           }
         }
@@ -58,8 +60,6 @@ function Thanos() {
     }
   }
   async function createClientBoundary(graph, node, imp, importedNode) {
-    console.log(chalk.yellow("  - Client boundary: " + imp.source));
-
     const componentsToClientBoundaries = [];
 
     // Finding out the exact name of the component/s
@@ -100,25 +100,6 @@ function Thanos() {
       });
       insertImports(node.ast, getPropsSerializer());
     }
-
-    // Generating the new code
-    const transformed = await swc.print(node.ast, {
-      minify: false
-    });
-    return transformed.code;
-  }
-  async function enhanceClientEntryPoint(node) {
-    console.log(chalk.yellow("  - Client entry point: " + node.file));
-    if (defineModuleSystem(node.ast) === "commonjs") {
-      insertImports(node.ast, getReactInScopeCommonJS());
-    } else {
-      insertImports(node.ast, getReactInScopeESM());
-    }
-    exposeReactLibs(node.ast);
-    const transformed = await swc.print(node.ast, {
-      minify: false
-    });
-    return transformed.code;
   }
   function getId() {
     return "f_" + id++;
