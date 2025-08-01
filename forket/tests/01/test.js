@@ -4,9 +4,6 @@ const fs = require('fs');
 const { getGraphs, toJSON } = require("../../lib/graph.js");
 const { setRoles } = require('../../lib/roles.js');
 const insertImports = require('../../lib/utils/insertImports.js');
-const defineModuleSystem=require('../../lib/utils/defineModuleSystem.js');
-const importCommonJS = require("../../lib/ast/importCommonJS");
-const importESM = require("../../lib/ast/importESM");
 const exposeGlobal = require('../../lib/ast/exposeGlobal');
 
 module.exports = async function ({ test, toAST, toCode }) {
@@ -66,13 +63,8 @@ module.exports = async function ({ test, toAST, toCode }) {
     for(let i=0; i<cases.length; i++) {
       const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + '.js'));
       const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
-      if (defineModuleSystem(baseAST) === "commonjs") {
-        insertImports(baseAST, importCommonJS("ReactDOMClient", "react-dom/client"));
-        insertImports(baseAST, importCommonJS('React', 'react'));
-      } else {
-        insertImports(baseAST, importESM("ReactDOMClient", "react-dom/client"));
-        insertImports(baseAST, importESM('React', 'react'));
-      }
+      insertImports(baseAST, "ReactDOMClient", "react-dom/client");
+      insertImports(baseAST, "React", "react");
       const result = await toCode(baseAST);
       if (expected !== result) {
         console.log(`(${cases[i]}) Expected:\n${expected}`);

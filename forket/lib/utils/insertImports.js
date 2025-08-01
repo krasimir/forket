@@ -1,4 +1,8 @@
-module.exports = function insertImports(ast, node) {
+const defineModuleSystem = require("./defineModuleSystem");
+const importCommonJS = require("../ast/importCommonJS");
+const importESM = require("../ast/importESM");
+
+function insert(ast, node) {
   if (!ast.body) {
     return;
   }
@@ -14,5 +18,13 @@ module.exports = function insertImports(ast, node) {
     ast.body = [ast.body[0]].concat(node).concat(rest);
   } else {
     ast.body = node.concat(ast.body);
+  }
+}
+
+module.exports = function insertImports(ast, what, where) {
+  if (defineModuleSystem(ast) === "commonjs") {
+    insert(ast, importCommonJS(what, where));
+  } else {
+    insert(ast, importESM(what, where));
   }
 };

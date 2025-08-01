@@ -21,7 +21,7 @@ module.exports = function (options = {}) {
   const clientDirName = options.clientDirName || "client";
 
   async function process() {
-    console.log(chalk.gray(`‎𐂐 (1) Forket: processing ${clearPath(options.sourceDir)} ...`));
+    console.log(chalk.gray(`‎𐂐 (1) Processing ${clearPath(options.sourceDir)} ...`));
 
     const graphs = await getGraphs(options.sourceDir);
     graphs.forEach(g => {
@@ -31,14 +31,14 @@ module.exports = function (options = {}) {
 
     let thanosServer = Thanos();
     const buildServerDir = path.join(options.buildDir, serverDirName);
-    console.log(chalk.gray(`‎𐂐 (2) Forket: generating server code in ${clearPath(buildServerDir)}`));
+    console.log(chalk.gray(`‎𐂐 (2) Generating server code in ${clearPath(buildServerDir)}`));
     await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
       return await thanosServer.snap(graphs, filePath, content, MODE.SERVER);
     });
 
     let thanosClient = Thanos();
     const buildClientDir = path.join(options.buildDir, clientDirName);
-    console.log(chalk.gray(`‎𐂐 (3) Forket: generating client code in ${clearPath(buildClientDir)}`));
+    console.log(chalk.gray(`‎𐂐 (3) Generating client code in ${clearPath(buildClientDir)}`));
     await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
       return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT);
     });

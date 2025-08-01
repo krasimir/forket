@@ -1,12 +1,11 @@
 const swc = require("@swc/core");
 const chalk = require("chalk");
 
-const { getNode, resolveImport, printGraph } = require("./graph");
+const { getNode } = require("./graph");
 const { ROLE } = require("./constants.js");
 const traverseNode = require("./utils/traverseNode.js");
 const getClientBoundaryWrapper = require('./ast/clientBoundaryWrapper');
 const getPropsSerializer = require('./ast/propsSerializer');
-const insertImports = require("./utils/insertImports");
 
 const MODE = {
   CLIENT: "client",
@@ -95,9 +94,9 @@ function Thanos() {
     // Creating the client boundary component
     if (componentsToClientBoundaries.length > 0) {
       componentsToClientBoundaries.forEach((compName) => {
-        insertImports(node.ast, getClientBoundaryWrapper(getId(), compName));
+        node.ast.body.push(getClientBoundaryWrapper(getId(), compName));
       });
-      insertImports(node.ast, getPropsSerializer());
+      node.ast.body.push(getPropsSerializer());
     }
 
     return componentsToClientBoundaries;

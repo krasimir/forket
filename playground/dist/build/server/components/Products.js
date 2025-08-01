@@ -33,6 +33,28 @@ module.exports = __toCommonJS(Products_exports);
 var import_react = __toESM(require("react"));
 var import_db = require("./db");
 var import_ProductsList = __toESM(require("./ProductsList"));
+const CREDENTIALS = "secret";
+console.log(CREDENTIALS);
+async function Products() {
+  const { products } = await (0, import_db.getProducts)();
+  return /* @__PURE__ */ import_react.default.createElement(ProductsListBoundary, { products }, /* @__PURE__ */ import_react.default.createElement(ListOfProducts, { n: products.length }));
+}
+function ListOfProducts({ n }) {
+  return /* @__PURE__ */ import_react.default.createElement("p", null, "All products: ", n);
+}
+function ProductsListBoundary(props) {
+  const serializedProps = JSON.stringify(forketSerializeProps(props));
+  const children = props.children || [];
+  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement("boundary_props_f_0", { dangerouslySetInnerHTML: {
+    __html: serializedProps
+  } }), /* @__PURE__ */ import_react.default.createElement("boundary_setup_f_0", { dangerouslySetInnerHTML: {
+    __html: `(function () {
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList"]);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(["f_0", "ProductsList"]);
+        })();`
+  } }), /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })));
+}
 function forketSerializeProps(props) {
   function isValidElement(obj) {
     const keys = Object.keys(obj);
@@ -57,26 +79,4 @@ function forketSerializeProps(props) {
     }
   }
   return serialized;
-}
-function ProductsListBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props));
-  const children = props.children || [];
-  return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("boundary_children_f_0", null, children), /* @__PURE__ */ import_react.default.createElement("boundary_props_f_0", { dangerouslySetInnerHTML: {
-    __html: serializedProps
-  } }), /* @__PURE__ */ import_react.default.createElement("boundary_setup_f_0", { dangerouslySetInnerHTML: {
-    __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList"]);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_0", "ProductsList"]);
-        })();`
-  } }), /* @__PURE__ */ import_react.default.createElement("boundary_f_0", null, /* @__PURE__ */ import_react.default.createElement(import_ProductsList.default, { ...props, children })));
-}
-const CREDENTIALS = "secret";
-console.log(CREDENTIALS);
-async function Products() {
-  const { products } = await (0, import_db.getProducts)();
-  return /* @__PURE__ */ import_react.default.createElement(ProductsListBoundary, { products }, /* @__PURE__ */ import_react.default.createElement(ListOfProducts, { n: products.length }));
-}
-function ListOfProducts({ n }) {
-  return /* @__PURE__ */ import_react.default.createElement("p", null, "All products: ", n);
 }

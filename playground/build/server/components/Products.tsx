@@ -1,3 +1,37 @@
+import React from 'react';
+import { getProducts } from "./db";
+import ProductsList from "./ProductsList";
+const CREDENTIALS = "secret";
+console.log(CREDENTIALS);
+export default async function Products() {
+    const { products } = await getProducts();
+    return (<ProductsListBoundary products={products}>
+      <ListOfProducts n={products.length}/>
+    </ProductsListBoundary>);
+}
+function ListOfProducts({ n }) {
+    return <p>All products: {n}</p>;
+}
+function ProductsListBoundary(props) {
+    const serializedProps = JSON.stringify(forketSerializeProps(props));
+    const children = props.children || [];
+    return (<>
+      <boundary_children_f_0>{children}</boundary_children_f_0>
+      <boundary_props_f_0 dangerouslySetInnerHTML={{
+        __html: serializedProps
+    }}/>
+      <boundary_setup_f_0 dangerouslySetInnerHTML={{
+        __html: `(function () {
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList"]);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(["f_0", "ProductsList"]);
+        })();`
+    }}/>
+      <boundary_f_0>
+        <ProductsList {...props} children={children}/>
+      </boundary_f_0>
+    </>);
+}
 function forketSerializeProps(props) {
     function isValidElement(obj) {
         const keys = Object.keys(obj);
@@ -22,38 +56,4 @@ function forketSerializeProps(props) {
         }
     }
     return serialized;
-}
-function ProductsListBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props));
-    const children = props.children || [];
-    return (<>
-      <boundary_children_f_0>{children}</boundary_children_f_0>
-      <boundary_props_f_0 dangerouslySetInnerHTML={{
-        __html: serializedProps
-    }}/>
-      <boundary_setup_f_0 dangerouslySetInnerHTML={{
-        __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "ProductsList"]);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_0", "ProductsList"]);
-        })();`
-    }}/>
-      <boundary_f_0>
-        <ProductsList {...props} children={children}/>
-      </boundary_f_0>
-    </>);
-}
-import React from 'react';
-import { getProducts } from "./db";
-import ProductsList from "./ProductsList";
-const CREDENTIALS = "secret";
-console.log(CREDENTIALS);
-export default async function Products() {
-    const { products } = await getProducts();
-    return (<ProductsListBoundary products={products}>
-      <ListOfProducts n={products.length}/>
-    </ProductsListBoundary>);
-}
-function ListOfProducts({ n }) {
-    return <p>All products: {n}</p>;
 }

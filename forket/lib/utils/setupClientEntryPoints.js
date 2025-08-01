@@ -3,9 +3,6 @@ const swc = require("@swc/core");
 const path = require("path");
 const chalk = require("chalk");
 
-const importCommonJS = require("../ast/importCommonJS");
-const importESM = require("../ast/importESM");
-const defineModuleSystem = require("../utils/defineModuleSystem");
 const exposeGlobal = require("../ast/exposeGlobal");
 const insertImports = require("./insertImports");
 
@@ -16,16 +13,11 @@ module.exports = async function setupClientEntryPoints(sourceDir, buildDir, clie
     clientEntrypoints.map(async (entryPoint) => {
       clientBoundaries.forEach(({ compNames, importedNode }) => {
         compNames.forEach((compName) => {
-          insertImports(entryPoint.ast, importESM(compName, getImportPath(entryPoint.file, importedNode.file)));
+          insertImports(entryPoint.ast, compName, getImportPath(entryPoint.file, importedNode.file));
         });
       });
-      if (defineModuleSystem(entryPoint.ast) === "commonjs") {
-        insertImports(entryPoint.ast, importCommonJS("ReactDOMClient", "react-dom/client"));
-        insertImports(entryPoint.ast, importCommonJS("React", "react"));
-      } else {
-        insertImports(entryPoint.ast, importESM("ReactDOMClient", "react-dom/client"));
-        insertImports(entryPoint.ast, importESM("React", "react"));
-      }
+      insertImports(entryPoint.ast, "ReactDOMClient", "react-dom/client");
+      insertImports(entryPoint.ast, "React", "react");
       entryPoint.ast.body = entryPoint.ast.body
         .concat(exposeGlobal("React", "React"))
         .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"));
