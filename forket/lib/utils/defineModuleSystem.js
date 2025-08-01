@@ -1,6 +1,6 @@
-const traverseNode = require("./traverseNode");
+import traverseNode  from "./traverseNode.js";
 
-module.exports = function defineModuleSystem(ast) {
+export default function defineModuleSystem(ast) {
   let usesESM = false;
   let usesCommonJS = false;
 

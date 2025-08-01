@@ -19286,14 +19286,14 @@
   });
 
   // build/client/client.tsx
-  var import_react3 = __toESM(require_react());
-  var import_client = __toESM(require_client());
+  var import_react3 = __toESM(require_react(), 1);
+  var import_client = __toESM(require_client(), 1);
 
   // build/client/components/ProductsList.tsx
-  var import_react2 = __toESM(require_react());
+  var import_react2 = __toESM(require_react(), 1);
 
   // build/client/components/ProductListItem.tsx
-  var import_react = __toESM(require_react());
+  var import_react = __toESM(require_react(), 1);
   function ProductListeItem({ title, onClick }) {
     return /* @__PURE__ */ import_react.default.createElement("label", null, /* @__PURE__ */ import_react.default.createElement("input", { type: "checkbox", onClick }), title);
   }

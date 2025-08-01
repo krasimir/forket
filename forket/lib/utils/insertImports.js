@@ -1,6 +1,6 @@
-const defineModuleSystem = require("./defineModuleSystem");
-const importCommonJS = require("../ast/importCommonJS");
-const importESM = require("../ast/importESM");
+import defineModuleSystem from "./defineModuleSystem.js";
+import importCommonJS from "../ast/importCommonJS/index.js";
+import importESM from "../ast/importESM/index.js";
 
 function insert(ast, node) {
   if (!ast.body) {
@@ -21,7 +21,7 @@ function insert(ast, node) {
   }
 }
 
-module.exports = function insertImports(ast, what, where) {
+export default function insertImports(ast, what, where) {
   if (defineModuleSystem(ast) === "commonjs") {
     insert(ast, importCommonJS(what, where));
   } else {

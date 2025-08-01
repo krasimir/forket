@@ -1,16 +1,21 @@
-const fs = require("fs");
-const path = require('path');
-const chalk = require("chalk");
-const { getGraphs, printGraph } = require("./lib/graph.js");
-const { copyFolder, clearPath } = require("./lib/utils/fsHelpers.js");
-const { setRoles } = require('./lib/roles.js')
-const { Thanos, MODE } = require("./lib/thanos.js");
-const processChunk = require('./lib/server/processChunk.js');
-const setupClientEntryPoints = require("./lib/utils/setupClientEntryPoints.js");
+import fs from "fs";
+import path from "path";
+import chalk from "chalk";
+import { fileURLToPath } from "url";
+
+import { getGraphs, printGraph } from "./lib/graph.js";
+import { copyFolder, clearPath } from "./lib/utils/fsHelpers.js";
+import { setRoles } from "./lib/roles.js";
+import { Thanos, MODE } from "./lib/thanos.js";
+import PC from "./lib/server/processChunk.js";
+import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
 
-module.exports = function (options = {}) {
+export default function Forket(options = {}) {
   if (!options.sourceDir) {
     throw new Error(`‎𐂐 Forket: missing "sourceDir" option. Please provide a source directory to process.`);
   }
@@ -26,7 +31,7 @@ module.exports = function (options = {}) {
     const graphs = await getGraphs(options.sourceDir);
     graphs.forEach(g => {
       setRoles(g);
-      // printGraph(g);
+      printGraph(g);
     });
 
     let thanosServer = Thanos();
@@ -59,7 +64,9 @@ module.exports = function (options = {}) {
   };
 }
 
-module.exports.client = function () {
+export function client() {
   return clientReplacerCode;
 }
-module.exports.processChunk = processChunk;
+export function processChunk(res) {
+  return PC(res);
+}

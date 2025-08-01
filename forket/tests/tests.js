@@ -1,8 +1,12 @@
-const fs = require("fs");
-const path = require("path");
-const chalk = require('chalk');
-const arg = require("arg");
-const swc = require("@swc/core");
+import fs from "fs";
+import path from "path";
+import chalk from 'chalk';
+import arg from "arg";
+import swc from "@swc/core";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let dirs = fs.readdirSync(__dirname)
 const args = arg({
@@ -18,10 +22,10 @@ const args = arg({
   for(let i=0; i<dirs.length; i++) {
     const dir = dirs[i];
     if (fs.statSync(path.join(__dirname, dir)).isDirectory()) {
-      const test = require(path.join(__dirname, dir, "test.js"));
+      const test = await import(path.join(__dirname, dir, "test.js"));
 
       try {
-        await test({
+        await test.default({
           testCase: args["--case"] || 'all',
           async test(message, condition) {
             console.log(chalk.gray(`⏳ ${message}`));
@@ -51,7 +55,7 @@ const args = arg({
           }
         });
       } catch(err) {
-        console.log(chalk.red(`Error transforming ${dir}:`), err);
+        console.log(chalk.red(`${dir}:`), err);
         continue;
       }
     }

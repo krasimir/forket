@@ -1,12 +1,16 @@
-const path = require('path');
-const fs = require('fs');
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
-const { getGraphs, toJSON } = require("../../lib/graph.js");
-const { setRoles } = require('../../lib/roles.js');
-const insertImports = require('../../lib/utils/insertImports.js');
-const exposeGlobal = require('../../lib/ast/exposeGlobal');
+import { getGraphs, toJSON } from "../../lib/graph.js";
+import { setRoles } from '../../lib/roles.js';
+import insertImports from '../../lib/utils/insertImports.js';
+import exposeGlobal from '../../lib/ast/exposeGlobal/index.js';
 
-module.exports = async function ({ test, toAST, toCode }) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default async function ({ test, toAST, toCode }) {
   const [graph] = await getGraphs(path.join(__dirname, "src"));
   setRoles(graph);
   

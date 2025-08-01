@@ -1,10 +1,16 @@
-const path = require("path");
-const fs = require("fs");
-const spawn = require("child_process").spawn;
-const chokidar = require("chokidar");
-const chalk = require("chalk");
-const esbuild = require("esbuild");
-const Forket = require(path.join(__dirname, '..', '..', '..', 'forket', 'index.js'));
+import path from "path";
+import fs from "fs";
+import child_process from "child_process";
+import chokidar from "chokidar";
+import chalk from "chalk";
+import esbuild from "esbuild";
+import { fileURLToPath } from "url";
+
+import Forket from '../../../forket/index.js';
+
+const spawn = child_process.spawn;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
@@ -27,7 +33,7 @@ async function buildServer() {
         bundle: false,
         outfile,
         platform: "node",
-        format: "cjs",
+        format: "esm",
         plugins: []
       });
     }));

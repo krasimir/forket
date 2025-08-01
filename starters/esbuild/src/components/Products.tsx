@@ -1,6 +1,6 @@
 import React from 'react';
-import { getProducts } from "./db";
-import ProductsList from "./ProductsList";
+import { getProducts } from "./db.js";
+import ProductsList from "./ProductsList.js";
 
 const CREDENTIALS = "secret";
 console.log(CREDENTIALS)

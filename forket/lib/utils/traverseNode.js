@@ -1,4 +1,4 @@
-module.exports = function traverseNode(node, visitors, parent = null) {
+export default function traverseNode(node, visitors, parent = null) {
   if (!node || typeof node.type !== "string") return;
 
   const visitor = visitors[node.type];

@@ -1,4 +1,4 @@
-function processChunk(res) {
+export default function processChunk(res) {
   function replaceAllBoundaryTags(html) {
     html = html
       .replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`)
@@ -28,5 +28,3 @@ function processChunk(res) {
     originalWrite.call(res, Buffer.from(str, "utf8"));
   };
 }
-
-module.exports = processChunk;

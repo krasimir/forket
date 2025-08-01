@@ -1,18 +1,18 @@
-const swc = require("@swc/core");
-const chalk = require("chalk");
+import swc from "@swc/core";
+import chalk from "chalk";
 
-const { getNode } = require("./graph");
-const { ROLE } = require("./constants.js");
-const traverseNode = require("./utils/traverseNode.js");
-const getClientBoundaryWrapper = require('./ast/clientBoundaryWrapper');
-const getPropsSerializer = require('./ast/propsSerializer');
+import { getNode } from "./graph.js";
+import { ROLE } from "./constants.js";
+import traverseNode from "./utils/traverseNode.js";
+import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
+import getPropsSerializer from './ast/propsSerializer/index.js';
 
-const MODE = {
+export const MODE = {
   CLIENT: "client",
   SERVER: "server"
 };
 
-function Thanos() {
+export function Thanos() {
   let id = 0;
   const clientBoundaries = [];
   const clientEntryPoints = [];
@@ -111,8 +111,3 @@ function Thanos() {
     clientEntryPoints
   };
 }
-
-module.exports = {
-  MODE,
-  Thanos
-};

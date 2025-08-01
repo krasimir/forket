@@ -1,12 +1,12 @@
-const fs = require("fs");
-const swc = require("@swc/core");
-const path = require("path");
-const chalk = require("chalk");
+import fs from "fs";
+import swc from "@swc/core";
+import path from "path";
+import chalk from "chalk";
 
-const exposeGlobal = require("../ast/exposeGlobal");
-const insertImports = require("./insertImports");
+import exposeGlobal from "../ast/exposeGlobal/index.js";
+import insertImports from "./insertImports.js";
 
-module.exports = async function setupClientEntryPoints(sourceDir, buildDir, clientBoundaries, clientEntrypoints) {
+export default async function setupClientEntryPoints(sourceDir, buildDir, clientBoundaries, clientEntrypoints) {
   console.log(chalk.gray(`‎𐂐 (4) Setting up client entry point/s`));
 
   await Promise.all(
@@ -48,8 +48,3 @@ function getImportPath(fromFile, toFile) {
   }
   return relativePath;
 }
-
-/*
-console.log(chalk.yellow("  - Client entry point: " + node.file));
-
-*/

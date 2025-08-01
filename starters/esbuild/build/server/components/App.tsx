@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import Products from "./Products";
+import Products from "./Products.js";
 
 export default function App() {
   return (

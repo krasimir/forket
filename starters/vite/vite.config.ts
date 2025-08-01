@@ -1,7 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import Forket from '../../forket'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+    {
+      name: "forket",
+      async config() {
+        await Forket({
+          sourceDir: __dirname + '/src',
+          buildDir: __dirname + '/build',
+        }).process();
+      }
+    },
+    react()
+  ],
+  build: {
+    rollupOptions: {
+      input: "./build/main.tsx"
+    }
+  }
+});

@@ -1,12 +1,12 @@
-const fs = require("fs/promises");
-const path = require("path");
-const { createReadStream, createWriteStream } = require("fs");
-const { pipeline } = require("stream/promises");
-const pLimit = require("p-limit");
+import fs from "fs/promises";
+import path from "path";
+import { createReadStream, createWriteStream } from "fs";
+import { pipeline } from "stream/promises";
+import pLimit from "p-limit";
 
 const limit = pLimit(10);
 
-async function copyFolder(src, dest, transformFile) {
+export async function copyFolder(src, dest, transformFile) {
   const entries = await fs.readdir(src, { withFileTypes: true });
   await fs.mkdir(dest, { recursive: true });
 
@@ -33,11 +33,7 @@ async function copyFolder(src, dest, transformFile) {
 
   await Promise.all(tasks);
 }
-function clearPath(path) {
+export function clearPath(path) {
   return path.replace(process.cwd(), "");
 }
 
-module.exports = {
-  copyFolder,
-  clearPath
-};

@@ -1,7 +1,7 @@
-const { printGraph } = require("./graph.js");
-const { ROLE } = require("./constants.js");
+import { printGraph } from "./graph.js";
+import { ROLE } from "./constants.js";
 
-function setRoles(node) {
+export function setRoles(node) {
   function visitNode(node) {
     if (node.useClient) {
       node.role = ROLE.CLIENT;
@@ -16,8 +16,4 @@ function setRoles(node) {
     }
   }
   visitNode(node);
-}
-
-module.exports = {
-  setRoles
 }

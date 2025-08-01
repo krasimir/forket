@@ -1,7 +1,5 @@
-module.exports = {
-  VALID_ENTRY_POINTS: [".js", ".jsx", ".ts", ".tsx"],
-  ROLE: {
-    SERVER: 'server',
-    CLIENT: 'client'
-  }
-}
+export const ROLE = {
+  SERVER: 'server',
+  CLIENT: 'client'
+};
+export const VALID_ENTRY_POINTS = [".js", ".jsx", ".ts", ".tsx"];

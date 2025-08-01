@@ -1,48 +1,29 @@
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var import_react = __toESM(require("react"));
-var import_path = __toESM(require("path"));
-var import_server = require("react-dom/server");
-var import_http = __toESM(require("http"));
-var import_express = __toESM(require("express"));
-var import_forket = require("../../../../../forket");
-var import_products = __toESM(require("./api/products"));
-var import_App = __toESM(require("./components/App"));
+import React from "react";
+import path from "path";
+import { renderToPipeableStream } from "react-dom/server";
+import http from "http";
+import express from "express";
+import { fileURLToPath } from "url";
+import { client, processChunk } from "../../../../../forket/index.js";
+import productsHandler from "./api/products.js";
+import App from "./components/App.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const port = 8087;
 const TIMEOUT = 500;
-const app = (0, import_express.default)();
-const server = import_http.default.createServer(app);
-app.use(import_express.default.static(import_path.default.join(__dirname, "..", "..", "public")));
-app.get("/api/products", (0, import_products.default)(TIMEOUT));
+const app = express();
+const server = http.createServer(app);
+app.use(express.static(path.join(__dirname, "..", "..", "public")));
+app.get("/api/products", productsHandler(TIMEOUT));
 app.get("/", (req, res) => {
-  const { pipe, abort } = (0, import_server.renderToPipeableStream)(/* @__PURE__ */ import_react.default.createElement(import_App.default, null), {
+  const { pipe, abort } = renderToPipeableStream(/* @__PURE__ */ React.createElement(App, null), {
     bootstrapScripts: ["/bundle.js"],
     // bootstrapScripts: [],
-    bootstrapScriptContent: (0, import_forket.client)(),
+    bootstrapScriptContent: client(),
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
-      (0, import_forket.processChunk)(res);
+      processChunk(res);
       pipe(res);
     },
     onError(err) {

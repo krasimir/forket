@@ -3,14 +3,17 @@ import path from "path";
 import { renderToPipeableStream } from "react-dom/server";
 import http from "http";
 import express from "express";
+import { fileURLToPath } from "url";
 
 // This should be really
 // import { client, processChunk } from "forket";
-import { client, processChunk } from "../../../../../forket";
+import { client, processChunk } from "../../../../../forket/index.js";
 
-import productsHandler from './api/products'
+import productsHandler from './api/products.js'
+import App from './components/App.js'
 
-import App from './components/App'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const port = 8087;
 // const TIMEOUT = 10000;

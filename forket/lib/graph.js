@@ -1,13 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const swc = require("@swc/core");
-const get = require("lodash/get");
-const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve");
+import fs from 'fs';
+import path from 'path';
+import swc from '@swc/core';
+import get from 'lodash/get.js';
+import enhancedResolve from 'enhanced-resolve';
 
-const { clearPath } = require("./utils/fsHelpers.js");
-const traverseNode = require("./utils/traverseNode.js");
-const { VALID_ENTRY_POINTS, ROLE } = require("./constants.js");
-const { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } = require("./utils/errors.js");
+import { clearPath } from "./utils/fsHelpers.js";
+import traverseNode from "./utils/traverseNode.js";
+import { VALID_ENTRY_POINTS, ROLE } from "./constants.js";
+import { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } from "./utils/errors.js";
+
+const { CachedInputFileSystem, ResolverFactory } = enhancedResolve;
 
 let SEARCH_CACHE = new Map();
 let RESOLVED_CACHE = new Map();
@@ -21,7 +23,7 @@ const resolver = ResolverFactory.createResolver({
 });
 let nodeId = 0;
 
-async function createNode(file, parentNode = null) {
+export async function createNode(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
   const { parse } = swc;
   const ast = await parse(code, {
@@ -79,7 +81,7 @@ async function createNode(file, parentNode = null) {
     astProps
   );
 }
-function getNode(node, filePath) {
+export function getNode(node, filePath) {
   if (SEARCH_CACHE.has(node.id + filePath)) {
     return SEARCH_CACHE.get(node.id + filePath);
   }
@@ -89,7 +91,7 @@ function getNode(node, filePath) {
   }
   for (let i = 0; i < node.children.length; i++) {
     const child = node.children[i];
-    const found = api.getNode(child, filePath);
+    const found = getNode(child, filePath);
     if (found) {
       SEARCH_CACHE.set(node.id + filePath, found);
       return found;
@@ -97,7 +99,7 @@ function getNode(node, filePath) {
   }
   return null;
 }
-async function getGraph(entryPoint) {
+export async function getGraph(entryPoint) {
   const PROCESSED = new Map();
   const RESOLVED = new Map();
   async function process(filePath, parentNode = null) {
@@ -119,7 +121,7 @@ async function getGraph(entryPoint) {
       try {
         let resolved = RESOLVED.get(key);
         if (typeof resolved === "undefined") {
-          resolved = await resolveImport(filePath, imp.source);
+          resolved = await resolveImport(filePath, imp.source.replace(/\.(js|ts|tsx|jsx)$/, ""));
           RESOLVED.set(key, resolved);
         }
         if (resolved !== null) {
@@ -129,7 +131,7 @@ async function getGraph(entryPoint) {
           // console.log(`Ignoring ${imp.source}`);
         }
       } catch (err) {
-        // console.log(`Ignoring ${imp.source}`);
+        // console.log(`Ignoring ${imp.source}`, err.message);
         RESOLVED.set(key, null);
       }
     }
@@ -137,7 +139,7 @@ async function getGraph(entryPoint) {
   }
   return process(entryPoint);
 }
-async function getGraphs(dir) {
+export async function getGraphs(dir) {
   SEARCH_CACHE = new Map();
   RESOLVED_CACHE = new Map();
   // finding the entry points for processing
@@ -156,25 +158,25 @@ async function getGraphs(dir) {
   }
   return graphs;
 }
-function printGraph(node, indent = "") {
+export function printGraph(node, indent = "") {
   console.log(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`);
   if (node.children.length > 0) {
     node.children.forEach((child) => {
-      api.printGraph(child, indent + "   ");
+      printGraph(child, indent + "   ");
     });
   }
 }
-function toJSON(node) {
+export function toJSON(node) {
   return {
     [clearPath(node.file)]: {
       role: node.role,
       children: node.children.map((child) => {
-        return api.toJSON(child);
+        return toJSON(child);
       })
     }
   };
 }
-async function resolveImport(host, request) {
+export async function resolveImport(host, request) {
   return new Promise((resolve, reject) => {
     if (RESOLVED_CACHE.has(`${host}:${request}`)) {
       return resolve(RESOLVED_CACHE.get(`${host}:${request}`));
@@ -194,15 +196,3 @@ async function resolveImport(host, request) {
     });
   });
 }
-
-const api = {
-  createNode,
-  getGraph,
-  getGraphs,
-  getNode,
-  resolveImport,
-  printGraph,
-  toJSON
-};
-
-module.exports = api;

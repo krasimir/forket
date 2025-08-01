@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, use } from "react";
-import ProductListeItem from "./ProductListItem";
+import ProductListeItem from "./ProductListItem.js";
 
 type Product = {
   id: number;
