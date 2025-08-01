@@ -4,7 +4,7 @@ const spawn = require("child_process").spawn;
 const chokidar = require("chokidar");
 const chalk = require("chalk");
 const esbuild = require("esbuild");
-const Forket = require(path.join(__dirname, '..', '..', 'forket', 'index.js'));
+const Forket = require(path.join(__dirname, '..', '..', '..', 'forket', 'index.js'));
 
 const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));

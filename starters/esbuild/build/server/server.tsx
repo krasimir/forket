@@ -6,7 +6,7 @@ import express from "express";
 
 // This should be really
 // import { client, processChunk } from "forket";
-import { client, processChunk } from "../../../../forket";
+import { client, processChunk } from "../../../../../forket";
 
 import productsHandler from './api/products'
 
