@@ -4,19 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --config vite.config.ts",
+    "clean": "rm -rf ./build/*",
+    "dev_": "npm run clean && vite --config vite.config.ts",
+    "dev": "npm run clean && node ./server.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "forket": "0.1.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@types/node": "24.0.8",
     "@eslint/js": "^9.30.1",
+    "@types/express": "^5.0.3",
+    "@types/node": "24.0.8",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",

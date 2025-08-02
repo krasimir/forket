@@ -19,10 +19,5 @@ export default defineConfig({
       }
     },
     react()
-  ],
-  build: {
-    rollupOptions: {
-      input: "./build/server/main.tsx"
-    }
-  }
+  ]
 });
