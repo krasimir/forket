@@ -1,28 +1,26 @@
-import React, { Suspense } from "react";
+import React from 'react';
 
-import Products from "./Products.js";
+import Header from './Header.js'
+import LoginForm from './LoginForm.js';
 
-export default function App() {
+export default function App({ request }) {
+  const isLoggedIn = request.cookies?.forket;
+
+  async function login(formData) {
+    "use server";
+    console.log("form submitted");
+  }
+
   return (
     <html>
       <head>
-        <Title />
+        <title>React Example</title>
+        <link rel="stylesheet" href="/assets/styles.css" />
       </head>
       <body>
-        <div>
-          <header>
-            <h1>Hello world</h1>
-          </header>
-          {/* <Suspense> */}
-            <Products />
-          {/* </Suspense> */}
-          <footer>I'm a footer</footer>
-        </div>
+        <Header />
+        <section className="container mxauto">{!isLoggedIn && <LoginForm login={login} />}</section>
       </body>
     </html>
   );
-}
-
-export function Title() {
-  return <title>React Example</title>;
 }

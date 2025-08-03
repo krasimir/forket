@@ -1,7 +1,7 @@
 'use client';
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import ProductsList from "./components/ProductsList";
+import LoginForm from "./components/LoginForm";
 window.React = React;
 window.ReactDOMClient = ReactDOMClient;
-window.ProductsList = ProductsList;
+window.LoginForm = LoginForm;

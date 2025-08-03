@@ -7,6 +7,7 @@ import Forket from '../../../forket/index.js';
 
 import command from "./utils/command.js";
 import getAllFiles from "./utils/getAllFiles.js";
+import copyFolder from './utils/copyFolder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -79,6 +80,7 @@ async function buildClient() {
       sourcemap: true,
       plugins: []
     });
+    copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
   } catch (error) {
     console.error(`Error compiling server: ${error.message}`);
   }
