@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import chalk from "chalk";
 import { fileURLToPath } from "url";
+import chokidar from "chokidar";
 
 import { getGraphs, printGraph } from "./lib/graph.js";
 import { copyFolder, clearPath } from "./lib/utils/fsHelpers.js";
@@ -31,30 +32,39 @@ export default function Forket(options = {}) {
   options.serverDirName = options.serverDirName || DEFAULT_OPTIONS.serverDirName;
   options.clientDirName = options.clientDirName || DEFAULT_OPTIONS.clientDirName;
   options.clientCopyableFiles = options.clientCopyableFiles || DEFAULT_OPTIONS.clientCopyableFiles;
+  options.watch = typeof options.watch !== 'undefined' ? options.watch : false;
+  options.printGraph = typeof options.printGraph !== 'undefined' ? options.printGraph : true;
+  let inProcess = false;
 
   async function process() {
-    console.log(chalk.gray(`‎𐂐 (1) Processing ${clearPath(options.sourceDir)} ...`));
+    if (inProcess) return;
+
+    inProcess = true;
+    console.log(chalk.cyan(`‎𐂐 Generating the graph. Directory: ${clearPath(options.sourceDir)} ...`));
 
     const graphs = await getGraphs(options.sourceDir);
     graphs.forEach(g => {
       setRoles(g);
-      printGraph(g);
+      if (options.printGraph) {
+        printGraph(g, "  ");
+      }
     });
 
     let thanosServer = Thanos();
     const buildServerDir = path.join(options.buildDir, options.serverDirName);
-    console.log(chalk.gray(`‎𐂐 (2) Generating server code in ${clearPath(buildServerDir)}`));
+    console.log(chalk.cyan(`‎𐂐 Generating server code in ${clearPath(buildServerDir)}`));
     await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
       return await thanosServer.snap(graphs, filePath, content, MODE.SERVER, options);
     });
 
     let thanosClient = Thanos();
     const buildClientDir = path.join(options.buildDir, options.clientDirName);
-    console.log(chalk.gray(`‎𐂐 (3) Generating client code in ${clearPath(buildClientDir)}`));
+    console.log(chalk.cyan(`‎𐂐 Generating client code in ${clearPath(buildClientDir)}`));
     await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
       return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options);
     });
 
+    console.log(chalk.cyan(`‎𐂐 Setting up client entry point/s`));
     await setupClientEntryPoints(
       options.sourceDir,
       buildClientDir,
@@ -62,6 +72,15 @@ export default function Forket(options = {}) {
       thanosClient.clientEntryPoints
     );
 
+    inProcess = false;
+  }
+
+  if (options.watch) {
+    console.log(chalk.cyan(`‎𐂐 Listening for changes. Directory: ${clearPath(options.sourceDir)}`));
+    chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
+      console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
+      process();
+    });
   }
 
   return {

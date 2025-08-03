@@ -1,14 +1,11 @@
 import fs from "fs";
 import swc from "@swc/core";
 import path from "path";
-import chalk from "chalk";
 
 import exposeGlobal from "../ast/exposeGlobal/index.js";
 import insertImports from "./insertImports.js";
 
 export default async function setupClientEntryPoints(sourceDir, buildDir, clientBoundaries, clientEntrypoints) {
-  console.log(chalk.gray(`‎𐂐 (4) Setting up client entry point/s`));
-
   await Promise.all(
     clientEntrypoints.map(async (entryPoint) => {
       clientBoundaries.forEach(({ compNames, importedNode }) => {

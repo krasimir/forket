@@ -56,7 +56,7 @@ export function Thanos() {
         }
       }
       if (options.clientCopyableFiles.indexOf(path.extname(filePath).toLowerCase()) >= 0) {
-        console.log(chalk.gray("  - Copyable client file: " + filePath));
+        // console.log(chalk.gray("  - Copyable client file: " + filePath));
         return content;
       }
       return false;

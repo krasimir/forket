@@ -3,6 +3,7 @@ import path from 'path';
 import swc from '@swc/core';
 import get from 'lodash/get.js';
 import enhancedResolve from 'enhanced-resolve';
+import chalk from "chalk";
 
 import { clearPath } from "./utils/fsHelpers.js";
 import traverseNode from "./utils/traverseNode.js";
@@ -159,7 +160,7 @@ export async function getGraphs(dir) {
   return graphs;
 }
 export function printGraph(node, indent = "") {
-  console.log(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`);
+  console.log(chalk.grey(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`));
   if (node.children.length > 0) {
     node.children.forEach((child) => {
       printGraph(child, indent + "   ");

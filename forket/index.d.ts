@@ -3,6 +3,9 @@ export interface ForketOptions {
   buildDir: string;
   serverDirName?: string;
   clientDirName?: string;
+  clientCopyableFiles?: string[];
+  watch?: boolean;
+  printGraph?: boolean;
 }
 
 export interface ForketInstance {
