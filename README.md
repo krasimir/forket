@@ -6,8 +6,8 @@ A tool that splits your code into client and server so you have [RSC (React Serv
 ‎
 ## Examples
 
-* [esbuild](./examples/esbuild/)
-* [Vite](./examples/vite/)
+* [Vanilla](./examples/vanilla/) (It uses [esbuild](https://esbuild.github.io/) to transpile the .tsx files to valid JavaScript)
+* [Vite](./examples/vite/) (It uses the [Vite build tool](https://vite.dev/) as a transpiler)
 
 ## Materials/inspiration
 

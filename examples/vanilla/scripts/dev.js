@@ -1,14 +1,12 @@
 import path from "path";
 import fs from "fs";
-import child_process from "child_process";
 import chokidar from "chokidar";
-import chalk from "chalk";
 import esbuild from "esbuild";
 import { fileURLToPath } from "url";
 
+import command from "./utils/command.js";
 import Forket from '../../../forket/index.js';
 
-const spawn = child_process.spawn;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -18,14 +16,42 @@ const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 const SERVER_ENTRY_POINT = path.join(DIST, "build", "server", "server.js");
 const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
+
 let serverProcess;
 let restart = false; 
-let processes = [];
+
+await Forket({
+  sourceDir: SRC,
+  buildDir: BUILD,
+  watch: true
+}).process();
+
+async function run() {
+  await buildServer();
+  await buildClient();
+  console.log("Starting server...");
+  serverProcess = command(`node ${SERVER_ENTRY_POINT}`, ROOT, (code) => {
+    serverProcess = null;
+    if (code === null && restart) {
+      run();
+    }
+  });
+};
+
+chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
+  restart = true;
+  if (serverProcess) {
+    serverProcess.kill();
+  } else {
+    run();
+  }
+});
+
+run();
 
 async function buildServer() {
   const files = getAllFiles(path.join(BUILD, "server"));
   try {
-    console.log(chalk.gray(`🖥️  server build started ...`));
     await Promise.all(files.map(async (file) => {
       if (!file.match(/\.(ts|tsx|js|tsx)$/)) {
         return;
@@ -40,15 +66,12 @@ async function buildServer() {
         plugins: []
       });
     }));
-    console.log(chalk.green(`🖥️  server build successfully`));
   } catch (error) {
-    console.error(chalk.red(`Error compiling server: ${error.message}`));
+    console.error(`Error compiling server: ${error.message}`);
   }
 }
-
 async function buildClient() {
   try {
-    console.log(chalk.gray(`🖥️  client build started ...`));
     await esbuild.build({
       entryPoints: [path.join(BUILD, "client", "/client.tsx")],
       bundle: true,
@@ -57,30 +80,12 @@ async function buildClient() {
       sourcemap: true,
       plugins: []
     });
-    console.log(chalk.green(`🖥️  client build successfully`));
   } catch (error) {
-    console.error(chalk.red(`Error compiling server: ${error.message}`));
+    console.error(`Error compiling server: ${error.message}`);
   }
 }
 
-function command(cmd, cwd, onExit = (c) => {}) {
-  const proc = spawn(cmd, {
-    shell: true,
-    cwd,
-    stdio: "inherit"
-  });
-  proc.on("close", (code) => {
-    console.warn(`Process exited with code ${code}`);
-  });
-  proc.on("exit", (code) => onExit(code));
-  proc.on("error", (error) => {
-    console.error(
-      `"${cmd}" errored with error = ${error.toString()}`
-    );
-  });
-  processes.push(proc);
-  return proc;
-};
+// Utilities ------------------------------------------------------
 function getAllFiles(dir) {
   const result = [];
   function walk(currentDir) {
@@ -98,36 +103,3 @@ function getAllFiles(dir) {
   walk(dir);
   return result;
 }
-async function runServer() {
-  await Forket({
-    sourceDir: SRC,
-    buildDir: BUILD,
-    watch: true,
-  }).process();
-
-  const run = async () => {
-    await buildServer();
-    await buildClient();
-    const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
-    console.log(chalk.yellow("Starting server..."));
-    serverProcess = command(commandToExecute, ROOT, (code) => {
-      serverProcess = null;
-      if (code === null && restart) {
-        run();
-      }
-    });
-  };
-
-  run();
-
-  chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-    restart = true;
-    if (serverProcess) {
-      serverProcess.kill();
-    } else {
-      run();
-    }
-  });
-}
-
-runServer();
