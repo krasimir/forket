@@ -1,11 +1,12 @@
 import path from "path";
-import fs from "fs";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
 import { fileURLToPath } from "url";
+// import Forket from 'forket';
+import Forket from '../../../forket/index.js';
 
 import command from "./utils/command.js";
-import Forket from '../../../forket/index.js';
+import getAllFiles from "./utils/getAllFiles.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,8 +15,6 @@ const ROOT = process.cwd();
 const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
-const SERVER_ENTRY_POINT = path.join(DIST, "build", "server", "server.js");
-const CLIENT_BUNDLE = path.join(DIST, "public", "bundle.js");
 
 let serverProcess;
 let restart = false; 
@@ -23,14 +22,13 @@ let restart = false;
 await Forket({
   sourceDir: SRC,
   buildDir: BUILD,
-  watch: true
+  watch: true // important in dev mode
 }).process();
 
 async function run() {
   await buildServer();
   await buildClient();
-  console.log("Starting server...");
-  serverProcess = command(`node ${SERVER_ENTRY_POINT}`, ROOT, (code) => {
+  serverProcess = command(`node ${path.join(DIST, "server", "server.js")}`, ROOT, (code) => {
     serverProcess = null;
     if (code === null && restart) {
       run();
@@ -38,6 +36,7 @@ async function run() {
   });
 };
 
+// Watching for changes in the build directory, transpile, bundle and restart the server
 chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
   restart = true;
   if (serverProcess) {
@@ -56,7 +55,7 @@ async function buildServer() {
       if (!file.match(/\.(ts|tsx|js|tsx)$/)) {
         return;
       }
-      const outfile = path.join(path.join(DIST, 'server'), path.relative(SRC, file).replace(/\.(ts|tsx|js|tsx)$/, ".js"));
+      const outfile = path.join(DIST, file.replace(BUILD, "").replace(/\.(ts|tsx|js|tsx)$/, ".js"));
       await esbuild.build({
         entryPoints: [file],
         bundle: false,
@@ -75,7 +74,7 @@ async function buildClient() {
     await esbuild.build({
       entryPoints: [path.join(BUILD, "client", "/client.tsx")],
       bundle: true,
-      outfile: CLIENT_BUNDLE,
+      outfile: path.join(DIST, "public", "bundle.js"),
       platform: "browser",
       sourcemap: true,
       plugins: []
@@ -83,23 +82,4 @@ async function buildClient() {
   } catch (error) {
     console.error(`Error compiling server: ${error.message}`);
   }
-}
-
-// Utilities ------------------------------------------------------
-function getAllFiles(dir) {
-  const result = [];
-  function walk(currentDir) {
-    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
-
-    for (const entry of entries) {
-      const fullPath = path.join(currentDir, entry.name);
-      if (entry.isDirectory()) {
-        walk(fullPath);
-      } else {
-        result.push(fullPath);
-      }
-    }
-  }
-  walk(dir);
-  return result;
 }

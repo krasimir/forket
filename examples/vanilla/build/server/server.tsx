@@ -4,10 +4,10 @@ import { renderToPipeableStream } from "react-dom/server";
 import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
+// import { client, processChunk } from "forket";
+import { client, processChunk } from "../../../../forket/index.js";
 
 // This should be really
-// import { client, processChunk } from "forket";
-import { client, processChunk } from "../../../../../forket/index.js";
 
 import productsHandler from './api/products.js'
 import App from './components/App.js'
@@ -21,7 +21,7 @@ const TIMEOUT = 500;
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.static(path.join(__dirname, "..", "..", "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.get("/api/products", productsHandler(TIMEOUT));
 app.get("/", (req, res) => {

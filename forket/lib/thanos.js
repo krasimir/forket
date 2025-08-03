@@ -28,7 +28,7 @@ export function Thanos() {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
-                console.log(chalk.gray("  - Client boundary: " + node.imports[j].source));
+                console.log(chalk.gray("  - Client boundary found: " + node.imports[j].source));
                 const compNames = await createClientBoundary(graph, node, node.imports[j], importedNode);
                 clientBoundaries.push({ compNames, importedNode });
                 const transformed = await swc.print(node.ast, {
@@ -48,7 +48,7 @@ export function Thanos() {
         if (node) {
           if (node.role === ROLE.CLIENT) {
             if (!node.parentNode) {
-              console.log(chalk.gray("  - Client entry point: " + node.file));
+              console.log(chalk.gray("  - Client entry point found: " + node.file));
               clientEntryPoints.push(node);
             }
             return content;
