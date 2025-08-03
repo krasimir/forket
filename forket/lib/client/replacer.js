@@ -40,7 +40,10 @@
       let content = script.textContent;
       if (isJSON && content) {
         try {
-          content = JSON.parse(content);
+          content = JSON.parse(content, function (key, value) {
+            // if (value === '$FRSC_function') return function() {};
+            return value;
+          });
         } catch (e) {}
       }
       script.parentNode.removeChild(script);

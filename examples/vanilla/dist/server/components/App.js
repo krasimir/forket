@@ -38,6 +38,7 @@ function forketSerializeProps(props) {
   for (const key in props) {
     const value = props[key];
     if (typeof value === "function") {
+      serialized[key] = "$FRSC_function";
       continue;
     }
     const serializedProp = forketSerializeProps(value);
