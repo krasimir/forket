@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "express": "^5.1.0",
-    "forket": "0.1.3",
+    "forket": "0.1.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

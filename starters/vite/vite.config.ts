@@ -13,6 +13,7 @@ export default defineConfig({
       name: "forket",
       async config() {
         await Forket({
+          watch: true,
           sourceDir: __dirname + '/src',
           buildDir: __dirname + '/build',
         }).process();
