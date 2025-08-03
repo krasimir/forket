@@ -1,3 +1,6 @@
+ul {
+  list-style: none;
+}
 ul li {
   text-align: left;
 }

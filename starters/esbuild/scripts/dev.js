@@ -98,12 +98,14 @@ function getAllFiles(dir) {
   walk(dir);
   return result;
 }
-function runServer() {
+async function runServer() {
+  await Forket({
+    sourceDir: SRC,
+    buildDir: BUILD,
+    watch: true,
+  }).process();
+
   const run = async () => {
-    await Forket({
-      sourceDir: SRC,
-      buildDir: BUILD,
-    }).process();
     await buildServer();
     await buildClient();
     const commandToExecute = `node ${SERVER_ENTRY_POINT}`;
@@ -115,8 +117,10 @@ function runServer() {
       }
     });
   };
+
   run();
-  chokidar.watch(`${SRC}/**/*`, { ignoreInitial: true }).on("all", () => {
+
+  chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
     restart = true;
     if (serverProcess) {
       serverProcess.kill();

@@ -2,7 +2,7 @@
 
 import React, { useState, use } from "react";
 import ProductListeItem from "./ProductListItem";
-import "./ProductsList.css"
+import "./ProductsList.css";
 
 type Product = {
   id: number;
