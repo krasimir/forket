@@ -1,8 +1,6 @@
 import React from "react";
 import { getProducts } from "./db.js";
 import ProductsList from "./ProductsList.js";
-const CREDENTIALS = "secret";
-console.log(CREDENTIALS);
 async function Products() {
   const { products } = await getProducts();
   return /* @__PURE__ */ React.createElement(ProductsListBoundary, { products }, /* @__PURE__ */ React.createElement(ListOfProducts, { n: products.length }));

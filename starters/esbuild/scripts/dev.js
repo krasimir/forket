@@ -27,6 +27,9 @@ async function buildServer() {
   try {
     console.log(chalk.gray(`🖥️  server build started ...`));
     await Promise.all(files.map(async (file) => {
+      if (!file.match(/\.(ts|tsx|js|tsx)$/)) {
+        return;
+      }
       const outfile = path.join(path.join(DIST, 'server'), path.relative(SRC, file).replace(/\.(ts|tsx|js|tsx)$/, ".js"));
       await esbuild.build({
         entryPoints: [file],

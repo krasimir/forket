@@ -5,6 +5,7 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import { renderToPipeableStream } from "react-dom/server";
 import { fileURLToPath } from "url";
+import { client, processChunk } from "forket";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,23 +18,27 @@ async function createServer() {
     server: { middlewareMode: true },
     appType: 'custom',
   });
+  const productsHandler = await import("./build/server/api/products.js");
 
   // 2. Use Vite's connect instance as middleware
   app.use(vite.middlewares);
 
   // 3. Your own SSR route
+  app.get("/products", productsHandler.default(1000));
   app.get("*all", async (req, res) => {
     try {
       const templatePath = path.join(__dirname, "build", "server", "index.html");
       let template = fs.readFileSync(templatePath, "utf-8");
-      const { default: App } = await vite.ssrLoadModule("/build/server/App.tsx");
+      const { default: App } = await vite.ssrLoadModule("/build/server/components/App.tsx");
       const html = await vite.transformIndexHtml(req.url, template);
       const [htmlStart, htmlEnd] = html.split("<!--ssr-outlet-->");
 
       const stream = renderToPipeableStream(React.createElement(App), {
+        bootstrapScriptContent: client(),
         onShellReady() {
           res.setHeader("Content-Type", "text/html");
           res.write(htmlStart);
+          processChunk(res);
           stream.pipe(res);
         },
         onError(err) {

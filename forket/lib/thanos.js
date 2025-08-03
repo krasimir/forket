@@ -1,5 +1,6 @@
 import swc from "@swc/core";
 import chalk from "chalk";
+import path from 'path';
 
 import { getNode } from "./graph.js";
 import { ROLE } from "./constants.js";
@@ -17,7 +18,7 @@ export function Thanos() {
   const clientBoundaries = [];
   const clientEntryPoints = [];
 
-  async function snap(graphs, filePath, content, mode) {
+  async function snap(graphs, filePath, content, mode, options) {
     if (mode === MODE.SERVER) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
@@ -53,6 +54,10 @@ export function Thanos() {
             return content;
           }
         }
+      }
+      if (options.clientCopyableFiles.indexOf(path.extname(filePath).toLowerCase()) >= 0) {
+        console.log(chalk.gray("  - Copyable client file: " + filePath));
+        return content;
       }
       return false;
     }
