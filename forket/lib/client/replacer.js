@@ -41,7 +41,7 @@
       if (isJSON && content) {
         try {
           content = JSON.parse(content, function (key, value) {
-            // if (value === '$FRSC_function') return function() {};
+            if (value === '$FRSC_function') return function() {};
             return value;
           });
         } catch (e) {}

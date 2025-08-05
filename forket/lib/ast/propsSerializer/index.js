@@ -38,14 +38,14 @@ export default function () {
   "decorators": [],
   "span": {
     "start": 749,
-    "end": 1585
+    "end": 1627
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
       "start": 786,
-      "end": 1585
+      "end": 1627
     },
     "ctxt": 3,
     "stmts": [
@@ -760,7 +760,7 @@ export default function () {
         "type": "ForInStatement",
         "span": {
           "start": 1289,
-          "end": 1561
+          "end": 1603
         },
         "left": {
           "type": "VariableDeclaration",
@@ -808,7 +808,7 @@ export default function () {
           "type": "BlockStatement",
           "span": {
             "start": 1314,
-            "end": 1561
+            "end": 1603
           },
           "ctxt": 8,
           "stmts": [
@@ -881,7 +881,7 @@ export default function () {
               "type": "IfStatement",
               "span": {
                 "start": 1350,
-                "end": 1406
+                "end": 1448
               },
               "test": {
                 "type": "BinaryExpression",
@@ -922,15 +922,73 @@ export default function () {
                 "type": "BlockStatement",
                 "span": {
                   "start": 1383,
-                  "end": 1406
+                  "end": 1448
                 },
                 "ctxt": 9,
                 "stmts": [
                   {
-                    "type": "ContinueStatement",
+                    "type": "ExpressionStatement",
                     "span": {
                       "start": 1391,
-                      "end": 1400
+                      "end": 1426
+                    },
+                    "expression": {
+                      "type": "AssignmentExpression",
+                      "span": {
+                        "start": 1391,
+                        "end": 1425
+                      },
+                      "operator": "=",
+                      "left": {
+                        "type": "MemberExpression",
+                        "span": {
+                          "start": 1391,
+                          "end": 1406
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1391,
+                            "end": 1401
+                          },
+                          "ctxt": 3,
+                          "value": "serialized",
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Computed",
+                          "span": {
+                            "start": 1401,
+                            "end": 1406
+                          },
+                          "expression": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 1402,
+                              "end": 1405
+                            },
+                            "ctxt": 7,
+                            "value": "key",
+                            "optional": false
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "StringLiteral",
+                        "span": {
+                          "start": 1409,
+                          "end": 1425
+                        },
+                        "value": "$FRSC_function",
+                        "raw": "\"$FRSC_function\""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ContinueStatement",
+                    "span": {
+                      "start": 1433,
+                      "end": 1442
                     },
                     "label": null
                   }
@@ -941,8 +999,8 @@ export default function () {
             {
               "type": "VariableDeclaration",
               "span": {
-                "start": 1411,
-                "end": 1462
+                "start": 1453,
+                "end": 1504
               },
               "ctxt": 0,
               "kind": "const",
@@ -951,14 +1009,14 @@ export default function () {
                 {
                   "type": "VariableDeclarator",
                   "span": {
-                    "start": 1417,
-                    "end": 1461
+                    "start": 1459,
+                    "end": 1503
                   },
                   "id": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1417,
-                      "end": 1431
+                      "start": 1459,
+                      "end": 1473
                     },
                     "ctxt": 8,
                     "value": "serializedProp",
@@ -968,15 +1026,15 @@ export default function () {
                   "init": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 1434,
-                      "end": 1461
+                      "start": 1476,
+                      "end": 1503
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "Identifier",
                       "span": {
-                        "start": 1434,
-                        "end": 1454
+                        "start": 1476,
+                        "end": 1496
                       },
                       "ctxt": 2,
                       "value": "forketSerializeProps",
@@ -988,8 +1046,8 @@ export default function () {
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1455,
-                            "end": 1460
+                            "start": 1497,
+                            "end": 1502
                           },
                           "ctxt": 8,
                           "value": "value",
@@ -1006,21 +1064,21 @@ export default function () {
             {
               "type": "IfStatement",
               "span": {
-                "start": 1467,
-                "end": 1557
+                "start": 1509,
+                "end": 1599
               },
               "test": {
                 "type": "BinaryExpression",
                 "span": {
-                  "start": 1471,
-                  "end": 1495
+                  "start": 1513,
+                  "end": 1537
                 },
                 "operator": "!==",
                 "left": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1471,
-                    "end": 1485
+                    "start": 1513,
+                    "end": 1527
                   },
                   "ctxt": 8,
                   "value": "serializedProp",
@@ -1029,8 +1087,8 @@ export default function () {
                 "right": {
                   "type": "BooleanLiteral",
                   "span": {
-                    "start": 1490,
-                    "end": 1495
+                    "start": 1532,
+                    "end": 1537
                   },
                   "value": false
                 }
@@ -1038,35 +1096,35 @@ export default function () {
               "consequent": {
                 "type": "BlockStatement",
                 "span": {
-                  "start": 1497,
-                  "end": 1557
+                  "start": 1539,
+                  "end": 1599
                 },
                 "ctxt": 10,
                 "stmts": [
                   {
                     "type": "ExpressionStatement",
                     "span": {
-                      "start": 1505,
-                      "end": 1551
+                      "start": 1547,
+                      "end": 1593
                     },
                     "expression": {
                       "type": "AssignmentExpression",
                       "span": {
-                        "start": 1505,
-                        "end": 1550
+                        "start": 1547,
+                        "end": 1592
                       },
                       "operator": "=",
                       "left": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 1505,
-                          "end": 1520
+                          "start": 1547,
+                          "end": 1562
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1505,
-                            "end": 1515
+                            "start": 1547,
+                            "end": 1557
                           },
                           "ctxt": 3,
                           "value": "serialized",
@@ -1075,14 +1133,14 @@ export default function () {
                         "property": {
                           "type": "Computed",
                           "span": {
-                            "start": 1515,
-                            "end": 1520
+                            "start": 1557,
+                            "end": 1562
                           },
                           "expression": {
                             "type": "Identifier",
                             "span": {
-                              "start": 1516,
-                              "end": 1519
+                              "start": 1558,
+                              "end": 1561
                             },
                             "ctxt": 7,
                             "value": "key",
@@ -1093,15 +1151,15 @@ export default function () {
                       "right": {
                         "type": "CallExpression",
                         "span": {
-                          "start": 1523,
-                          "end": 1550
+                          "start": 1565,
+                          "end": 1592
                         },
                         "ctxt": 0,
                         "callee": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1523,
-                            "end": 1543
+                            "start": 1565,
+                            "end": 1585
                           },
                           "ctxt": 2,
                           "value": "forketSerializeProps",
@@ -1113,8 +1171,8 @@ export default function () {
                             "expression": {
                               "type": "Identifier",
                               "span": {
-                                "start": 1544,
-                                "end": 1549
+                                "start": 1586,
+                                "end": 1591
                               },
                               "ctxt": 8,
                               "value": "value",
@@ -1136,14 +1194,14 @@ export default function () {
       {
         "type": "ReturnStatement",
         "span": {
-          "start": 1565,
-          "end": 1583
+          "start": 1607,
+          "end": 1625
         },
         "argument": {
           "type": "Identifier",
           "span": {
-            "start": 1572,
-            "end": 1582
+            "start": 1614,
+            "end": 1624
           },
           "ctxt": 3,
           "value": "serialized",
