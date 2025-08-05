@@ -15,3 +15,4 @@ export interface ForketInstance {
 export default function Forket(options?: ForketOptions): ForketInstance;
 export function client(): string;
 export function processChunk(res: any): any;
+export function serializeProps(props: any): any;

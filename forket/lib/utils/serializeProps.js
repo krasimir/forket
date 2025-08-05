@@ -1,4 +1,4 @@
-function forketSerializeProps(props) {
+export default function serializeProps(props) {
   function isValidElement(obj) {
     const keys = Object.keys(obj);
     return (

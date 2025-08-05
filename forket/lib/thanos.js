@@ -6,7 +6,7 @@ import { getNode } from "./graph.js";
 import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
-import getPropsSerializer from './ast/propsSerializer/index.js';
+import insertImports from "./utils/insertImports.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -101,7 +101,7 @@ export function Thanos() {
       componentsToClientBoundaries.forEach((compName) => {
         node.ast.body.push(getClientBoundaryWrapper(getId(), compName));
       });
-      node.ast.body.push(getPropsSerializer());
+      insertImports(node.ast, "forketSerializeProps", "forket/lib/utils/serializeProps.js");
     }
 
     return componentsToClientBoundaries;
