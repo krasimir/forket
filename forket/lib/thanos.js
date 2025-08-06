@@ -7,6 +7,7 @@ import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
 import insertImports from "./utils/insertImports.js";
+import processServerAction from "./utils/processServerActions.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -29,7 +30,7 @@ export function Thanos() {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
                 console.log(chalk.gray("  - Client boundary found: " + node.imports[j].source));
-                const compNames = await createClientBoundary(graph, node, node.imports[j], importedNode);
+                const compNames = await createClientBoundary(node, node.imports[j], filePath);
                 clientBoundaries.push({ compNames, importedNode });
                 const transformed = await swc.print(node.ast, {
                   minify: false
@@ -62,7 +63,7 @@ export function Thanos() {
       return false;
     }
   }
-  async function createClientBoundary(graph, node, imp, importedNode) {
+  async function createClientBoundary(node, imp, filePath) {
     const componentsToClientBoundaries = [];
 
     // Finding out the exact name of the component/s
@@ -103,6 +104,9 @@ export function Thanos() {
       });
       insertImports(node.ast, "forketSerializeProps", "forket/lib/utils/serializeProps.js");
     }
+
+    // Handling server actions
+    processServerAction(node.ast, filePath);
 
     return componentsToClientBoundaries;
   }
