@@ -6,11 +6,11 @@ import processServerAction from '../../lib/utils/processServerActions.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const cases = ["a", "b"];
+// const cases = ["b"];
 
 export default async function ({ test, toAST, toCode }) {
-  
-  await test("Should properly deal with server actions", async () => {
-    const cases = ["a"];
+  await test(`Should properly deal with server actions (${cases.join(', ')})`, async () => {
     for (let i = 0; i < cases.length; i++) {
       const ast = await toAST(path.join(__dirname, cases[i], "code.js"));
       fs.writeFileSync(path.join(__dirname, cases[i], "ast.json"), JSON.stringify(ast, null, 2));
@@ -20,7 +20,7 @@ export default async function ({ test, toAST, toCode }) {
       const code = await toCode(ast);
       fs.writeFileSync(path.join(__dirname, cases[i], "transformed.js"), code);
       if (code !== expected) {
-        console.log(`${cases[i]} Expected:\n${expected}\n\nGot:\n${code}`);
+        console.log(`case ${cases[i]} ->\n----------- Got:\n${code}\n----------- Expected\:\n${expected}`);
         return false;
       }
     }

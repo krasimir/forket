@@ -1,22 +1,32 @@
 import traverseNode from "./traverseNode.js";
 import { encrypt } from "./encryption.js";
 
-export default function processServerAction(ast, filePath, maskPathAndFunction = encrypt) {
+export default function processServerAction(ast, filePath, maskPath = encrypt) {
   const handlers = [];
   traverseNode(ast, {
     ExpressionStatement(node, stack) {
       if (node?.expression?.type === "StringLiteral" && node?.expression?.value == "use server") {
         // console.log(stack);
+        // console.log(stack.map(n => n?.type));
         const funcNode = stack[1];
         if (funcNode && funcNode?.type === "FunctionDeclaration") {
           const funcName = funcNode?.identifier?.value;
           if (!funcName) {
             return;
           }
-          const meta = maskPathAndFunction(`${filePath}:${funcName}`);
-          makeSureThatItIsGlobal(ast, funcNode, stack);
+          const meta = maskPath(`${filePath}:${funcName}`);
+          makeSureThatItIsGlobal(ast, stack[1], stack);
           setMetadata(ast, funcName, meta);
           handlers.push({ filePath, funcName, mask: meta })
+        } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
+          const funcName = stack[2]?.id?.value;
+          if (!funcName) {
+            return;
+          }
+          const meta = maskPath(`${filePath}:${funcName}`);
+          makeSureThatItIsGlobal(ast, stack[3], stack);
+          setMetadata(ast, funcName, meta);
+          handlers.push({ filePath, funcName, mask: meta });
         }
       }
     }
