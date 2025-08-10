@@ -7,8 +7,7 @@ import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
 import insertImports from "./utils/insertImports.js";
-import processServerAction from "./utils/processServerActions.js";
-import { encrypt } from "./utils/encryption.js";
+import processServerActions from "./utils/processServerActions.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -108,7 +107,7 @@ export function Thanos() {
     }
 
     // Handling server actions
-    serverActions.push(...processServerAction(node.ast, filePath, encrypt, getId));
+    serverActions.push(...processServerActions(node.ast, filePath, getId));
 
     return componentsToClientBoundaries;
   }

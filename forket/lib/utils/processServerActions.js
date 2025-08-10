@@ -1,7 +1,7 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
 
-export default function processServerAction(ast, filePath, maskPath, getId) {
+export default function processServerAction(ast, filePath, getId) {
   const handlers = [];
   traverseNode(ast, {
     ExpressionStatement(node, stack) {

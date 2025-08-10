@@ -4,7 +4,7 @@ import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 async function login(formData) {
   "use server";
-  console.log("form submitted");
+  console.log("form submitted", formData);
 }
 function App({ request }) {
   const isLoggedIn = request.cookies?.forket;

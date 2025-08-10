@@ -25,7 +25,7 @@ const bootstrapScriptContent = client();
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
-app.use(FORKET_SERVER_ACTIONS_ENDPOINT, serverActionsHandler(__dirname));
+// app.use(FORKET_SERVER_ACTIONS_ENDPOINT, serverActionsHandler(__dirname));
 
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(<App request={req}/>, {

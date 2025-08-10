@@ -9,7 +9,9 @@ import { copyFolder, clearPath } from "./lib/utils/fsHelpers.js";
 import { setRoles } from "./lib/roles.js";
 import { Thanos, MODE } from "./lib/thanos.js";
 import PC from "./lib/server/processChunk.js";
+import SAH from './lib/utils/serverActionsHandler.js'
 import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
+import setupServerActionsHandler from './lib/utils/setupServerActionsHandler.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,20 +76,23 @@ export default function Forket(options = {}) {
       thanosClient.clientEntryPoints
     );
 
-    console.log(chalk.cyan(`‎𐂐 Creating manifest`));
-    const manifestFile = path.join(buildServerDir, MANIFEST_FILE_NAME);
-    fs.writeFileSync(
-      manifestFile,
-      JSON.stringify(
-        {
-          clientEntryPoints: thanosClient.clientEntryPoints.map((ep) => ep.file),
-          serverActions: thanosServer.serverActions
-        },
-        null,
-        2
-      ),
-      "utf8"
-    );
+    console.log(chalk.cyan(`‎𐂐 Setting up server actions handler`));
+    await setupServerActionsHandler(thanosServer.serverActions, options.sourceDir, buildServerDir);
+
+    // console.log(chalk.cyan(`‎𐂐 Creating manifest`));
+    // const manifestFile = path.join(buildServerDir, MANIFEST_FILE_NAME);
+    // fs.writeFileSync(
+    //   manifestFile,
+    //   JSON.stringify(
+    //     {
+    //       clientEntryPoints: thanosClient.clientEntryPoints.map((ep) => ep.file),
+    //       serverActions: thanosServer.serverActions
+    //     },
+    //     null,
+    //     2
+    //   ),
+    //   "utf8"
+    // );
 
     inProcess = false;
   }
@@ -119,31 +124,5 @@ export function processChunk(res) {
   return PC(res);
 }
 export function serverActionsHandler(manifestLocation) {
-  if (!manifestLocation) {
-    throw new Error(`‎𐂐 Forket: missing "manifestLocation" parameter. Please provide the location of server's root directory where the manifest is generated. Look around for ${MANIFEST_FILE_NAME} file.`);
-  }
-  let serverActions = [];
-  const file = path.join(manifestLocation, MANIFEST_FILE_NAME);
-  try {
-    const manifest = JSON.parse(fs.readFileSync(file, "utf8"));
-    if (manifest.serverActions) {
-      serverActions = manifest.serverActions;
-    } else {
-      console.warn(`‎𐂐 Forket: server actions not found in the manifest at ${file}`);
-    }
-  } catch (err) {
-    console.error(`‎𐂐 Forket: error reading or parsing manifest at ${file}:`, err);
-    return (req, res) => {
-      res.status(500);
-      res.json({
-        error: `Error reading or parsing Forket manifest`
-      });
-    };
-  }
-  return (req, res) => {
-    serverActions;
-    res.json({
-      ok: true
-    });
-  };
+  return SAH(manifestLocation, MANIFEST_FILE_NAME);
 }

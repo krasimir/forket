@@ -8,7 +8,7 @@ export default function App({ request }) {
 
   async function login(formData) {
     "use server";
-    console.log("form submitted");
+    console.log("form submitted", formData);
   }
 
   return (

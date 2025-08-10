@@ -7,9 +7,7 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import {
   client,
-  processChunk,
-  serverActionsHandler,
-  FORKET_SERVER_ACTIONS_ENDPOINT
+  processChunk
 } from "../../../../forket/index.js";
 import App from "./components/App.js";
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +18,6 @@ const server = http.createServer(app);
 const bootstrapScriptContent = client();
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
-app.use(FORKET_SERVER_ACTIONS_ENDPOINT, serverActionsHandler(__dirname));
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(/* @__PURE__ */ React.createElement(App, { request: req }), {
     bootstrapScripts: ["/bundle.js"],

@@ -5,27 +5,27 @@ export default function (windowKey, value) {
   {
     "type": "ExpressionStatement",
     "span": {
-      "start": 809,
-      "end": 826
+      "start": 845,
+      "end": 862
     },
     "expression": {
       "type": "AssignmentExpression",
       "span": {
-        "start": 809,
-        "end": 825
+        "start": 845,
+        "end": 861
       },
       "operator": "=",
       "left": {
         "type": "MemberExpression",
         "span": {
-          "start": 809,
-          "end": 819
+          "start": 845,
+          "end": 855
         },
         "object": {
           "type": "Identifier",
           "span": {
-            "start": 809,
-            "end": 815
+            "start": 845,
+            "end": 851
           },
           "ctxt": 1,
           "value": "window",
@@ -34,8 +34,8 @@ export default function (windowKey, value) {
         "property": {
           "type": "Identifier",
           "span": {
-            "start": 816,
-            "end": 819
+            "start": 852,
+            "end": 855
           },
           "value": windowKey
         }
@@ -43,8 +43,8 @@ export default function (windowKey, value) {
       "right": {
         "type": "Identifier",
         "span": {
-          "start": 822,
-          "end": 825
+          "start": 858,
+          "end": 861
         },
         "ctxt": 1,
         "value": value,

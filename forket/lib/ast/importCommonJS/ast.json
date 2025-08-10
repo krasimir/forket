@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 749,
-    "end": 780
+    "start": 1,
+    "end": 32
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 749,
-        "end": 780
+        "start": 1,
+        "end": 32
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,14 +18,14 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 755,
-            "end": 779
+            "start": 7,
+            "end": 31
           },
           "id": {
             "type": "Identifier",
             "span": {
-              "start": 755,
-              "end": 760
+              "start": 7,
+              "end": 12
             },
             "ctxt": 2,
             "value": "React",
@@ -35,15 +35,15 @@
           "init": {
             "type": "CallExpression",
             "span": {
-              "start": 763,
-              "end": 779
+              "start": 15,
+              "end": 31
             },
             "ctxt": 0,
             "callee": {
               "type": "Identifier",
               "span": {
-                "start": 763,
-                "end": 770
+                "start": 15,
+                "end": 22
               },
               "ctxt": 1,
               "value": "require",
@@ -55,8 +55,8 @@
                 "expression": {
                   "type": "StringLiteral",
                   "span": {
-                    "start": 771,
-                    "end": 778
+                    "start": 23,
+                    "end": 30
                   },
                   "value": "react",
                   "raw": "\"react\""

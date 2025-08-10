@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from "path";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
@@ -68,7 +67,6 @@ async function buildServer() {
         plugins: []
       });
     }));
-    fs.copyFileSync(path.join(serverBuildDir, 'forket_manifest.json'), path.join(DIST, 'server', 'forket_manifest.json'));
   } catch (error) {
     console.error(`Error compiling server: ${error.message}`);
   }

@@ -38,7 +38,7 @@ const FILES = [
     }
   },
   {
-    codeFile: path.join(__dirname, "importESM", "/code.js"),
+    codeFile: path.join(__dirname, "importCommonJSDestruct", "/code.js"),
     generator: function (ast) {
       let json = JSON.stringify(ast.body, null, 2);
       json = json.replace(/"React"/g, "what");
@@ -50,12 +50,34 @@ const FILES = [
     }
   },
   {
+    codeFile: path.join(__dirname, "importESM", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"React"/g, "what");
+      json = json.replace(/"react"/g, "where");
+      json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
+      json = json.replace(/"ImportDefaultSpecifier"/g, "specifier");
+      return `export default function (what, where, specifier = "ImportDefaultSpecifier") {
+  return ${json}
+}`;
+    }
+  },
+  {
     codeFile: path.join(__dirname, "exposeGlobal", "/code.js"),
     generator: function (ast) {
       let json = JSON.stringify(ast.body, null, 2);
       json = json.replace(/"Foo"/g, "windowKey");
       json = json.replace(/"Bar"/g, "value");
       return `export default function (windowKey, value) {
+  return ${json}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "serverActionsHandler", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast, null, 2);
+      return `export default function () {
   return ${json}
 }`;
     }

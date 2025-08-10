@@ -1,0 +1,157 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 864,
+    "end": 981
+  },
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "span": {
+        "start": 864,
+        "end": 981
+      },
+      "decl": {
+        "type": "FunctionExpression",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 888,
+            "end": 914
+          },
+          "ctxt": 2,
+          "value": "forketServerActionsHandler",
+          "optional": false
+        },
+        "params": [
+          {
+            "type": "Parameter",
+            "span": {
+              "start": 915,
+              "end": 918
+            },
+            "decorators": [],
+            "pat": {
+              "type": "Identifier",
+              "span": {
+                "start": 915,
+                "end": 918
+              },
+              "ctxt": 3,
+              "value": "req",
+              "optional": false,
+              "typeAnnotation": null
+            }
+          },
+          {
+            "type": "Parameter",
+            "span": {
+              "start": 920,
+              "end": 923
+            },
+            "decorators": [],
+            "pat": {
+              "type": "Identifier",
+              "span": {
+                "start": 920,
+                "end": 923
+              },
+              "ctxt": 3,
+              "value": "res",
+              "optional": false,
+              "typeAnnotation": null
+            }
+          }
+        ],
+        "decorators": [],
+        "span": {
+          "start": 879,
+          "end": 981
+        },
+        "ctxt": 3,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 925,
+            "end": 981
+          },
+          "ctxt": 3,
+          "stmts": [
+            {
+              "type": "ExpressionStatement",
+              "span": {
+                "start": 929,
+                "end": 979
+              },
+              "expression": {
+                "type": "CallExpression",
+                "span": {
+                  "start": 929,
+                  "end": 978
+                },
+                "ctxt": 0,
+                "callee": {
+                  "type": "MemberExpression",
+                  "span": {
+                    "start": 929,
+                    "end": 942
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 929,
+                      "end": 932
+                    },
+                    "ctxt": 3,
+                    "value": "res",
+                    "optional": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 933,
+                      "end": 942
+                    },
+                    "value": "setHeader"
+                  }
+                },
+                "arguments": [
+                  {
+                    "spread": null,
+                    "expression": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 943,
+                        "end": 957
+                      },
+                      "value": "Content-Type",
+                      "raw": "\"Content-Type\""
+                    }
+                  },
+                  {
+                    "spread": null,
+                    "expression": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 959,
+                        "end": 977
+                      },
+                      "value": "application/json",
+                      "raw": "\"application/json\""
+                    }
+                  }
+                ],
+                "typeArguments": null
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": false,
+        "typeParameters": null,
+        "returnType": null
+      }
+    }
+  ],
+  "interpreter": null
+}

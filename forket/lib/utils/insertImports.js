@@ -1,5 +1,6 @@
 import defineModuleSystem from "./defineModuleSystem.js";
 import importCommonJS from "../ast/importCommonJS/index.js";
+import importCommonJSDestruct from "../ast/importCommonJSDestruct/index.js";
 import importESM from "../ast/importESM/index.js";
 
 function insert(ast, node) {
@@ -21,10 +22,14 @@ function insert(ast, node) {
   }
 }
 
-export default function insertImports(ast, what, where) {
+export default function insertImports(ast, what, where, defaultExport = true) {
   if (defineModuleSystem(ast) === "commonjs") {
-    insert(ast, importCommonJS(what, where));
+    if (defaultExport) {
+      insert(ast, importCommonJS(what, where));
+    } else {
+      insert(ast, importCommonJSDestruct(what, where));
+    }
   } else {
-    insert(ast, importESM(what, where));
+    insert(ast, importESM(what, where, defaultExport ? "ImportDefaultSpecifier" : "ImportSpecifier"));
   }
 };

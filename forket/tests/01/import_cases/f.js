@@ -1,0 +1,1 @@
+import oo from "foo.js";

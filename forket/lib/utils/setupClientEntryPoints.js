@@ -4,6 +4,7 @@ import path from "path";
 
 import exposeGlobal from "../ast/exposeGlobal/index.js";
 import insertImports from "./insertImports.js";
+import getImportPath from "./getImportPath.js";
 
 export default async function setupClientEntryPoints(
   sourceDir,
@@ -40,13 +41,3 @@ export default async function setupClientEntryPoints(
     })
   );
 };
-
-function getImportPath(fromFile, toFile) {
-  let relativePath = path.relative(path.dirname(fromFile), toFile);
-  relativePath = relativePath.replace(/\\/g, "/");
-  relativePath = relativePath.replace(/\.(tsx?|jsx?|mjs|cjs)$/, "");
-  if (!relativePath.startsWith(".")) {
-    relativePath = "./" + relativePath;
-  }
-  return relativePath;
-}
