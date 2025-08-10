@@ -1,6 +1,6 @@
 import db from "./db";
 
-const createNoteAction = async () => {
+export const createNoteAction = async () => {
   // Server Function
   "use server";
 

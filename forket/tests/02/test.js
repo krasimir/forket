@@ -7,7 +7,7 @@ import processServerAction from '../../lib/utils/processServerActions.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let cases = ["a", "b", "c"];
-cases = ["c"];
+// cases = ["c"];
 
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly deal with server actions (${cases.join(', ')})`, async () => {
