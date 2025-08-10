@@ -19,6 +19,8 @@ const DEFAULT_OPTIONS = {
   clientDirName: "client",
   clientCopyableFiles: [ ".css", ".scss", ".sass", ".less", ".styl", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico", ".avif", ".woff", ".woff2", ".ttf", ".otf", ".eot", ".mp3", ".wav", ".ogg", ".mp4", ".webm", ".m4a", ".pdf", ".zip", ".gz", ".tar", ".bz2", ".7z", ".wasm" ]
 };
+const MANIFEST_FILE_NAME = "forket_manifest.json";
+export const FORKET_SERVER_ACTIONS_ENDPOINT = "/@forket";
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
 
@@ -34,7 +36,6 @@ export default function Forket(options = {}) {
   options.clientCopyableFiles = options.clientCopyableFiles || DEFAULT_OPTIONS.clientCopyableFiles;
   options.watch = typeof options.watch !== 'undefined' ? options.watch : false;
   options.printGraph = typeof options.printGraph !== 'undefined' ? options.printGraph : true;
-  options.manifestFile = path.join(options.buildDir, options.manifestFile || "forket_manifest.json");
   let inProcess = false;
 
   async function process() {
@@ -74,10 +75,19 @@ export default function Forket(options = {}) {
     );
 
     console.log(chalk.cyan(`‎𐂐 Creating manifest`));
-    fs.writeFileSync(options.manifestFile, JSON.stringify({
-      clientEntryPoints: thanosClient.clientEntryPoints.map(ep => ep.file),
-      serverActions: thanosServer.serverActions
-    }, null, 2), "utf8");
+    const manifestFile = path.join(buildServerDir, MANIFEST_FILE_NAME);
+    fs.writeFileSync(
+      manifestFile,
+      JSON.stringify(
+        {
+          clientEntryPoints: thanosClient.clientEntryPoints.map((ep) => ep.file),
+          serverActions: thanosServer.serverActions
+        },
+        null,
+        2
+      ),
+      "utf8"
+    );
 
     inProcess = false;
   }
@@ -97,9 +107,43 @@ export default function Forket(options = {}) {
   };
 }
 
-export function client() {
-  return clientReplacerCode;
+export function client(serverActionsEndpoint = FORKET_SERVER_ACTIONS_ENDPOINT) {
+  if (!serverActionsEndpoint) {
+    throw new Error(`‎𐂐 Forket: missing "serverActionsEndpoint" parameter. Please provide a server actions endpoint.`);
+  }
+  let str = clientReplacerCode;
+  str = str.replace("{@}", serverActionsEndpoint);
+  return str;
 }
 export function processChunk(res) {
   return PC(res);
+}
+export function serverActionsHandler(manifestLocation) {
+  if (!manifestLocation) {
+    throw new Error(`‎𐂐 Forket: missing "manifestLocation" parameter. Please provide the location of server's root directory where the manifest is generated. Look around for ${MANIFEST_FILE_NAME} file.`);
+  }
+  let serverActions = [];
+  const file = path.join(manifestLocation, MANIFEST_FILE_NAME);
+  try {
+    const manifest = JSON.parse(fs.readFileSync(file, "utf8"));
+    if (manifest.serverActions) {
+      serverActions = manifest.serverActions;
+    } else {
+      console.warn(`‎𐂐 Forket: server actions not found in the manifest at ${file}`);
+    }
+  } catch (err) {
+    console.error(`‎𐂐 Forket: error reading or parsing manifest at ${file}:`, err);
+    return (req, res) => {
+      res.status(500);
+      res.json({
+        error: `Error reading or parsing Forket manifest`
+      });
+    };
+  }
+  return (req, res) => {
+    serverActions;
+    res.json({
+      ok: true
+    });
+  };
 }

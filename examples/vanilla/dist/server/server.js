@@ -5,20 +5,26 @@ import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-import { client, processChunk } from "../../../../forket/index.js";
+import {
+  client,
+  processChunk,
+  serverActionsHandler,
+  FORKET_SERVER_ACTIONS_ENDPOINT
+} from "../../../../forket/index.js";
 import App from "./components/App.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const port = 8087;
 const app = express();
 const server = http.createServer(app);
+const bootstrapScriptContent = client(FORKET_SERVER_ACTIONS_ENDPOINT);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(FORKET_SERVER_ACTIONS_ENDPOINT, serverActionsHandler(__dirname));
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(/* @__PURE__ */ React.createElement(App, { request: req }), {
     bootstrapScripts: ["/bundle.js"],
-    // bootstrapScripts: [],
-    bootstrapScriptContent: client(),
+    bootstrapScriptContent,
     onShellReady() {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");

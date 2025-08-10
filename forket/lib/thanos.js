@@ -108,7 +108,7 @@ export function Thanos() {
     }
 
     // Handling server actions
-    serverActions = serverActions.concat(processServerAction(node.ast, filePath, encrypt, getId));
+    serverActions.push(...processServerAction(node.ast, filePath, encrypt, getId));
 
     return componentsToClientBoundaries;
   }

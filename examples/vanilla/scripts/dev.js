@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from "path";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
@@ -50,7 +51,8 @@ chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file)
 run();
 
 async function buildServer() {
-  const files = getAllFiles(path.join(BUILD, "server"));
+  const serverBuildDir = path.join(BUILD, "server");;
+  const files = getAllFiles(serverBuildDir);
   try {
     await Promise.all(files.map(async (file) => {
       if (!file.match(/\.(ts|tsx|js|tsx)$/)) {
@@ -66,6 +68,7 @@ async function buildServer() {
         plugins: []
       });
     }));
+    fs.copyFileSync(path.join(serverBuildDir, 'forket_manifest.json'), path.join(DIST, 'server', 'forket_manifest.json'));
   } catch (error) {
     console.error(`Error compiling server: ${error.message}`);
   }
