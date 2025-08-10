@@ -26,14 +26,6 @@ const FILES = [
     }
   },
   {
-    codeFile: path.join(__dirname, "propsSerializer", "/code.js"),
-    generator: function (ast) {
-      return `export default function () {
-  return ${JSON.stringify(ast.body[0], null, 2)}
-}`;
-    }
-  },
-  {
     codeFile: path.join(__dirname, "importCommonJS", "/code.js"),
     generator: function (ast) {
       let json = JSON.stringify(ast.body, null, 2);

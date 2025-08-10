@@ -1,0 +1,12 @@
+[
+  {
+    "filePath": "/path/to/my/file.tsx",
+    "funcName": "createNoteAction",
+    "id": "$FSA_1"
+  },
+  {
+    "filePath": "/path/to/my/file.tsx",
+    "funcName": "doSomethingElse",
+    "id": "$FSA_2"
+  }
+]

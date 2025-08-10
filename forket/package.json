@@ -1,10 +1,11 @@
 {
   "name": "forket",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "description": "𐂐",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/postinstall.js",
     "build": "npm run generate-ast-helpers && npm run minify-forket-client",
     "test": "node ./tests/tests.js",
     "playground": "node ./playground/playground.js",

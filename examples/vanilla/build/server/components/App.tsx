@@ -1,28 +1,41 @@
-import React, { Suspense } from "react";
-
-import Products from "./Products.js";
-
-export default function App() {
-  return (
-    <html>
+import forketSerializeProps from "forket/lib/utils/serializeProps.js";
+import React from 'react';
+import Header from './Header.js';
+import LoginForm from './LoginForm.js';
+export async function login(formData) {
+    "use server";
+    console.log("form submitted");
+}
+export default function App({ request }) {
+    const isLoggedIn = request.cookies?.forket;
+    return (<html>
       <head>
-        <Title />
+        <title>React Example</title>
+        <link rel="stylesheet" href="/assets/styles.css"/>
       </head>
       <body>
-        <div>
-          <header>
-            <h1>Hello world</h1>
-          </header>
-          {/* <Suspense> */}
-            <Products />
-          {/* </Suspense> */}
-          <footer>I'm a footer</footer>
-        </div>
+        <Header/>
+        <section className="container mxauto">{!isLoggedIn && <LoginFormBoundary login={"$FSA_f_1"}/>}</section>
       </body>
-    </html>
-  );
+    </html>);
 }
-
-export function Title() {
-  return <title>React Example</title>;
+function LoginFormBoundary(props) {
+    const serializedProps = JSON.stringify(forketSerializeProps(props));
+    const children = props.children || [];
+    return (<>
+      <boundary_children_f_0>{children}</boundary_children_f_0>
+      <boundary_props_f_0 dangerouslySetInnerHTML={{
+        __html: serializedProps
+    }}/>
+      <boundary_setup_f_0 dangerouslySetInnerHTML={{
+        __html: `(function () {
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_0", "LoginForm"]);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(["f_0", "LoginForm"]);
+        })();`
+    }}/>
+      <boundary_f_0>
+        <LoginForm {...props} children={children}/>
+      </boundary_f_0>
+    </>);
 }

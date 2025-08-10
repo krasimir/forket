@@ -1,4 +1,5 @@
 (function () {
+  const FORKET_SERVER_ACTIONS_ENDPOINT = "{@}";
   function FRSC_init() {
     const d = document;
     if (typeof window.$FRSC === "undefined") {
@@ -11,7 +12,7 @@
           children = htmlToReactElements(children);
         }
 
-        console.log(componentName + "(" + id + ")", props, children);
+        console.log(componentName + "(" + id + ")", typeof props, props, children);
 
         const boundary = findCommentBoundary(id);
         if (!boundary.start || !boundary.end) {
@@ -40,8 +41,24 @@
       let content = script.textContent;
       if (isJSON && content) {
         try {
-          content = JSON.parse(content);
-        } catch (e) {}
+          content = JSON.parse(content, function (key, value) {
+            if (typeof value === 'string' && value.match(/^\$FSA_/)) {
+              return function (data) {
+                return fetch(FORKET_SERVER_ACTIONS_ENDPOINT, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+                });
+              };
+            }
+            return value;
+          });
+        } catch (e) {
+          // console.error("Error parsing JSON from script with id:", id, e);
+          content = {};
+        }
       }
       script.parentNode.removeChild(script);
       return content;

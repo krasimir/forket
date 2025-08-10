@@ -5,7 +5,12 @@ import path from "path";
 import exposeGlobal from "../ast/exposeGlobal/index.js";
 import insertImports from "./insertImports.js";
 
-export default async function setupClientEntryPoints(sourceDir, buildDir, clientBoundaries, clientEntrypoints) {
+export default async function setupClientEntryPoints(
+  sourceDir,
+  buildDir,
+  clientBoundaries,
+  clientEntrypoints
+) {
   await Promise.all(
     clientEntrypoints.map(async (entryPoint) => {
       clientBoundaries.forEach(({ compNames, importedNode }) => {
@@ -17,7 +22,7 @@ export default async function setupClientEntryPoints(sourceDir, buildDir, client
       insertImports(entryPoint.ast, "React", "react");
       entryPoint.ast.body = entryPoint.ast.body
         .concat(exposeGlobal("React", "React"))
-        .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"));
+        .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"))
       clientBoundaries.forEach(({ compNames }) => {
         compNames.forEach((compName) => {
           entryPoint.ast.body = entryPoint.ast.body.concat(exposeGlobal(compName, compName));
