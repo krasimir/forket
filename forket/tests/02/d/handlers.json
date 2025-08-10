@@ -2,11 +2,11 @@
   {
     "filePath": "/path/to/my/file.tsx",
     "funcName": "createNoteAction",
-    "mask": "/path/to/my/file.tsx:createNoteAction"
+    "id": "$FSA_1"
   },
   {
     "filePath": "/path/to/my/file.tsx",
     "funcName": "doSomethingElse",
-    "mask": "/path/to/my/file.tsx:doSomethingElse"
+    "id": "$FSA_2"
   }
 ]

@@ -2,13 +2,13 @@ import forketSerializeProps from "forket/lib/utils/serializeProps.js";
 import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
+async function login(formData) {
+  "use server";
+  console.log("form submitted");
+}
 function App({ request }) {
   const isLoggedIn = request.cookies?.forket;
-  async function login(formData) {
-    "use server";
-    console.log("form submitted");
-  }
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "React Example"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !isLoggedIn && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login }))));
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "React Example"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !isLoggedIn && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_f_1" }))));
 }
 function LoginFormBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props));
@@ -24,5 +24,6 @@ function LoginFormBoundary(props) {
   } }), /* @__PURE__ */ React.createElement("boundary_f_0", null, /* @__PURE__ */ React.createElement(LoginForm, { ...props, children })));
 }
 export {
-  App as default
+  App as default,
+  login
 };

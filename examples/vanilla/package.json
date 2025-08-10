@@ -8,6 +8,7 @@
     "dev": "npm run clean && node ./scripts/dev.js"
   },
   "dependencies": {
+    "forket": "0.1.6",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
     "chalk": "4.1.2",
@@ -15,7 +16,6 @@
     "cookie-parser": "^1.4.7",
     "esbuild": "0.25.0",
     "express": "4.21.2",
-    "forket": "0.1.5",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },

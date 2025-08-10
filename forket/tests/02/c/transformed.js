@@ -4,5 +4,5 @@ export const createNoteAction = async ()=>{
     await db.notes.create();
 };
 function EmptyNote() {
-    return <Button onClick={"/path/to/my/file.tsx:createNoteAction"}/>;
+    return <Button onClick={"$FSA_1"}/>;
 }

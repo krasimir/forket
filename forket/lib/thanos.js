@@ -8,6 +8,7 @@ import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
 import insertImports from "./utils/insertImports.js";
 import processServerAction from "./utils/processServerActions.js";
+import { encrypt } from "./utils/encryption.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -18,6 +19,7 @@ export function Thanos() {
   let id = 0;
   const clientBoundaries = [];
   const clientEntryPoints = [];
+  let serverActions = [];
 
   async function snap(graphs, filePath, content, mode, options) {
     if (mode === MODE.SERVER) {
@@ -106,7 +108,7 @@ export function Thanos() {
     }
 
     // Handling server actions
-    processServerAction(node.ast, filePath);
+    serverActions = serverActions.concat(processServerAction(node.ast, filePath, encrypt, getId));
 
     return componentsToClientBoundaries;
   }
@@ -117,6 +119,7 @@ export function Thanos() {
   return {
     snap,
     clientBoundaries,
-    clientEntryPoints
+    clientEntryPoints,
+    serverActions
   };
 }

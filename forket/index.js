@@ -34,6 +34,7 @@ export default function Forket(options = {}) {
   options.clientCopyableFiles = options.clientCopyableFiles || DEFAULT_OPTIONS.clientCopyableFiles;
   options.watch = typeof options.watch !== 'undefined' ? options.watch : false;
   options.printGraph = typeof options.printGraph !== 'undefined' ? options.printGraph : true;
+  options.manifestFile = path.join(options.buildDir, options.manifestFile || "forket_manifest.json");
   let inProcess = false;
 
   async function process() {
@@ -71,6 +72,12 @@ export default function Forket(options = {}) {
       thanosServer.clientBoundaries,
       thanosClient.clientEntryPoints
     );
+
+    console.log(chalk.cyan(`‎𐂐 Creating manifest`));
+    fs.writeFileSync(options.manifestFile, JSON.stringify({
+      clientEntryPoints: thanosClient.clientEntryPoints.map(ep => ep.file),
+      serverActions: thanosServer.serverActions
+    }, null, 2), "utf8");
 
     inProcess = false;
   }

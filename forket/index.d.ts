@@ -6,6 +6,7 @@ export interface ForketOptions {
   clientCopyableFiles?: string[];
   watch?: boolean;
   printGraph?: boolean;
+  manifestFile?: string;
 }
 
 export interface ForketInstance {

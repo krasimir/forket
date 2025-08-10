@@ -2,12 +2,12 @@ import forketSerializeProps from "forket/lib/utils/serializeProps.js";
 import React from 'react';
 import Header from './Header.js';
 import LoginForm from './LoginForm.js';
+export async function login(formData) {
+    "use server";
+    console.log("form submitted");
+}
 export default function App({ request }) {
     const isLoggedIn = request.cookies?.forket;
-    async function login(formData) {
-        "use server";
-        console.log("form submitted");
-    }
     return (<html>
       <head>
         <title>React Example</title>
@@ -15,7 +15,7 @@ export default function App({ request }) {
       </head>
       <body>
         <Header/>
-        <section className="container mxauto">{!isLoggedIn && <LoginFormBoundary login={login}/>}</section>
+        <section className="container mxauto">{!isLoggedIn && <LoginFormBoundary login={"$FSA_f_1"}/>}</section>
       </body>
     </html>);
 }

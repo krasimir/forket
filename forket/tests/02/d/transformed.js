@@ -11,5 +11,5 @@ export const createNoteAction = async ()=>{
 };
 function EmptyNote() {
     ;
-    return <Button onClick={"/path/to/my/file.tsx:createNoteAction"} doSomethingElse={"/path/to/my/file.tsx:doSomethingElse"}/>;
+    return <Button onClick={"$FSA_1"} doSomethingElse={"$FSA_2"}/>;
 }

@@ -1,8 +1,7 @@
 import traverseNode from "./traverseNode.js";
-import { encrypt } from "./encryption.js";
 import insertAtTheTop from "./insertAtTheTop.js";
 
-export default function processServerAction(ast, filePath, maskPath = encrypt) {
+export default function processServerAction(ast, filePath, maskPath, getId) {
   const handlers = [];
   traverseNode(ast, {
     ExpressionStatement(node, stack) {
@@ -15,19 +14,19 @@ export default function processServerAction(ast, filePath, maskPath = encrypt) {
           if (!funcName) {
             return;
           }
-          const meta = maskPath(`${filePath}:${funcName}`);
+          const serverActionId = `$FSA_${getId()}`;
           makeSureThatItIsGlobal(ast, stack[1], stack);
-          setMetadata(ast, funcName, meta);
-          handlers.push({ filePath, funcName, mask: meta })
+          setServerActionId(ast, funcName, serverActionId);
+          handlers.push({ filePath, funcName, id: serverActionId });
         } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
           const funcName = stack[2]?.id?.value;
           if (!funcName) {
             return;
           }
-          const meta = maskPath(`${filePath}:${funcName}`);
+          const serverActionId = `$FSA_${getId()}`;
           makeSureThatItIsGlobal(ast, stack[3], stack);
-          setMetadata(ast, funcName, meta);
-          handlers.push({ filePath, funcName, mask: meta });
+          setServerActionId(ast, funcName, serverActionId);
+          handlers.push({ filePath, funcName, id: serverActionId });
         }
       }
     }
@@ -66,7 +65,7 @@ function makeSureThatItIsExported(ast, node) {
     }
   }
 }
-function setMetadata(ast, funcName, meta) {
+function setServerActionId(ast, funcName, meta) {
   traverseNode(ast, {
     JSXExpressionContainer(node) {
       if (node?.expression?.value === funcName) {

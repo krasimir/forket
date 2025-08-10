@@ -1,28 +1,28 @@
 {
   "type": "Module",
   "span": {
-    "start": 620,
-    "end": 974
+    "start": 3892,
+    "end": 4246
   },
   "body": [
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 620,
-        "end": 642
+        "start": 3892,
+        "end": 3914
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 627,
-            "end": 629
+            "start": 3899,
+            "end": 3901
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 627,
-              "end": 629
+              "start": 3899,
+              "end": 3901
             },
             "ctxt": 2,
             "value": "db",
@@ -33,8 +33,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 635,
-          "end": 641
+          "start": 3907,
+          "end": 3913
         },
         "value": "./db",
         "raw": "\"./db\""
@@ -46,21 +46,21 @@
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 643,
-        "end": 674
+        "start": 3915,
+        "end": 3946
       },
       "specifiers": [
         {
           "type": "ImportSpecifier",
           "span": {
-            "start": 652,
-            "end": 657
+            "start": 3924,
+            "end": 3929
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 652,
-              "end": 657
+              "start": 3924,
+              "end": 3929
             },
             "ctxt": 2,
             "value": "delay",
@@ -73,8 +73,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 665,
-          "end": 673
+          "start": 3937,
+          "end": 3945
         },
         "value": "/utils",
         "raw": "'/utils'"
@@ -88,8 +88,8 @@
       "identifier": {
         "type": "Identifier",
         "span": {
-          "start": 685,
-          "end": 694
+          "start": 3957,
+          "end": 3966
         },
         "ctxt": 2,
         "value": "EmptyNote",
@@ -99,23 +99,23 @@
       "params": [],
       "decorators": [],
       "span": {
-        "start": 676,
-        "end": 974
+        "start": 3948,
+        "end": 4246
       },
       "ctxt": 3,
       "body": {
         "type": "BlockStatement",
         "span": {
-          "start": 697,
-          "end": 974
+          "start": 3969,
+          "end": 4246
         },
         "ctxt": 3,
         "stmts": [
           {
             "type": "VariableDeclaration",
             "span": {
-              "start": 701,
-              "end": 792
+              "start": 3973,
+              "end": 4064
             },
             "ctxt": 0,
             "kind": "const",
@@ -124,14 +124,14 @@
               {
                 "type": "VariableDeclarator",
                 "span": {
-                  "start": 707,
-                  "end": 791
+                  "start": 3979,
+                  "end": 4063
                 },
                 "id": {
                   "type": "Identifier",
                   "span": {
-                    "start": 707,
-                    "end": 723
+                    "start": 3979,
+                    "end": 3995
                   },
                   "ctxt": 3,
                   "value": "createNoteAction",
@@ -141,30 +141,30 @@
                 "init": {
                   "type": "ArrowFunctionExpression",
                   "span": {
-                    "start": 726,
-                    "end": 791
+                    "start": 3998,
+                    "end": 4063
                   },
                   "ctxt": 0,
                   "params": [],
                   "body": {
                     "type": "BlockStatement",
                     "span": {
-                      "start": 738,
-                      "end": 791
+                      "start": 4010,
+                      "end": 4063
                     },
                     "ctxt": 4,
                     "stmts": [
                       {
                         "type": "ExpressionStatement",
                         "span": {
-                          "start": 744,
-                          "end": 757
+                          "start": 4016,
+                          "end": 4029
                         },
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 744,
-                            "end": 756
+                            "start": 4016,
+                            "end": 4028
                           },
                           "value": "use server",
                           "raw": "\"use server\""
@@ -173,39 +173,39 @@
                       {
                         "type": "ExpressionStatement",
                         "span": {
-                          "start": 763,
-                          "end": 787
+                          "start": 4035,
+                          "end": 4059
                         },
                         "expression": {
                           "type": "AwaitExpression",
                           "span": {
-                            "start": 763,
-                            "end": 786
+                            "start": 4035,
+                            "end": 4058
                           },
                           "argument": {
                             "type": "CallExpression",
                             "span": {
-                              "start": 769,
-                              "end": 786
+                              "start": 4041,
+                              "end": 4058
                             },
                             "ctxt": 0,
                             "callee": {
                               "type": "MemberExpression",
                               "span": {
-                                "start": 769,
-                                "end": 784
+                                "start": 4041,
+                                "end": 4056
                               },
                               "object": {
                                 "type": "MemberExpression",
                                 "span": {
-                                  "start": 769,
-                                  "end": 777
+                                  "start": 4041,
+                                  "end": 4049
                                 },
                                 "object": {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 769,
-                                    "end": 771
+                                    "start": 4041,
+                                    "end": 4043
                                   },
                                   "ctxt": 2,
                                   "value": "db",
@@ -214,8 +214,8 @@
                                 "property": {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 772,
-                                    "end": 777
+                                    "start": 4044,
+                                    "end": 4049
                                   },
                                   "value": "notes"
                                 }
@@ -223,8 +223,8 @@
                               "property": {
                                 "type": "Identifier",
                                 "span": {
-                                  "start": 778,
-                                  "end": 784
+                                  "start": 4050,
+                                  "end": 4056
                                 },
                                 "value": "create"
                               }
@@ -250,8 +250,8 @@
             "identifier": {
               "type": "Identifier",
               "span": {
-                "start": 810,
-                "end": 825
+                "start": 4082,
+                "end": 4097
               },
               "ctxt": 3,
               "value": "doSomethingElse",
@@ -261,29 +261,29 @@
             "params": [],
             "decorators": [],
             "span": {
-              "start": 795,
-              "end": 890
+              "start": 4067,
+              "end": 4162
             },
             "ctxt": 5,
             "body": {
               "type": "BlockStatement",
               "span": {
-                "start": 828,
-                "end": 890
+                "start": 4100,
+                "end": 4162
               },
               "ctxt": 5,
               "stmts": [
                 {
                   "type": "ExpressionStatement",
                   "span": {
-                    "start": 834,
-                    "end": 847
+                    "start": 4106,
+                    "end": 4119
                   },
                   "expression": {
                     "type": "StringLiteral",
                     "span": {
-                      "start": 834,
-                      "end": 846
+                      "start": 4106,
+                      "end": 4118
                     },
                     "value": "use server",
                     "raw": "\"use server\""
@@ -292,27 +292,27 @@
                 {
                   "type": "ExpressionStatement",
                   "span": {
-                    "start": 853,
-                    "end": 867
+                    "start": 4125,
+                    "end": 4139
                   },
                   "expression": {
                     "type": "AwaitExpression",
                     "span": {
-                      "start": 853,
-                      "end": 866
+                      "start": 4125,
+                      "end": 4138
                     },
                     "argument": {
                       "type": "CallExpression",
                       "span": {
-                        "start": 859,
-                        "end": 866
+                        "start": 4131,
+                        "end": 4138
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "Identifier",
                         "span": {
-                          "start": 859,
-                          "end": 864
+                          "start": 4131,
+                          "end": 4136
                         },
                         "ctxt": 2,
                         "value": "delay",
@@ -326,14 +326,14 @@
                 {
                   "type": "ReturnStatement",
                   "span": {
-                    "start": 872,
-                    "end": 886
+                    "start": 4144,
+                    "end": 4158
                   },
                   "argument": {
                     "type": "StringLiteral",
                     "span": {
-                      "start": 879,
-                      "end": 885
+                      "start": 4151,
+                      "end": 4157
                     },
                     "value": "done",
                     "raw": "'done'"
@@ -349,64 +349,64 @@
           {
             "type": "EmptyStatement",
             "span": {
-              "start": 890,
-              "end": 891
+              "start": 4162,
+              "end": 4163
             }
           },
           {
             "type": "ReturnStatement",
             "span": {
-              "start": 894,
-              "end": 972
+              "start": 4166,
+              "end": 4244
             },
             "argument": {
               "type": "JSXElement",
               "span": {
-                "start": 901,
-                "end": 971
+                "start": 4173,
+                "end": 4243
               },
               "opening": {
                 "type": "JSXOpeningElement",
                 "name": {
                   "type": "Identifier",
                   "span": {
-                    "start": 902,
-                    "end": 908
+                    "start": 4174,
+                    "end": 4180
                   },
                   "ctxt": 1,
                   "value": "Button",
                   "optional": false
                 },
                 "span": {
-                  "start": 901,
-                  "end": 971
+                  "start": 4173,
+                  "end": 4243
                 },
                 "attributes": [
                   {
                     "type": "JSXAttribute",
                     "span": {
-                      "start": 909,
-                      "end": 935
+                      "start": 4181,
+                      "end": 4207
                     },
                     "name": {
                       "type": "Identifier",
                       "span": {
-                        "start": 909,
-                        "end": 916
+                        "start": 4181,
+                        "end": 4188
                       },
                       "value": "onClick"
                     },
                     "value": {
                       "type": "JSXExpressionContainer",
                       "span": {
-                        "start": 917,
-                        "end": 935
+                        "start": 4189,
+                        "end": 4207
                       },
                       "expression": {
                         "type": "Identifier",
                         "span": {
-                          "start": 918,
-                          "end": 934
+                          "start": 4190,
+                          "end": 4206
                         },
                         "ctxt": 3,
                         "value": "createNoteAction",
@@ -417,28 +417,28 @@
                   {
                     "type": "JSXAttribute",
                     "span": {
-                      "start": 936,
-                      "end": 969
+                      "start": 4208,
+                      "end": 4241
                     },
                     "name": {
                       "type": "Identifier",
                       "span": {
-                        "start": 936,
-                        "end": 951
+                        "start": 4208,
+                        "end": 4223
                       },
                       "value": "doSomethingElse"
                     },
                     "value": {
                       "type": "JSXExpressionContainer",
                       "span": {
-                        "start": 952,
-                        "end": 969
+                        "start": 4224,
+                        "end": 4241
                       },
                       "expression": {
                         "type": "Identifier",
                         "span": {
-                          "start": 953,
-                          "end": 968
+                          "start": 4225,
+                          "end": 4240
                         },
                         "ctxt": 3,
                         "value": "doSomethingElse",
