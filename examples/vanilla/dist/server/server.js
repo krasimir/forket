@@ -5,10 +5,13 @@ import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import {
   client,
-  processChunk
+  processChunk,
+  FORKET_SERVER_ACTIONS_ENDPOINT
 } from "../../../../forket/index.js";
+import forketServerActions from "./forketServerActions.js";
 import App from "./components/App.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +20,9 @@ const app = express();
 const server = http.createServer(app);
 const bootstrapScriptContent = client();
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(FORKET_SERVER_ACTIONS_ENDPOINT, forketServerActions);
 app.get("/", (req, res) => {
   const { pipe, abort } = renderToPipeableStream(/* @__PURE__ */ React.createElement(App, { request: req }), {
     bootstrapScripts: ["/bundle.js"],

@@ -2,9 +2,9 @@ import forketSerializeProps from "forket/lib/utils/serializeProps.js";
 import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
-async function login(formData) {
+async function login(data) {
   "use server";
-  console.log("form submitted", formData);
+  console.log("form submitted", data);
 }
 function App({ request }) {
   const isLoggedIn = request.cookies?.forket;

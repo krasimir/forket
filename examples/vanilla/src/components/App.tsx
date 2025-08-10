@@ -6,9 +6,9 @@ import LoginForm from './LoginForm.js';
 export default function App({ request }) {
   const isLoggedIn = request.cookies?.forket;
 
-  async function login(formData) {
+  async function login(data) {
     "use server";
-    console.log("form submitted", formData);
+    console.log("form submitted", data);
   }
 
   return (

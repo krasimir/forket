@@ -49,7 +49,7 @@
                   headers: {
                     "Content-Type": "application/json"
                   },
-                  body: JSON.stringify({ id: value, data })
+                  body: JSON.stringify({ id: value, data: formDataToObject(data) })
                 });
               };
             }
@@ -136,6 +136,12 @@
           return null;
         })
         .filter(Boolean);
+    }
+    function formDataToObject(data) {
+      if (typeof FormData !== "undefined" && data instanceof FormData) {
+        return Object.fromEntries(data.entries());
+      }
+      return data;
     }
   }
   window.addEventListener("load", FRSC_init);

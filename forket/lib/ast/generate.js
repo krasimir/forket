@@ -74,6 +74,43 @@ const FILES = [
     }
   },
   {
+    codeFile: path.join(__dirname, "createMap", "/code.js"),
+    generator: function (ast) {
+      ast.body[0].declarations[0].init.properties = 1111;
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"mapName"/g, "variableName");
+      json = json.replace(
+        "1111",
+        `values.map(v => {
+          return {
+            "type": "KeyValueProperty",
+            "key": {
+              "type": "Identifier",
+              "span": {
+                "start": 884,
+                "end": 888
+              },
+              "value": v[0]
+            },
+            "value": {
+              "type": "Identifier",
+              "span": {
+                "start": 890,
+                "end": 899
+              },
+              "ctxt": 1,
+              "value": v[1],
+              "optional": false
+            }
+          };
+        })`
+      );
+      return `export default function (variableName, values) {
+  return ${json}
+}`;
+    }
+  },
+  {
     codeFile: path.join(__dirname, "serverActionsHandler", "/code.js"),
     generator: function (ast) {
       let json = JSON.stringify(ast, null, 2);

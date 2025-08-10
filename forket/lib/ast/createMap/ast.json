@@ -1,0 +1,92 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 864,
+    "end": 921
+  },
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 864,
+        "end": 921
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 870,
+            "end": 921
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 870,
+              "end": 877
+            },
+            "ctxt": 2,
+            "value": "mapName",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "span": {
+              "start": 880,
+              "end": 921
+            },
+            "properties": [
+              {
+                "type": "KeyValueProperty",
+                "key": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 884,
+                    "end": 888
+                  },
+                  "value": "key1"
+                },
+                "value": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 890,
+                    "end": 899
+                  },
+                  "ctxt": 1,
+                  "value": "something",
+                  "optional": false
+                }
+              },
+              {
+                "type": "KeyValueProperty",
+                "key": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 903,
+                    "end": 907
+                  },
+                  "value": "key2"
+                },
+                "value": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 909,
+                    "end": 918
+                  },
+                  "ctxt": 1,
+                  "value": "something",
+                  "optional": false
+                }
+              }
+            ]
+          },
+          "definite": false
+        }
+      ]
+    }
+  ],
+  "interpreter": null
+}
