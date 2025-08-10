@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 const port = 8087;
 const app = express();
 const server = http.createServer(app);
-const bootstrapScriptContent = client(FORKET_SERVER_ACTIONS_ENDPOINT);
+const bootstrapScriptContent = client();
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(FORKET_SERVER_ACTIONS_ENDPOINT, serverActionsHandler(__dirname));

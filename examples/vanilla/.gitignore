@@ -1,2 +1,3 @@
 node_modules
 build/server/forket_manifest.json
+dist/server/forket_manifest.json
