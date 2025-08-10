@@ -1,6 +1,10 @@
-const fs = require('fs');
-const swc = require("@swc/core");
+import fs from 'fs';
+import swc from "@swc/core";
+import path from 'path';
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const code = fs.readFileSync(__dirname + '/code.js', 'utf8');
 
 (async function() {

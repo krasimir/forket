@@ -1,0 +1,12 @@
+[
+  {
+    "filePath": "/path/to/my/file.tsx",
+    "funcName": "createNoteAction",
+    "mask": "/path/to/my/file.tsx:createNoteAction"
+  },
+  {
+    "filePath": "/path/to/my/file.tsx",
+    "funcName": "doSomethingElse",
+    "mask": "/path/to/my/file.tsx:doSomethingElse"
+  }
+]

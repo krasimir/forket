@@ -2,14 +2,30 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 28
+    "end": 80
   },
   "body": [
     {
-      "type": "VariableDeclaration",
+      "type": "ExpressionStatement",
       "span": {
         "start": 1,
-        "end": 28
+        "end": 14
+      },
+      "expression": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 1,
+          "end": 13
+        },
+        "value": "use client",
+        "raw": "\"use client\""
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 16,
+        "end": 43
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,32 +34,32 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 7,
-            "end": 27
+            "start": 22,
+            "end": 42
           },
           "id": {
             "type": "Identifier",
             "span": {
-              "start": 7,
-              "end": 10
+              "start": 22,
+              "end": 24
             },
             "ctxt": 2,
-            "value": "foo",
+            "value": "db",
             "optional": false,
             "typeAnnotation": null
           },
           "init": {
             "type": "CallExpression",
             "span": {
-              "start": 13,
-              "end": 27
+              "start": 27,
+              "end": 42
             },
             "ctxt": 0,
             "callee": {
               "type": "Identifier",
               "span": {
-                "start": 13,
-                "end": 20
+                "start": 27,
+                "end": 34
               },
               "ctxt": 1,
               "value": "require",
@@ -55,11 +71,94 @@
                 "expression": {
                   "type": "StringLiteral",
                   "span": {
-                    "start": 21,
-                    "end": 26
+                    "start": 35,
+                    "end": 41
                   },
-                  "value": "bar",
-                  "raw": "\"bar\""
+                  "value": "./db",
+                  "raw": "\"./db\""
+                }
+              }
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 44,
+        "end": 80
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 50,
+            "end": 79
+          },
+          "id": {
+            "type": "ObjectPattern",
+            "span": {
+              "start": 50,
+              "end": 59
+            },
+            "properties": [
+              {
+                "type": "AssignmentPatternProperty",
+                "span": {
+                  "start": 52,
+                  "end": 57
+                },
+                "key": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 52,
+                    "end": 57
+                  },
+                  "ctxt": 2,
+                  "value": "delay",
+                  "optional": false,
+                  "typeAnnotation": null
+                },
+                "value": null
+              }
+            ],
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 62,
+              "end": 79
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "Identifier",
+              "span": {
+                "start": 62,
+                "end": 69
+              },
+              "ctxt": 1,
+              "value": "require",
+              "optional": false
+            },
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "StringLiteral",
+                  "span": {
+                    "start": 70,
+                    "end": 78
+                  },
+                  "value": "/utils",
+                  "raw": "\"/utils\""
                 }
               }
             ],

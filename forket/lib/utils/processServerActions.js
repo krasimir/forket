@@ -1,5 +1,6 @@
 import traverseNode from "./traverseNode.js";
 import { encrypt } from "./encryption.js";
+import insertAtTheTop from "./insertAtTheTop.js";
 
 export default function processServerAction(ast, filePath, maskPath = encrypt) {
   const handlers = [];
@@ -39,7 +40,16 @@ function makeSureThatItIsGlobal(ast, funcNode, stack) {
     makeSureThatItIsExported(ast, funcNode);
     return;
   } else {
-    // extract it to the global scope
+    for(let i=0; i<stack.length; i++) {
+      if (stack[i] === funcNode) {
+        const parent = stack[i + 1];
+        if (parent && parent?.stmts) {
+          parent.stmts = parent.stmts.filter((n) => n !== funcNode);
+          insertAtTheTop(ast, funcNode);
+          makeSureThatItIsExported(ast, funcNode);
+        }
+      }
+    }
   }
 }
 function makeSureThatItIsExported(ast, node) {
