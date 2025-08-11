@@ -17,7 +17,6 @@ export default async function serverActions(actions, sourceDir, buildServerDir) 
   const mapValues = [];
 
   actions.forEach((action) => {
-    console.log(action);
     mapValues.push([ action.id, action.funcName ]);
     insertImports(
       ast,
