@@ -7,6 +7,7 @@ import { setRoles } from '../../lib/roles.js';
 import insertImports from '../../lib/utils/insertImports.js';
 import exposeGlobal from '../../lib/ast/exposeGlobal/index.js';
 import insertAtTheTop from "../../lib/utils/insertAtTheTop.js";
+import traverseNode from "../../lib/utils/traverseNode.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,29 @@ const __dirname = path.dirname(__filename);
 export default async function ({ test, toAST, toCode }) {
   const [graph] = await getGraphs(path.join(__dirname, "src"));
   setRoles(graph);
+  
+  await test("Should parse an AST", async () => {
+    const cases = ["a"];
+    for (let i = 0; i < cases.length; i++) {
+      const baseAST = await toAST(path.join(__dirname, "traverseNode", cases[i] + ".js"));
+      const expected = fs.readFileSync(path.join(__dirname, "traverseNode", cases[i] + ".expected.js"), "utf8");
+      fs.writeFileSync(path.join(__dirname, "traverseNode", cases[i] + ".ast.json"), JSON.stringify(baseAST, null, 2));
+      traverseNode(baseAST, {
+        MemberExpression(n) {
+          if (n?.property?.value === "setupForketSA") {
+            n.property.value = "HoHoHo";
+          }
+        }
+      });
+      const result = await toCode(baseAST);
+      if (expected !== result) {
+        console.log(`(${cases[i]}) Expected:\n${expected}`);
+        console.log(`Result:\n${result}`);
+        return false;
+      }
+    }
+    return true;
+  });
   
   await test("Should properly find the import/require statements", () => {
     return graph.imports.map((i) => i.source).join(",") === "react,react-dom/client,./components/App,./foobar";

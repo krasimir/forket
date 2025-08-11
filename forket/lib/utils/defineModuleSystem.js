@@ -20,12 +20,12 @@ export default function defineModuleSystem(ast) {
       }
     },
     AssignmentExpression(path) {
-      const left = path.node.left;
-      if (left.type === "MemberExpression" && left.object.type === "Identifier") {
-        if (left.object.name === "module" && left.property.name === "exports") {
+      const left = path?.node?.left;
+      if (left?.type === "MemberExpression" && left?.object?.type === "Identifier") {
+        if (left?.object?.name === "module" && left?.property?.name === "exports") {
           usesCommonJS = true;
         }
-        if (left.object.name === "exports") {
+        if (left?.object?.name === "exports") {
           usesCommonJS = true;
         }
       }

@@ -13,18 +13,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT = process.cwd();
-const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 
 let serverProcess;
 let restart = false; 
 
-await Forket({
-  sourceDir: SRC,
-  buildDir: BUILD,
-  watch: true // important in dev mode
-}).process();
+const forket = await Forket({ watch: true });
+await forket.process();
 
 async function run() {
   await buildServer();
