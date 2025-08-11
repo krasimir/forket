@@ -1,6 +1,6 @@
 {
   "name": "forket",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "𐂐",
   "main": "index.js",
   "type": "module",
@@ -39,6 +39,6 @@
     "uglify-js": "^3.19.3"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.8.0"
   }
 }

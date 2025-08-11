@@ -13,18 +13,27 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT = process.cwd();
-const SRC = path.normalize(path.join(__dirname, "..", "src"));
 const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 
 let serverProcess;
-let restart = false; 
+let restart = false;
 
-await Forket({
-  sourceDir: SRC,
-  buildDir: BUILD,
-  watch: true // important in dev mode
-}).process();
+Forket({ watch: true })
+  .then(forket => forket.process())
+  .then(() => {
+    // Watching for changes in the build directory, transpile, bundle and restart the server
+    chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
+      restart = true;
+      if (serverProcess) {
+        serverProcess.kill();
+      } else {
+        run();
+      }
+    });
+
+    run();
+  })
 
 async function run() {
   await buildServer();
@@ -36,18 +45,6 @@ async function run() {
     }
   });
 };
-
-// Watching for changes in the build directory, transpile, bundle and restart the server
-chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-  restart = true;
-  if (serverProcess) {
-    serverProcess.kill();
-  } else {
-    run();
-  }
-});
-
-run();
 
 async function buildServer() {
   const serverBuildDir = path.join(BUILD, "server");;

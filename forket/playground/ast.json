@@ -2,14 +2,398 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 37
+    "end": 1245
   },
   "body": [
     {
-      "type": "VariableDeclaration",
+      "type": "ImportDeclaration",
       "span": {
         "start": 1,
-        "end": 37
+        "end": 27
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 8,
+            "end": 13
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 8,
+              "end": 13
+            },
+            "ctxt": 2,
+            "value": "React",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 19,
+          "end": 26
+        },
+        "value": "react",
+        "raw": "\"react\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 28,
+        "end": 52
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 35,
+            "end": 39
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 35,
+              "end": 39
+            },
+            "ctxt": 2,
+            "value": "path",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 45,
+          "end": 51
+        },
+        "value": "path",
+        "raw": "\"path\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 53,
+        "end": 111
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 62,
+            "end": 84
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 62,
+              "end": 84
+            },
+            "ctxt": 2,
+            "value": "renderToPipeableStream",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 92,
+          "end": 110
+        },
+        "value": "react-dom/server",
+        "raw": "\"react-dom/server\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 112,
+        "end": 136
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 119,
+            "end": 123
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 119,
+              "end": 123
+            },
+            "ctxt": 2,
+            "value": "http",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 129,
+          "end": 135
+        },
+        "value": "http",
+        "raw": "\"http\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 137,
+        "end": 167
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 144,
+            "end": 151
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 144,
+              "end": 151
+            },
+            "ctxt": 2,
+            "value": "express",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 157,
+          "end": 166
+        },
+        "value": "express",
+        "raw": "\"express\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 168,
+        "end": 204
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "span": {
+            "start": 177,
+            "end": 190
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 177,
+              "end": 190
+            },
+            "ctxt": 2,
+            "value": "fileURLToPath",
+            "optional": false
+          },
+          "imported": null,
+          "isTypeOnly": false
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 198,
+          "end": 203
+        },
+        "value": "url",
+        "raw": "\"url\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 205,
+        "end": 246
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 212,
+            "end": 224
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 212,
+              "end": 224
+            },
+            "ctxt": 2,
+            "value": "cookieParser",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 230,
+          "end": 245
+        },
+        "value": "cookie-parser",
+        "raw": "\"cookie-parser\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 247,
+        "end": 284
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 254,
+            "end": 264
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 254,
+              "end": 264
+            },
+            "ctxt": 2,
+            "value": "bodyParser",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 270,
+          "end": 283
+        },
+        "value": "body-parser",
+        "raw": "\"body-parser\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 285,
+        "end": 334
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 292,
+            "end": 298
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 292,
+              "end": 298
+            },
+            "ctxt": 2,
+            "value": "Forket",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 304,
+          "end": 333
+        },
+        "value": "../../../../forket/index.js",
+        "raw": "\"../../../../forket/index.js\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 336,
+        "end": 374
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 343,
+            "end": 346
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 343,
+              "end": 346
+            },
+            "ctxt": 2,
+            "value": "App",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 352,
+          "end": 373
+        },
+        "value": "./components/App.js",
+        "raw": "\"./components/App.js\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 376,
+        "end": 426
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,67 +402,62 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 7,
-            "end": 36
+            "start": 382,
+            "end": 425
           },
           "id": {
-            "type": "ObjectPattern",
+            "type": "Identifier",
             "span": {
-              "start": 7,
-              "end": 16
+              "start": 382,
+              "end": 392
             },
-            "properties": [
-              {
-                "type": "AssignmentPatternProperty",
-                "span": {
-                  "start": 9,
-                  "end": 14
-                },
-                "key": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 9,
-                    "end": 14
-                  },
-                  "ctxt": 2,
-                  "value": "login",
-                  "optional": false,
-                  "typeAnnotation": null
-                },
-                "value": null
-              }
-            ],
+            "ctxt": 2,
+            "value": "__filename",
             "optional": false,
             "typeAnnotation": null
           },
           "init": {
             "type": "CallExpression",
             "span": {
-              "start": 19,
-              "end": 36
+              "start": 395,
+              "end": 425
             },
             "ctxt": 0,
             "callee": {
               "type": "Identifier",
               "span": {
-                "start": 19,
-                "end": 26
+                "start": 395,
+                "end": 408
               },
-              "ctxt": 1,
-              "value": "require",
+              "ctxt": 2,
+              "value": "fileURLToPath",
               "optional": false
             },
             "arguments": [
               {
                 "spread": null,
                 "expression": {
-                  "type": "StringLiteral",
+                  "type": "MemberExpression",
                   "span": {
-                    "start": 27,
-                    "end": 35
+                    "start": 409,
+                    "end": 424
                   },
-                  "value": "foobar",
-                  "raw": "'foobar'"
+                  "object": {
+                    "type": "MetaProperty",
+                    "span": {
+                      "start": 409,
+                      "end": 420
+                    },
+                    "kind": "import.meta"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 421,
+                      "end": 424
+                    },
+                    "value": "url"
+                  }
                 }
               }
             ],
@@ -87,6 +466,1580 @@
           "definite": false
         }
       ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 427,
+        "end": 470
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 433,
+            "end": 469
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 433,
+              "end": 442
+            },
+            "ctxt": 2,
+            "value": "__dirname",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 445,
+              "end": 469
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "MemberExpression",
+              "span": {
+                "start": 445,
+                "end": 457
+              },
+              "object": {
+                "type": "Identifier",
+                "span": {
+                  "start": 445,
+                  "end": 449
+                },
+                "ctxt": 2,
+                "value": "path",
+                "optional": false
+              },
+              "property": {
+                "type": "Identifier",
+                "span": {
+                  "start": 450,
+                  "end": 457
+                },
+                "value": "dirname"
+              }
+            },
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 458,
+                    "end": 468
+                  },
+                  "ctxt": 2,
+                  "value": "__filename",
+                  "optional": false
+                }
+              }
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 472,
+        "end": 490
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 478,
+            "end": 489
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 478,
+              "end": 482
+            },
+            "ctxt": 2,
+            "value": "port",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "NumericLiteral",
+            "span": {
+              "start": 485,
+              "end": 489
+            },
+            "value": 8087,
+            "raw": "8087"
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 491,
+        "end": 513
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 497,
+            "end": 512
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 497,
+              "end": 500
+            },
+            "ctxt": 2,
+            "value": "app",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 503,
+              "end": 512
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "Identifier",
+              "span": {
+                "start": 503,
+                "end": 510
+              },
+              "ctxt": 2,
+              "value": "express",
+              "optional": false
+            },
+            "arguments": [],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 514,
+        "end": 552
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 520,
+            "end": 551
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 520,
+              "end": 526
+            },
+            "ctxt": 2,
+            "value": "server",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 529,
+              "end": 551
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "MemberExpression",
+              "span": {
+                "start": 529,
+                "end": 546
+              },
+              "object": {
+                "type": "Identifier",
+                "span": {
+                  "start": 529,
+                  "end": 533
+                },
+                "ctxt": 2,
+                "value": "http",
+                "optional": false
+              },
+              "property": {
+                "type": "Identifier",
+                "span": {
+                  "start": 534,
+                  "end": 546
+                },
+                "value": "createServer"
+              }
+            },
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 547,
+                    "end": 550
+                  },
+                  "ctxt": 2,
+                  "value": "app",
+                  "optional": false
+                }
+              }
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 554,
+        "end": 578
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 554,
+          "end": 577
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 554,
+            "end": 561
+          },
+          "object": {
+            "type": "Identifier",
+            "span": {
+              "start": 554,
+              "end": 557
+            },
+            "ctxt": 2,
+            "value": "app",
+            "optional": false
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 558,
+              "end": 561
+            },
+            "value": "use"
+          }
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "CallExpression",
+              "span": {
+                "start": 562,
+                "end": 576
+              },
+              "ctxt": 0,
+              "callee": {
+                "type": "Identifier",
+                "span": {
+                  "start": 562,
+                  "end": 574
+                },
+                "ctxt": 2,
+                "value": "cookieParser",
+                "optional": false
+              },
+              "arguments": [],
+              "typeArguments": null
+            }
+          }
+        ],
+        "typeArguments": null
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 579,
+        "end": 606
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 579,
+          "end": 605
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 579,
+            "end": 586
+          },
+          "object": {
+            "type": "Identifier",
+            "span": {
+              "start": 579,
+              "end": 582
+            },
+            "ctxt": 2,
+            "value": "app",
+            "optional": false
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 583,
+              "end": 586
+            },
+            "value": "use"
+          }
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "CallExpression",
+              "span": {
+                "start": 587,
+                "end": 604
+              },
+              "ctxt": 0,
+              "callee": {
+                "type": "MemberExpression",
+                "span": {
+                  "start": 587,
+                  "end": 602
+                },
+                "object": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 587,
+                    "end": 597
+                  },
+                  "ctxt": 2,
+                  "value": "bodyParser",
+                  "optional": false
+                },
+                "property": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 598,
+                    "end": 602
+                  },
+                  "value": "json"
+                }
+              },
+              "arguments": [],
+              "typeArguments": null
+            }
+          }
+        ],
+        "typeArguments": null
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 607,
+        "end": 669
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 607,
+          "end": 668
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 607,
+            "end": 614
+          },
+          "object": {
+            "type": "Identifier",
+            "span": {
+              "start": 607,
+              "end": 610
+            },
+            "ctxt": 2,
+            "value": "app",
+            "optional": false
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 611,
+              "end": 614
+            },
+            "value": "use"
+          }
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "CallExpression",
+              "span": {
+                "start": 615,
+                "end": 667
+              },
+              "ctxt": 0,
+              "callee": {
+                "type": "MemberExpression",
+                "span": {
+                  "start": 615,
+                  "end": 629
+                },
+                "object": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 615,
+                    "end": 622
+                  },
+                  "ctxt": 2,
+                  "value": "express",
+                  "optional": false
+                },
+                "property": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 623,
+                    "end": 629
+                  },
+                  "value": "static"
+                }
+              },
+              "arguments": [
+                {
+                  "spread": null,
+                  "expression": {
+                    "type": "CallExpression",
+                    "span": {
+                      "start": 630,
+                      "end": 666
+                    },
+                    "ctxt": 0,
+                    "callee": {
+                      "type": "MemberExpression",
+                      "span": {
+                        "start": 630,
+                        "end": 639
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 630,
+                          "end": 634
+                        },
+                        "ctxt": 2,
+                        "value": "path",
+                        "optional": false
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 635,
+                          "end": 639
+                        },
+                        "value": "join"
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 640,
+                            "end": 649
+                          },
+                          "ctxt": 2,
+                          "value": "__dirname",
+                          "optional": false
+                        }
+                      },
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
+                          "span": {
+                            "start": 651,
+                            "end": 655
+                          },
+                          "value": "..",
+                          "raw": "\"..\""
+                        }
+                      },
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
+                          "span": {
+                            "start": 657,
+                            "end": 665
+                          },
+                          "value": "public",
+                          "raw": "\"public\""
+                        }
+                      }
+                    ],
+                    "typeArguments": null
+                  }
+                }
+              ],
+              "typeArguments": null
+            }
+          }
+        ],
+        "typeArguments": null
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 671,
+        "end": 1163
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 671,
+          "end": 1162
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 671,
+            "end": 684
+          },
+          "object": {
+            "type": "CallExpression",
+            "span": {
+              "start": 671,
+              "end": 679
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "Identifier",
+              "span": {
+                "start": 671,
+                "end": 677
+              },
+              "ctxt": 2,
+              "value": "Forket",
+              "optional": false
+            },
+            "arguments": [],
+            "typeArguments": null
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 680,
+              "end": 684
+            },
+            "value": "then"
+          }
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "ArrowFunctionExpression",
+              "span": {
+                "start": 685,
+                "end": 1161
+              },
+              "ctxt": 0,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 686,
+                    "end": 692
+                  },
+                  "ctxt": 3,
+                  "value": "forket",
+                  "optional": false,
+                  "typeAnnotation": null
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 697,
+                  "end": 1161
+                },
+                "ctxt": 3,
+                "stmts": [
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 701,
+                      "end": 727
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "span": {
+                        "start": 701,
+                        "end": 726
+                      },
+                      "ctxt": 0,
+                      "callee": {
+                        "type": "MemberExpression",
+                        "span": {
+                          "start": 701,
+                          "end": 721
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 701,
+                            "end": 707
+                          },
+                          "ctxt": 3,
+                          "value": "forket",
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 708,
+                            "end": 721
+                          },
+                          "value": "setupForketSA"
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 722,
+                              "end": 725
+                            },
+                            "ctxt": 2,
+                            "value": "app",
+                            "optional": false
+                          }
+                        }
+                      ],
+                      "typeArguments": null
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 730,
+                      "end": 1159
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "span": {
+                        "start": 730,
+                        "end": 1158
+                      },
+                      "ctxt": 0,
+                      "callee": {
+                        "type": "MemberExpression",
+                        "span": {
+                          "start": 730,
+                          "end": 737
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 730,
+                            "end": 733
+                          },
+                          "ctxt": 2,
+                          "value": "app",
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 734,
+                            "end": 737
+                          },
+                          "value": "get"
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "StringLiteral",
+                            "span": {
+                              "start": 738,
+                              "end": 741
+                            },
+                            "value": "/",
+                            "raw": "\"/\""
+                          }
+                        },
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "ArrowFunctionExpression",
+                            "span": {
+                              "start": 743,
+                              "end": 1157
+                            },
+                            "ctxt": 0,
+                            "params": [
+                              {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 744,
+                                  "end": 747
+                                },
+                                "ctxt": 4,
+                                "value": "req",
+                                "optional": false,
+                                "typeAnnotation": null
+                              },
+                              {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 749,
+                                  "end": 752
+                                },
+                                "ctxt": 4,
+                                "value": "res",
+                                "optional": false,
+                                "typeAnnotation": null
+                              }
+                            ],
+                            "body": {
+                              "type": "BlockStatement",
+                              "span": {
+                                "start": 757,
+                                "end": 1157
+                              },
+                              "ctxt": 4,
+                              "stmts": [
+                                {
+                                  "type": "VariableDeclaration",
+                                  "span": {
+                                    "start": 763,
+                                    "end": 1153
+                                  },
+                                  "ctxt": 0,
+                                  "kind": "const",
+                                  "declare": false,
+                                  "declarations": [
+                                    {
+                                      "type": "VariableDeclarator",
+                                      "span": {
+                                        "start": 769,
+                                        "end": 1152
+                                      },
+                                      "id": {
+                                        "type": "ObjectPattern",
+                                        "span": {
+                                          "start": 769,
+                                          "end": 784
+                                        },
+                                        "properties": [
+                                          {
+                                            "type": "AssignmentPatternProperty",
+                                            "span": {
+                                              "start": 771,
+                                              "end": 775
+                                            },
+                                            "key": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 771,
+                                                "end": 775
+                                              },
+                                              "ctxt": 4,
+                                              "value": "pipe",
+                                              "optional": false,
+                                              "typeAnnotation": null
+                                            },
+                                            "value": null
+                                          },
+                                          {
+                                            "type": "AssignmentPatternProperty",
+                                            "span": {
+                                              "start": 777,
+                                              "end": 782
+                                            },
+                                            "key": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 777,
+                                                "end": 782
+                                              },
+                                              "ctxt": 4,
+                                              "value": "abort",
+                                              "optional": false,
+                                              "typeAnnotation": null
+                                            },
+                                            "value": null
+                                          }
+                                        ],
+                                        "optional": false,
+                                        "typeAnnotation": null
+                                      },
+                                      "init": {
+                                        "type": "CallExpression",
+                                        "span": {
+                                          "start": 787,
+                                          "end": 1152
+                                        },
+                                        "ctxt": 0,
+                                        "callee": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 787,
+                                            "end": 809
+                                          },
+                                          "ctxt": 2,
+                                          "value": "renderToPipeableStream",
+                                          "optional": false
+                                        },
+                                        "arguments": [
+                                          {
+                                            "spread": null,
+                                            "expression": {
+                                              "type": "JSXElement",
+                                              "span": {
+                                                "start": 810,
+                                                "end": 831
+                                              },
+                                              "opening": {
+                                                "type": "JSXOpeningElement",
+                                                "name": {
+                                                  "type": "Identifier",
+                                                  "span": {
+                                                    "start": 811,
+                                                    "end": 814
+                                                  },
+                                                  "ctxt": 2,
+                                                  "value": "App",
+                                                  "optional": false
+                                                },
+                                                "span": {
+                                                  "start": 810,
+                                                  "end": 831
+                                                },
+                                                "attributes": [
+                                                  {
+                                                    "type": "JSXAttribute",
+                                                    "span": {
+                                                      "start": 815,
+                                                      "end": 828
+                                                    },
+                                                    "name": {
+                                                      "type": "Identifier",
+                                                      "span": {
+                                                        "start": 815,
+                                                        "end": 822
+                                                      },
+                                                      "value": "request"
+                                                    },
+                                                    "value": {
+                                                      "type": "JSXExpressionContainer",
+                                                      "span": {
+                                                        "start": 823,
+                                                        "end": 828
+                                                      },
+                                                      "expression": {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 824,
+                                                          "end": 827
+                                                        },
+                                                        "ctxt": 4,
+                                                        "value": "req",
+                                                        "optional": false
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "selfClosing": true,
+                                                "typeArguments": null
+                                              },
+                                              "children": [],
+                                              "closing": null
+                                            }
+                                          },
+                                          {
+                                            "spread": null,
+                                            "expression": {
+                                              "type": "ObjectExpression",
+                                              "span": {
+                                                "start": 833,
+                                                "end": 1151
+                                              },
+                                              "properties": [
+                                                {
+                                                  "type": "KeyValueProperty",
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "span": {
+                                                      "start": 841,
+                                                      "end": 857
+                                                    },
+                                                    "value": "bootstrapScripts"
+                                                  },
+                                                  "value": {
+                                                    "type": "ArrayExpression",
+                                                    "span": {
+                                                      "start": 859,
+                                                      "end": 873
+                                                    },
+                                                    "elements": [
+                                                      {
+                                                        "spread": null,
+                                                        "expression": {
+                                                          "type": "StringLiteral",
+                                                          "span": {
+                                                            "start": 860,
+                                                            "end": 872
+                                                          },
+                                                          "value": "/bundle.js",
+                                                          "raw": "\"/bundle.js\""
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                },
+                                                {
+                                                  "type": "KeyValueProperty",
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "span": {
+                                                      "start": 881,
+                                                      "end": 903
+                                                    },
+                                                    "value": "bootstrapScriptContent"
+                                                  },
+                                                  "value": {
+                                                    "type": "CallExpression",
+                                                    "span": {
+                                                      "start": 905,
+                                                      "end": 920
+                                                    },
+                                                    "ctxt": 0,
+                                                    "callee": {
+                                                      "type": "MemberExpression",
+                                                      "span": {
+                                                        "start": 905,
+                                                        "end": 918
+                                                      },
+                                                      "object": {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 905,
+                                                          "end": 911
+                                                        },
+                                                        "ctxt": 3,
+                                                        "value": "forket",
+                                                        "optional": false
+                                                      },
+                                                      "property": {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 912,
+                                                          "end": 918
+                                                        },
+                                                        "value": "client"
+                                                      }
+                                                    },
+                                                    "arguments": [],
+                                                    "typeArguments": null
+                                                  }
+                                                },
+                                                {
+                                                  "type": "MethodProperty",
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "span": {
+                                                      "start": 928,
+                                                      "end": 940
+                                                    },
+                                                    "value": "onShellReady"
+                                                  },
+                                                  "params": [],
+                                                  "decorators": [],
+                                                  "span": {
+                                                    "start": 928,
+                                                    "end": 1087
+                                                  },
+                                                  "ctxt": 5,
+                                                  "body": {
+                                                    "type": "BlockStatement",
+                                                    "span": {
+                                                      "start": 943,
+                                                      "end": 1087
+                                                    },
+                                                    "ctxt": 5,
+                                                    "stmts": [
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "span": {
+                                                          "start": 953,
+                                                          "end": 974
+                                                        },
+                                                        "expression": {
+                                                          "type": "AssignmentExpression",
+                                                          "span": {
+                                                            "start": 953,
+                                                            "end": 973
+                                                          },
+                                                          "operator": "=",
+                                                          "left": {
+                                                            "type": "MemberExpression",
+                                                            "span": {
+                                                              "start": 953,
+                                                              "end": 967
+                                                            },
+                                                            "object": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 953,
+                                                                "end": 956
+                                                              },
+                                                              "ctxt": 4,
+                                                              "value": "res",
+                                                              "optional": false
+                                                            },
+                                                            "property": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 957,
+                                                                "end": 967
+                                                              },
+                                                              "value": "statusCode"
+                                                            }
+                                                          },
+                                                          "right": {
+                                                            "type": "NumericLiteral",
+                                                            "span": {
+                                                              "start": 970,
+                                                              "end": 973
+                                                            },
+                                                            "value": 200,
+                                                            "raw": "200"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "span": {
+                                                          "start": 983,
+                                                          "end": 1026
+                                                        },
+                                                        "expression": {
+                                                          "type": "CallExpression",
+                                                          "span": {
+                                                            "start": 983,
+                                                            "end": 1025
+                                                          },
+                                                          "ctxt": 0,
+                                                          "callee": {
+                                                            "type": "MemberExpression",
+                                                            "span": {
+                                                              "start": 983,
+                                                              "end": 996
+                                                            },
+                                                            "object": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 983,
+                                                                "end": 986
+                                                              },
+                                                              "ctxt": 4,
+                                                              "value": "res",
+                                                              "optional": false
+                                                            },
+                                                            "property": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 987,
+                                                                "end": 996
+                                                              },
+                                                              "value": "setHeader"
+                                                            }
+                                                          },
+                                                          "arguments": [
+                                                            {
+                                                              "spread": null,
+                                                              "expression": {
+                                                                "type": "StringLiteral",
+                                                                "span": {
+                                                                  "start": 997,
+                                                                  "end": 1011
+                                                                },
+                                                                "value": "Content-Type",
+                                                                "raw": "\"Content-Type\""
+                                                              }
+                                                            },
+                                                            {
+                                                              "spread": null,
+                                                              "expression": {
+                                                                "type": "StringLiteral",
+                                                                "span": {
+                                                                  "start": 1013,
+                                                                  "end": 1024
+                                                                },
+                                                                "value": "text/html",
+                                                                "raw": "\"text/html\""
+                                                              }
+                                                            }
+                                                          ],
+                                                          "typeArguments": null
+                                                        }
+                                                      },
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "span": {
+                                                          "start": 1035,
+                                                          "end": 1060
+                                                        },
+                                                        "expression": {
+                                                          "type": "CallExpression",
+                                                          "span": {
+                                                            "start": 1035,
+                                                            "end": 1059
+                                                          },
+                                                          "ctxt": 0,
+                                                          "callee": {
+                                                            "type": "MemberExpression",
+                                                            "span": {
+                                                              "start": 1035,
+                                                              "end": 1054
+                                                            },
+                                                            "object": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 1035,
+                                                                "end": 1041
+                                                              },
+                                                              "ctxt": 3,
+                                                              "value": "forket",
+                                                              "optional": false
+                                                            },
+                                                            "property": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 1042,
+                                                                "end": 1054
+                                                              },
+                                                              "value": "processChunk"
+                                                            }
+                                                          },
+                                                          "arguments": [
+                                                            {
+                                                              "spread": null,
+                                                              "expression": {
+                                                                "type": "Identifier",
+                                                                "span": {
+                                                                  "start": 1055,
+                                                                  "end": 1058
+                                                                },
+                                                                "ctxt": 4,
+                                                                "value": "res",
+                                                                "optional": false
+                                                              }
+                                                            }
+                                                          ],
+                                                          "typeArguments": null
+                                                        }
+                                                      },
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "span": {
+                                                          "start": 1069,
+                                                          "end": 1079
+                                                        },
+                                                        "expression": {
+                                                          "type": "CallExpression",
+                                                          "span": {
+                                                            "start": 1069,
+                                                            "end": 1078
+                                                          },
+                                                          "ctxt": 0,
+                                                          "callee": {
+                                                            "type": "Identifier",
+                                                            "span": {
+                                                              "start": 1069,
+                                                              "end": 1073
+                                                            },
+                                                            "ctxt": 4,
+                                                            "value": "pipe",
+                                                            "optional": false
+                                                          },
+                                                          "arguments": [
+                                                            {
+                                                              "spread": null,
+                                                              "expression": {
+                                                                "type": "Identifier",
+                                                                "span": {
+                                                                  "start": 1074,
+                                                                  "end": 1077
+                                                                },
+                                                                "ctxt": 4,
+                                                                "value": "res",
+                                                                "optional": false
+                                                              }
+                                                            }
+                                                          ],
+                                                          "typeArguments": null
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "generator": false,
+                                                  "async": false,
+                                                  "typeParameters": null,
+                                                  "returnType": null
+                                                },
+                                                {
+                                                  "type": "MethodProperty",
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "span": {
+                                                      "start": 1095,
+                                                      "end": 1102
+                                                    },
+                                                    "value": "onError"
+                                                  },
+                                                  "params": [
+                                                    {
+                                                      "type": "Parameter",
+                                                      "span": {
+                                                        "start": 1103,
+                                                        "end": 1106
+                                                      },
+                                                      "decorators": [],
+                                                      "pat": {
+                                                        "type": "Identifier",
+                                                        "span": {
+                                                          "start": 1103,
+                                                          "end": 1106
+                                                        },
+                                                        "ctxt": 6,
+                                                        "value": "err",
+                                                        "optional": false,
+                                                        "typeAnnotation": null
+                                                      }
+                                                    }
+                                                  ],
+                                                  "decorators": [],
+                                                  "span": {
+                                                    "start": 1095,
+                                                    "end": 1145
+                                                  },
+                                                  "ctxt": 6,
+                                                  "body": {
+                                                    "type": "BlockStatement",
+                                                    "span": {
+                                                      "start": 1108,
+                                                      "end": 1145
+                                                    },
+                                                    "ctxt": 6,
+                                                    "stmts": [
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "span": {
+                                                          "start": 1118,
+                                                          "end": 1137
+                                                        },
+                                                        "expression": {
+                                                          "type": "CallExpression",
+                                                          "span": {
+                                                            "start": 1118,
+                                                            "end": 1136
+                                                          },
+                                                          "ctxt": 0,
+                                                          "callee": {
+                                                            "type": "MemberExpression",
+                                                            "span": {
+                                                              "start": 1118,
+                                                              "end": 1131
+                                                            },
+                                                            "object": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 1118,
+                                                                "end": 1125
+                                                              },
+                                                              "ctxt": 1,
+                                                              "value": "console",
+                                                              "optional": false
+                                                            },
+                                                            "property": {
+                                                              "type": "Identifier",
+                                                              "span": {
+                                                                "start": 1126,
+                                                                "end": 1131
+                                                              },
+                                                              "value": "error"
+                                                            }
+                                                          },
+                                                          "arguments": [
+                                                            {
+                                                              "spread": null,
+                                                              "expression": {
+                                                                "type": "Identifier",
+                                                                "span": {
+                                                                  "start": 1132,
+                                                                  "end": 1135
+                                                                },
+                                                                "ctxt": 6,
+                                                                "value": "err",
+                                                                "optional": false
+                                                              }
+                                                            }
+                                                          ],
+                                                          "typeArguments": null
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "generator": false,
+                                                  "async": false,
+                                                  "typeParameters": null,
+                                                  "returnType": null
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        "typeArguments": null
+                                      },
+                                      "definite": false
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            "async": false,
+                            "generator": false,
+                            "typeParameters": null,
+                            "returnType": null
+                          }
+                        }
+                      ],
+                      "typeArguments": null
+                    }
+                  }
+                ]
+              },
+              "async": false,
+              "generator": false,
+              "typeParameters": null,
+              "returnType": null
+            }
+          }
+        ],
+        "typeArguments": null
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "span": {
+        "start": 1165,
+        "end": 1245
+      },
+      "expression": {
+        "type": "CallExpression",
+        "span": {
+          "start": 1165,
+          "end": 1244
+        },
+        "ctxt": 0,
+        "callee": {
+          "type": "MemberExpression",
+          "span": {
+            "start": 1165,
+            "end": 1178
+          },
+          "object": {
+            "type": "Identifier",
+            "span": {
+              "start": 1165,
+              "end": 1171
+            },
+            "ctxt": 2,
+            "value": "server",
+            "optional": false
+          },
+          "property": {
+            "type": "Identifier",
+            "span": {
+              "start": 1172,
+              "end": 1178
+            },
+            "value": "listen"
+          }
+        },
+        "arguments": [
+          {
+            "spread": null,
+            "expression": {
+              "type": "Identifier",
+              "span": {
+                "start": 1179,
+                "end": 1183
+              },
+              "ctxt": 2,
+              "value": "port",
+              "optional": false
+            }
+          },
+          {
+            "spread": null,
+            "expression": {
+              "type": "ArrowFunctionExpression",
+              "span": {
+                "start": 1185,
+                "end": 1243
+              },
+              "ctxt": 0,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 1191,
+                  "end": 1243
+                },
+                "ctxt": 7,
+                "stmts": [
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 1195,
+                      "end": 1241
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "span": {
+                        "start": 1195,
+                        "end": 1240
+                      },
+                      "ctxt": 0,
+                      "callee": {
+                        "type": "MemberExpression",
+                        "span": {
+                          "start": 1195,
+                          "end": 1206
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1195,
+                            "end": 1202
+                          },
+                          "ctxt": 1,
+                          "value": "console",
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 1203,
+                            "end": 1206
+                          },
+                          "value": "log"
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "TemplateLiteral",
+                            "span": {
+                              "start": 1207,
+                              "end": 1239
+                            },
+                            "expressions": [
+                              {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 1232,
+                                  "end": 1236
+                                },
+                                "ctxt": 2,
+                                "value": "port",
+                                "optional": false
+                              }
+                            ],
+                            "quasis": [
+                              {
+                                "type": "TemplateElement",
+                                "span": {
+                                  "start": 1208,
+                                  "end": 1230
+                                },
+                                "tail": false,
+                                "cooked": "App listening on port ",
+                                "raw": "App listening on port "
+                              },
+                              {
+                                "type": "TemplateElement",
+                                "span": {
+                                  "start": 1237,
+                                  "end": 1238
+                                },
+                                "tail": true,
+                                "cooked": ".",
+                                "raw": "."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "typeArguments": null
+                    }
+                  }
+                ]
+              },
+              "async": false,
+              "generator": false,
+              "typeParameters": null,
+              "returnType": null
+            }
+          }
+        ],
+        "typeArguments": null
+      }
     }
   ],
   "interpreter": null

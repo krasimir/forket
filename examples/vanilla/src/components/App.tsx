@@ -20,6 +20,7 @@ export default function App({ request }) {
       <body>
         <Header />
         <section className="container mxauto">{!isLoggedIn && <LoginForm login={login} />}</section>
+        <script src="/bundle.js"></script>
       </body>
     </html>
   );

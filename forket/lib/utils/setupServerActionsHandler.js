@@ -7,9 +7,7 @@ import insertImports from "./insertImports.js";
 import getImportPath from "./getImportPath.js";
 import insertAfterTop from './insertAtTheTop.js'
 
-const ACTION_HANDLER_FILE_NAME = "forketServerActions.js";
-
-export default async function serverActions(actions, sourceDir, buildServerDir) {
+export default async function setupServerActionsHandler(actions, sourceDir, filePath) {
   if (actions.length === 0) {
     return;
   }
@@ -31,5 +29,5 @@ export default async function serverActions(actions, sourceDir, buildServerDir) 
     minify: false
   });
 
-  fs.writeFileSync(path.join(buildServerDir, ACTION_HANDLER_FILE_NAME), result.code);
+  fs.writeFileSync(filePath, result.code);
 }

@@ -8,6 +8,8 @@ import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
 import insertImports from "./utils/insertImports.js";
 import processServerActions from "./utils/processServerActions.js";
+import getImportPath from "./utils/getImportPath.js";
+import insertAtTheTop from "./utils/insertAtTheTop.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -18,6 +20,7 @@ export function Thanos() {
   let id = 0;
   const clientBoundaries = [];
   const clientEntryPoints = [];
+  const serverEntryPoints = [];
   let serverActions = [];
 
   async function snap(graphs, filePath, content, mode, options) {
@@ -39,6 +42,13 @@ export function Thanos() {
                 return transformed.code;
               }
             }
+          }
+          const isChanged = await faceliftTheServerActionsSetup(node, options);
+          if (isChanged) {
+            const transformed = await swc.print(node.ast, {
+              minify: false
+            });
+            return transformed.code;
           }
         }
       }
@@ -111,6 +121,43 @@ export function Thanos() {
 
     return componentsToClientBoundaries;
   }
+  function faceliftTheServerActionsSetup(node, options) {
+    return new Promise((done) => {
+      let found = false;
+      traverseNode(node.ast, {
+        MemberExpression(n, stack) {
+          if (n?.property?.value === "setupForketSA") {
+            serverEntryPoints.push(node);
+            if (stack[0].arguments && Array.isArray(stack[0].arguments)) {
+              stack[0].arguments.push({
+                spread: null,
+                expression: {
+                  type: "Identifier",
+                  span: {
+                    start: 722,
+                    end: 725
+                  },
+                  ctxt: 2,
+                  value: "forketServerActionsHandler",
+                  optional: false
+                }
+              });
+              const handlerPath = getImportPath(
+                  node.file,
+                  path.join(options.sourceDir, options.forketServerActionsHandler)
+              ) + ".js";
+              insertImports(node.ast, "forketServerActionsHandler", handlerPath);
+            }
+            found = true;
+            done(true);
+          }
+        }
+      });
+      if (!found) {
+        done(false);
+      }
+    });
+  }
   function getId() {
     return "f_" + id++;
   }
@@ -119,6 +166,7 @@ export function Thanos() {
     snap,
     clientBoundaries,
     clientEntryPoints,
+    serverEntryPoints,
     serverActions
   };
 }
