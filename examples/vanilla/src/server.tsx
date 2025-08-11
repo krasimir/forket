@@ -1,6 +1,5 @@
 import React from "react";
 import path from "path";
-import { renderToPipeableStream } from "react-dom/server";
 import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
@@ -23,24 +22,8 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 Forket().then(forket => {
   forket.setupForketSA(app);
-  app.get("/", (req, res) => {
-    const { pipe, abort } = renderToPipeableStream(<App request={req} />, {
-      bootstrapScripts: ["/bundle.js"],
-      bootstrapScriptContent: forket.client(),
-      onShellReady() {
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "text/html");
-        forket.processChunk(res);
-        pipe(res);
-      },
-      onError(err) {
-        console.error(err);
-      }
-    });
-  });
+  forket.setupApp(app, "/", (req) => <App request={req} />);  
 })
-
-
 
 server.listen(port, () => {
   console.log(`App listening on port ${port}.`);

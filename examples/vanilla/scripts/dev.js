@@ -17,10 +17,23 @@ const BUILD = path.normalize(path.join(__dirname, "..", "build"));
 const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 
 let serverProcess;
-let restart = false; 
+let restart = false;
 
-const forket = await Forket({ watch: true });
-await forket.process();
+Forket({ watch: true })
+  .then(forket => forket.process())
+  .then(() => {
+    // Watching for changes in the build directory, transpile, bundle and restart the server
+    chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
+      restart = true;
+      if (serverProcess) {
+        serverProcess.kill();
+      } else {
+        run();
+      }
+    });
+
+    run();
+  })
 
 async function run() {
   await buildServer();
@@ -32,18 +45,6 @@ async function run() {
     }
   });
 };
-
-// Watching for changes in the build directory, transpile, bundle and restart the server
-chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-  restart = true;
-  if (serverProcess) {
-    serverProcess.kill();
-  } else {
-    run();
-  }
-});
-
-run();
 
 async function buildServer() {
   const serverBuildDir = path.join(BUILD, "server");;

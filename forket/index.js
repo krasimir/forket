@@ -3,6 +3,7 @@ import path from "path";
 import chalk from "chalk";
 import { fileURLToPath } from "url";
 import chokidar from "chokidar";
+import { renderToPipeableStream } from "react-dom/server";
 
 import findConfig from "./lib/utils/findConfig.js";
 import { getGraphs, printGraph } from "./lib/graph.js";
@@ -105,6 +106,22 @@ export default async function Forket(customOptions = {}) {
     }
     app.use(options.forketServerActionsEndpoint, handler);
   }
+  function setupApp(app, rootPath, rootElementFactory) {
+    app.get(rootPath, (req, res) => {
+      const { pipe, abort } = renderToPipeableStream(rootElementFactory(req), {
+        bootstrapScriptContent: client(),
+        onShellReady() {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "text/html");
+          processChunk(res);
+          pipe(res);
+        },
+        onError(err) {
+          console.error(err);
+        }
+      });
+    });
+  }
 
   return {
     process,
@@ -112,7 +129,8 @@ export default async function Forket(customOptions = {}) {
     printGraph,
     client,
     processChunk,
-    setupForketSA
+    setupForketSA,
+    setupApp
   };
 }
 

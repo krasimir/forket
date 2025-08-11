@@ -17,6 +17,7 @@ export interface ForketInstance {
   client(serverActionsEndpoint: string): string;
   processChunk(res: any): any;
   setupForketSA(app: any): Promise<void>;
+  setupApp(app: any, rootPath: string, rootElementFactory: Function): void;
 }
 
 export default function Forket(options?: ForketOptions): Promise<ForketInstance>;

@@ -16,6 +16,7 @@ export default function App({ request }) {
       <body>
         <Header/>
         <section className="container mxauto">{!isLoggedIn && <LoginFormBoundary login={"$FSA_f_1"}/>}</section>
+        <script src="/bundle.js"></script>
       </body>
     </html>);
 }

@@ -8,7 +8,7 @@ async function login(data) {
 }
 function App({ request }) {
   const isLoggedIn = request.cookies?.forket;
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "React Example"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !isLoggedIn && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_f_1" }))));
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "React Example"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !isLoggedIn && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_f_1" })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
 }
 function LoginFormBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props));
