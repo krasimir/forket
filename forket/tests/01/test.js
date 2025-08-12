@@ -6,6 +6,7 @@ import { getGraphs, toJSON } from "../../lib/graph.js";
 import { setRoles } from '../../lib/roles.js';
 import insertImports from '../../lib/utils/insertImports.js';
 import exposeGlobal from '../../lib/ast/exposeGlobal/index.js';
+import clientBoundaryWrapper from "../../lib/ast/clientBoundaryWrapper/index.js";
 import insertAtTheTop from "../../lib/utils/insertAtTheTop.js";
 import traverseNode from "../../lib/utils/traverseNode.js";
 
@@ -38,7 +39,23 @@ export default async function ({ test, toAST, toCode }) {
     }
     return true;
   });
-  
+  await test("Should create a client wrapper", async () => {
+    const expected = fs.readFileSync(path.join(__dirname, "clientBoundaryWrapper", "expected.js"), "utf8");
+    const ast = {
+      "type": "Module",
+      "span": {
+        "start": 1,
+        "end": 1245
+      },
+      "body": [
+        clientBoundaryWrapper("FORKETID111", "LoginForm")
+      ]
+    };
+    const transformed = await toCode(ast);
+    fs.writeFileSync(path.join(__dirname, "clientBoundaryWrapper", "ast.json"), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, "clientBoundaryWrapper", "transformed.js"), transformed);
+    return expected === transformed;
+  });
   await test("Should properly find the import/require statements", () => {
     return graph.imports.map((i) => i.source).join(",") === "react,react-dom/client,./components/App,./foobar";
   });

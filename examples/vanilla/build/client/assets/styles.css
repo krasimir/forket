@@ -16,7 +16,6 @@ h1, h2, h3 {
 }
 header {
   padding: 1rem;
-  max-width: 400px;
 }
 label {
   display: block;
@@ -50,6 +49,15 @@ button {
 }
 button:hover {
   background-color: #5a5a5a;
+}
+button.as-link {
+  background: none;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  display: inline;
 }
 
 .tac { text-align: center; }

@@ -3,12 +3,12 @@ export default function processChunk(res) {
     html = html
       .replace(/<boundary_f_(\d+)>/g, (_, n) => `<!-- $f_${n} -->`)
       .replace(/<\/boundary_f_(\d+)>/g, (_, n) => `<!-- /$f_${n} -->`)
-      .replace(/<boundary_children_f_(\d+)>/, (_, n) => `<script type="forket/children" id="f_${n}_children">`)
-      .replace(/<\/boundary_children_f_(\d+)>/, (_, n) => `</script>`)
-      .replace(/<boundary_props_f_(\d+)>/, (_, n) => `<script type="forket/props" id="f_${n}_props">`)
-      .replace(/<\/boundary_props_f_(\d+)>/, (_, n) => `</script>`)
-      .replace(/<boundary_setup_f_(\d+)>/, (_, n) => `<script id="f_${n}_setup">`)
-      .replace(/<\/boundary_setup_f_(\d+)>/, (_, n) => `</script>`);
+      .replace(/<boundary_children_f_(\d+)>/g, (_, n) => `<script type="forket/children" id="f_${n}_children">`)
+      .replace(/<\/boundary_children_f_(\d+)>/g, (_, n) => `</script>`)
+      .replace(/<boundary_props_f_(\d+)>/g, (_, n) => `<script type="forket/props" id="f_${n}_props">`)
+      .replace(/<\/boundary_props_f_(\d+)>/g, (_, n) => `</script>`)
+      .replace(/<boundary_setup_f_(\d+)>/g, (_, n) => `<script id="f_${n}_setup">`)
+      .replace(/<\/boundary_setup_f_(\d+)>/g, (_, n) => `</script>`);
     return html;
   }
   const originalWrite = res.write;

@@ -9,7 +9,6 @@ import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
 import insertImports from "./utils/insertImports.js";
 import processServerActions from "./utils/processServerActions.js";
 import getImportPath from "./utils/getImportPath.js";
-import insertAtTheTop from "./utils/insertAtTheTop.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -36,20 +35,15 @@ export function Thanos() {
                 console.log(chalk.gray("  - Client boundary found: " + node.imports[j].source));
                 const compNames = await createClientBoundary(node, node.imports[j], filePath);
                 clientBoundaries.push({ compNames, importedNode });
-                const transformed = await swc.print(node.ast, {
-                  minify: false
-                });
-                return transformed.code;
               }
             }
           }
-          const isChanged = await faceliftTheServerActionsSetup(node, options);
-          if (isChanged) {
-            const transformed = await swc.print(node.ast, {
-              minify: false
-            });
-            return transformed.code;
-          }
+          serverActions.push(...processServerActions(node.ast, filePath, getId));
+          await faceliftTheServerActionsSetup(node, options);
+          const transformed = await swc.print(node.ast, {
+            minify: false
+          });
+          return transformed.code;
         }
       }
       return content;
@@ -115,9 +109,6 @@ export function Thanos() {
       });
       insertImports(node.ast, "forketSerializeProps", "forket/lib/utils/serializeProps.js");
     }
-
-    // Handling server actions
-    serverActions.push(...processServerActions(node.ast, filePath, getId));
 
     return componentsToClientBoundaries;
   }
