@@ -4,13 +4,11 @@ import Header from './Header.js'
 import LoginForm from './LoginForm.js';
 
 export default function App({ request }) {
-  // const isLoggedIn = request.cookies?.forket;
-  const isLoggedIn = false;
+  const username = request.cookies?.forket;
 
   async function login(data, context) {
     "use server";
     await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-    throw new Error('Ops');
     if (!data.username || data.username === '') {
       return false;
     }
@@ -29,8 +27,10 @@ export default function App({ request }) {
         <link rel="stylesheet" href="/assets/styles.css" />
       </head>
       <body>
-        <Header />
-        <section className="container mxauto">{!isLoggedIn && <LoginForm login={login} />}</section>
+        <Header username={username}/>
+        <section className="container mxauto">
+          {!username && <LoginForm login={login} />}
+        </section>
         <script src="/bundle.js"></script>
       </body>
     </html>

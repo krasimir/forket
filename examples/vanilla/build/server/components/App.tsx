@@ -5,7 +5,6 @@ import LoginForm from './LoginForm.js';
 export async function login(data, context) {
     "use server";
     await new Promise((resolve)=>setTimeout(resolve, 2000));
-    throw new Error('Ops');
     if (!data.username || data.username === '') {
         return false;
     }
@@ -17,15 +16,17 @@ export async function login(data, context) {
     return true;
 }
 export default function App({ request }) {
-    const isLoggedIn = false;
+    const username = request.cookies?.forket;
     return (<html>
       <head>
         <title>React Example</title>
         <link rel="stylesheet" href="/assets/styles.css"/>
       </head>
       <body>
-        <Header/>
-        <section className="container mxauto">{!isLoggedIn && <LoginFormBoundary login={"$FSA_f_1"}/>}</section>
+        <Header username={username}/>
+        <section className="container mxauto">
+          {!username && <LoginFormBoundary login={"$FSA_f_1"}/>}
+        </section>
         <script src="/bundle.js"></script>
       </body>
     </html>);

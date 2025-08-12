@@ -19292,18 +19292,30 @@
   // build/client/components/LoginForm.tsx
   var import_react = __toESM(require_react(), 1);
   function LoginForm({ login }) {
+    const [isPending, startTransition] = (0, import_react.useTransition)();
     const [error, setError] = (0, import_react.useState)(null);
     async function formSubmit(data) {
       setError(null);
-      try {
+      startTransition(async () => {
         if (!await login(data)) {
           setError("Error in login, please try again.");
+          return;
         }
-      } catch (error2) {
-        setError("Error in login, please try again.");
-      }
+        window.location.reload();
+      });
     }
-    return /* @__PURE__ */ import_react.default.createElement("form", { action: formSubmit }, error && /* @__PURE__ */ import_react.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "You are not logged in.", /* @__PURE__ */ import_react.default.createElement("br", null), "Please type your name:"), /* @__PURE__ */ import_react.default.createElement("input", { type: "text", id: "username", name: "username", required: true, placeholder: "Your name here", autoFocus: true })), /* @__PURE__ */ import_react.default.createElement("button", { type: "submit", className: "mt2" }, "Login"));
+    return /* @__PURE__ */ import_react.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "You are not logged in.", /* @__PURE__ */ import_react.default.createElement("br", null), "Please type your name:"), /* @__PURE__ */ import_react.default.createElement(
+      "input",
+      {
+        type: "text",
+        id: "username",
+        name: "username",
+        required: true,
+        placeholder: "Your name here",
+        autoFocus: true,
+        disabled: isPending
+      }
+    )), /* @__PURE__ */ import_react.default.createElement("button", { type: "submit", className: "mt2", disabled: isPending }, isPending ? "Logging in ..." : "Login"));
   }
 
   // build/client/client.tsx
