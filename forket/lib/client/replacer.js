@@ -12,7 +12,7 @@
           children = htmlToReactElements(children);
         }
 
-        console.log(componentName + "(" + id + ")", typeof props, props, children);
+        console.log("Forket: " + componentName + "(" + id + ")", typeof props, props, children);
 
         const boundary = findCommentBoundary(id);
         if (!boundary.start || !boundary.end) {
@@ -43,15 +43,28 @@
         try {
           content = JSON.parse(content, function (key, value) {
             if (typeof value === 'string' && value.match(/^\$FSA_/)) {
-              return function (data) {
-                return fetch(FORKET_SERVER_ACTIONS_ENDPOINT, {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({ id: value, data: formDataToObject(data) })
-                });
-              };
+              return async function (data) {
+                try {
+                  const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id: value, data: formDataToObject(data) })
+                  });
+                  if (!result.ok) {
+                    throw new Error(`Server action ${value} failed with status ${result.status}`);
+                  }
+                  const responseData = await result.json();
+                  if (responseData.error) {
+                    throw new Error(responseData.error);
+                  }
+                  return responseData.result;
+                } catch (error) {
+                  console.error(`Error executing server action ${value}:`, error);
+                  throw error;
+                };
+              }
             }
             return value;
           });

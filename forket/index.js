@@ -18,6 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
+let renderer = renderToPipeableStream;
 
 export default async function Forket(customOptions = {}) {
   let options = await findConfig();
@@ -34,6 +35,15 @@ export default async function Forket(customOptions = {}) {
   const buildClientDir = path.join(options.buildDir, options.clientDirName);
   let inProcess = false;
 
+  // Watching mode
+  if (options.watch) {
+    console.log(chalk.cyan(`‎𐂐 Listening for changes. Directory: ${clearPath(options.sourceDir)}`));
+    chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
+      console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
+      process();
+    });
+  }
+
   async function process() {
     if (inProcess) return;
 
@@ -41,7 +51,7 @@ export default async function Forket(customOptions = {}) {
     console.log(chalk.cyan(`‎𐂐 Generating the graph. Directory: ${clearPath(options.sourceDir)} ...`));
 
     const graphs = await getGraphs(options.sourceDir);
-    graphs.forEach(g => {
+    graphs.forEach((g) => {
       setRoles(g);
       if (options.printGraph) {
         printGraph(g, "  ");
@@ -77,16 +87,6 @@ export default async function Forket(customOptions = {}) {
 
     inProcess = false;
   }
-
-  // Watching mode
-  if (options.watch) {
-    console.log(chalk.cyan(`‎𐂐 Listening for changes. Directory: ${clearPath(options.sourceDir)}`));
-    chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
-      console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
-      process();
-    });
-  }
-
   function client() {
     if (!options.forketServerActionsEndpoint) {
       throw new Error(
@@ -108,7 +108,7 @@ export default async function Forket(customOptions = {}) {
   }
   function setupApp(app, rootPath, rootElementFactory) {
     app.get(rootPath, (req, res) => {
-      const { pipe, abort } = renderToPipeableStream(rootElementFactory(req), {
+      const { pipe, abort } = renderer(rootElementFactory(req), {
         bootstrapScriptContent: client(),
         onShellReady() {
           res.statusCode = 200;
@@ -122,6 +122,9 @@ export default async function Forket(customOptions = {}) {
       });
     });
   }
+  function setRenderer(externalRenderer) {
+    renderer = externalRenderer;
+  }
 
   return {
     process,
@@ -130,7 +133,8 @@ export default async function Forket(customOptions = {}) {
     client,
     processChunk,
     setupForketSA,
-    setupApp
+    setupApp,
+    setRenderer
   };
 }
 

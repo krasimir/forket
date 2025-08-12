@@ -19,21 +19,19 @@ const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 let serverProcess;
 let restart = false;
 
-Forket({ watch: true })
-  .then(forket => forket.process())
-  .then(() => {
-    // Watching for changes in the build directory, transpile, bundle and restart the server
-    chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-      restart = true;
-      if (serverProcess) {
-        serverProcess.kill();
-      } else {
-        run();
-      }
-    });
+const forket = await Forket({ watch: true });
+await forket.process();
 
+// Watching for changes in the build directory, transpile, bundle and restart the server
+chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
+  restart = true;
+  if (serverProcess) {
+    serverProcess.kill();
+  } else {
     run();
-  })
+  }
+});
+run();
 
 async function run() {
   await buildServer();

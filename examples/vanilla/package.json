@@ -16,11 +16,11 @@
     "cookie-parser": "^1.4.7",
     "esbuild": "0.25.0",
     "express": "4.21.2",
-    "forket": "0.2.0",
+    "forket": "0.2.4",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.8.0"
   }
 }

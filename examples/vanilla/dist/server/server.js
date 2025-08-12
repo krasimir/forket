@@ -1,5 +1,6 @@
 import forketServerActionsHandler from "./forketServerActions.js";
 import React from "react";
+import { renderToPipeableStream } from "react-dom/server";
 import path from "path";
 import http from "http";
 import express from "express";
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 Forket().then((forket) => {
+  forket.setRenderer(renderToPipeableStream);
   forket.setupForketSA(app, forketServerActionsHandler);
   forket.setupApp(app, "/", (req) => /* @__PURE__ */ React.createElement(App, { request: req }));
 });

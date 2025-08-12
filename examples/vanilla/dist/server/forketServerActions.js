@@ -2,7 +2,7 @@ import { login } from "./components/App.js";
 const actions = {
   $FSA_f_1: login
 };
-function forketServerActions(req, res) {
+async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");
   if (!req.body) {
     console.warn(`\u200E\u{10090} Forket: the request object has no body.`);
@@ -19,7 +19,21 @@ function forketServerActions(req, res) {
     return;
   }
   const id = req.body.id;
-  res.json(actions[id](req.body.data || {}));
+  const context = {
+    request: req,
+    response: res
+  };
+  try {
+    const result = await actions[id](req.body.data || {}, context);
+    res.status(200).json({
+      result
+    });
+  } catch (error) {
+    console.error(`\u200E\u{10090} Forket: error in server action ${id}:`, error);
+    res.status(200).json({
+      error: error.message || `Error in server action ${id}`
+    });
+  }
 }
 export {
   forketServerActions as default

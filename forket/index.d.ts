@@ -16,8 +16,9 @@ export interface ForketInstance {
   printGraph(): void;
   client(serverActionsEndpoint: string): string;
   processChunk(res: any): any;
-  setupForketSA(app: any): Promise<void>;
+  setupForketSA(app: any, forketServerActionsHandler?: Function): Promise<void>;
   setupApp(app: any, rootPath: string, rootElementFactory: Function): void;
+  setRenderer(renderer: any): void;
 }
 
 export default function Forket(options?: ForketOptions): Promise<ForketInstance>;
