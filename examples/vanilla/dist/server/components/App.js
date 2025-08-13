@@ -3,34 +3,34 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 function App({ request }) {
-  const username = request.cookies?.forket;
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "React Example"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_f_7" }), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !username && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_f_8" })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
+  const username = request.cookies?.ricardo_name;
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "Ricardo: \u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_f_36" }), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, !username && /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_f_37" })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
 }
 function HeaderBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props));
   const children = props.children || [];
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("boundary_children_f_9", null, children), /* @__PURE__ */ React.createElement("boundary_props_f_9", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("boundary_children_f_38", null, children), /* @__PURE__ */ React.createElement("boundary_props_f_38", { dangerouslySetInnerHTML: {
     __html: serializedProps
-  } }), /* @__PURE__ */ React.createElement("boundary_setup_f_9", { dangerouslySetInnerHTML: {
+  } }), /* @__PURE__ */ React.createElement("boundary_setup_f_38", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_9", "Header"]);
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_38", "Header"]);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_9", "Header"]);
+          $FRSC_.push(["f_38", "Header"]);
         })();`
-  } }), /* @__PURE__ */ React.createElement("boundary_f_9", null, /* @__PURE__ */ React.createElement(Header, { ...props, children })));
+  } }), /* @__PURE__ */ React.createElement("boundary_f_38", null, /* @__PURE__ */ React.createElement(Header, { ...props, children })));
 }
 function LoginFormBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props));
   const children = props.children || [];
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("boundary_children_f_10", null, children), /* @__PURE__ */ React.createElement("boundary_props_f_10", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("boundary_children_f_39", null, children), /* @__PURE__ */ React.createElement("boundary_props_f_39", { dangerouslySetInnerHTML: {
     __html: serializedProps
-  } }), /* @__PURE__ */ React.createElement("boundary_setup_f_10", { dangerouslySetInnerHTML: {
+  } }), /* @__PURE__ */ React.createElement("boundary_setup_f_39", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_10", "LoginForm"]);
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_39", "LoginForm"]);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_10", "LoginForm"]);
+          $FRSC_.push(["f_39", "LoginForm"]);
         })();`
-  } }), /* @__PURE__ */ React.createElement("boundary_f_10", null, /* @__PURE__ */ React.createElement(LoginForm, { ...props, children })));
+  } }), /* @__PURE__ */ React.createElement("boundary_f_39", null, /* @__PURE__ */ React.createElement(LoginForm, { ...props, children })));
 }
 export {
   App as default

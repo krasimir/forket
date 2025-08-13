@@ -3,16 +3,15 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 
-import login from "../server-actions/login.js";
-import { logout } from '../server-actions/logout.js'
+import { login, logout } from "../server-actions/auth.js";
 
 export default function App({ request }) {
-  const username = request.cookies?.forket;
+  const username = request.cookies?.ricardo_name;
 
   return (
     <html>
       <head>
-        <title>React Example</title>
+        <title>Ricardo: 👋</title>
         <link rel="stylesheet" href="/assets/styles.css" />
       </head>
       <body>
