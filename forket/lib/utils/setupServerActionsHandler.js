@@ -15,7 +15,7 @@ export default async function setupServerActionsHandler(actions, sourceDir, file
   const mapValues = [];
 
   actions.forEach((action) => {
-    mapValues.push([ action.id, action.funcName ]);
+    mapValues.push([ action.serverActionClientId, action.funcName ]);
     insertImports(
       ast,
       action.funcName,

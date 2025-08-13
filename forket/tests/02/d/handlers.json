@@ -1,12 +1,12 @@
 [
   {
-    "filePath": "/path/to/my/file.tsx",
+    "filePath": "/Users/krasimir/Work/Krasimir/forket/forket/tests/02/d/code.js",
     "funcName": "createNoteAction",
-    "id": "$FSA_1"
+    "serverActionClientId": "$FSA_f_0"
   },
   {
-    "filePath": "/path/to/my/file.tsx",
+    "filePath": "/Users/krasimir/Work/Krasimir/forket/forket/tests/02/d/code.js",
     "funcName": "doSomethingElse",
-    "id": "$FSA_2"
+    "serverActionClientId": "$FSA_f_1"
   }
 ]

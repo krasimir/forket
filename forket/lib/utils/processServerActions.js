@@ -1,36 +1,24 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
+import {printGraph} from "../graph.js";
 
-export default function processServerAction(ast, filePath, getId) {
+export default function processServerAction(node, graph, clientComponents) {
   const handlers = [];
-  traverseNode(ast, {
-    ExpressionStatement(node, stack) {
-      if (node?.expression?.type === "StringLiteral" && node?.expression?.value == "use server") {
-        // console.log(stack);
-        // console.log(stack.map(n => n?.type));
-        const funcNode = stack[1];
-        if (funcNode && funcNode?.type === "FunctionDeclaration") {
-          const funcName = funcNode?.identifier?.value;
-          if (!funcName) {
-            return;
-          }
-          const serverActionId = `$FSA_${getId()}`;
-          makeSureThatItIsGlobal(ast, stack[1], stack);
-          setServerActionId(ast, funcName, serverActionId);
-          handlers.push({ filePath, funcName, id: serverActionId });
-        } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
-          const funcName = stack[2]?.id?.value;
-          if (!funcName) {
-            return;
-          }
-          const serverActionId = `$FSA_${getId()}`;
-          makeSureThatItIsGlobal(ast, stack[3], stack);
-          setServerActionId(ast, funcName, serverActionId);
-          handlers.push({ filePath, funcName, id: serverActionId });
-        }
+  
+  printGraph(graph);
+
+  if (node.serverActions) {
+    node.serverActions.forEach(({ id, funcName, funcNode, stack }) => {
+      const serverActionClientId = `$FSA_${id}`;
+      setServerActionId(node.ast, funcName, serverActionClientId);
+      if (funcNode && funcNode?.type === "FunctionDeclaration") {
+        makeSureThatItIsGlobal(node.ast, stack[1], stack);
+      } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
+        makeSureThatItIsGlobal(node.ast, stack[3], stack);
       }
-    }
-  });
+      handlers.push({ filePath: node.file, funcName, serverActionClientId });
+    })
+  }
   return handlers;
 }
 

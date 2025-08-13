@@ -9,6 +9,7 @@ import { clearPath } from "./utils/fsHelpers.js";
 import traverseNode from "./utils/traverseNode.js";
 import { VALID_ENTRY_POINTS, ROLE } from "./constants.js";
 import { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } from "./utils/errors.js";
+import getId from './utils/getId.js';
 
 const { CachedInputFileSystem, ResolverFactory } = enhancedResolve;
 
@@ -22,7 +23,6 @@ const resolver = ResolverFactory.createResolver({
   fileSystem,
   extensions: VALID_ENTRY_POINTS
 });
-let nodeId = 0;
 
 export async function createNode(file, parentNode = null) {
   const code = fs.readFileSync(file, 'utf8');
@@ -37,23 +37,39 @@ export async function createNode(file, parentNode = null) {
 
   function processAST(ast, type) {
     const imports = [];
+    const serverActions = [];
     let useClient = false;
 
     function processImports(node) {
-      if (get(node, "source.value").match(/\/\.\.\/\.\.\/forket/)) {
+      if ((node?.source?.value || '').match(/\/\.\.\/\.\.\/forket/)) {
         // Ignoring the Forket source import that we use while developing with the playground
         return;
       }
       imports.push({ source: get(node, "source.value") });
     }
     function processCallExpression(node) {
-      if (get(node, 'callee.value') === "require") {
+      if (node?.callee.value === "require") {
         imports.push({ source: get(node, "arguments[0].expression.value") });
       }
     }
-    function processExpressionStatement(node) {
-      if (get(node, "expression.type") === "StringLiteral" && get(node, "expression.value") === "use client") {
+    function processExpressionStatement(node, stack) {
+      if (node?.expression.type === "StringLiteral" && node?.expression?.value === "use client") {
         useClient = true;
+      } else if (node?.expression?.type === "StringLiteral" && node?.expression?.value == "use server") {
+        const funcNode = stack[1];
+        if (funcNode && funcNode?.type === "FunctionDeclaration") {
+          const funcName = funcNode?.identifier?.value;
+          if (!funcName) {
+            return;
+          }
+          serverActions.push({ id: getId(), funcName, funcNode, stack });
+        } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
+          const funcName = stack[2]?.id?.value;
+          if (!funcName) {
+            return;
+          }
+          serverActions.push({ id: getId(), funcName, funcNode, stack });
+        }
       }
     }
 
@@ -65,22 +81,23 @@ export async function createNode(file, parentNode = null) {
 
     return {
       imports,
-      useClient
+      useClient,
+      serverActions
     };
   }
 
-  return Object.assign(
-    {
-      id: ++nodeId,
-      file,
-      code,
-      ast,
-      children: [],
-      role: ROLE.SERVER,
-      parentNode
-    },
-    astProps
-  );
+  return {
+    id: getId(),
+    file,
+    code,
+    ast,
+    children: [],
+    role: ROLE.SERVER,
+    parentNode,
+    imports: astProps.imports,
+    useClient: astProps.useClient,
+    serverActions: astProps.serverActions
+  };
 }
 export function getNode(node, filePath) {
   if (SEARCH_CACHE.has(node.id + filePath)) {
@@ -160,7 +177,12 @@ export async function getGraphs(dir) {
   return graphs;
 }
 export function printGraph(node, indent = "") {
-  console.log(chalk.grey(`${indent}#${node.id} ${clearPath(node.file)} (${node.role})`));
+  console.log(
+    chalk.grey(`${indent}#${node.id}`) +
+      chalk.magenta(` ${clearPath(node.file)}`) +
+      chalk.grey(` (${node.role})`) +
+      (node.serverActions.length > 0 ? chalk.grey(` (SAs: ${node.serverActions.map(({ funcName }) => funcName)})`) : "")
+  );
   if (node.children.length > 0) {
     node.children.forEach((child) => {
       printGraph(child, indent + "   ");

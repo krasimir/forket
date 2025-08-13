@@ -2,6 +2,7 @@ import swc from "@swc/core";
 import chalk from "chalk";
 import path from 'path';
 
+import getId from './utils/getId.js'
 import { getNode } from "./graph.js";
 import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
@@ -16,7 +17,6 @@ export const MODE = {
 };
 
 export function Thanos() {
-  let id = 0;
   const clientBoundaries = [];
   const clientEntryPoints = [];
   const serverEntryPoints = [];
@@ -32,13 +32,17 @@ export function Thanos() {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
-                console.log(chalk.gray("  - Client boundary found: " + node.imports[j].source));
+                console.log(chalk.gray("  - Client boundary found for " + node.imports[j].source));
                 const compNames = await createClientBoundary(node, node.imports[j], filePath);
                 clientBoundaries.push({ compNames, importedNode });
               }
             }
           }
-          serverActions.push(...processServerActions(node.ast, filePath, getId));
+          serverActions.push(...processServerActions(
+            node,
+            graph,
+            clientBoundaries.map(i => i.compNames).flat()
+          ));
           await faceliftTheServerActionsSetup(node, options);
           const transformed = await swc.print(node.ast, {
             minify: false
@@ -148,9 +152,6 @@ export function Thanos() {
         done(false);
       }
     });
-  }
-  function getId() {
-    return "f_" + id++;
   }
 
   return {
