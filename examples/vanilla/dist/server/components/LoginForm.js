@@ -13,7 +13,7 @@ function LoginForm({ login }) {
       window.location.reload();
     });
   }
-  return /* @__PURE__ */ React.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ React.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { htmlFor: "username", className: "block mb1" }, "You are not logged in.", /* @__PURE__ */ React.createElement("br", null), "Please type your name:"), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ React.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { htmlFor: "username", className: "block mb1" }, "Please type your name:"), /* @__PURE__ */ React.createElement(
     "input",
     {
       type: "text",
