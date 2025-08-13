@@ -219,3 +219,14 @@ export async function resolveImport(host, request) {
     });
   });
 }
+export function flattenNodes(graph) {
+  let result = [];
+  (function flatten(node) {
+    result.push(node);
+    node.children.forEach(flatten);
+  })(graph);
+  return result;
+}
+export function getNodesContainingServerActions(graph) {
+  return flattenNodes(graph).filter((node) => node.serverActions.length > 0);
+}

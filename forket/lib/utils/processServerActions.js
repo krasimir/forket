@@ -1,11 +1,10 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
-import {printGraph} from "../graph.js";
 
-export default function processServerAction(node, graph, clientComponents) {
-  const handlers = [];
-  
-  printGraph(graph);
+export default function processServerAction(node, serverActionsContainingNodes, clientComponents) {
+  const serverActionsHandlers = [];
+
+  // console.log(serverActionsContainingNodes);
 
   if (node.serverActions) {
     node.serverActions.forEach(({ id, funcName, funcNode, stack }) => {
@@ -16,10 +15,17 @@ export default function processServerAction(node, graph, clientComponents) {
       } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
         makeSureThatItIsGlobal(node.ast, stack[3], stack);
       }
-      handlers.push({ filePath: node.file, funcName, serverActionClientId });
-    })
+      serverActionsHandlers.push({ filePath: node.file, funcName, serverActionClientId });
+    });
   }
-  return handlers;
+
+  traverseNode(node.ast, {
+    JSXOpeningElement(n) {
+      // console.log(JSON.stringify(n, null, 2));
+    }
+  });
+
+  return serverActionsHandlers;
 }
 
 function makeSureThatItIsGlobal(ast, funcNode, stack) {

@@ -3,7 +3,7 @@ import chalk from "chalk";
 import path from 'path';
 
 import getId from './utils/getId.js'
-import { getNode } from "./graph.js";
+import { getNode, getNodesContainingServerActions } from "./graph.js";
 import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
@@ -26,6 +26,7 @@ export function Thanos() {
     if (mode === MODE.SERVER) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
+        const serverActionsContainingNodes = getNodesContainingServerActions(graph);
         const node = getNode(graph, filePath);
         if (node?.role === ROLE.SERVER) {
           for (let j = 0; j < (node?.imports || []).length; j++) {
@@ -40,7 +41,7 @@ export function Thanos() {
           }
           serverActions.push(...processServerActions(
             node,
-            graph,
+            serverActionsContainingNodes,
             clientBoundaries.map(i => i.compNames).flat()
           ));
           await faceliftTheServerActionsSetup(node, options);
