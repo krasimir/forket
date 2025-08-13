@@ -1,12 +1,12 @@
 [
   {
-    "filePath": "/path/to/my/file.tsx",
+    "filePath": "/d/code.js",
     "funcName": "createNoteAction",
-    "id": "$FSA_1"
+    "serverActionClientId": "$FSA_f_1"
   },
   {
-    "filePath": "/path/to/my/file.tsx",
+    "filePath": "/d/code.js",
     "funcName": "doSomethingElse",
-    "id": "$FSA_2"
+    "serverActionClientId": "$FSA_f_2"
   }
 ]

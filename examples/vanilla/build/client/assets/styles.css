@@ -26,13 +26,13 @@ input[type="text"] {
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #c3c3c3;
+  background-color: #fff;
   color: #000;
   font-size: 1rem;
   outline: none;
 }
 input[type="text"]:focus {
-  background-color: #e0e0e0;
+  filter: drop-shadow(0 0 0.2rem #c8e5ff);
 }
 input[type="text"]:disabled,
 button:disabled {
@@ -42,27 +42,31 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #717171;
-  color: white;
+  background-color: #ffffff;
+  color: 000;
   font-size: 1rem;
   cursor: pointer;
 }
 button:hover {
-  background-color: #5a5a5a;
+  filter: drop-shadow(0 0 0.2rem #c8e5ff);
 }
-button.as-link {
+button.reset {
   background: none;
   color: #fff;
-  text-decoration: underline;
   cursor: pointer;
   font-size: inherit;
   font-weight: inherit;
   display: inline;
 }
+button.reset:hover {
+  color: #c8e5ff;
+}
 
+.rel { position: relative; }
+.abs { position: absolute; }
 .tac { text-align: center; }
 .p1 { padding: 1rem; }
-.fz08 { font-size: 0.7rem; }
+.fz09 { font-size: 0.9rem !important; }
 .block { display: block; }
 .mxauto { margin: 0 auto; }
 .mt1 { margin-top: 1rem; }

@@ -1,8 +1,8 @@
+import { login } from "./server-actions/login.js";
 import { logout } from "./components/App.js";
-import { login } from "./components/App.js";
 const actions = {
-    $FSA_f_2: login,
-    $FSA_f_3: logout
+    $FSA_f_8: logout,
+    $FSA_f_9: login
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
@@ -20,8 +20,8 @@ export default async function forketServerActions(req, res) {
         });
         return;
     }
+    const id = req.body.id;
     try {
-        const id = req.body.id;
         const context = {
             request: req,
             response: res

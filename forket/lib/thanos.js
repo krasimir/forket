@@ -2,7 +2,8 @@ import swc from "@swc/core";
 import chalk from "chalk";
 import path from 'path';
 
-import { getNode } from "./graph.js";
+import getId from './utils/getId.js'
+import { getNode, getNodesContainingServerActions } from "./graph.js";
 import { ROLE } from "./constants.js";
 import traverseNode from "./utils/traverseNode.js";
 import getClientBoundaryWrapper from './ast/clientBoundaryWrapper/index.js';
@@ -16,29 +17,33 @@ export const MODE = {
 };
 
 export function Thanos() {
-  let id = 0;
   const clientBoundaries = [];
   const clientEntryPoints = [];
   const serverEntryPoints = [];
-  let serverActions = [];
+  const serverActions = [];
 
   async function snap(graphs, filePath, content, mode, options) {
     if (mode === MODE.SERVER) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
+        const serverActionsContainingNodes = getNodesContainingServerActions(graph);
         const node = getNode(graph, filePath);
         if (node?.role === ROLE.SERVER) {
           for (let j = 0; j < (node?.imports || []).length; j++) {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
-                console.log(chalk.gray("  - Client boundary found: " + node.imports[j].source));
+                console.log(chalk.gray("  - Client boundary found for " + node.imports[j].source));
                 const compNames = await createClientBoundary(node, node.imports[j], filePath);
                 clientBoundaries.push({ compNames, importedNode });
               }
             }
           }
-          serverActions.push(...processServerActions(node.ast, filePath, getId));
+          serverActions.push(...processServerActions(
+            node,
+            serverActionsContainingNodes,
+            serverActions
+          ));
           await faceliftTheServerActionsSetup(node, options);
           const transformed = await swc.print(node.ast, {
             minify: false
@@ -148,9 +153,6 @@ export function Thanos() {
         done(false);
       }
     });
-  }
-  function getId() {
-    return "f_" + id++;
   }
 
   return {

@@ -19304,7 +19304,7 @@
         window.location.reload();
       });
     }
-    return /* @__PURE__ */ import_react.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "You are not logged in.", /* @__PURE__ */ import_react.default.createElement("br", null), "Please type your name:"), /* @__PURE__ */ import_react.default.createElement(
+    return /* @__PURE__ */ import_react.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "Please type your name:"), /* @__PURE__ */ import_react.default.createElement(
       "input",
       {
         type: "text",
@@ -19321,7 +19321,19 @@
   // build/client/components/Header.tsx
   var import_react2 = __toESM(require_react(), 1);
   function Header({ username, logout }) {
-    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react2.default.createElement("h1", { className: "mt1 tac" }, "Hey, ", username, "!", /* @__PURE__ */ import_react2.default.createElement("button", { className: "as-link", onClick: () => logout() }, "(logout)"))));
+    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react2.default.createElement("h1", { className: "mt1 tac" }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react2.default.createElement(
+      "button",
+      {
+        className: "reset abs",
+        onClick: async () => {
+          if (await logout()) {
+            window.location.reload();
+          }
+        },
+        style: { top: 0, right: 0 }
+      },
+      "\u2716 logout"
+    )));
   }
 
   // build/client/client.tsx

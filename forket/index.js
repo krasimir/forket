@@ -112,7 +112,7 @@ export default async function Forket(customOptions = {}) {
         bootstrapScriptContent: client(),
         onShellReady() {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "text/html");
+          res.setHeader("Content-Type", "text/html; charset=utf-8");
           processChunk(res);
           pipe(res);
         },

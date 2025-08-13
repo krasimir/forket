@@ -19,7 +19,7 @@ const DIST = path.normalize(path.join(__dirname, "..", "dist"));
 let serverProcess;
 let restart = false;
 
-const forket = await Forket({ watch: true });
+const forket = await Forket({ watch: true, printGraph: true });
 await forket.process();
 
 // Watching for changes in the build directory, transpile, bundle and restart the server

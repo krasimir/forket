@@ -84,6 +84,255 @@
       "phase": "evaluation"
     },
     {
+      "type": "ExportDeclaration",
+      "span": {
+        "start": 25,
+        "end": 134
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 4197,
+            "end": 4212
+          },
+          "ctxt": 3,
+          "value": "doSomethingElse",
+          "optional": false
+        },
+        "declare": false,
+        "params": [],
+        "decorators": [],
+        "span": {
+          "start": 4182,
+          "end": 4277
+        },
+        "ctxt": 5,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 4215,
+            "end": 4277
+          },
+          "ctxt": 5,
+          "stmts": [
+            {
+              "type": "ExpressionStatement",
+              "span": {
+                "start": 4221,
+                "end": 4234
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "span": {
+                  "start": 4221,
+                  "end": 4233
+                },
+                "value": "use server",
+                "raw": "\"use server\""
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "span": {
+                "start": 4240,
+                "end": 4254
+              },
+              "expression": {
+                "type": "AwaitExpression",
+                "span": {
+                  "start": 4240,
+                  "end": 4253
+                },
+                "argument": {
+                  "type": "CallExpression",
+                  "span": {
+                    "start": 4246,
+                    "end": 4253
+                  },
+                  "ctxt": 0,
+                  "callee": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 4246,
+                      "end": 4251
+                    },
+                    "ctxt": 2,
+                    "value": "delay",
+                    "optional": false
+                  },
+                  "arguments": [],
+                  "typeArguments": null
+                }
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "span": {
+                "start": 4259,
+                "end": 4273
+              },
+              "argument": {
+                "type": "StringLiteral",
+                "span": {
+                  "start": 4266,
+                  "end": 4272
+                },
+                "value": "done",
+                "raw": "'done'"
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": true,
+        "typeParameters": null,
+        "returnType": null
+      }
+    },
+    {
+      "type": "ExportDeclaration",
+      "span": {
+        "start": 25,
+        "end": 134
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "span": {
+          "start": 4088,
+          "end": 4179
+        },
+        "ctxt": 0,
+        "kind": "const",
+        "declare": false,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "span": {
+              "start": 4094,
+              "end": 4178
+            },
+            "id": {
+              "type": "Identifier",
+              "span": {
+                "start": 4094,
+                "end": 4110
+              },
+              "ctxt": 3,
+              "value": "createNoteAction",
+              "optional": false,
+              "typeAnnotation": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "span": {
+                "start": 4113,
+                "end": 4178
+              },
+              "ctxt": 0,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "span": {
+                  "start": 4125,
+                  "end": 4178
+                },
+                "ctxt": 4,
+                "stmts": [
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 4131,
+                      "end": 4144
+                    },
+                    "expression": {
+                      "type": "StringLiteral",
+                      "span": {
+                        "start": 4131,
+                        "end": 4143
+                      },
+                      "value": "use server",
+                      "raw": "\"use server\""
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 4150,
+                      "end": 4174
+                    },
+                    "expression": {
+                      "type": "AwaitExpression",
+                      "span": {
+                        "start": 4150,
+                        "end": 4173
+                      },
+                      "argument": {
+                        "type": "CallExpression",
+                        "span": {
+                          "start": 4156,
+                          "end": 4173
+                        },
+                        "ctxt": 0,
+                        "callee": {
+                          "type": "MemberExpression",
+                          "span": {
+                            "start": 4156,
+                            "end": 4171
+                          },
+                          "object": {
+                            "type": "MemberExpression",
+                            "span": {
+                              "start": 4156,
+                              "end": 4164
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 4156,
+                                "end": 4158
+                              },
+                              "ctxt": 2,
+                              "value": "db",
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "span": {
+                                "start": 4159,
+                                "end": 4164
+                              },
+                              "value": "notes"
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 4165,
+                              "end": 4171
+                            },
+                            "value": "create"
+                          }
+                        },
+                        "arguments": [],
+                        "typeArguments": null
+                      }
+                    }
+                  }
+                ]
+              },
+              "async": true,
+              "generator": false,
+              "typeParameters": null,
+              "returnType": null
+            },
+            "definite": false
+          }
+        ]
+      }
+    },
+    {
       "type": "FunctionDeclaration",
       "identifier": {
         "type": "Identifier",
@@ -111,241 +360,6 @@
         },
         "ctxt": 3,
         "stmts": [
-          {
-            "type": "VariableDeclaration",
-            "span": {
-              "start": 4088,
-              "end": 4179
-            },
-            "ctxt": 0,
-            "kind": "const",
-            "declare": false,
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
-                "span": {
-                  "start": 4094,
-                  "end": 4178
-                },
-                "id": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 4094,
-                    "end": 4110
-                  },
-                  "ctxt": 3,
-                  "value": "createNoteAction",
-                  "optional": false,
-                  "typeAnnotation": null
-                },
-                "init": {
-                  "type": "ArrowFunctionExpression",
-                  "span": {
-                    "start": 4113,
-                    "end": 4178
-                  },
-                  "ctxt": 0,
-                  "params": [],
-                  "body": {
-                    "type": "BlockStatement",
-                    "span": {
-                      "start": 4125,
-                      "end": 4178
-                    },
-                    "ctxt": 4,
-                    "stmts": [
-                      {
-                        "type": "ExpressionStatement",
-                        "span": {
-                          "start": 4131,
-                          "end": 4144
-                        },
-                        "expression": {
-                          "type": "StringLiteral",
-                          "span": {
-                            "start": 4131,
-                            "end": 4143
-                          },
-                          "value": "use server",
-                          "raw": "\"use server\""
-                        }
-                      },
-                      {
-                        "type": "ExpressionStatement",
-                        "span": {
-                          "start": 4150,
-                          "end": 4174
-                        },
-                        "expression": {
-                          "type": "AwaitExpression",
-                          "span": {
-                            "start": 4150,
-                            "end": 4173
-                          },
-                          "argument": {
-                            "type": "CallExpression",
-                            "span": {
-                              "start": 4156,
-                              "end": 4173
-                            },
-                            "ctxt": 0,
-                            "callee": {
-                              "type": "MemberExpression",
-                              "span": {
-                                "start": 4156,
-                                "end": 4171
-                              },
-                              "object": {
-                                "type": "MemberExpression",
-                                "span": {
-                                  "start": 4156,
-                                  "end": 4164
-                                },
-                                "object": {
-                                  "type": "Identifier",
-                                  "span": {
-                                    "start": 4156,
-                                    "end": 4158
-                                  },
-                                  "ctxt": 2,
-                                  "value": "db",
-                                  "optional": false
-                                },
-                                "property": {
-                                  "type": "Identifier",
-                                  "span": {
-                                    "start": 4159,
-                                    "end": 4164
-                                  },
-                                  "value": "notes"
-                                }
-                              },
-                              "property": {
-                                "type": "Identifier",
-                                "span": {
-                                  "start": 4165,
-                                  "end": 4171
-                                },
-                                "value": "create"
-                              }
-                            },
-                            "arguments": [],
-                            "typeArguments": null
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "async": true,
-                  "generator": false,
-                  "typeParameters": null,
-                  "returnType": null
-                },
-                "definite": false
-              }
-            ]
-          },
-          {
-            "type": "FunctionDeclaration",
-            "identifier": {
-              "type": "Identifier",
-              "span": {
-                "start": 4197,
-                "end": 4212
-              },
-              "ctxt": 3,
-              "value": "doSomethingElse",
-              "optional": false
-            },
-            "declare": false,
-            "params": [],
-            "decorators": [],
-            "span": {
-              "start": 4182,
-              "end": 4277
-            },
-            "ctxt": 5,
-            "body": {
-              "type": "BlockStatement",
-              "span": {
-                "start": 4215,
-                "end": 4277
-              },
-              "ctxt": 5,
-              "stmts": [
-                {
-                  "type": "ExpressionStatement",
-                  "span": {
-                    "start": 4221,
-                    "end": 4234
-                  },
-                  "expression": {
-                    "type": "StringLiteral",
-                    "span": {
-                      "start": 4221,
-                      "end": 4233
-                    },
-                    "value": "use server",
-                    "raw": "\"use server\""
-                  }
-                },
-                {
-                  "type": "ExpressionStatement",
-                  "span": {
-                    "start": 4240,
-                    "end": 4254
-                  },
-                  "expression": {
-                    "type": "AwaitExpression",
-                    "span": {
-                      "start": 4240,
-                      "end": 4253
-                    },
-                    "argument": {
-                      "type": "CallExpression",
-                      "span": {
-                        "start": 4246,
-                        "end": 4253
-                      },
-                      "ctxt": 0,
-                      "callee": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 4246,
-                          "end": 4251
-                        },
-                        "ctxt": 2,
-                        "value": "delay",
-                        "optional": false
-                      },
-                      "arguments": [],
-                      "typeArguments": null
-                    }
-                  }
-                },
-                {
-                  "type": "ReturnStatement",
-                  "span": {
-                    "start": 4259,
-                    "end": 4273
-                  },
-                  "argument": {
-                    "type": "StringLiteral",
-                    "span": {
-                      "start": 4266,
-                      "end": 4272
-                    },
-                    "value": "done",
-                    "raw": "'done'"
-                  }
-                }
-              ]
-            },
-            "generator": false,
-            "async": true,
-            "typeParameters": null,
-            "returnType": null
-          },
           {
             "type": "EmptyStatement",
             "span": {
@@ -403,14 +417,13 @@
                         "end": 4322
                       },
                       "expression": {
-                        "type": "Identifier",
+                        "type": "StringLiteral",
                         "span": {
-                          "start": 4305,
-                          "end": 4321
+                          "start": 178,
+                          "end": 186
                         },
-                        "ctxt": 3,
-                        "value": "createNoteAction",
-                        "optional": false
+                        "value": "$FSA_f_1",
+                        "raw": "\"$FSA_f_1\""
                       }
                     }
                   },
@@ -435,14 +448,13 @@
                         "end": 4356
                       },
                       "expression": {
-                        "type": "Identifier",
+                        "type": "StringLiteral",
                         "span": {
-                          "start": 4340,
-                          "end": 4355
+                          "start": 178,
+                          "end": 186
                         },
-                        "ctxt": 3,
-                        "value": "doSomethingElse",
-                        "optional": false
+                        "value": "$FSA_f_2",
+                        "raw": "\"$FSA_f_2\""
                       }
                     }
                   }

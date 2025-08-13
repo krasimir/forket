@@ -262,14 +262,13 @@
                         "end": 3999
                       },
                       "expression": {
-                        "type": "Identifier",
+                        "type": "StringLiteral",
                         "span": {
-                          "start": 3982,
-                          "end": 3998
+                          "start": 178,
+                          "end": 186
                         },
-                        "ctxt": 2,
-                        "value": "createNoteAction",
-                        "optional": false
+                        "value": "$FSA_f_1",
+                        "raw": "\"$FSA_f_1\""
                       }
                     }
                   }

@@ -1,37 +1,65 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
+import getId from "./getId.js";
 
-export default function processServerAction(ast, filePath, getId) {
-  const handlers = [];
-  traverseNode(ast, {
-    ExpressionStatement(node, stack) {
-      if (node?.expression?.type === "StringLiteral" && node?.expression?.value == "use server") {
-        // console.log(stack);
-        // console.log(stack.map(n => n?.type));
-        const funcNode = stack[1];
-        if (funcNode && funcNode?.type === "FunctionDeclaration") {
-          const funcName = funcNode?.identifier?.value;
-          if (!funcName) {
-            return;
-          }
-          const serverActionId = `$FSA_${getId()}`;
-          makeSureThatItIsGlobal(ast, stack[1], stack);
-          setServerActionId(ast, funcName, serverActionId);
-          handlers.push({ filePath, funcName, id: serverActionId });
-        } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
-          const funcName = stack[2]?.id?.value;
-          if (!funcName) {
-            return;
-          }
-          const serverActionId = `$FSA_${getId()}`;
-          makeSureThatItIsGlobal(ast, stack[3], stack);
-          setServerActionId(ast, funcName, serverActionId);
-          handlers.push({ filePath, funcName, id: serverActionId });
-        }
+export default function processServerAction(node, serverActionsContainingNodes, current = []) {
+  const serverActionsHandlers = [];
+
+  if (node.serverActions && node.serverActions.length > 0) {
+    node.serverActions.forEach(({ funcName, funcNode, stack }) => {
+      const handler = createActionHandler({
+        filePath: node.file,
+        funcName,
+        serverActionClientId: `$FSA_${getId()}`
+      });
+      setServerActionId(node.ast, funcName, handler.serverActionClientId);
+      if (funcNode && funcNode?.type === "FunctionDeclaration") {
+        makeSureThatItIsGlobal(node.ast, stack[1], stack);
+      } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
+        makeSureThatItIsGlobal(node.ast, stack[3], stack);
       }
+    });
+  }
+
+  traverseNode(node.ast, {
+    JSXOpeningElement(n) {
+      (n?.attributes || []).forEach((attr) => {
+        if (attr?.value?.type === "JSXExpressionContainer") {
+          const potentialServerAction = attr?.value?.expression?.value;
+          const foundAsImported = node.imports.find((imp) => {
+            return (imp?.what || []).some((w) => w === potentialServerAction);
+          });
+          if (foundAsImported) {
+            const nodeThatContainsTheServerAction = serverActionsContainingNodes.find(n => {
+              return (
+                foundAsImported.resolvedTo === n.file &&
+                n.serverActions.find((sa) => sa.funcName === potentialServerAction)
+              );
+            });
+            if (nodeThatContainsTheServerAction) {
+              const handler = createActionHandler({
+                filePath: nodeThatContainsTheServerAction.file,
+                funcName: potentialServerAction,
+                serverActionClientId: `$FSA_${getId()}`
+              });
+              setServerActionId(node.ast, potentialServerAction, handler.serverActionClientId);
+            }
+          }
+        }
+      });
     }
   });
-  return handlers;
+
+  function createActionHandler(action) {
+    const found = current.find((a) => a.funcName === action.funcName && a.filePath === action.filePath);
+    if (found) {
+      return found;
+    }
+    serverActionsHandlers.push(action);
+    return action;
+  }
+
+  return serverActionsHandlers;
 }
 
 function makeSureThatItIsGlobal(ast, funcNode, stack) {

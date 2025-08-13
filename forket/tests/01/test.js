@@ -9,6 +9,7 @@ import exposeGlobal from '../../lib/ast/exposeGlobal/index.js';
 import clientBoundaryWrapper from "../../lib/ast/clientBoundaryWrapper/index.js";
 import insertAtTheTop from "../../lib/utils/insertAtTheTop.js";
 import traverseNode from "../../lib/utils/traverseNode.js";
+import {resetId} from "../../lib/utils/getId.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,7 @@ export default async function ({ test, toAST, toCode }) {
   await test("Should parse an AST", async () => {
     const cases = ["a"];
     for (let i = 0; i < cases.length; i++) {
+      resetId();
       const baseAST = await toAST(path.join(__dirname, "traverseNode", cases[i] + ".js"));
       const expected = fs.readFileSync(path.join(__dirname, "traverseNode", cases[i] + ".expected.js"), "utf8");
       fs.writeFileSync(path.join(__dirname, "traverseNode", cases[i] + ".ast.json"), JSON.stringify(baseAST, null, 2));

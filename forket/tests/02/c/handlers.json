@@ -1,7 +1,7 @@
 [
   {
-    "filePath": "/path/to/my/file.tsx",
+    "filePath": "/c/code.js",
     "funcName": "createNoteAction",
-    "id": "$FSA_1"
+    "serverActionClientId": "$FSA_f_1"
   }
 ]

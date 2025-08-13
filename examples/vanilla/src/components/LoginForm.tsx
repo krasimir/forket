@@ -26,8 +26,6 @@ export default function LoginForm({ login }: LoginFormProps) {
       {error && <div className="fz08 mb1 p1 error">{error}</div>}
       <div>
         <label htmlFor="username" className="block mb1">
-          You are not logged in.
-          <br />
           Please type your name:
         </label>
         <input
