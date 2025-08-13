@@ -1,6 +1,6 @@
-export default async function login(data, context) {
+export async function login(data, context) {
     "use server";
-    await new Promise((resolve)=>setTimeout(resolve, 2000));
+    await new Promise((resolve)=>setTimeout(resolve, 1000));
     if (!data.username || data.username === "") {
         return false;
     }

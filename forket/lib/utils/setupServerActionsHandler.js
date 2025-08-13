@@ -11,6 +11,7 @@ export default async function setupServerActionsHandler(actions, sourceDir, file
   if (actions.length === 0) {
     return;
   }
+
   const ast = template();
   const mapValues = [];
 

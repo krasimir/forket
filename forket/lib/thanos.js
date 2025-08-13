@@ -20,7 +20,7 @@ export function Thanos() {
   const clientBoundaries = [];
   const clientEntryPoints = [];
   const serverEntryPoints = [];
-  let serverActions = [];
+  const serverActions = [];
 
   async function snap(graphs, filePath, content, mode, options) {
     if (mode === MODE.SERVER) {
@@ -42,7 +42,7 @@ export function Thanos() {
           serverActions.push(...processServerActions(
             node,
             serverActionsContainingNodes,
-            clientBoundaries.map(i => i.compNames).flat()
+            serverActions
           ));
           await faceliftTheServerActionsSetup(node, options);
           const transformed = await swc.print(node.ast, {

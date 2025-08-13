@@ -1,7 +1,7 @@
 [
   {
-    "filePath": "/e/actions/utils.js",
-    "potentialServerAction": "createNoteAction",
+    "filePath": "/e/code.js",
+    "funcName": "createNoteAction",
     "serverActionClientId": "$FSA_f_2"
   }
 ]

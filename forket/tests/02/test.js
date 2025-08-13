@@ -15,17 +15,12 @@ let cases = ["a", "b", "c", "d", "e"];
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly deal with server actions (${cases.join(', ')})`, async () => {
     for (let i = 0; i < cases.length; i++) {
-      let id = 0;
       resetId();
       const entryPoint = path.join(__dirname, cases[i], "code.js");
       const rootNode = await getGraph(entryPoint);
       const serverActionsContainingNodes = getNodesContainingServerActions(rootNode)
-      let clientComponents = [];
-      if (cases[i] === "e") {
-        clientComponents = ["Button"];
-      }
       
-      const handlers = processServerAction(rootNode, serverActionsContainingNodes, clientComponents);
+      const handlers = processServerAction(rootNode, serverActionsContainingNodes, []);
       
       const code = await toCode(rootNode.ast);
       const expected = fs.readFileSync(path.join(__dirname, cases[i], "expected.js"), "utf8");

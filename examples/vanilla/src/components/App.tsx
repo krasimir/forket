@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 
-import login from '../server-actions/login.js'
+import { login } from '../server-actions/login.js'
 
 export default function App({ request }) {
   const username = request.cookies?.forket;
