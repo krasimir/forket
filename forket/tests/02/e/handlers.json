@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "filePath": "/e/actions/utils.js",
+    "potentialServerAction": "createNoteAction",
+    "serverActionClientId": "$FSA_f_2"
+  }
+]

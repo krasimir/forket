@@ -1,5 +1,6 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
+import getId from "./getId.js";
 
 export default function processServerAction(node, serverActionsContainingNodes, clientComponents) {
   const serverActionsHandlers = [];
@@ -7,8 +8,8 @@ export default function processServerAction(node, serverActionsContainingNodes, 
   // console.log(serverActionsContainingNodes);
 
   if (node.serverActions) {
-    node.serverActions.forEach(({ id, funcName, funcNode, stack }) => {
-      const serverActionClientId = `$FSA_${id}`;
+    node.serverActions.forEach(({ funcName, funcNode, stack }) => {
+      const serverActionClientId = `$FSA_${getId()}`;
       setServerActionId(node.ast, funcName, serverActionClientId);
       if (funcNode && funcNode?.type === "FunctionDeclaration") {
         makeSureThatItIsGlobal(node.ast, stack[1], stack);
@@ -21,7 +22,23 @@ export default function processServerAction(node, serverActionsContainingNodes, 
 
   traverseNode(node.ast, {
     JSXOpeningElement(n) {
-      // console.log(JSON.stringify(n, null, 2));
+      (n?.attributes || []).forEach(attr => {
+        if (attr?.value?.type === 'JSXExpressionContainer') {
+          const potentialServerAction = attr?.value?.expression?.value;
+          const foundAsImported = node.imports.find(imp => {
+            return (imp?.what || []).some((w) => w === potentialServerAction);
+          })
+          if (foundAsImported) {
+            const serverActionClientId = `$FSA_${getId()}`;
+            setServerActionId(node.ast, potentialServerAction, serverActionClientId);
+            serverActionsHandlers.push({
+              filePath: foundAsImported.resolvedTo,
+              potentialServerAction,
+              serverActionClientId
+            });
+          }
+        }
+      });
     }
   });
 

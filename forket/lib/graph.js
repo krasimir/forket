@@ -45,11 +45,29 @@ export async function createNode(file, parentNode = null) {
         // Ignoring the Forket source import that we use while developing with the playground
         return;
       }
-      imports.push({ source: get(node, "source.value") });
+      imports.push({
+        what: (node?.specifiers || []).map((s) => {
+          return s?.local?.value;
+        }).filter(Boolean),
+        source: get(node, "source.value")
+      });
     }
-    function processCallExpression(node) {
+    function processCallExpression(node, stack) {
       if (node?.callee.value === "require") {
-        imports.push({ source: get(node, "arguments[0].expression.value") });
+        let what;
+        if (stack[0]?.type === 'VariableDeclarator') {
+          if (stack[0]?.id?.type === 'ObjectPattern') {
+            what = (stack[0]?.id?.properties || [])
+              .map((prop) => prop?.key?.value)
+              .filter(Boolean);
+          } else {
+            what = [stack[0]?.id?.value];
+          }
+        }
+        imports.push({
+          what: (what || []).filter(Boolean),
+          source: get(node, "arguments[0].expression.value")
+        });
       }
     }
     function processExpressionStatement(node, stack) {
@@ -62,13 +80,13 @@ export async function createNode(file, parentNode = null) {
           if (!funcName) {
             return;
           }
-          serverActions.push({ id: getId(), funcName, funcNode, stack });
+          serverActions.push({ funcName, funcNode, stack });
         } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
           const funcName = stack[2]?.id?.value;
           if (!funcName) {
             return;
           }
-          serverActions.push({ id: getId(), funcName, funcNode, stack });
+          serverActions.push({ funcName, funcNode, stack });
         }
       }
     }
