@@ -87,6 +87,16 @@ export async function createNode(file, parentNode = null) {
             return;
           }
           serverActions.push({ funcName, funcNode, stack });
+        } else if (funcNode && funcNode?.type === "FunctionExpression") {
+          let funcName = funcNode?.identifier?.value || stack[2]?.id?.value;
+          if (!funcName) {
+            if (stack[2]?.type === "VariableDeclarator" && stack[2]?.id?.value) {
+              funcName = stack[2]?.id?.value;
+            } else {
+              return;
+            }
+          }
+          serverActions.push({ funcName, funcNode, stack, isDefault: stack[2]?.type === "ExportDefaultDeclaration" });
         }
       }
     }

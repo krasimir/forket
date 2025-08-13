@@ -21,7 +21,7 @@ export default async function setupServerActionsHandler(actions, sourceDir, file
       ast,
       action.funcName,
       getImportPath(path.join(sourceDir, '_.js'), action.filePath) + '.js',
-      false
+      action.isDefault
     );
   });
   insertAfterTop(ast, createMap('actions', mapValues))

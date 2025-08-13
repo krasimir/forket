@@ -3,14 +3,14 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 
 import processServerAction from '../../lib/utils/processServerActions.js';
-import { getGraph, getNodesContainingServerActions } from "../../lib/graph.js";
+import { getGraph, getNodesContainingServerActions, printGraph } from "../../lib/graph.js";
 
 import { resetId } from "../../lib/utils/getId.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-let cases = ["a", "b", "c", "d", "e"];
-// cases = ["e"];
+let cases = ["a", "b", "c", "d", "e", "f", "g"];
+// cases = ["g"];
 
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly deal with server actions (${cases.join(', ')})`, async () => {
@@ -18,6 +18,7 @@ export default async function ({ test, toAST, toCode }) {
       resetId();
       const entryPoint = path.join(__dirname, cases[i], "code.js");
       const rootNode = await getGraph(entryPoint);
+      // printGraph(rootNode);
       const serverActionsContainingNodes = getNodesContainingServerActions(rootNode)
       
       const handlers = processServerAction(rootNode, serverActionsContainingNodes, []);

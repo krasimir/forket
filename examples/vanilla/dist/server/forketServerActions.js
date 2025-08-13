@@ -1,8 +1,8 @@
-import { login } from "./server-actions/login.js";
-import { logout } from "./components/App.js";
+import login from "./server-actions/login.js";
+import { logout } from "./server-actions/logout.js";
 const actions = {
-  $FSA_f_8: logout,
-  $FSA_f_9: login
+  $FSA_f_7: logout,
+  $FSA_f_8: login
 };
 async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");

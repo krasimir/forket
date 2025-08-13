@@ -29,6 +29,7 @@ export function Thanos() {
         const serverActionsContainingNodes = getNodesContainingServerActions(graph);
         const node = getNode(graph, filePath);
         if (node?.role === ROLE.SERVER) {
+          serverActions.push(...processServerActions(node, serverActionsContainingNodes, serverActions));
           for (let j = 0; j < (node?.imports || []).length; j++) {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
@@ -39,11 +40,6 @@ export function Thanos() {
               }
             }
           }
-          serverActions.push(...processServerActions(
-            node,
-            serverActionsContainingNodes,
-            serverActions
-          ));
           await faceliftTheServerActionsSetup(node, options);
           const transformed = await swc.print(node.ast, {
             minify: false
@@ -118,6 +114,9 @@ export function Thanos() {
     return componentsToClientBoundaries;
   }
   function faceliftTheServerActionsSetup(node, options) {
+    /* Amending the forket.setupForketSA(app) call so it looks like
+    forket.setupForketSA(app, forketServerActionsHandler);
+    */
     return new Promise((done) => {
       let found = false;
       traverseNode(node.ast, {

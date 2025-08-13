@@ -1,4 +1,4 @@
-export async function login(data, context) {
+export default async function login(data, context) {
   "use server";
   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
   if (!data.username || data.username === "") {

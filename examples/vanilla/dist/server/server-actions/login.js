@@ -12,5 +12,5 @@ async function login(data, context) {
   return true;
 }
 export {
-  login
+  login as default
 };
