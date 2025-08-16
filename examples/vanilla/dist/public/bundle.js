@@ -19345,7 +19345,7 @@
   // build/client/components/Header.tsx
   var import_react3 = __toESM(require_react(), 1);
   function Header({ username, logout }) {
-    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react3.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react3.default.createElement("h1", { className: "mt1 tac" }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react3.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react3.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react3.default.createElement(
       "button",
       {
         className: "reset abs",

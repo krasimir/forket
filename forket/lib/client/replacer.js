@@ -61,8 +61,6 @@
                   if (responseData.error) throw new Error(responseData.error);
                   return responseData.result;
                 }
-
-                // Fallback: no files → JSON is fine
                 const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -72,7 +70,6 @@
                   throw new Error(`Server action ${value} failed with status ${result.status}`);
                 }
                 const responseData = await result.json();
-                if (responseData.error) throw new Error(responseData.error);
                 return responseData.result;
               }
             }

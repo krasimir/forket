@@ -1,14 +1,14 @@
 import { processImage } from "./server-actions/data.js";
-import { login } from "./server-actions/auth.js";
 import { logout } from "./server-actions/auth.js";
+import { login } from "./server-actions/auth.js";
 const actions = {
-    $FSA_logout: logout,
     $FSA_login: login,
+    $FSA_logout: logout,
     $FSA_processImage: processImage
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
-    if (!req.body) {
+    if (!req.body && !req.files) {
         console.warn(`‎𐂐 Forket: the request object has no body.`);
         res.status(400).json({
             error: "No body provided"

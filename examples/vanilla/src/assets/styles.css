@@ -63,10 +63,13 @@ button.reset:hover, .btn.reset:hover {
   color: #c8e5ff;
 }
 
+.block { display: block; }
 .hide { display: none; }
 .rel { position: relative; }
 .abs { position: absolute; }
 .tac { text-align: center; }
+.tar { text-align: right; }
+.p05 { padding: 0.5rem; }
 .p1 { padding: 1rem; }
 .fz09 { font-size: 0.9rem !important; }
 .block { display: block; }
@@ -75,6 +78,7 @@ button.reset:hover, .btn.reset:hover {
 .mt2 { margin-top: 2rem; }
 .mb1 { margin-bottom: 1rem; }
 .mb3 { margin-bottom: 3rem; }
+.op05 { opacity: 0.5; }
 
 .container {
   max-width: 800px;

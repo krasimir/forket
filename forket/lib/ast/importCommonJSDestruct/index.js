@@ -5,8 +5,8 @@ export default function (what, where) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 781,
-      "end": 816
+      "start": 29,
+      "end": 64
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,27 +15,27 @@ export default function (what, where) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 787,
-          "end": 815
+          "start": 35,
+          "end": 63
         },
         "id": {
           "type": "ObjectPattern",
           "span": {
-            "start": 787,
-            "end": 796
+            "start": 35,
+            "end": 44
           },
           "properties": [
             {
               "type": "AssignmentPatternProperty",
               "span": {
-                "start": 789,
-                "end": 794
+                "start": 37,
+                "end": 42
               },
               "key": {
                 "type": "Identifier",
                 "span": {
-                  "start": 789,
-                  "end": 794
+                  "start": 37,
+                  "end": 42
                 },
                 "ctxt": 2,
                 "value": what,
@@ -51,15 +51,15 @@ export default function (what, where) {
         "init": {
           "type": "CallExpression",
           "span": {
-            "start": 799,
-            "end": 815
+            "start": 47,
+            "end": 63
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 799,
-              "end": 806
+              "start": 47,
+              "end": 54
             },
             "ctxt": 1,
             "value": "require",
@@ -71,8 +71,8 @@ export default function (what, where) {
               "expression": {
                 "type": "StringLiteral",
                 "span": {
-                  "start": 807,
-                  "end": 814
+                  "start": 55,
+                  "end": 62
                 },
                 "value": where,
                 "raw": "\"" + where + "\""

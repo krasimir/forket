@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import multer from "multer";
-import { pipeline, env } from "@huggingface/transformers";
 // import Forket from "forket";
 import Forket from "../../../../forket/index.js";
 
@@ -44,22 +43,10 @@ server.listen(port, () => {
 });
 
 
-// ------------------------------------------------
-env.allowRemoteModels = true;
-env.cacheDir = path.normalize(__dirname + "/../../models"); 
+// ----------------------------------------------- 
 
 // Working for sentiment analysis
 // const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
 // const [res] = await pipe("I'm a web developer that knows nothing about HTML");
 // console.log(res);
 
-// const imgPath = __dirname + "/../../me_speaking.jpg";
-// if (fs.existsSync(imgPath)) {
-//   const classify = await pipeline("image-classification", "Xenova/vit-base-patch16-224");
-//   const result = await classify(imgPath, { topk: 5 });
-
-//   console.log("Predictions:");
-//   for (const r of result) {
-//     console.log(`${r.label} — ${(r.score * 100).toFixed(2)}%`);
-//   }
-// }

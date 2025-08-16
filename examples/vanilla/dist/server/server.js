@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import multer from "multer";
-import { env } from "@huggingface/transformers";
 import Forket from "../../../../forket/index.js";
 import App from "./components/App.js";
 const __filename = fileURLToPath(import.meta.url);
@@ -33,5 +32,3 @@ Forket().then((forket) => {
 server.listen(port, () => {
   console.log(`App listening on port ${port}.`);
 });
-env.allowRemoteModels = true;
-env.cacheDir = path.normalize(__dirname + "/../../models");
