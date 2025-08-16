@@ -8,6 +8,7 @@
     "dev": "npm run clean && node ./scripts/dev.js"
   },
   "dependencies": {
+    "@huggingface/transformers": "^3.7.1",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
     "body-parser": "^2.2.0",
@@ -17,6 +18,8 @@
     "esbuild": "0.25.0",
     "express": "4.21.2",
     "forket": "0.3.0",
+    "multer": "^2.0.2",
+    "onnxruntime-node": "^1.22.0-rev",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },

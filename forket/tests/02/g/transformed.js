@@ -24,13 +24,13 @@ export default async function E() {
 }
 function EmptyNote() {
     return (<>
-      <Button onClick={"$FSA_f_1"}/>
-      <Button onClick={"$FSA_f_2"}/>
-      <Button onClick={"$FSA_f_3"}/>
-      <Button onClick={"$FSA_f_4"}/>
-      <Button onClick={"$FSA_f_5"}/>
-      <Button onClick={"$FSA_f_6"}/>
-      <Button onClick={"$FSA_f_7"}/>
-      <Button onClick={"$FSA_f_8"}/>
+      <Button onClick={"$FSA_A"}/>
+      <Button onClick={"$FSA_B"}/>
+      <Button onClick={"$FSA_C"}/>
+      <Button onClick={"$FSA_D"}/>
+      <Button onClick={"$FSA_E"}/>
+      <Button onClick={"$FSA_F"}/>
+      <Button onClick={"$FSA_G"}/>
+      <Button onClick={"$FSA_H"}/>
     </>);
 }

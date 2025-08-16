@@ -26,7 +26,7 @@ export default function LoginForm({ login }: LoginFormProps) {
       {error && <div className="fz08 mb1 p1 error">{error}</div>}
       <div>
         <p>
-          Hey, my name is Ricardo. Your online AI assitant. I need to know your name and profession to help you better.
+          I need to know your name and profession to help you better.
         </p>
         <label htmlFor="username" className="block mb1">
           Please type your name:
@@ -40,20 +40,9 @@ export default function LoginForm({ login }: LoginFormProps) {
           autoFocus
           disabled={isPending}
         />
-        <label htmlFor="job" className="block mb1 mt2">
-          Your job:
-        </label>
-        <input
-          type="text"
-          id="job"
-          name="job"
-          required
-          placeholder="Your job"
-          disabled={isPending}
-        />
       </div>
       <button type="submit" className="mt2" disabled={isPending}>
-        {isPending ? "Please wait ..." : "Let's have a chat"}
+        {isPending ? "Please wait ..." : "Let's go!"}
       </button>
     </form>
   );

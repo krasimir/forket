@@ -27,7 +27,7 @@ export default async function ({ test, toAST, toCode }) {
       fs.writeFileSync(path.join(__dirname, "traverseNode", cases[i] + ".ast.json"), JSON.stringify(baseAST, null, 2));
       traverseNode(baseAST, {
         MemberExpression(n) {
-          if (n?.property?.value === "setupForketSA") {
+          if (n?.property?.value === "forketServerActions") {
             n.property.value = "HoHoHo";
           }
         }

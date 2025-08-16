@@ -114,14 +114,14 @@ export function Thanos() {
     return componentsToClientBoundaries;
   }
   function faceliftTheServerActionsSetup(node, options) {
-    /* Amending the forket.setupForketSA(app) call so it looks like
-    forket.setupForketSA(app, forketServerActionsHandler);
+    /* Amending the forket.forketServerActions() call so it looks like
+    forket.forketServerActions(forketServerActionsHandler);
     */
     return new Promise((done) => {
       let found = false;
       traverseNode(node.ast, {
         MemberExpression(n, stack) {
-          if (n?.property?.value === "setupForketSA") {
+          if (n?.property?.value === "forketServerActions") {
             serverEntryPoints.push(node);
             if (stack[0].arguments && Array.isArray(stack[0].arguments)) {
               stack[0].arguments.push({
@@ -137,10 +137,8 @@ export function Thanos() {
                   optional: false
                 }
               });
-              const handlerPath = getImportPath(
-                  node.file,
-                  path.join(options.sourceDir, options.forketServerActionsHandler)
-              ) + ".js";
+              const handlerPath =
+                getImportPath(node.file, path.join(options.sourceDir, options.forketServerActionsHandler)) + ".js";
               insertImports(node.ast, "forketServerActionsHandler", handlerPath);
             }
             found = true;

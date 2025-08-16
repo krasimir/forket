@@ -13,6 +13,7 @@ import { Thanos, MODE } from "./lib/thanos.js";
 import PC from "./lib/server/processChunk.js";
 import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
 import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
+import {resetId} from "./lib/utils/getId.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,6 +41,7 @@ export default async function Forket(customOptions = {}) {
     console.log(chalk.cyan(`‎𐂐 Listening for changes. Directory: ${clearPath(options.sourceDir)}`));
     chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
       console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
+      resetId();
       process();
     });
   }
@@ -87,29 +89,24 @@ export default async function Forket(customOptions = {}) {
 
     inProcess = false;
   }
-  function client() {
-    if (!options.forketServerActionsEndpoint) {
-      throw new Error(
-        `‎𐂐 Forket: missing "serverActionsEndpoint" parameter. Please provide a server actions endpoint.`
-      );
-    }
+  function client(serverActionsEndpoint) {
     let str = clientReplacerCode;
-    str = str.replace("{@}", options.forketServerActionsEndpoint);
+    str = str.replace(/\{@\}/g, serverActionsEndpoint);
     return str;
   }
   function processChunk(res) {
     return PC(res);
   }
-  async function setupForketSA(app, handler) {
+  function forketServerActions(handler) {
     if (!handler) {
       throw new Error(`‎𐂐 Forket: something is wrong with the server actions handler. Check your server entry point.`);
     }
-    app.use(options.forketServerActionsEndpoint, handler);
+    return handler;
   }
-  function setupApp(app, rootPath, rootElementFactory) {
-    app.get(rootPath, (req, res) => {
+  function serveApp({ serverActionsEndpoint, rootElementFactory }) {
+    return (req, res) => {
       const { pipe, abort } = renderer(rootElementFactory(req), {
-        bootstrapScriptContent: client(),
+        bootstrapScriptContent: client(serverActionsEndpoint),
         onShellReady() {
           res.statusCode = 200;
           res.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -120,7 +117,7 @@ export default async function Forket(customOptions = {}) {
           console.error(err);
         }
       });
-    });
+    };
   }
   function setRenderer(externalRenderer) {
     renderer = externalRenderer;
@@ -132,8 +129,8 @@ export default async function Forket(customOptions = {}) {
     printGraph,
     client,
     processChunk,
-    setupForketSA,
-    setupApp,
+    forketServerActions,
+    serveApp,
     setRenderer
   };
 }

@@ -146,6 +146,7 @@ export function getNode(node, filePath) {
   return null;
 }
 export async function getGraph(entryPoint) {
+  // console.log(chalk.cyan(`-> Processing entry point: ${clearPath(entryPoint)}`));
   const PROCESSED = new Map();
   const RESOLVED = new Map();
   async function process(filePath, parentNode = null) {
@@ -156,7 +157,7 @@ export async function getGraph(entryPoint) {
       PROCESSED.set(filePath, node);
     } else {
       // console.log(`File "${filePath}" is already processed, skipping.`);
-      return;
+      return node;
     }
     for (let j = 0; j < node.imports.length; j++) {
       const imp = node.imports[j];

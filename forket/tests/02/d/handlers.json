@@ -2,13 +2,13 @@
   {
     "filePath": "/d/code.js",
     "funcName": "createNoteAction",
-    "serverActionClientId": "$FSA_f_1",
+    "serverActionClientId": "$FSA_createNoteAction",
     "isDefault": false
   },
   {
     "filePath": "/d/code.js",
     "funcName": "doSomethingElse",
-    "serverActionClientId": "$FSA_f_2",
+    "serverActionClientId": "$FSA_doSomethingElse",
     "isDefault": false
   }
 ]

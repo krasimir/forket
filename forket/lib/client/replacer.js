@@ -43,27 +43,37 @@
         try {
           content = JSON.parse(content, function (key, value) {
             if (typeof value === 'string' && value.match(/^\$FSA_/)) {
+              const funcName = value.replace(/^\$FSA_/, "");
               return async function (data) {
-                try {
-                  const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT, {
+                if (typeof FormData !== "undefined" && data instanceof FormData) {
+                  const fd = new FormData();
+                  fd.set("__actionId", value);
+                  for (const [k, v] of data.entries()) fd.append(k, v);
+                  const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
                     method: "POST",
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ id: value, data: formDataToObject(data) })
+                    body: fd
                   });
+
                   if (!result.ok) {
                     throw new Error(`Server action ${value} failed with status ${result.status}`);
                   }
                   const responseData = await result.json();
-                  if (responseData.error) {
-                    throw new Error(responseData.error);
-                  }
+                  if (responseData.error) throw new Error(responseData.error);
                   return responseData.result;
-                } catch (error) {
-                  console.error(`Error executing server action ${value}:`, error);
-                  throw error;
-                };
+                }
+
+                // Fallback: no files → JSON is fine
+                const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ __actionId: value, ...data })
+                });
+                if (!result.ok) {
+                  throw new Error(`Server action ${value} failed with status ${result.status}`);
+                }
+                const responseData = await result.json();
+                if (responseData.error) throw new Error(responseData.error);
+                return responseData.result;
               }
             }
             return value;

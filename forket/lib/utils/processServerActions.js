@@ -12,7 +12,7 @@ export default function processServerActions(node, serverActionsContainingNodes,
       const handler = createActionHandler({
         filePath: node.file,
         funcName,
-        serverActionClientId: `$FSA_${getId()}`,
+        serverActionClientId: `$FSA_${funcName}`,
         isDefault: !!isDefault
       });
       setServerActionId(node.ast, funcName, handler.serverActionClientId);
@@ -53,7 +53,7 @@ export default function processServerActions(node, serverActionsContainingNodes,
               const handler = createActionHandler({
                 filePath: nodeThatContainsTheServerAction.file,
                 funcName: potentialServerAction,
-                serverActionClientId: `$FSA_${getId()}`,
+                serverActionClientId: `$FSA_${potentialServerAction}`,
                 isDefault: !!foundServerAction?.isDefault
               });
               setServerActionId(node.ast, potentialServerAction, handler.serverActionClientId);

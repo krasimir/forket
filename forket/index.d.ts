@@ -3,7 +3,6 @@ export interface ForketOptions {
   buildDir?: string;
   serverDirName?: string;
   clientDirName?: string;
-  forketServerActionsEndpoint?: string;
   forketServerActionsHandler?: string;
   clientCopyableFiles?: string[];
   watch?: boolean;
@@ -16,8 +15,8 @@ export interface ForketInstance {
   printGraph(): void;
   client(serverActionsEndpoint: string): string;
   processChunk(res: any): any;
-  setupForketSA(app: any, forketServerActionsHandler?: Function): Promise<void>;
-  setupApp(app: any, rootPath: string, rootElementFactory: Function): void;
+  forketServerActions(forketServerActionsHandler?: Function): Promise<void>;
+  serveApp({ serverActionsEndpoint: string, rootElementFactory: Function }): void;
   setRenderer(renderer: any): void;
 }
 

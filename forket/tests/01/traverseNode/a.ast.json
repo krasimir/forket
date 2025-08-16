@@ -2,20 +2,20 @@
   "type": "Module",
   "span": {
     "start": 2576,
-    "end": 2636
+    "end": 2723
   },
   "body": [
     {
       "type": "ExpressionStatement",
       "span": {
         "start": 2576,
-        "end": 2636
+        "end": 2723
       },
       "expression": {
         "type": "CallExpression",
         "span": {
           "start": 2576,
-          "end": 2635
+          "end": 2722
         },
         "ctxt": 0,
         "callee": {
@@ -60,7 +60,7 @@
               "type": "ArrowFunctionExpression",
               "span": {
                 "start": 2590,
-                "end": 2634
+                "end": 2721
               },
               "ctxt": 0,
               "params": [
@@ -80,7 +80,7 @@
                 "type": "BlockStatement",
                 "span": {
                   "start": 2602,
-                  "end": 2634
+                  "end": 2721
                 },
                 "ctxt": 3,
                 "stmts": [
@@ -88,52 +88,182 @@
                     "type": "ExpressionStatement",
                     "span": {
                       "start": 2606,
-                      "end": 2632
+                      "end": 2666
                     },
                     "expression": {
                       "type": "CallExpression",
                       "span": {
                         "start": 2606,
-                        "end": 2631
+                        "end": 2665
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "MemberExpression",
                         "span": {
                           "start": 2606,
-                          "end": 2626
+                          "end": 2613
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
                             "start": 2606,
-                            "end": 2612
+                            "end": 2609
                           },
-                          "ctxt": 3,
-                          "value": "forket",
+                          "ctxt": 1,
+                          "value": "app",
                           "optional": false
                         },
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 2613,
-                            "end": 2626
+                            "start": 2610,
+                            "end": 2613
                           },
-                          "value": "setupForketSA"
+                          "value": "use"
                         }
                       },
                       "arguments": [
                         {
                           "spread": null,
                           "expression": {
-                            "type": "Identifier",
+                            "type": "StringLiteral",
                             "span": {
-                              "start": 2627,
-                              "end": 2630
+                              "start": 2614,
+                              "end": 2634
                             },
-                            "ctxt": 1,
-                            "value": "app",
-                            "optional": false
+                            "value": "/@forket/something",
+                            "raw": "'/@forket/something'"
+                          }
+                        },
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 2636,
+                              "end": 2664
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "MemberExpression",
+                              "span": {
+                                "start": 2636,
+                                "end": 2662
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 2636,
+                                  "end": 2642
+                                },
+                                "ctxt": 3,
+                                "value": "forket",
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 2643,
+                                  "end": 2662
+                                },
+                                "value": "forketServerActions"
+                              }
+                            },
+                            "arguments": [],
+                            "typeArguments": null
+                          }
+                        }
+                      ],
+                      "typeArguments": null
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "span": {
+                      "start": 2669,
+                      "end": 2719
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "span": {
+                        "start": 2669,
+                        "end": 2718
+                      },
+                      "ctxt": 0,
+                      "callee": {
+                        "type": "MemberExpression",
+                        "span": {
+                          "start": 2669,
+                          "end": 2676
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 2669,
+                            "end": 2672
+                          },
+                          "ctxt": 1,
+                          "value": "app",
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "span": {
+                            "start": 2673,
+                            "end": 2676
+                          },
+                          "value": "use"
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "StringLiteral",
+                            "span": {
+                              "start": 2677,
+                              "end": 2687
+                            },
+                            "value": "/@forket",
+                            "raw": "'/@forket'"
+                          }
+                        },
+                        {
+                          "spread": null,
+                          "expression": {
+                            "type": "CallExpression",
+                            "span": {
+                              "start": 2689,
+                              "end": 2717
+                            },
+                            "ctxt": 0,
+                            "callee": {
+                              "type": "MemberExpression",
+                              "span": {
+                                "start": 2689,
+                                "end": 2715
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 2689,
+                                  "end": 2695
+                                },
+                                "ctxt": 3,
+                                "value": "forket",
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "span": {
+                                  "start": 2696,
+                                  "end": 2715
+                                },
+                                "value": "forketServerActions"
+                              }
+                            },
+                            "arguments": [],
+                            "typeArguments": null
                           }
                         }
                       ],

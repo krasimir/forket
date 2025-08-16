@@ -1,3 +1,4 @@
 Forket().then((forket) => {
-  forket.setupForketSA(app);
+  app.use('/@forket/something', forket.forketServerActions());
+  app.use('/@forket', forket.forketServerActions());
 });

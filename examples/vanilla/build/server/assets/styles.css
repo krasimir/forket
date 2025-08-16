@@ -35,22 +35,23 @@ input[type="text"]:focus {
   filter: drop-shadow(0 0 0.2rem #c8e5ff);
 }
 input[type="text"]:disabled,
-button:disabled {
+button:disabled,
+.btn:disabled {
   opacity: 0.6;
 }
-button {
+button, .btn {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
   background-color: #ffffff;
-  color: 000;
+  color: #000;
   font-size: 1rem;
   cursor: pointer;
 }
-button:hover {
+button:hover, .btn:hover {
   filter: drop-shadow(0 0 0.2rem #c8e5ff);
 }
-button.reset {
+button.reset, .btn.reset {
   background: none;
   color: #fff;
   cursor: pointer;
@@ -58,10 +59,11 @@ button.reset {
   font-weight: inherit;
   display: inline;
 }
-button.reset:hover {
+button.reset:hover, .btn.reset:hover {
   color: #c8e5ff;
 }
 
+.hide { display: none; }
 .rel { position: relative; }
 .abs { position: absolute; }
 .tac { text-align: center; }

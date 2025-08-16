@@ -6,7 +6,6 @@ const DEFAULT_OPTIONS = {
   buildDir: undefined,
   serverDirName: "server",
   clientDirName: "client",
-  forketServerActionsEndpoint: "/@forket",
   forketServerActionsHandler: "forketServerActions.js",
   clientCopyableFiles: [
     ".css",

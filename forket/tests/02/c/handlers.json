@@ -2,7 +2,7 @@
   {
     "filePath": "/c/code.js",
     "funcName": "createNoteAction",
-    "serverActionClientId": "$FSA_f_1",
+    "serverActionClientId": "$FSA_createNoteAction",
     "isDefault": false
   }
 ]

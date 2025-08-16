@@ -2,19 +2,19 @@
   {
     "filePath": "/e/actions/utils.js",
     "funcName": "createNoteAction",
-    "serverActionClientId": "$FSA_f_2",
+    "serverActionClientId": "$FSA_createNoteAction",
     "isDefault": false
   },
   {
     "filePath": "/e/actions/utils.js",
     "funcName": "deleteNote",
-    "serverActionClientId": "$FSA_f_3",
+    "serverActionClientId": "$FSA_deleteNote",
     "isDefault": false
   },
   {
     "filePath": "/e/actions/utils.js",
     "funcName": "updateNote",
-    "serverActionClientId": "$FSA_f_4",
+    "serverActionClientId": "$FSA_updateNote",
     "isDefault": false
   }
 ]

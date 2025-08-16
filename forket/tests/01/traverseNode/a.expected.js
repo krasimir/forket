@@ -1,3 +1,4 @@
 Forket().then((forket)=>{
-    forket.HoHoHo(app);
+    app.use('/@forket/something', forket.HoHoHo());
+    app.use('/@forket', forket.HoHoHo());
 });
