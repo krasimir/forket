@@ -1,7 +1,7 @@
 import path from "path";
 import { pipeline, env } from "@huggingface/transformers";
 import { fileURLToPath } from "url";
-import { storeImage } from "./utils/db.js";
+import DB from "../db.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 env.allowRemoteModels = true;
@@ -19,7 +19,7 @@ async function processImage(data, context) {
   const result = await classify(blob, {
     topk: 5
   });
-  const id = await storeImage(context, file);
+  const id = await DB.storeImage(context, file);
   return {
     id,
     result

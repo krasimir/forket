@@ -50,44 +50,51 @@ export default async function Forket(customOptions = {}) {
     if (inProcess) return;
 
     inProcess = true;
-    console.log(chalk.cyan(`‎𐂐 Generating the graph. Directory: ${clearPath(options.sourceDir)} ...`));
 
-    const graphs = await getGraphs(options.sourceDir);
-    graphs.forEach((g) => {
-      setRoles(g);
-      if (options.printGraph) {
-        printGraph(g, "  ");
-      }
-    });
+    try {
+      console.log(chalk.cyan(`‎𐂐 Generating the graph. Directory: ${clearPath(options.sourceDir)} ...`));
 
-    let thanosServer = Thanos();
-    console.log(chalk.cyan(`‎𐂐 Generating server code in ${clearPath(buildServerDir)}`));
-    await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
-      return await thanosServer.snap(graphs, filePath, content, MODE.SERVER, options);
-    });
+      const graphs = await getGraphs(options.sourceDir);
+      graphs.forEach((g) => {
+        setRoles(g);
+        if (options.printGraph) {
+          printGraph(g, "  ");
+        }
+      });
 
-    let thanosClient = Thanos();
-    console.log(chalk.cyan(`‎𐂐 Generating client code in ${clearPath(buildClientDir)}`));
-    await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
-      return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options);
-    });
+      let thanosServer = Thanos();
+      console.log(chalk.cyan(`‎𐂐 Generating server code in ${clearPath(buildServerDir)}`));
+      await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
+        return await thanosServer.snap(graphs, filePath, content, MODE.SERVER, options);
+      });
 
-    console.log(chalk.cyan(`‎𐂐 Setting up client entry point/s`));
-    await setupClientEntryPoints(
-      options.sourceDir,
-      buildClientDir,
-      thanosServer.clientBoundaries,
-      thanosClient.clientEntryPoints
-    );
+      let thanosClient = Thanos();
+      console.log(chalk.cyan(`‎𐂐 Generating client code in ${clearPath(buildClientDir)}`));
+      await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
+        return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options);
+      });
 
-    console.log(chalk.cyan(`‎𐂐 Setting up server actions handler`));
-    await setupServerActionsHandler(
-      thanosServer.serverActions,
-      options.sourceDir,
-      path.join(buildServerDir, options.forketServerActionsHandler)
-    );
+      console.log(chalk.cyan(`‎𐂐 Setting up client entry point/s`));
+      await setupClientEntryPoints(
+        options.sourceDir,
+        buildClientDir,
+        thanosServer.clientBoundaries,
+        thanosClient.clientEntryPoints
+      );
 
-    inProcess = false;
+      console.log(chalk.cyan(`‎𐂐 Setting up server actions handler`));
+      await setupServerActionsHandler(
+        thanosServer.serverActions,
+        options.sourceDir,
+        path.join(buildServerDir, options.forketServerActionsHandler)
+      );
+
+      inProcess = false;
+
+    } catch(err) {
+      inProcess = false;
+      console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`));
+    }
   }
   function client(serverActionsEndpoint) {
     let str = clientReplacerCode;

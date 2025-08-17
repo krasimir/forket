@@ -1,9 +1,9 @@
 import { processImage } from "./server-actions/data.js";
-import { logout } from "./server-actions/auth.js";
 import { login } from "./server-actions/auth.js";
+import { logout } from "./server-actions/auth.js";
 const actions = {
-    $FSA_login: login,
     $FSA_logout: logout,
+    $FSA_login: login,
     $FSA_processImage: processImage
 };
 export default async function forketServerActions(req, res) {

@@ -1,5 +1,6 @@
 "use client";
 import React, { useActionState } from "react";
+import Image from "./Image.js";
 function ImageUploader({ processImage }) {
   const [result, formAction, isPending] = useActionState(async (currentState, formData) => {
     return await processImage(formData);
@@ -11,8 +12,7 @@ function ImageUploader({ processImage }) {
       else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     }
   }
-  console.log(result);
-  return /* @__PURE__ */ React.createElement("div", { className: "image-uploader" }, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image" }, /* @__PURE__ */ React.createElement("span", { className: "btn" }, "Upload image"), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React.createElement("div", null, isPending && /* @__PURE__ */ React.createElement(Image, { isPlaceholder: true, className: "mb1" }), !isPending && result && /* @__PURE__ */ React.createElement(Image, { className: "mb1", id: result.id }, /* @__PURE__ */ React.createElement("p", null, "...")), /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "bordered p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(
     "input",
     {
       type: "file",

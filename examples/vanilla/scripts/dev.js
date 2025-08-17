@@ -27,11 +27,13 @@ await forket.process();
 
 // Watching for changes in the build directory, transpile, bundle and restart the server
 chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-  restart = true;
-  if (serverProcess) {
-    serverProcess.kill();
-  } else {
-    run();
+  if (!restart) {
+    restart = true;
+    if (serverProcess) {
+      serverProcess.kill();
+    } else {
+      run();
+    }
   }
 });
 run();
@@ -39,6 +41,7 @@ run();
 async function run() {
   await buildServer();
   await buildClient();
+  restart = false;
   serverProcess = command(`node ${path.join(DIST, "server", "server.js")}`, ROOT, (code) => {
     serverProcess = null;
     if (code === null && restart) {

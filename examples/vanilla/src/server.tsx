@@ -12,6 +12,7 @@ import multer from "multer";
 import Forket from "../../../../forket/index.js";
 
 import App from './components/App.js'
+import serveImage from './handlers/serve-image.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,7 @@ const server = http.createServer(app);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
+app.get("/image/:id", serveImage);
 
 Forket().then((forket) => {
   // Not necessary if we use

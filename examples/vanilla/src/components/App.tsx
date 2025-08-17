@@ -7,9 +7,16 @@ import { login, logout } from "../server-actions/auth.js";
 import { processImage } from "../server-actions/data.js";
 import { COOKIES } from "../constants.js";
 import ImageUploader from "./ImageUploader.js";
+import DB from '../db.js';
+import ImagesList from "./ImagesList.js";
 
-export default function App({ request }) {
+export default async function App({ request }) {
   const username = request.cookies[COOKIES.name];
+  let images: any[] = [];
+
+  if (username) {
+    images = await DB.getImagesByUsername(username);
+  }
 
   return (
     <html>
@@ -19,9 +26,12 @@ export default function App({ request }) {
       </head>
       <body>
         <Header username={username} logout={logout} />
-        <section className="container mxauto">{!username && <LoginForm login={login} />}</section>
+        {!username && <section className="container mxauto">
+          <LoginForm login={login} />
+        </section>}
         {username && (
           <section className="container mxauto">
+            <ImagesList images={images} />
             <ImageUploader processImage={processImage}/>
           </section>
         )}
