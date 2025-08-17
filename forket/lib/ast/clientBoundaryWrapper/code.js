@@ -3,9 +3,14 @@ function ComponentName(props) {
   const children = props.children || [];
   return (
     <>
-      <boundary_children_f_1>{children}</boundary_children_f_1>
-      <boundary_props_f_1 dangerouslySetInnerHTML={{ __html: serializedProps  }} />
-      <boundary_setup_f_1
+      <script type="forket/props" id="f_1" dangerouslySetInnerHTML={{ __html: serializedProps }}></script>
+      <template type="forket/children" id="f_1">
+        {children}
+      </template>
+      <template type="forket/start" id="f_1"></template>
+      <ProductsList {...props} children={children} />
+      <template type="forket/end" id="f_1"></template>
+      <script
         dangerouslySetInnerHTML={{
           __html: `(function () {
           if (typeof $FRSC !== 'undefined') return $FRSC(["f_1", "ProductsList"]);
@@ -13,10 +18,7 @@ function ComponentName(props) {
           $FRSC_.push(["f_1", "ProductsList"]);
         })();`
         }}
-      />
-      <boundary_f_1>
-        <ProductsList {...props} children={children} />
-      </boundary_f_1>
+      ></script>
     </>
   );
 }

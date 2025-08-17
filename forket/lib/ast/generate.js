@@ -13,11 +13,13 @@ const FILES = [
     generator: function (ast) {
       let json = JSON.stringify(ast.body[0], null, 2);
       json = json.replace(/"\ComponentName"/g, 'componentName + "Boundary"');
-      json = json.replace(/"boundary_f_1"/g, '"boundary_" + id');
-      json = json.replace(/"boundary_children_f_1"/g, '"boundary_children_" + id');
-      json = json.replace(/"boundary_props_f_1"/g, '"boundary_props_" + id');
-      json = json.replace(/"boundary_setup_f_1"/g, '"boundary_setup_" + id');
+      // json = json.replace(/"boundary_f_1"/g, '"boundary_" + id');
+      // json = json.replace(/"boundary_children_f_1"/g, '"boundary_children_" + id');
+      // json = json.replace(/"\\"boundary_children_f_1\\""/g, '"\\"boundary_children_\\"" + id');
+      // json = json.replace(/"boundary_props_f_1"/g, '"boundary_props_" + id');
+      // json = json.replace(/"boundary_setup_f_1"/g, '"boundary_setup_" + id');
       json = json.replace(/"value": "ProductsList"/g, '"value": componentName');
+      json = json.replace(/"f_1"/g, 'id');
       json = json.replace(/\\"f_1\\"/g, '\\"" + id + "\\"');
       json = json.replace(/\\"ProductsList\\"/g, '\\"" + componentName + "\\"');
       return `export default function (id, componentName) {

@@ -2,7 +2,9 @@
 
 import React from "react";
 
-export default function Header({ username, logout }: { username?: string; logout: Function }) {
+type HeaderProps = { username?: string; logout: Function };
+
+export default function Header({ username, logout }: HeaderProps) {
   return (
     <>
       <header className="mxauto mt2 mb3">

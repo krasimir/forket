@@ -19,7 +19,9 @@ export default function Image({ id, className, isPlaceholder, children }: ImageP
   return (
     <div className={"grid p1 bordered " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
       <div className="lh0">
-        <img src={`/image/${id}`} alt="Uploaded content" className="image-fit" />
+        <a href={`/image/${id}`}>
+          <img src={`/image/${id}`} alt="Uploaded content" className="image-fit" />
+        </a>
       </div>
       <div className="px1">{children}</div>
     </div>

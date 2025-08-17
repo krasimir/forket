@@ -11,7 +11,7 @@ type ImagesListProps = {
 
 export default function ImagesList({ images }: ImagesListProps) {
   if (!images || images.length === 0) {
-    return <p className="p1">No images uploaded yet.</p>;
+    return null;
   } else {
     return (
       <div className="grid gap1">

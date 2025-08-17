@@ -10,16 +10,14 @@ import { getGraphs, printGraph } from "./lib/graph.js";
 import { copyFolder, clearPath } from "./lib/utils/fsHelpers.js";
 import { setRoles } from "./lib/roles.js";
 import { Thanos, MODE } from "./lib/thanos.js";
-import PC from "./lib/server/processChunk.js";
 import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
 import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
-import {resetId} from "./lib/utils/getId.js";
+import { resetId } from "./lib/utils/getId.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
-let renderer = renderToPipeableStream;
 
 export default async function Forket(customOptions = {}) {
   let options = await findConfig();
@@ -101,41 +99,11 @@ export default async function Forket(customOptions = {}) {
     str = str.replace(/\{@\}/g, serverActionsEndpoint);
     return str;
   }
-  function processChunk(res) {
-    return PC(res);
-  }
   function forketServerActions(handler) {
     if (!handler) {
       throw new Error(`‎𐂐 Forket: something is wrong with the server actions handler. Check your server entry point.`);
     }
     return handler;
-  }
-  function serveApp({ serverActionsEndpoint, rootElementFactory }) {
-    if (!serverActionsEndpoint) {
-      throw new Error(
-        `‎𐂐 Forket: missing "serverActionsEndpoint" parameter.`
-      );
-    }
-    if (!serverActionsEndpoint) {
-      throw new Error(`‎𐂐 Forket: missing "rootElementFactory" parameter.`);
-    }
-    return (req, res) => {
-      const { pipe, abort } = renderer(rootElementFactory(req), {
-        bootstrapScriptContent: client(serverActionsEndpoint),
-        onShellReady() {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "text/html; charset=utf-8");
-          processChunk(res);
-          pipe(res);
-        },
-        onError(err) {
-          console.error(err);
-        }
-      });
-    };
-  }
-  function setRenderer(externalRenderer) {
-    renderer = externalRenderer;
   }
 
   return {
@@ -143,10 +111,7 @@ export default async function Forket(customOptions = {}) {
     getGraphs,
     printGraph,
     client,
-    processChunk,
-    forketServerActions,
-    serveApp,
-    setRenderer
+    forketServerActions
   };
 }
 

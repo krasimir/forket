@@ -19298,7 +19298,7 @@
     if (isPlaceholder) {
       return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
     }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" })), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}` }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
   }
   function generateFakeText(lines = 10) {
     const text = [];
@@ -19311,7 +19311,7 @@
   // build/client/components/ImagesList.tsx
   function ImagesList({ images }) {
     if (!images || images.length === 0) {
-      return /* @__PURE__ */ import_react2.default.createElement("p", { className: "p1" }, "No images uploaded yet.");
+      return null;
     } else {
       return /* @__PURE__ */ import_react2.default.createElement("div", { className: "grid gap1" }, images.map((image) => /* @__PURE__ */ import_react2.default.createElement(Image, { key: image.id, className: "mb1", id: image.id }, /* @__PURE__ */ import_react2.default.createElement("p", null, image.content))));
     }

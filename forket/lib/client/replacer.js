@@ -1,22 +1,51 @@
 (function () {
   const FORKET_SERVER_ACTIONS_ENDPOINT = "{@}";
+  const ATTR_MAP = {
+    class: "className",
+    for: "htmlFor",
+    "http-equiv": "httpEquiv",
+    "accept-charset": "acceptCharset",
+    accesskey: "accessKey",
+    autocapitalize: "autoCapitalize",
+    autocomplete: "autoComplete",
+    autofocus: "autoFocus",
+    autoplay: "autoPlay",
+    colspan: "colSpan",
+    contenteditable: "contentEditable",
+    crossorigin: "crossOrigin",
+    enctype: "encType",
+    formnovalidate: "formNoValidate",
+    hreflang: "hrefLang",
+    inputmode: "inputMode",
+    maxlength: "maxLength",
+    minlength: "minLength",
+    novalidate: "noValidate",
+    readonly: "readOnly",
+    referrerpolicy: "referrerPolicy",
+    rowspan: "rowSpan",
+    spellcheck: "spellCheck",
+    srcdoc: "srcDoc",
+    srcset: "srcSet",
+    tabindex: "tabIndex",
+    usemap: "useMap"
+  };
   function FRSC_init() {
     const d = document;
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
         const id = data[0];
         const componentName = data[1];
-        const props = getContentFromScriptById(id + "_props", true);
-        let children = getContentFromScriptById(id + "_children");
+        const props = getContentFromScriptById("forket/props", id, true);
+        let children = getContentFromTemplateById("forket/children", id);
         if (children) {
           children = htmlToReactElements(children);
         }
 
-        console.log("Forket: " + componentName + "(" + id + ")", typeof props, props, children);
+        console.log("Forket: " + componentName + "(" + id + ")", props, children);
 
-        const boundary = findCommentBoundary(id);
+        const boundary = findBoundary(id);
         if (!boundary.start || !boundary.end) {
-          console.warn("Boundary comments not found for id:", id);
+          console.warn("Boundary not found for id:", id);
           return;
         }
         let fragment = extractDomBetween(boundary.start, boundary.end);
@@ -24,17 +53,16 @@
         container.style.display = "contents";
         container.appendChild(fragment);
         boundary.end.parentNode.insertBefore(container, boundary.end);
-        hydrateComponentBetweenMarkers(componentName, props, container, children);
+        hydrateComponentBetweenMarkers(componentName, container, props, children);
         boundary.end.parentNode.removeChild(boundary.start);
         boundary.end.parentNode.removeChild(boundary.end);
-        removeById(id + "_setup");
       };
       if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
         window.$FRSC_.forEach(window.$FRSC);
       }
     }
-    function getContentFromScriptById(id, isJSON) {
-      const script = d.getElementById(id);
+    function getContentFromScriptById(type, id, isJSON) {
+      const script = d.querySelector(`script[type="${type}"]#${id}`);
       if (!script) {
         return null;
       }
@@ -83,44 +111,38 @@
       script.parentNode.removeChild(script);
       return content;
     }
-    function removeById(id) {
-      const el = d.getElementById(id);
-      if (el) {
-        el.parentNode.removeChild(el);
+    function getContentFromTemplateById(type, id) {
+      const template = d.querySelector(`template[type="${type}"]#${id}`);
+      if (!template) {
+        return null;
       }
+      const content = template.innerHTML;
+      template.parentNode.removeChild(template);
+      return content;
     }
-    function findCommentBoundary(id) {
-      const iterator = d.createNodeIterator(d.body, NodeFilter.SHOW_COMMENT, null);
-
-      let start = null;
-      let end = null;
-
-      let currentNode;
-      while ((currentNode = iterator.nextNode())) {
-        const nodeValue = currentNode.nodeValue.trim();
-        if (nodeValue === "$" + id) {
-          start = currentNode;
-        } else if (nodeValue === "/$" + id) {
-          end = currentNode;
-          break;
-        }
-      }
-
-      return { start, end };
+    function findBoundary(id) {
+      return {
+        start: d.querySelector(`template[type="forket/start"]#${id}`),
+        end: d.querySelector(`template[type="forket/end"]#${id}`)
+      };
     }
-    function extractDomBetween(startComment, endComment) {
+    function extractDomBetween(start, end) {
       const fragment = d.createDocumentFragment();
-      let current = startComment.nextSibling;
+      let current = start.nextSibling;
 
-      while (current && current !== endComment) {
+      while (current && current !== end) {
         const next = current.nextSibling;
         fragment.appendChild(current);
         current = next;
       }
       return fragment;
     }
-    function hydrateComponentBetweenMarkers(componentName, props, container, children) {
+    function hydrateComponentBetweenMarkers(componentName, container, props, children) {
       const Component = window[componentName];
+      if (!Component) {
+        console.error(`Forket: Component "${componentName}" not found.`);
+        return;
+      }
       ReactDOMClient.hydrateRoot(container, React.createElement(Component, props, children));
     }
     function htmlToReactElements(html) {
@@ -138,7 +160,8 @@
 
             // Extract attributes
             for (const attr of node.attributes) {
-              props[attr.name] = attr.value;
+              const reactName = ATTR_MAP[attr.name.toLowerCase()] || attr.name;
+              props[reactName] = attr.value;
             }
 
             // Inner content is preserved as raw HTML
@@ -156,12 +179,6 @@
           return null;
         })
         .filter(Boolean);
-    }
-    function formDataToObject(data) {
-      if (typeof FormData !== "undefined" && data instanceof FormData) {
-        return Object.fromEntries(data.entries());
-      }
-      return data;
     }
   }
   window.addEventListener("load", FRSC_init);

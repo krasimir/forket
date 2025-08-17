@@ -29,15 +29,20 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/image/:id", serveImage);
 
 Forket().then((forket) => {
-  // Not necessary if we use
-  // | import Forket from "forket"
-  // Otherwise Forket uses its own React which causes issues.
-  forket.setRenderer(renderToPipeableStream);
   app.use("/@forket", fromDataHandler.any(), forket.forketServerActions());
-  app.get("/", forket.serveApp({
-    serverActionsEndpoint: "/@forket",
-    rootElementFactory: (req) => <App request={req} />
-  }))
+  app.get("/", (req, res) => {
+    const { pipe, abort } = renderToPipeableStream(<App request={req} />, {
+      bootstrapScriptContent: forket.client("/@forket"),
+      onShellReady() {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        pipe(res);
+      },
+      onError(err) {
+        console.error(err);
+      }
+    });
+  });
 });
 
 server.listen(port, () => {
