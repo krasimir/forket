@@ -104,6 +104,14 @@ export default async function Forket(customOptions = {}) {
     return handler;
   }
   function serveApp({ serverActionsEndpoint, rootElementFactory }) {
+    if (!serverActionsEndpoint) {
+      throw new Error(
+        `‎𐂐 Forket: missing "serverActionsEndpoint" parameter.`
+      );
+    }
+    if (!serverActionsEndpoint) {
+      throw new Error(`‎𐂐 Forket: missing "rootElementFactory" parameter.`);
+    }
     return (req, res) => {
       const { pipe, abort } = renderer(rootElementFactory(req), {
         bootstrapScriptContent: client(serverActionsEndpoint),

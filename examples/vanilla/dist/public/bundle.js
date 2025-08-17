@@ -19292,6 +19292,9 @@
   // build/client/components/ImageUploader.tsx
   var import_react = __toESM(require_react(), 1);
   function ImageUploader({ processImage }) {
+    const [result, formAction, isPending] = (0, import_react.useActionState)(async (currentState, formData) => {
+      return await processImage(formData);
+    }, null);
     function uploadImage(e) {
       const form = e.currentTarget.form;
       if (e.currentTarget.files?.length > 0 && form) {
@@ -19299,7 +19302,8 @@
         else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
       }
     }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "image-uploader" }, /* @__PURE__ */ import_react.default.createElement("form", { action: processImage, encType: "multipart/form-data" }, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "image" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "btn" }, "Upload image"), /* @__PURE__ */ import_react.default.createElement(
+    console.log(result);
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "image-uploader" }, /* @__PURE__ */ import_react.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: "image" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "btn" }, "Upload image"), /* @__PURE__ */ import_react.default.createElement(
       "input",
       {
         type: "file",
@@ -19308,7 +19312,8 @@
         accept: "image/*",
         required: true,
         className: "hide",
-        onChange: uploadImage
+        onChange: uploadImage,
+        disabled: isPending
       }
     ))));
   }
@@ -19328,18 +19333,7 @@
         window.location.reload();
       });
     }
-    return /* @__PURE__ */ import_react2.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react2.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("p", null, "I need to know your name and profession to help you better."), /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "Please type your name:"), /* @__PURE__ */ import_react2.default.createElement(
-      "input",
-      {
-        type: "text",
-        id: "name",
-        name: "name",
-        required: true,
-        placeholder: "Your name",
-        autoFocus: true,
-        disabled: isPending
-      }
-    )), /* @__PURE__ */ import_react2.default.createElement("button", { type: "submit", className: "mt2", disabled: isPending }, isPending ? "Please wait ..." : "Let's go!"));
+    return /* @__PURE__ */ import_react2.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react2.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "I need to know your name."), /* @__PURE__ */ import_react2.default.createElement("input", { type: "text", id: "name", name: "name", required: true, placeholder: "Your name", autoFocus: true, disabled: isPending })), /* @__PURE__ */ import_react2.default.createElement("button", { type: "submit", className: "mt2", disabled: isPending }, isPending ? "Please wait ..." : "Let's go!"));
   }
 
   // build/client/components/Header.tsx

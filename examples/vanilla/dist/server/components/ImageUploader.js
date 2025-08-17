@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useActionState } from "react";
 function ImageUploader({ processImage }) {
+  const [result, formAction, isPending] = useActionState(async (currentState, formData) => {
+    return await processImage(formData);
+  }, null);
   function uploadImage(e) {
     const form = e.currentTarget.form;
     if (e.currentTarget.files?.length > 0 && form) {
@@ -8,7 +11,8 @@ function ImageUploader({ processImage }) {
       else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     }
   }
-  return /* @__PURE__ */ React.createElement("div", { className: "image-uploader" }, /* @__PURE__ */ React.createElement("form", { action: processImage, encType: "multipart/form-data" }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image" }, /* @__PURE__ */ React.createElement("span", { className: "btn" }, "Upload image"), /* @__PURE__ */ React.createElement(
+  console.log(result);
+  return /* @__PURE__ */ React.createElement("div", { className: "image-uploader" }, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image" }, /* @__PURE__ */ React.createElement("span", { className: "btn" }, "Upload image"), /* @__PURE__ */ React.createElement(
     "input",
     {
       type: "file",
@@ -17,7 +21,8 @@ function ImageUploader({ processImage }) {
       accept: "image/*",
       required: true,
       className: "hide",
-      onChange: uploadImage
+      onChange: uploadImage,
+      disabled: isPending
     }
   ))));
 }

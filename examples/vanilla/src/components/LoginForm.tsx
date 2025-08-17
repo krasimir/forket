@@ -25,21 +25,10 @@ export default function LoginForm({ login }: LoginFormProps) {
     <form action={formSubmit} className="container-small mxauto">
       {error && <div className="fz08 mb1 p1 error">{error}</div>}
       <div>
-        <p>
-          I need to know your name and profession to help you better.
-        </p>
         <label htmlFor="username" className="block mb1">
-          Please type your name:
+          I need to know your name.
         </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          placeholder="Your name"
-          autoFocus
-          disabled={isPending}
-        />
+        <input type="text" id="name" name="name" required placeholder="Your name" autoFocus disabled={isPending} />
       </div>
       <button type="submit" className="mt2" disabled={isPending}>
         {isPending ? "Please wait ..." : "Let's go!"}

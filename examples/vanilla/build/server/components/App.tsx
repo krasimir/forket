@@ -29,43 +29,23 @@ function HeaderBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props));
     const children = props.children || [];
     return (<>
-      <boundary_children_f_10>{children}</boundary_children_f_10>
-      <boundary_props_f_10 dangerouslySetInnerHTML={{
-        __html: serializedProps
-    }}/>
-      <boundary_setup_f_10 dangerouslySetInnerHTML={{
-        __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_10", "Header"]);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_10", "Header"]);
-        })();`
-    }}/>
-      <boundary_f_10>
-        <Header {...props} children={children}/>
-      </boundary_f_10>
-    </>);
-}
-function LoginFormBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props));
-    const children = props.children || [];
-    return (<>
       <boundary_children_f_11>{children}</boundary_children_f_11>
       <boundary_props_f_11 dangerouslySetInnerHTML={{
         __html: serializedProps
     }}/>
       <boundary_setup_f_11 dangerouslySetInnerHTML={{
         __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_11", "LoginForm"]);
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_11", "Header"]);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_11", "LoginForm"]);
+          $FRSC_.push(["f_11", "Header"]);
         })();`
     }}/>
       <boundary_f_11>
-        <LoginForm {...props} children={children}/>
+        <Header {...props} children={children}/>
       </boundary_f_11>
     </>);
 }
-function ImageUploaderBoundary(props) {
+function LoginFormBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props));
     const children = props.children || [];
     return (<>
@@ -75,13 +55,33 @@ function ImageUploaderBoundary(props) {
     }}/>
       <boundary_setup_f_12 dangerouslySetInnerHTML={{
         __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_12", "ImageUploader"]);
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_12", "LoginForm"]);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_12", "ImageUploader"]);
+          $FRSC_.push(["f_12", "LoginForm"]);
         })();`
     }}/>
       <boundary_f_12>
-        <ImageUploader {...props} children={children}/>
+        <LoginForm {...props} children={children}/>
       </boundary_f_12>
+    </>);
+}
+function ImageUploaderBoundary(props) {
+    const serializedProps = JSON.stringify(forketSerializeProps(props));
+    const children = props.children || [];
+    return (<>
+      <boundary_children_f_13>{children}</boundary_children_f_13>
+      <boundary_props_f_13 dangerouslySetInnerHTML={{
+        __html: serializedProps
+    }}/>
+      <boundary_setup_f_13 dangerouslySetInnerHTML={{
+        __html: `(function () {
+          if (typeof $FRSC !== 'undefined') return $FRSC(["f_13", "ImageUploader"]);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(["f_13", "ImageUploader"]);
+        })();`
+    }}/>
+      <boundary_f_13>
+        <ImageUploader {...props} children={children}/>
+      </boundary_f_13>
     </>);
 }
