@@ -1,283 +1,73 @@
 {
   "type": "Module",
   "span": {
-    "start": 265,
-    "end": 807
+    "start": 1,
+    "end": 41
   },
   "body": [
     {
-      "type": "FunctionDeclaration",
-      "identifier": {
-        "type": "Identifier",
-        "span": {
-          "start": 274,
-          "end": 275
-        },
-        "ctxt": 2,
-        "value": "I",
-        "optional": false
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 1,
+        "end": 41
       },
+      "ctxt": 0,
+      "kind": "const",
       "declare": false,
-      "params": [],
-      "decorators": [],
-      "span": {
-        "start": 265,
-        "end": 297
-      },
-      "ctxt": 3,
-      "body": {
-        "type": "BlockStatement",
-        "span": {
-          "start": 278,
-          "end": 297
-        },
-        "ctxt": 3,
-        "stmts": [
-          {
-            "type": "ExpressionStatement",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 7,
+            "end": 40
+          },
+          "id": {
+            "type": "Identifier",
             "span": {
-              "start": 282,
-              "end": 295
+              "start": 7,
+              "end": 10
             },
-            "expression": {
-              "type": "StringLiteral",
-              "span": {
-                "start": 282,
-                "end": 294
-              },
-              "value": "use server",
-              "raw": "\"use server\""
-            }
-          }
-        ]
-      },
-      "generator": false,
-      "async": false,
-      "typeParameters": null,
-      "returnType": null
-    },
-    {
-      "type": "ExportDeclaration",
-      "span": {
-        "start": 298,
-        "end": 317
-      },
-      "declaration": {
-        "type": "VariableDeclaration",
-        "span": {
-          "start": 305,
-          "end": 317
-        },
-        "ctxt": 0,
-        "kind": "const",
-        "declare": false,
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
+            "ctxt": 2,
+            "value": "App",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
             "span": {
-              "start": 311,
-              "end": 316
+              "start": 13,
+              "end": 40
             },
-            "id": {
+            "ctxt": 0,
+            "callee": {
               "type": "Identifier",
               "span": {
-                "start": 311,
-                "end": 312
+                "start": 13,
+                "end": 20
               },
-              "ctxt": 2,
-              "value": "T",
-              "optional": false,
-              "typeAnnotation": null
-            },
-            "init": {
-              "type": "Identifier",
-              "span": {
-                "start": 315,
-                "end": 316
-              },
-              "ctxt": 2,
-              "value": "I",
+              "ctxt": 1,
+              "value": "require",
               "optional": false
             },
-            "definite": false
-          }
-        ]
-      }
-    },
-    {
-      "type": "FunctionDeclaration",
-      "identifier": {
-        "type": "Identifier",
-        "span": {
-          "start": 328,
-          "end": 337
-        },
-        "ctxt": 2,
-        "value": "EmptyNote",
-        "optional": false
-      },
-      "declare": false,
-      "params": [],
-      "decorators": [],
-      "span": {
-        "start": 319,
-        "end": 807
-      },
-      "ctxt": 4,
-      "body": {
-        "type": "BlockStatement",
-        "span": {
-          "start": 340,
-          "end": 807
-        },
-        "ctxt": 4,
-        "stmts": [
-          {
-            "type": "ReturnStatement",
-            "span": {
-              "start": 508,
-              "end": 805
-            },
-            "argument": {
-              "type": "ParenthesisExpression",
-              "span": {
-                "start": 515,
-                "end": 804
-              },
-              "expression": {
-                "type": "JSXFragment",
-                "span": {
-                  "start": 521,
-                  "end": 800
-                },
-                "opening": {
-                  "type": "JSXOpeningFragment",
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "StringLiteral",
                   "span": {
-                    "start": 521,
-                    "end": 523
-                  }
-                },
-                "children": [
-                  {
-                    "type": "JSXText",
-                    "span": {
-                      "start": 523,
-                      "end": 530
-                    },
-                    "value": "\n      ",
-                    "raw": "\n      "
+                    "start": 21,
+                    "end": 39
                   },
-                  {
-                    "type": "JSXExpressionContainer",
-                    "span": {
-                      "start": 530,
-                      "end": 763
-                    },
-                    "expression": {
-                      "type": "JSXEmptyExpression",
-                      "span": {
-                        "start": 762,
-                        "end": 762
-                      }
-                    }
-                  },
-                  {
-                    "type": "JSXText",
-                    "span": {
-                      "start": 763,
-                      "end": 770
-                    },
-                    "value": "\n      ",
-                    "raw": "\n      "
-                  },
-                  {
-                    "type": "JSXElement",
-                    "span": {
-                      "start": 770,
-                      "end": 792
-                    },
-                    "opening": {
-                      "type": "JSXOpeningElement",
-                      "name": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 771,
-                          "end": 777
-                        },
-                        "ctxt": 1,
-                        "value": "Button",
-                        "optional": false
-                      },
-                      "span": {
-                        "start": 770,
-                        "end": 792
-                      },
-                      "attributes": [
-                        {
-                          "type": "JSXAttribute",
-                          "span": {
-                            "start": 778,
-                            "end": 789
-                          },
-                          "name": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 778,
-                              "end": 785
-                            },
-                            "value": "onClick"
-                          },
-                          "value": {
-                            "type": "JSXExpressionContainer",
-                            "span": {
-                              "start": 786,
-                              "end": 789
-                            },
-                            "expression": {
-                              "type": "Identifier",
-                              "span": {
-                                "start": 787,
-                                "end": 788
-                              },
-                              "ctxt": 2,
-                              "value": "T",
-                              "optional": false
-                            }
-                          }
-                        }
-                      ],
-                      "selfClosing": true,
-                      "typeArguments": null
-                    },
-                    "children": [],
-                    "closing": null
-                  },
-                  {
-                    "type": "JSXText",
-                    "span": {
-                      "start": 792,
-                      "end": 797
-                    },
-                    "value": "\n    ",
-                    "raw": "\n    "
-                  }
-                ],
-                "closing": {
-                  "type": "JSXClosingFragment",
-                  "span": {
-                    "start": 797,
-                    "end": 800
-                  }
+                  "value": "./components/App",
+                  "raw": "\"./components/App\""
                 }
               }
-            }
-          }
-        ]
-      },
-      "generator": false,
-      "async": false,
-      "typeParameters": null,
-      "returnType": null
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
     }
   ],
   "interpreter": null

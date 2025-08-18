@@ -1,6 +1,7 @@
 'use client';
 import React from "react";
 import ReactDOMClient from "react-dom/client";
+import ImagesProvider from "./contexts/ImagesContext";
 import ImagesList from "./components/ImagesList";
 import ImageUploader from "./components/ImageUploader";
 import LoginForm from "./components/LoginForm";
@@ -11,3 +12,4 @@ window.Header = Header;
 window.LoginForm = LoginForm;
 window.ImageUploader = ImageUploader;
 window.ImagesList = ImagesList;
+window.ImagesProvider = ImagesProvider;

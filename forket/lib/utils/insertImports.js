@@ -21,15 +21,45 @@ function insert(ast, node) {
     ast.body = node.concat(ast.body);
   }
 }
+function isAlreadyThereESM(ast, what, where) {
+  return ast.body.some(
+    (n) =>
+      n?.type === "ImportDeclaration" &&
+      (n.specifiers || []).some((s) => s?.local?.value === what) &&
+      n?.source?.value === where
+  );
+}
+function isAlreadyThereCommonJS(ast, what, where) {
+  return ast.body.some(
+    (n) =>
+      n?.type === "VariableDeclaration" &&
+      n.declarations.some(
+        (d) =>
+          (
+            (d?.id?.properties || []).some((p) => p?.key?.value === what) ||
+            (d?.id?.value === what)
+          ) &&
+          d?.init?.type === "CallExpression" &&
+          d?.init?.callee?.value === "require" &&
+          (d?.init?.arguments || []).some((a) => a?.expression?.value === where)
+      )
+  );
+}
 
 export default function insertImports(ast, what, where, defaultExport = true) {
   if (defineModuleSystem(ast) === "commonjs") {
     if (defaultExport) {
-      insert(ast, importCommonJS(what, where));
+      if (!isAlreadyThereCommonJS(ast, what, where)) {
+        insert(ast, importCommonJS(what, where));
+      }
     } else {
-      insert(ast, importCommonJSDestruct(what, where));
+      if (!isAlreadyThereCommonJS(ast, what, where)) {
+        insert(ast, importCommonJSDestruct(what, where));
+      }
     }
   } else {
-    insert(ast, importESM(what, where, defaultExport ? "ImportDefaultSpecifier" : "ImportSpecifier"));
+    if (!isAlreadyThereESM(ast, what, where)) {
+      insert(ast, importESM(what, where, defaultExport ? "ImportDefaultSpecifier" : "ImportSpecifier"));
+    }
   }
 };

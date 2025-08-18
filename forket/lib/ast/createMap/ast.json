@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 972,
-    "end": 1029
+    "start": 1026,
+    "end": 1083
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 972,
-        "end": 1029
+        "start": 1026,
+        "end": 1083
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,14 +18,14 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 978,
-            "end": 1029
+            "start": 1032,
+            "end": 1083
           },
           "id": {
             "type": "Identifier",
             "span": {
-              "start": 978,
-              "end": 985
+              "start": 1032,
+              "end": 1039
             },
             "ctxt": 2,
             "value": "mapName",
@@ -35,8 +35,8 @@
           "init": {
             "type": "ObjectExpression",
             "span": {
-              "start": 988,
-              "end": 1029
+              "start": 1042,
+              "end": 1083
             },
             "properties": [
               {
@@ -44,16 +44,16 @@
                 "key": {
                   "type": "Identifier",
                   "span": {
-                    "start": 992,
-                    "end": 996
+                    "start": 1046,
+                    "end": 1050
                   },
                   "value": "key1"
                 },
                 "value": {
                   "type": "Identifier",
                   "span": {
-                    "start": 998,
-                    "end": 1007
+                    "start": 1052,
+                    "end": 1061
                   },
                   "ctxt": 1,
                   "value": "something",
@@ -65,16 +65,16 @@
                 "key": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1011,
-                    "end": 1015
+                    "start": 1065,
+                    "end": 1069
                   },
                   "value": "key2"
                 },
                 "value": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1017,
-                    "end": 1026
+                    "start": 1071,
+                    "end": 1080
                   },
                   "ctxt": 1,
                   "value": "something",

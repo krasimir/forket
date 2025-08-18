@@ -35,81 +35,76 @@
       window.$FRSC = function (data) {
         const id = data[0];
         const componentName = data[1];
-        const props = getContentFromScriptById("forket/props", id, true);
+        const props = normalizeProps(data[2]);
         let children = getContentFromTemplateById("forket/children", id);
         if (children) {
           children = htmlToReactElements(children);
         }
 
-        console.log("Forket: " + componentName + "(" + id + ")", props, children);
+        console.log("Forket: " + componentName + "(" + id + ")", { props, children });
 
         const boundary = findBoundary(id);
         if (!boundary.start || !boundary.end) {
           console.warn("Boundary not found for id:", id);
           return;
         }
-        let fragment = extractDomBetween(boundary.start, boundary.end);
         const container = d.createElement("div");
+        extractDomBetween(boundary.start, boundary.end, container)
         container.style.display = "contents";
-        container.appendChild(fragment);
         boundary.end.parentNode.insertBefore(container, boundary.end);
         hydrateComponentBetweenMarkers(componentName, container, props, children);
-        boundary.end.parentNode.removeChild(boundary.start);
-        boundary.end.parentNode.removeChild(boundary.end);
+        // boundary.end.parentNode.removeChild(boundary.start);
+        // boundary.end.parentNode.removeChild(boundary.end);
       };
       if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
         window.$FRSC_.forEach(window.$FRSC);
       }
     }
-    function getContentFromScriptById(type, id, isJSON) {
-      const script = d.querySelector(`script[type="${type}"]#${id}`);
-      if (!script) {
-        return null;
-      }
-      let content = script.textContent;
-      if (isJSON && content) {
-        try {
-          content = JSON.parse(content, function (key, value) {
-            if (typeof value === 'string' && value.match(/^\$FSA_/)) {
-              const funcName = value.replace(/^\$FSA_/, "");
-              return async function (...args) {
-                const data = args.length > 0 ? args[0] : {};
-                if (typeof FormData !== "undefined" && data instanceof FormData) {
-                  const fd = new FormData();
-                  fd.set("__actionId", value);
-                  for (const [k, v] of data.entries()) fd.append(k, v);
-                  const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
-                    method: "POST",
-                    body: fd
-                  });
-
-                  if (!result.ok) {
-                    throw new Error(`Server action ${value} failed with status ${result.status}`);
-                  }
-                  const responseData = await result.json();
-                  if (responseData.error) throw new Error(responseData.error);
-                  return responseData.result;
-                }
+    function normalizeProps(content) {
+      try {
+        content = JSON.parse(content, function (key, value) {
+          if (key === "children") {
+            return;
+          }
+          if (typeof value === "string" && value.match(/^\$FSA_/)) {
+            const funcName = value.replace(/^\$FSA_/, "");
+            return async function (...args) {
+              const data = args.length > 0 ? args[0] : {};
+              if (typeof FormData !== "undefined" && data instanceof FormData) {
+                const fd = new FormData();
+                fd.set("__actionId", value);
+                for (const [k, v] of data.entries()) fd.append(k, v);
                 const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
                   method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ __actionId: value, data: args })
+                  body: fd
                 });
+
                 if (!result.ok) {
                   throw new Error(`Server action ${value} failed with status ${result.status}`);
                 }
                 const responseData = await result.json();
+                if (responseData.error) throw new Error(responseData.error);
                 return responseData.result;
               }
-            }
-            return value;
-          });
-        } catch (e) {
-          // console.error("Error parsing JSON from script with id:", id, e);
-          content = {};
-        }
+              const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ __actionId: value, data: args })
+              });
+              if (!result.ok) {
+                throw new Error(`Server action ${value} failed with status ${result.status}`);
+              }
+              const responseData = await result.json();
+              return responseData.result;
+            };
+          }
+          return value;
+        });
+      } catch (e) {
+        // console.error("Error parsing JSON from script with id:", id, e);
+        content = {};
       }
-      script.parentNode.removeChild(script);
+      // script.parentNode.removeChild(script);
       return content;
     }
     function getContentFromTemplateById(type, id) {
@@ -118,7 +113,7 @@
         return null;
       }
       const content = template.innerHTML;
-      template.parentNode.removeChild(template);
+      // template.parentNode.removeChild(template);
       return content;
     }
     function findBoundary(id) {
@@ -127,16 +122,14 @@
         end: d.querySelector(`template[type="forket/end"]#${id}`)
       };
     }
-    function extractDomBetween(start, end) {
-      const fragment = d.createDocumentFragment();
+    function extractDomBetween(start, end, newParent) {
       let current = start.nextSibling;
 
       while (current && current !== end) {
         const next = current.nextSibling;
-        fragment.appendChild(current);
+        newParent.appendChild(current);
         current = next;
       }
-      return fragment;
     }
     function hydrateComponentBetweenMarkers(componentName, container, props, children) {
       const Component = window[componentName];

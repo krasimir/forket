@@ -107,14 +107,17 @@ export default async function ({ test, toAST, toCode }) {
     );
   });
   await test("Should properly insert imports statements", async () => {
-    const cases = ['a', 'b', 'c', 'd', 'e', 'f'];
+    let cases = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+    // cases = ['i']
     for(let i=0; i<cases.length; i++) {
       const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + '.js'));
       const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
       insertImports(baseAST, "ReactDOMClient", "react-dom/client");
       insertImports(baseAST, "React", "react");
-      if (cases[i] === "e" || cases[i] === "f") {
+      if (cases[i] === "e" || cases[i] === "f" || cases[i] === "g" || cases[i] === "h") {
         insertImports(baseAST, "App", "./components/App", false);
+      } else if (cases[i] === 'i') {
+        insertImports(baseAST, "App", "./components/App");
       }
       const result = await toCode(baseAST);
       if (expected !== result) {
