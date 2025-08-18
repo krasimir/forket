@@ -67,6 +67,8 @@ button.reset, .btn.reset {
   font-size: inherit;
   font-weight: inherit;
   display: inline;
+  padding: 0;
+  margin: 0;
 }
 button.reset:hover, .btn.reset:hover {
   color: #c8e5ff;
@@ -76,16 +78,21 @@ label:has(input[type="file"]) {
   text-align: center;
   cursor: pointer;
 }
-label:has(input[type="file"]):hover {
-  border: solid 1px #fff;
+ol.reset,
+ul.reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-label:has(input[type="file"]:disabled):hover,
-label:has(input[type="file"]:disabled) {
-  border: solid 1px #5e5e5e;
+p.reset {
+  margin: 0;
+  padding: 0;
 }
 
 .block { display: block; }
-.grid { display: grid;}
+.grid { display: grid; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+.gap03 { gap: 0.3rem; }
 .hide { display: none; }
 .rel { position: relative; }
 .abs { position: absolute; }
@@ -101,6 +108,8 @@ label:has(input[type="file"]:disabled) {
 .mt2 { margin-top: 2rem; }
 .mb1 { margin-bottom: 1rem; }
 .mb3 { margin-bottom: 3rem; }
+.ml1 { margin-left: 1rem !important; }
+.ml2 { margin-left: 2rem !important; }
 .op05 { opacity: 0.5; }
 .lh0 { line-height: 0; }
 
@@ -117,6 +126,10 @@ label:has(input[type="file"]:disabled) {
 }
 .bordered {
   border: solid 1px #a8a8a8;
+  border-radius: 0.25rem;
+}
+.bordered-dark {
+  border: solid 1px #5e5e5e;
   border-radius: 0.25rem;
 }
 .image-placeholder {

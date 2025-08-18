@@ -22,7 +22,7 @@ export default function Header({ username, logout }: HeaderProps) {
                 window.location.reload();
               }
             }}
-            style={{ top: 0, right: 0 }}
+            style={{ top: '9px', right: '18px' }}
           >
             ✖ logout
           </button>

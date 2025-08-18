@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 import { login, logout } from "../server-actions/auth.js";
-import { processImage } from "../server-actions/data.js";
+import { processImage, updateImage } from "../server-actions/data.js";
 import { COOKIES } from "../constants.js";
 import ImageUploader from "./ImageUploader.js";
 import DB from '../db.js';
@@ -32,7 +32,7 @@ export default async function App({ request }) {
         )}
         {username && (
           <section className="container mxauto">
-            <ImageUploader processImage={processImage}/>
+            <ImageUploader processImage={processImage} updateImage={updateImage} />
             <ImagesList images={images} />
           </section>
         )}

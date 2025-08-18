@@ -1,9 +1,12 @@
 "use client";
-import React, { useActionState } from "react";
+import React, { useActionState, useState, useTransition } from "react";
 import Image from "./Image.js";
-function ImageUploader({ processImage }) {
-  const [result, formAction, isPending] = useActionState(async (currentState, formData) => {
-    return await processImage(formData);
+function ImageUploader({ processImage, updateImage }) {
+  const [processedImage, setProcessedImage] = useState(null);
+  const [isImageUpdating, startImageUpdate] = useTransition();
+  let [_, formAction, isPending] = useActionState(async (currentState, formData) => {
+    const result = await processImage(formData);
+    setProcessedImage(result);
   }, null);
   function uploadImage(e) {
     const form = e.currentTarget.form;
@@ -12,7 +15,13 @@ function ImageUploader({ processImage }) {
       else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     }
   }
-  return /* @__PURE__ */ React.createElement("div", null, isPending && /* @__PURE__ */ React.createElement(Image, { isPlaceholder: true, className: "mb1" }), !isPending && result && /* @__PURE__ */ React.createElement(Image, { className: "mb1", id: result.id }, /* @__PURE__ */ React.createElement("p", null, "...")), /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "bordered p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(
+  function setImageContent(id, content) {
+    startImageUpdate(async () => {
+      await updateImage(id, content);
+      setProcessedImage(null);
+    });
+  }
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(
     "input",
     {
       type: "file",
@@ -24,7 +33,17 @@ function ImageUploader({ processImage }) {
       onChange: uploadImage,
       disabled: isPending
     }
-  ))));
+  ))), isPending && /* @__PURE__ */ React.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ React.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ React.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ React.createElement("li", { key: index }, /* @__PURE__ */ React.createElement(
+    "button",
+    {
+      className: "reset",
+      onClick: () => setImageContent(processedImage.id, item.label),
+      disabled: isImageUpdating
+    },
+    Math.round(item.score * 100),
+    "% - ",
+    /* @__PURE__ */ React.createElement("strong", null, item.label)
+  ))))));
 }
 export {
   ImageUploader as default

@@ -19298,7 +19298,7 @@
     if (isPlaceholder) {
       return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
     }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}` }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered-dark " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
   }
   function generateFakeText(lines = 10) {
     const text = [];
@@ -19313,15 +19313,18 @@
     if (!images || images.length === 0) {
       return null;
     } else {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "grid gap1" }, images.map((image) => /* @__PURE__ */ import_react2.default.createElement(Image, { key: image.id, className: "mb1", id: image.id }, /* @__PURE__ */ import_react2.default.createElement("p", null, image.content))));
+      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "grid2 gap03 mt1" }, images.map((image) => /* @__PURE__ */ import_react2.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react2.default.createElement("p", { className: "reset" }, image.content))));
     }
   }
 
   // build/client/components/ImageUploader.tsx
   var import_react3 = __toESM(require_react(), 1);
-  function ImageUploader({ processImage }) {
-    const [result, formAction, isPending] = (0, import_react3.useActionState)(async (currentState, formData) => {
-      return await processImage(formData);
+  function ImageUploader({ processImage, updateImage }) {
+    const [processedImage, setProcessedImage] = (0, import_react3.useState)(null);
+    const [isImageUpdating, startImageUpdate] = (0, import_react3.useTransition)();
+    let [_, formAction, isPending] = (0, import_react3.useActionState)(async (currentState, formData) => {
+      const result = await processImage(formData);
+      setProcessedImage(result);
     }, null);
     function uploadImage(e) {
       const form = e.currentTarget.form;
@@ -19330,7 +19333,13 @@
         else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
       }
     }
-    return /* @__PURE__ */ import_react3.default.createElement("div", null, isPending && /* @__PURE__ */ import_react3.default.createElement(Image, { isPlaceholder: true, className: "mb1" }), !isPending && result && /* @__PURE__ */ import_react3.default.createElement(Image, { className: "mb1", id: result.id }, /* @__PURE__ */ import_react3.default.createElement("p", null, "...")), /* @__PURE__ */ import_react3.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "image", className: "bordered p1" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react3.default.createElement(
+    function setImageContent(id, content) {
+      startImageUpdate(async () => {
+        await updateImage(id, content);
+        setProcessedImage(null);
+      });
+    }
+    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         type: "file",
@@ -19342,7 +19351,17 @@
         onChange: uploadImage,
         disabled: isPending
       }
-    ))));
+    ))), isPending && /* @__PURE__ */ import_react3.default.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ import_react3.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react3.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react3.default.createElement("li", { key: index }, /* @__PURE__ */ import_react3.default.createElement(
+      "button",
+      {
+        className: "reset",
+        onClick: () => setImageContent(processedImage.id, item.label),
+        disabled: isImageUpdating
+      },
+      Math.round(item.score * 100),
+      "% - ",
+      /* @__PURE__ */ import_react3.default.createElement("strong", null, item.label)
+    ))))));
   }
 
   // build/client/components/LoginForm.tsx
@@ -19375,7 +19394,7 @@
             window.location.reload();
           }
         },
-        style: { top: 0, right: 0 }
+        style: { top: "9px", right: "18px" }
       },
       "\u2716 logout"
     )));

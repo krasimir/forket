@@ -1,10 +1,19 @@
 'use client';
-import React, { useActionState } from "react";
+import React, { useActionState, useState, useTransition } from "react";
 import Image from "./Image.js";
+import { Suggestion } from "../types.js";
 
-export default function ImageUploader({ processImage }) {
-  const [result, formAction, isPending] = useActionState(async (currentState, formData) => {
-    return await processImage(formData);
+type ImageUploaderProps = {
+  processImage: (formData: FormData) => Promise<any>;
+  updateImage: Function;
+}
+
+export default function ImageUploader({ processImage, updateImage }: ImageUploaderProps) {
+  const [ processedImage, setProcessedImage ] = useState<{ id: string, suggestions: Suggestion[] } | null>(null);
+  const [ isImageUpdating, startImageUpdate ] = useTransition();
+  let [_, formAction, isPending] = useActionState(async (currentState, formData) => {
+    const result = await processImage(formData);
+    setProcessedImage(result);
   }, null);
 
   function uploadImage(e) {
@@ -14,19 +23,19 @@ export default function ImageUploader({ processImage }) {
       else form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     }
   }
+  function setImageContent(id, content) {
+    startImageUpdate(async () => {
+      await updateImage(id, content)
+      setProcessedImage(null);
+    });
+  }
 
   return (
     <div>
-      {isPending && <Image isPlaceholder className="mb1" />}
-      {!isPending && result && (
-        <Image className="mb1" id={result.id}>
-          <p>...</p>
-        </Image>
-      )}
       <form action={formAction}>
-        <label htmlFor="image" className="bordered p1">
+        <label htmlFor="image" className="p1">
           <span className="btn" aria-disabled={isPending}>
-            {isPending ? 'Reading the image ...' : 'Upload image'}
+            {isPending ? "Reading the image ..." : "Upload image"}
           </span>
           <input
             type="file"
@@ -40,6 +49,24 @@ export default function ImageUploader({ processImage }) {
           />
         </label>
       </form>
+      {isPending && <Image isPlaceholder className="mt1" />}
+      {!isPending && processedImage && (
+        <Image className="mt1" id={processedImage.id}>
+          <ul className="reset">
+            {processedImage.suggestions.map((item, index) => (
+              <li key={index}>
+                <button
+                  className="reset"
+                  onClick={() => setImageContent(processedImage.id, item.label)}
+                  disabled={isImageUpdating}
+                >
+                  {Math.round(item.score * 100)}% - <strong>{item.label}</strong>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Image>
+      )}
     </div>
   );
 }

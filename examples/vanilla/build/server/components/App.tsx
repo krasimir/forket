@@ -6,7 +6,7 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 import { login, logout } from "../server-actions/auth.js";
-import { processImage } from "../server-actions/data.js";
+import { processImage, updateImage } from "../server-actions/data.js";
 import { COOKIES } from "../constants.js";
 import ImageUploader from "./ImageUploader.js";
 import DB from '../db.js';
@@ -28,7 +28,7 @@ export default async function App({ request }) {
             <LoginFormBoundary login={"$FSA_login"}/>
           </section>)}
         {username && (<section className="container mxauto">
-            <ImageUploaderBoundary processImage={"$FSA_processImage"}/>
+            <ImageUploaderBoundary processImage={"$FSA_processImage"} updateImage={"$FSA_updateImage"}/>
             <ImagesListBoundary images={images}/>
           </section>)}
         <script src="/bundle.js"></script>

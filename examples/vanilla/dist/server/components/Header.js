@@ -10,7 +10,7 @@ function Header({ username, logout }) {
           window.location.reload();
         }
       },
-      style: { top: 0, right: 0 }
+      style: { top: "9px", right: "18px" }
     },
     "\u2716 logout"
   )));

@@ -17,9 +17,9 @@ export default function Image({ id, className, isPlaceholder, children }: ImageP
     );
   }
   return (
-    <div className={"grid p1 bordered " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
+    <div className={"grid p1 bordered-dark " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
       <div className="lh0">
-        <a href={`/image/${id}`}>
+        <a href={`/image/${id}`} target="_blank">
           <img src={`/image/${id}`} alt="Uploaded content" className="image-fit" />
         </a>
       </div>

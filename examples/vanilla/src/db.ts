@@ -2,25 +2,37 @@ import fs from "fs/promises";
 import path from 'path';
 import crypto from "crypto";
 import { fileURLToPath } from "url";
+import { pipeline, env } from "@huggingface/transformers";
 
 import { COOKIES } from "./constants.js";
-import { Image } from './types.js';
+import { Image, Suggestion } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+env.allowRemoteModels = true;
+env.cacheDir = path.normalize(__dirname + "/../../models");
 
 const DB_DIR = path.resolve(__dirname, path.join("..", "..", "db"));
 
 const DB = {
   storeImage,
   getImages,
-  getImagesByUsername
+  getImagesByUsername,
+  setImageContent
 };
 let images;
 
-async function storeImage(context, file): Promise<string> {
+async function storeImage(request): Promise<{ id: string; suggestions: Suggestion[] }> {
   const id = crypto.randomUUID();
-  const username = context.request.cookies[COOKIES.name];
+  const file = request.files[0];
+  if (!file) throw new Error("No file uploaded");
+
+  const classify = await pipeline("image-classification", "Xenova/vit-base-patch16-224");
+  const blob = new Blob([file.buffer], { type: "image/jpeg" });
+  const result = await classify(blob, { topk: 5 });
+
+  const username = request.cookies[COOKIES.name];
   const imageFileName = `${id}${getExtension(file.mimetype)}`;
   const imagePath = path.join(DB_DIR, username, imageFileName);
   const imageDataPath = path.join(DB_DIR, username, `${id}.json`);
@@ -30,17 +42,21 @@ async function storeImage(context, file): Promise<string> {
   }
   await fs.mkdir(path.dirname(imagePath), { recursive: true });
   await fs.writeFile(imagePath, file.buffer);
-  await fs.writeFile(imageDataPath, JSON.stringify({
-    id,
-    image: imagePath,
-    username,
-    content: ""
-  }));
-  
+  await fs.writeFile(
+    imageDataPath,
+    JSON.stringify({
+      id,
+      image: imagePath,
+      imageData: imageDataPath,
+      username,
+      content: ""
+    })
+  );
+
   images = null;
   getImages();
 
-  return id;
+  return { id, suggestions: result as Suggestion[] };
 }
 async function getImages(): Promise<Map<string, Image>> {
   if (images) return images;
@@ -80,6 +96,21 @@ async function getImagesByUsername(username): Promise<Image[]> {
     }
   }
   return userImages;
+}
+async function setImageContent(id: string, content: string) {
+  if (id && content) {
+    const images = await getImages();
+    if (images.has(id)) {
+      const imageData = images.get(id);
+      if (imageData) {
+        imageData.content = content;
+        await fs.writeFile(imageData?.imageData, JSON.stringify(imageData, null, 2));
+      } 
+    }
+    return { ok: true }
+  } else {
+    throw new Error("Image ID and content are required");
+  }
 }
 
 function getExtension(mimetype): string {
