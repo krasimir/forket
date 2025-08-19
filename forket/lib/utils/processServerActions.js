@@ -4,11 +4,20 @@ import getId from "./getId.js";
 
 export default function processServerActions(node, serverActionsContainingNodes, current = []) {
   const serverActionsHandlers = [];
-
   // Dealing with the cases when the action is in the same file
   if (node.serverActions && node.serverActions.length > 0) {
-    node.serverActions.forEach(({ funcName, funcNode, stack, isDefault }) => {
+    node.serverActions.forEach(({ funcName, funcNode, stack, isDefault, insideJSXAttribute, jsxAttribute }) => {
       // console.log("++++ Spotted in the same file", node.file);
+      if (insideJSXAttribute) {
+        insertAtTheTop(node.ast, getArrayFunctionIntoVariable(funcName, funcNode));
+        traverseNode(node.ast, {
+          JSXAttribute(n) {
+            if (n?.name?.value === jsxAttribute && n?.value?.expression === funcNode) {
+              n.value = getExpressionContainer(funcName);
+            }
+          }
+        });
+      }
       const handler = createActionHandler({
         filePath: node.file,
         funcName,
@@ -125,4 +134,64 @@ function setServerActionId(ast, funcName, meta) {
       }
     }
   });
+}
+function getArrayFunctionIntoVariable(funcName, funcNode) {
+  return {
+      "type": "ExportDeclaration",
+      "span": {
+        "start": 1,
+        "end": 52
+      },
+      "declaration": {
+    type: "VariableDeclaration",
+    span: {
+      start: 1,
+      end: 45
+    },
+    ctxt: 0,
+    kind: "const",
+    declare: false,
+    declarations: [
+      {
+        type: "VariableDeclarator",
+        span: {
+          start: 7,
+          end: 45
+        },
+        id: {
+          type: "Identifier",
+          span: {
+            start: 7,
+            end: 10
+          },
+          ctxt: 2,
+          value: funcName,
+          optional: false,
+          typeAnnotation: null
+        },
+        init: funcNode,
+        definite: false
+      }
+    ]
+  }
+}
+}
+function getExpressionContainer(value) {
+  return {
+    type: "JSXExpressionContainer",
+    span: {
+      start: 49,
+      end: 55
+    },
+    expression: {
+      type: "Identifier",
+      span: {
+        start: 50,
+        end: 54
+      },
+      ctxt: 1,
+      value,
+      optional: false
+    }
+  };
 }

@@ -1,20 +1,38 @@
 'use client'
-import React from 'react';
+import React, { useState, useTransition } from "react";
 
 import ImageUploader from './ImageUploader.js';
 import ImagesList from './ImagesList.js';
 import { Image } from '../types';
 
 type ImagesManagerProps = {
+  username: string;
   processImage: (formData: FormData) => Promise<any>;
   updateImage: Function;
-  images?: Image[];
-}
+  initialImages?: Image[];
+  getImages: (data: any) => Promise<Image[]>;
+};
 
-export default function ImagesManager({ processImage, updateImage, images = [] }: ImagesManagerProps) {
+export default function ImagesManager({
+  username,
+  processImage,
+  updateImage,
+  initialImages = [],
+  getImages
+}: ImagesManagerProps) {
+  const [images, setImages] = useState<Image[]>(initialImages);
+  const [isUpdating, startUpdating] = useTransition();
+
+  async function onImageUpdated() {
+    startUpdating(async () => {
+      const images = await getImages(username);
+      setImages(images);
+    });
+  }
+
   return (
     <>
-      <ImageUploader processImage={processImage} updateImage={updateImage} />
+      <ImageUploader processImage={processImage} updateImage={updateImage} onImageUpdated={onImageUpdated} />
       <ImagesList images={images} />
     </>
   );

@@ -1,5 +1,9 @@
 (function () {
-  const FORKET_SERVER_ACTIONS_ENDPOINT = "{@}";
+  const FORKET_SERVER_ACTIONS_ENDPOINT = "__FORKET_SERVER_ACTIONS_ENDPOINT__";
+  const ENABLE_LOGGING = __ENABLE_LOGGIGN__;
+  const log = ENABLE_LOGGING ? console.log.bind(console) : () => {};
+
+  log("𐂐 v" + __VERSION__);
   const ATTR_MAP = {
     class: "className",
     for: "htmlFor",
@@ -42,15 +46,35 @@
         const id = data[0];
         const componentName = data[1];
         const props = normalizeProps(data[2]);
-        let children = getContentFromTemplateById("forket/children", id);
-        if (children) {
-          children = htmlToReactElements(children);
-        }
+        const children = getChildren(id);
         hydrateComponentBetweenMarkers(id, componentName, props, children);
       };
       if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
         window.$FRSC_.forEach(window.$FRSC);
       }
+    }
+    function hydrateComponentBetweenMarkers(id, componentName, props, children) {
+      log("𐂐 " + componentName + "(" + id + ")", { props, children });
+      const Component = window[componentName];
+      if (!Component) {
+        console.error(`𐂐 Component "${componentName}" not found.`);
+        return;
+      }
+      const boundary = {
+        start: d.querySelector(`template[type="forket/start"]#${id}`),
+        end: d.querySelector(`template[type="forket/end"]#${id}`)
+      };
+      if (!boundary.start || !boundary.end) {
+        console.warn("𐂐 Boundary not found for id: " + id);
+        return;
+      }
+      const container = d.createElement("div");
+      moveInServerGeneratedElements(boundary.start, boundary.end, container);
+      container.style.display = "contents";
+      boundary.end.parentNode.insertBefore(container, boundary.end);
+      boundary.end.parentNode.removeChild(boundary.start);
+      boundary.end.parentNode.removeChild(boundary.end);
+      ReactDOMClient.hydrateRoot(container, React.createElement(Component, props, children));
     }
     function normalizeProps(content) {
       try {
@@ -93,55 +117,27 @@
           return value;
         });
       } catch (e) {
-        // console.error("Error parsing JSON from script with id:", id, e);
+        console.warn("𐂐 Error parsing props content:", e);
         content = {};
       }
-      // script.parentNode.removeChild(script);
       return content;
     }
-    function getContentFromTemplateById(type, id) {
-      const template = d.querySelector(`template[type="${type}"]#${id}`);
+    function getChildren(type, id) {
+      const template = d.querySelector(`template[type="forket/children"]#${id}`);
       if (!template) {
         return null;
       }
       const content = template.innerHTML;
-      template.parentNode.removeChild(template);
-      return content;
+      template?.parentNode?.removeChild(template);
+      return htmlToReactElements(content);
     }
-    function findBoundary(id) {
-      return {
-        start: d.querySelector(`template[type="forket/start"]#${id}`),
-        end: d.querySelector(`template[type="forket/end"]#${id}`)
-      };
-    }
-    function swapDOMElements(start, end, newParent) {
+    function moveInServerGeneratedElements(start, end, newParent) {
       let current = start.nextSibling;
-
       while (current && current !== end) {
         const next = current.nextSibling;
         newParent.appendChild(current);
         current = next;
       }
-    }
-    function hydrateComponentBetweenMarkers(id, componentName, props, children) {
-      console.log("Forket: " + componentName + "(" + id + ")", { props, children });
-      const Component = window[componentName];
-      if (!Component) {
-        console.error(`Forket: Component "${componentName}" not found.`);
-        return;
-      }
-      const boundary = findBoundary(id);
-      if (!boundary.start || !boundary.end) {
-        console.warn("Boundary not found for id:", id);
-        return;
-      }
-      const container = d.createElement("div");
-      swapDOMElements(boundary.start, boundary.end, container);
-      container.style.display = "contents";
-      boundary.end.parentNode.insertBefore(container, boundary.end);
-      ReactDOMClient.hydrateRoot(container, React.createElement(Component, props, children));
-      boundary.end.parentNode.removeChild(boundary.start);
-      boundary.end.parentNode.removeChild(boundary.end);
     }
     function htmlToReactElements(html) {
       const tpl = document.createElement("template");

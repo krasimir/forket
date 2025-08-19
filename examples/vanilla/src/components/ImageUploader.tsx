@@ -5,10 +5,11 @@ import { Suggestion } from "../types.js";
 type ImageUploaderProps = {
   processImage: (formData: FormData) => Promise<any>;
   updateImage: Function;
-}
+  onImageUpdated: Function;
+};
 type ProcessedImageResponse = { id: string; suggestions: Suggestion[] };
 
-export default function ImageUploader({ processImage, updateImage }: ImageUploaderProps) {
+export default function ImageUploader({ processImage, updateImage, onImageUpdated }: ImageUploaderProps) {
   const [processedImage, setProcessedImage] = useState<ProcessedImageResponse | null>(null);
   const [ isImageUpdating, startImageUpdate ] = useTransition();
   let [_, formAction, isPending] = useActionState(async (currentState, formData) => {
@@ -27,6 +28,7 @@ export default function ImageUploader({ processImage, updateImage }: ImageUpload
     startImageUpdate(async () => {
       await updateImage(id, content)
       setProcessedImage(null);
+      onImageUpdated();
     });
   }
 

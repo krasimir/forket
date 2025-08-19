@@ -1,1 +1,3 @@
-const App = require("./components/App");
+export const f_0 = () => {
+  console.log('test');
+}

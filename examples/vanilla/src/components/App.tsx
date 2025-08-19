@@ -31,7 +31,16 @@ export default async function App({ request }) {
         )}
         {username && (
           <section className="container mxauto">
-            <ImagesManager processImage={processImage} updateImage={updateImage} images={images} />            
+            <ImagesManager
+              username={username}
+              processImage={processImage}
+              updateImage={updateImage}
+              getImages={async ({ data: [ username ] }) => {
+                "use server";
+                return await DB.getImagesByUsername(username);
+              }}
+              initialImages={images}
+            />
           </section>
         )}
         <script src="/bundle.js"></script>

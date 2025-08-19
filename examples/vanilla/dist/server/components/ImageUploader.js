@@ -1,6 +1,6 @@
 import React, { useActionState, useState, useTransition } from "react";
 import Image from "./Image.js";
-function ImageUploader({ processImage, updateImage }) {
+function ImageUploader({ processImage, updateImage, onImageUpdated }) {
   const [processedImage, setProcessedImage] = useState(null);
   const [isImageUpdating, startImageUpdate] = useTransition();
   let [_, formAction, isPending] = useActionState(async (currentState, formData) => {
@@ -18,6 +18,7 @@ function ImageUploader({ processImage, updateImage }) {
     startImageUpdate(async () => {
       await updateImage(id, content);
       setProcessedImage(null);
+      onImageUpdated();
     });
   }
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(

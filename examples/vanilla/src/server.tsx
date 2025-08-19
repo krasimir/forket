@@ -49,11 +49,3 @@ server.listen(port, () => {
   console.log(`App listening on port ${port}.`);
 });
 
-
-// ----------------------------------------------- 
-
-// Working for sentiment analysis
-// const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
-// const [res] = await pipe("I'm a web developer that knows nothing about HTML");
-// console.log(res);
-

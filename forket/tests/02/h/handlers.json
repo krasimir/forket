@@ -1,0 +1,20 @@
+[
+  {
+    "filePath": "/h/code.js",
+    "funcName": "AFf_0",
+    "serverActionClientId": "$FSA_AFf_0",
+    "isDefault": false
+  },
+  {
+    "filePath": "/h/code.js",
+    "funcName": "IHaveAName",
+    "serverActionClientId": "$FSA_IHaveAName",
+    "isDefault": false
+  },
+  {
+    "filePath": "/h/code.js",
+    "funcName": "FEf_1",
+    "serverActionClientId": "$FSA_FEf_1",
+    "isDefault": false
+  }
+]

@@ -1,15 +1,14 @@
 {
   "name": "forket",
-  "version": "0.4.0",
+  "version": "0.4.3",
   "description": "𐂐",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "npm run generate-ast-helpers && npm run minify-forket-client",
+    "build": "npm run generate-ast-helpers && node ./scripts/build-client.js",
     "test": "node ./tests/tests.js",
     "playground": "node ./playground/playground.js",
-    "generate-ast-helpers": "node ./lib/ast/generate.js",
-    "minify-forket-client": "uglifyjs ./lib/client/replacer.js -c -m -o ./lib/client/replacer.min.js"
+    "generate-ast-helpers": "node ./lib/ast/generate.js"
   },
   "repository": {
     "type": "git",
@@ -33,8 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "24.0.8",
-    "arg": "5.0.2",
-    "uglify-js": "^3.19.3"
+    "arg": "5.0.2"
   },
   "peerDependencies": {
     "react": "19.0.0",

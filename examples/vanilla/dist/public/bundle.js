@@ -19312,7 +19312,7 @@
   }
 
   // build/client/components/ImageUploader.tsx
-  function ImageUploader({ processImage, updateImage }) {
+  function ImageUploader({ processImage, updateImage, onImageUpdated }) {
     const [processedImage, setProcessedImage] = (0, import_react2.useState)(null);
     const [isImageUpdating, startImageUpdate] = (0, import_react2.useTransition)();
     let [_, formAction, isPending] = (0, import_react2.useActionState)(async (currentState, formData) => {
@@ -19330,6 +19330,7 @@
       startImageUpdate(async () => {
         await updateImage(id, content);
         setProcessedImage(null);
+        onImageUpdated();
       });
     }
     return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react2.default.createElement(
@@ -19363,13 +19364,27 @@
     if (!images || images.length === 0) {
       return null;
     } else {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid2 gap03 mt1" }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content))));
+      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "images-list grid2 gap03 mt1 pt1" }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content))));
     }
   }
 
   // build/client/components/ImagesManager.tsx
-  function ImagesManager({ processImage, updateImage, images = [] }) {
-    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images }));
+  function ImagesManager({
+    username,
+    processImage,
+    updateImage,
+    initialImages = [],
+    getImages
+  }) {
+    const [images, setImages] = (0, import_react4.useState)(initialImages);
+    const [isUpdating, startUpdating] = (0, import_react4.useTransition)();
+    async function onImageUpdated() {
+      startUpdating(async () => {
+        const images2 = await getImages(username);
+        setImages(images2);
+      });
+    }
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images }));
   }
 
   // build/client/components/LoginForm.tsx

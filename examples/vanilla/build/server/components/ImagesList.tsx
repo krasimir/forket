@@ -8,7 +8,7 @@ export default function ImagesList({ images }: { images?: Image[] }) {
     return null;
   } else {
     return (
-      <div className="grid2 gap03 mt1">
+      <div className="images-list grid2 gap03 mt1 pt1">
         {images.map((image) => (
           <ImageComponent key={image.id} id={image.id}>
             <p className="reset">{image.content}</p>

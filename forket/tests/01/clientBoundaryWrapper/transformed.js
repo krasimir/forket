@@ -1,12 +1,15 @@
 function LoginFormBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["FORKETID111", "LoginForm"]);
+          let a = ["FORKETID111", "LoginForm", ${JSON.stringify(serializedProps)}];
+          if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["FORKETID111", "LoginForm", ${JSON.stringify(serializedProps)}]);
+          $FRSC_.push(a);
+          let me = document.currentScript;
+          if (me) me.remove();
         })();`
     }}></script>
       {children && children.length > 0 && (<template type="forket/children" id="FORKETID111" data-c="LoginForm">

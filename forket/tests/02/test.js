@@ -9,8 +9,8 @@ import { resetId } from "../../lib/utils/getId.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-let cases = ["a", "b", "c", "d", "e", "f", "g"];
-// cases = ["g"];
+let cases = ["a", "b", "c", "d", "e", "f", "g", "h"];
+// cases = ["h"];
 
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly deal with server actions (${cases.join(', ')})`, async () => {

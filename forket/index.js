@@ -3,7 +3,6 @@ import path from "path";
 import chalk from "chalk";
 import { fileURLToPath } from "url";
 import chokidar from "chokidar";
-import { renderToPipeableStream } from "react-dom/server";
 
 import findConfig from "./lib/utils/findConfig.js";
 import { getGraphs, printGraph } from "./lib/graph.js";
@@ -17,7 +16,7 @@ import { resetId } from "./lib/utils/getId.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "replacer.min.js")).toString("utf8");
+const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "client.min.js")).toString("utf8");
 
 export default async function Forket(customOptions = {}) {
   let options = await findConfig();
@@ -94,9 +93,10 @@ export default async function Forket(customOptions = {}) {
       console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`));
     }
   }
-  function client(serverActionsEndpoint) {
+  function client(serverActionsEndpoint, options = { enableLogging: true }) {
     let str = clientReplacerCode;
-    str = str.replace(/\{@\}/g, serverActionsEndpoint);
+    str = str.replace(/__FORKET_SERVER_ACTIONS_ENDPOINT__/g, serverActionsEndpoint);
+    str = str.replace(/__ENABLE_LOGGIGN__/g, options?.enableLogging ? "1" : "0");
     return str;
   }
   function forketServerActions(handler) {

@@ -84,19 +84,42 @@ export async function createNode(file, parentNode = null) {
         } else if (funcNode && funcNode?.type === "ArrowFunctionExpression") {
           const funcName = stack[2]?.id?.value;
           if (!funcName) {
+            if (stack[3]?.type === 'JSXAttribute') {
+              serverActions.push({
+                funcName: "AF" + getId(),
+                funcNode,
+                stack,
+                insideJSXAttribute: true,
+                jsxAttribute: stack[3]?.name?.value
+              });
+            }
             return;
           }
           serverActions.push({ funcName, funcNode, stack });
         } else if (funcNode && funcNode?.type === "FunctionExpression") {
           let funcName = funcNode?.identifier?.value || stack[2]?.id?.value;
+          let insideJSXAttribute = false, jsxAttribute;
           if (!funcName) {
             if (stack[2]?.type === "VariableDeclarator" && stack[2]?.id?.value) {
               funcName = stack[2]?.id?.value;
             } else {
-              return;
+              if (stack[3]?.type === 'JSXAttribute') {
+                funcName = "FE" + getId();
+              }
             }
           }
-          serverActions.push({ funcName, funcNode, stack, isDefault: stack[2]?.type === "ExportDefaultDeclaration" });
+          if (stack[3]?.type === 'JSXAttribute') {
+            insideJSXAttribute = true;
+            jsxAttribute = stack[3]?.name?.value;
+          }
+          serverActions.push({
+            funcName,
+            funcNode,
+            stack,
+            insideJSXAttribute,
+            jsxAttribute,
+            isDefault: stack[2]?.type === "ExportDefaultDeclaration"
+          });
         }
       }
     }
