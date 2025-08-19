@@ -19289,53 +19289,33 @@
   var import_react7 = __toESM(require_react(), 1);
   var import_client = __toESM(require_client(), 1);
 
-  // build/client/contexts/ImagesContext.tsx
-  var import_react = __toESM(require_react(), 1);
-  var ImagesContext = (0, import_react.createContext)({
-    images: [],
-    setImages: () => {
-    }
-  });
-  function ImagesProvider({ initialImages, children }) {
-    const [images, setImages] = (0, import_react.useState)(initialImages);
-    return /* @__PURE__ */ import_react.default.createElement(ImagesContext.Provider, { value: { images, setImages } }, children);
-  }
+  // build/client/components/ImagesManager.tsx
+  var import_react4 = __toESM(require_react(), 1);
 
-  // build/client/components/ImagesList.tsx
-  var import_react3 = __toESM(require_react(), 1);
+  // build/client/components/ImageUploader.tsx
+  var import_react2 = __toESM(require_react(), 1);
 
   // build/client/components/Image.tsx
-  var import_react2 = __toESM(require_react(), 1);
+  var import_react = __toESM(require_react(), 1);
   function Image({ id, className, isPlaceholder, children }) {
     if (isPlaceholder) {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "px1" }, generateFakeText()));
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
     }
-    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "grid p1 bordered-dark " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react2.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react2.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react2.default.createElement("div", { className: "px1" }, children));
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered-dark " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
   }
   function generateFakeText(lines = 10) {
     const text = [];
     for (let i = 0; i < lines; i++) {
       text.push("----- --------------- - ------ --- -----------");
     }
-    return /* @__PURE__ */ import_react2.default.createElement("span", { className: "op05" }, text.join(""));
-  }
-
-  // build/client/components/ImagesList.tsx
-  function ImagesList() {
-    const { images } = (0, import_react3.useContext)(ImagesContext);
-    if (!images || images.length === 0) {
-      return null;
-    } else {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid2 gap03 mt1" }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content))));
-    }
+    return /* @__PURE__ */ import_react.default.createElement("span", { className: "op05" }, text.join(""));
   }
 
   // build/client/components/ImageUploader.tsx
-  var import_react4 = __toESM(require_react(), 1);
   function ImageUploader({ processImage, updateImage }) {
-    const [processedImage, setProcessedImage] = (0, import_react4.useState)(null);
-    const [isImageUpdating, startImageUpdate] = (0, import_react4.useTransition)();
-    let [_, formAction, isPending] = (0, import_react4.useActionState)(async (currentState, formData) => {
+    const [processedImage, setProcessedImage] = (0, import_react2.useState)(null);
+    const [isImageUpdating, startImageUpdate] = (0, import_react2.useTransition)();
+    let [_, formAction, isPending] = (0, import_react2.useActionState)(async (currentState, formData) => {
       const result = await processImage(formData);
       setProcessedImage(result);
     }, null);
@@ -19352,7 +19332,7 @@
         setProcessedImage(null);
       });
     }
-    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react4.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react4.default.createElement(
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react2.default.createElement(
       "input",
       {
         type: "file",
@@ -19364,7 +19344,7 @@
         onChange: uploadImage,
         disabled: isPending
       }
-    ))), isPending && /* @__PURE__ */ import_react4.default.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ import_react4.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react4.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react4.default.createElement("li", { key: index }, /* @__PURE__ */ import_react4.default.createElement(
+    ))), isPending && /* @__PURE__ */ import_react2.default.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ import_react2.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react2.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("li", { key: index }, /* @__PURE__ */ import_react2.default.createElement(
       "button",
       {
         className: "reset",
@@ -19373,8 +19353,23 @@
       },
       Math.round(item.score * 100),
       "% - ",
-      /* @__PURE__ */ import_react4.default.createElement("strong", null, item.label)
+      /* @__PURE__ */ import_react2.default.createElement("strong", null, item.label)
     ))))));
+  }
+
+  // build/client/components/ImagesList.tsx
+  var import_react3 = __toESM(require_react(), 1);
+  function ImagesList({ images }) {
+    if (!images || images.length === 0) {
+      return null;
+    } else {
+      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid2 gap03 mt1" }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content))));
+    }
+  }
+
+  // build/client/components/ImagesManager.tsx
+  function ImagesManager({ processImage, updateImage, images = [] }) {
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images }));
   }
 
   // build/client/components/LoginForm.tsx
@@ -19398,7 +19393,7 @@
   // build/client/components/Header.tsx
   var import_react6 = __toESM(require_react(), 1);
   function Header({ username, logout }) {
-    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
+    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
       "button",
       {
         className: "reset abs",
@@ -19410,7 +19405,7 @@
         style: { top: "9px", right: "18px" }
       },
       "\u2716 logout"
-    )));
+    ));
   }
 
   // build/client/client.tsx
@@ -19418,9 +19413,7 @@
   window.ReactDOMClient = import_client.default;
   window.Header = Header;
   window.LoginForm = LoginForm;
-  window.ImageUploader = ImageUploader;
-  window.ImagesList = ImagesList;
-  window.ImagesProvider = ImagesProvider;
+  window.ImagesManager = ImagesManager;
 })();
 /*! Bundled license information:
 

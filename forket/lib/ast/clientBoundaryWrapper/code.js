@@ -6,9 +6,12 @@ function ComponentName(props) {
       <script
         dangerouslySetInnerHTML={{
           __html: `(function () {
-          if (typeof $FRSC !== 'undefined') return $FRSC(["f_1", "ProductsList"]);
+          let a = ["f_1", "ProductsList", ${JSON.stringify(serializedProps)}];
+          if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(["f_1", "ProductsList", ${JSON.stringify(serializedProps)}]);
+          $FRSC_.push(a);
+          let me = document.currentScript;
+          if (me) me.remove();
         })();`
         }}
       ></script>

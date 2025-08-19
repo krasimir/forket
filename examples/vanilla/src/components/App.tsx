@@ -5,10 +5,8 @@ import LoginForm from "./LoginForm.js";
 import { login, logout } from "../server-actions/auth.js";
 import { processImage, updateImage } from "../server-actions/data.js";
 import { COOKIES } from "../constants.js";
-import ImageUploader from "./ImageUploader.js";
 import DB from '../db.js';
-import ImagesList from "./ImagesList.js";
-import ImagesProvider from "../contexts/ImagesContext.js";
+import ImagesManager from "./ImagesManager.js";
 
 export default async function App({ request }) {
   const username = request.cookies[COOKIES.name];
@@ -33,10 +31,7 @@ export default async function App({ request }) {
         )}
         {username && (
           <section className="container mxauto">
-            <ImagesProvider initialImages={images}>
-              <ImageUploader processImage={processImage} updateImage={updateImage} />
-              <ImagesList />
-            </ImagesProvider>
+            <ImagesManager processImage={processImage} updateImage={updateImage} images={images} />            
           </section>
         )}
         <script src="/bundle.js"></script>

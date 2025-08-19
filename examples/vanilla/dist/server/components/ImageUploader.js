@@ -1,4 +1,3 @@
-"use client";
 import React, { useActionState, useState, useTransition } from "react";
 import Image from "./Image.js";
 function ImageUploader({ processImage, updateImage }) {

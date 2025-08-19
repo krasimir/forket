@@ -1,13 +1,9 @@
-'use client';
-
 import React, { useContext } from 'react';
 
 import { Image } from '../types';
 import ImageComponent from './Image.js';
-import { ImagesContext } from '../contexts/ImagesContext.js';
 
-export default function ImagesList() {
-  const { images } = useContext(ImagesContext);
+export default function ImagesList({ images }: { images?: Image[] }) {
   if (!images || images.length === 0) {
     return null;
   } else {

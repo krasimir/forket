@@ -1,4 +1,3 @@
-'use client';
 import React, { useActionState, useState, useTransition } from "react";
 import Image from "./Image.js";
 import { Suggestion } from "../types.js";
@@ -7,9 +6,10 @@ type ImageUploaderProps = {
   processImage: (formData: FormData) => Promise<any>;
   updateImage: Function;
 }
+type ProcessedImageResponse = { id: string; suggestions: Suggestion[] };
 
 export default function ImageUploader({ processImage, updateImage }: ImageUploaderProps) {
-  const [ processedImage, setProcessedImage ] = useState<{ id: string, suggestions: Suggestion[] } | null>(null);
+  const [processedImage, setProcessedImage] = useState<ProcessedImageResponse | null>(null);
   const [ isImageUpdating, startImageUpdate ] = useTransition();
   let [_, formAction, isPending] = useActionState(async (currentState, formData) => {
     const result = await processImage(formData);
