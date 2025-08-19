@@ -13,7 +13,8 @@ const DB = {
   storeImage,
   getImages,
   getImagesByUsername,
-  setImageContent
+  setImageContent,
+  deleteImage
 };
 let images;
 async function storeImage(request) {
@@ -109,6 +110,26 @@ async function setImageContent(id, content) {
   } else {
     throw new Error("Image ID and content are required");
   }
+}
+async function deleteImage(id) {
+  if (!id) {
+    throw new Error("Image ID is required");
+  }
+  const images2 = await getImages();
+  if (images2.has(id)) {
+    const imageData = images2.get(id);
+    if (imageData) {
+      await fs.unlink(imageData.image);
+      await fs.unlink(imageData.imageData);
+      images2.delete(id);
+      return {
+        ok: true
+      };
+    }
+  }
+  return {
+    ok: false
+  };
 }
 function getExtension(mimetype) {
   switch (mimetype) {

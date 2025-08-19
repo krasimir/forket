@@ -11,6 +11,7 @@ type ImagesManagerProps = {
   updateImage: Function;
   initialImages?: Image[];
   getImages: (data: any) => Promise<Image[]>;
+  deleteImage: Function
 };
 
 export default function ImagesManager({
@@ -18,7 +19,8 @@ export default function ImagesManager({
   processImage,
   updateImage,
   initialImages = [],
-  getImages
+  getImages,
+  deleteImage
 }: ImagesManagerProps) {
   const [images, setImages] = useState<Image[]>(initialImages);
   const [isUpdating, startUpdating] = useTransition();
@@ -29,11 +31,18 @@ export default function ImagesManager({
       setImages(images);
     });
   }
+  async function onDeleteImage(id: string) {
+    startUpdating(async () => {
+      await deleteImage(id);
+      const images = await getImages(username);
+      setImages(images);
+    });
+  }
 
   return (
     <>
       <ImageUploader processImage={processImage} updateImage={updateImage} onImageUpdated={onImageUpdated} />
-      <ImagesList images={images} />
+      <ImagesList images={images} updating={isUpdating} onDeleteImage={onDeleteImage} />
     </>
   );
 }

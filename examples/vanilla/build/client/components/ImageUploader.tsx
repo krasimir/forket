@@ -33,7 +33,7 @@ export default function ImageUploader({ processImage, updateImage, onImageUpdate
   }
 
   return (
-    <div>
+    <div className="loading-box pt1" data-loading={isPending}>
       <form action={formAction}>
         <label htmlFor="image" className="p1">
           <span className="btn" aria-disabled={isPending}>
@@ -51,7 +51,6 @@ export default function ImageUploader({ processImage, updateImage, onImageUpdate
           />
         </label>
       </form>
-      {isPending && <Image isPlaceholder className="mt1" />}
       {!isPending && processedImage && (
         <Image className="mt1" id={processedImage.id}>
           <ul className="reset">

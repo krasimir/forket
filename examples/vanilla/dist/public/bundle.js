@@ -19299,9 +19299,9 @@
   var import_react = __toESM(require_react(), 1);
   function Image({ id, className, isPlaceholder, children }) {
     if (isPlaceholder) {
-      return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
     }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "grid p1 bordered-dark " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: { gridTemplateColumns: "1fr 4fr" } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
   }
   function generateFakeText(lines = 10) {
     const text = [];
@@ -19333,7 +19333,7 @@
         onImageUpdated();
       });
     }
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react2.default.createElement(
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "loading-box pt1", "data-loading": isPending }, /* @__PURE__ */ import_react2.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react2.default.createElement(
       "input",
       {
         type: "file",
@@ -19345,7 +19345,7 @@
         onChange: uploadImage,
         disabled: isPending
       }
-    ))), isPending && /* @__PURE__ */ import_react2.default.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ import_react2.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react2.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("li", { key: index }, /* @__PURE__ */ import_react2.default.createElement(
+    ))), !isPending && processedImage && /* @__PURE__ */ import_react2.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react2.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("li", { key: index }, /* @__PURE__ */ import_react2.default.createElement(
       "button",
       {
         className: "reset",
@@ -19360,11 +19360,23 @@
 
   // build/client/components/ImagesList.tsx
   var import_react3 = __toESM(require_react(), 1);
-  function ImagesList({ images }) {
+  function ImagesList({ images, updating, onDeleteImage }) {
     if (!images || images.length === 0) {
-      return null;
+      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "loading-box mt1 pt1 tac" }, "No images yet ...");
     } else {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "images-list grid2 gap03 mt1 pt1" }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content))));
+      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "loading-box grid2 gap03 mt1 pt1", "data-loading": updating }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content), /* @__PURE__ */ import_react3.default.createElement(
+        "button",
+        {
+          className: "reset abs",
+          onClick: async () => {
+            if (confirm("Are you sure?")) {
+              onDeleteImage(image.id);
+            }
+          },
+          style: { top: "12px", right: "18px" }
+        },
+        "\u2716"
+      ))));
     }
   }
 
@@ -19374,7 +19386,8 @@
     processImage,
     updateImage,
     initialImages = [],
-    getImages
+    getImages,
+    deleteImage
   }) {
     const [images, setImages] = (0, import_react4.useState)(initialImages);
     const [isUpdating, startUpdating] = (0, import_react4.useTransition)();
@@ -19384,7 +19397,14 @@
         setImages(images2);
       });
     }
-    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images }));
+    async function onDeleteImage(id) {
+      startUpdating(async () => {
+        await deleteImage(id);
+        const images2 = await getImages(username);
+        setImages(images2);
+      });
+    }
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
   }
 
   // build/client/components/LoginForm.tsx

@@ -125,13 +125,11 @@ p.reset {
   border: solid 1px rgb(254, 121, 121);
   border-radius: 0.25rem;
 }
-.bordered {
-  border: solid 1px #a8a8a8;
+.card {
+  background: #424242;
   border-radius: 0.25rem;
-}
-.bordered-dark {
-  border: solid 1px #5e5e5e;
-  border-radius: 0.25rem;
+  border-right: solid 2px #000;
+  border-bottom: solid 2px #000;
 }
 .image-placeholder {
   background: #5e5e5e;
@@ -139,6 +137,25 @@ p.reset {
 .image-fit {
   max-width: 100%;
 }
-.images-list {
-  border-top: solid 10px #999;
+.loading-box {
+  position: relative;
+}
+.loading-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #5b5b5b;
+  background-size: 200% 100%;
+}
+.loading-box[data-loading="true"]::before {
+  height: 3px;
+  background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+  animation: gradientMove 2s linear infinite;
+}
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }

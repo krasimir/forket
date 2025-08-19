@@ -7,7 +7,8 @@ function ImagesManager({
   processImage,
   updateImage,
   initialImages = [],
-  getImages
+  getImages,
+  deleteImage
 }) {
   const [images, setImages] = useState(initialImages);
   const [isUpdating, startUpdating] = useTransition();
@@ -17,7 +18,14 @@ function ImagesManager({
       setImages(images2);
     });
   }
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ React.createElement(ImagesList, { images }));
+  async function onDeleteImage(id) {
+    startUpdating(async () => {
+      await deleteImage(id);
+      const images2 = await getImages(username);
+      setImages(images2);
+    });
+  }
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ React.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
 }
 export {
   ImagesManager as default

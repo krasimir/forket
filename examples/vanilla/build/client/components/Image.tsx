@@ -10,14 +10,14 @@ type ImageProps = {
 export default function Image({ id, className, isPlaceholder, children }: ImageProps) {
   if (isPlaceholder) {
     return (
-      <div className={"grid p1 bordered " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
+      <div className={"rel grid p1 card " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
         <div className="image-placeholder"></div>
         <div className="px1">{generateFakeText()}</div>
       </div>
     );
   }
   return (
-    <div className={"grid p1 bordered-dark " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
+    <div className={"rel grid p1 card " + (className || "")} style={{ gridTemplateColumns: "1fr 4fr" }}>
       <div className="lh0">
         <a href={`/image/${id}`} target="_blank">
           <img src={`/image/${id}`} alt="Uploaded content" className="image-fit" />

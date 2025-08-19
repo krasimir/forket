@@ -14,7 +14,8 @@ const DB = {
     storeImage,
     getImages,
     getImagesByUsername,
-    setImageContent
+    setImageContent,
+    deleteImage
 };
 let images;
 async function storeImage(request): Promise<{
@@ -113,6 +114,28 @@ async function setImageContent(id: string, content: string) {
     } else {
         throw new Error("Image ID and content are required");
     }
+}
+async function deleteImage(id: string): Promise<{
+    ok: boolean;
+}> {
+    if (!id) {
+        throw new Error("Image ID is required");
+    }
+    const images = await getImages();
+    if (images.has(id)) {
+        const imageData = images.get(id);
+        if (imageData) {
+            await fs.unlink(imageData.image);
+            await fs.unlink(imageData.imageData);
+            images.delete(id);
+            return {
+                ok: true
+            };
+        }
+    }
+    return {
+        ok: false
+    };
 }
 function getExtension(mimetype): string {
     switch(mimetype){

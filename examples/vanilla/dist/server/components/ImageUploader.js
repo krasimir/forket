@@ -21,7 +21,7 @@ function ImageUploader({ processImage, updateImage, onImageUpdated }) {
       onImageUpdated();
     });
   }
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React.createElement("div", { className: "loading-box pt1", "data-loading": isPending }, /* @__PURE__ */ React.createElement("form", { action: formAction }, /* @__PURE__ */ React.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ React.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ React.createElement(
     "input",
     {
       type: "file",
@@ -33,7 +33,7 @@ function ImageUploader({ processImage, updateImage, onImageUpdated }) {
       onChange: uploadImage,
       disabled: isPending
     }
-  ))), isPending && /* @__PURE__ */ React.createElement(Image, { isPlaceholder: true, className: "mt1" }), !isPending && processedImage && /* @__PURE__ */ React.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ React.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ React.createElement("li", { key: index }, /* @__PURE__ */ React.createElement(
+  ))), !isPending && processedImage && /* @__PURE__ */ React.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ React.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ React.createElement("li", { key: index }, /* @__PURE__ */ React.createElement(
     "button",
     {
       className: "reset",

@@ -39,6 +39,11 @@ export default async function App({ request }) {
                 "use server";
                 return await DB.getImagesByUsername(username);
               }}
+              deleteImage={async ({ data: [ id ] }) => {
+                "use server";
+                console.log('------ Deleting image with id:', id);
+                await DB.deleteImage(id);
+              }}
               initialImages={images}
             />
           </section>
