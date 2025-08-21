@@ -41,7 +41,6 @@ export default async function App({ request }) {
               }}
               deleteImage={async ({ data: [ id ] }) => {
                 "use server";
-                console.log('------ Deleting image with id:', id);
                 await DB.deleteImage(id);
               }}
               initialImages={images}

@@ -7,7 +7,6 @@ import DB from "../db.js";
 import ImagesManager from "./ImagesManager.js";
 const AFf_7 = async ({ data: [id] }) => {
   "use server";
-  console.log("------ Deleting image with id:", id);
   await DB.deleteImage(id);
 };
 const AFf_6 = async ({ data: [username] }) => {

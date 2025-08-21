@@ -1,6 +1,5 @@
 import forketServerActionsHandler from "./forketServerActions.js";
 import React from "react";
-import fs from 'fs';
 import { renderToPipeableStream } from "react-dom/server";
 import path from "path";
 import http from "http";
@@ -25,20 +24,12 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/image/:id", serveImage);
 Forket().then((forket)=>{
+    forket.setRenderer(renderToPipeableStream);
     app.use("/@forket", fromDataHandler.any(), forket.forketServerActions(forketServerActionsHandler));
-    app.get("/", (req, res)=>{
-        const { pipe, abort } = renderToPipeableStream(<App request={req}/>, {
-            bootstrapScriptContent: forket.client("/@forket"),
-            onShellReady () {
-                res.statusCode = 200;
-                res.setHeader("Content-Type", "text/html; charset=utf-8");
-                pipe(res);
-            },
-            onError (err) {
-                console.error(err);
-            }
-        });
-    });
+    app.get("/", forket.serveApp({
+        factory: (req)=><App request={req}/>,
+        serverActionsEndpoint: "/@forket"
+    }));
 });
 server.listen(port, ()=>{
     console.log(`App listening on port ${port}.`);

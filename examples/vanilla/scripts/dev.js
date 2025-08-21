@@ -84,6 +84,6 @@ async function buildClient() {
     });
     copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
   } catch (error) {
-    console.error(`Error compiling server: ${error.message}`);
+    console.error(`Error compiling client: ${error.message}`);
   }
 }

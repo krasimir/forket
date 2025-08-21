@@ -34,7 +34,7 @@ export default function serializeProps(props, componentName) {
     }
     const serializedProp = serializeProps(value);
     if (serializedProp !== false) {
-      serialized[key] = serializeProps(value);
+      serialized[key] = serializedProp;
     }
   }
 
