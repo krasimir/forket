@@ -26,3 +26,7 @@ hr {
   border-top: dotted 4px #999;
   margin: 1rem 0;
 }
+input, button {
+  font-size: 1rem;
+  padding: 0.4rem;
+}

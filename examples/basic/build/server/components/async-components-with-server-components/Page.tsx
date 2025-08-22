@@ -22,12 +22,12 @@ export default async function Page({ example }) {
     </div>);
 }
 function CommentsBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_19"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_24"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_19", "Comments", ${JSON.stringify(serializedProps)}];
+          let a = ["f_24", "Comments", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -35,11 +35,11 @@ function CommentsBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_19" data-c="Comments">
+      {children && (<template type="forket/children" id="f_24" data-c="Comments">
           {children}
         </template>)}
-      <template type="forket/start" id="f_19" data-c="Comments"></template>
+      <template type="forket/start" id="f_24" data-c="Comments"></template>
       <Comments {...props} children={children}/>
-      <template type="forket/end" id="f_19" data-c="Comments"></template>
+      <template type="forket/end" id="f_24" data-c="Comments"></template>
     </>);
 }

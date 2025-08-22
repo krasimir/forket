@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import Expandable from "./components/adding-interactivity-to-server-components/Expandable";
+import UpdateName from "./components/server-fucntions-with-actions/UpdateName";
 import Comments from "./components/async-components-with-server-components/Comments";
 import EmptyNote from "./components/importing-server-functions-from-client-components/EmptyNote";
+import Expandable from "./components/adding-interactivity-to-server-components/Expandable";
 import Button from "./components/creating-server-function-from-server-component/Button";
 window.React = React;
 window.ReactDOMClient = ReactDOMClient;
 window.Button = Button;
+window.Expandable = Expandable;
 window.EmptyNote = EmptyNote;
 window.Comments = Comments;
-window.Expandable = Expandable;
+window.UpdateName = UpdateName;
