@@ -37,7 +37,7 @@ export async function createNode(file, parentNode = null) {
 
   function processAST(ast, type) {
     const imports = [];
-    const serverActions = [];
+    let serverActions = [];
     let useClient = false;
     let useServer = false;
 
@@ -158,6 +158,15 @@ export async function createNode(file, parentNode = null) {
       CallExpression: processCallExpression,
       ExpressionStatement: processExpressionStatement
     });
+
+    // removing duplicates
+    serverActions = serverActions.reduce((acc, action) => {
+      const existing = acc.find((a) => a.funcName === action.funcName);
+      if (existing) {
+        return acc;
+      }
+      return [...acc, action];
+    }, []);
 
     return {
       imports,
