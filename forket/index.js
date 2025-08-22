@@ -1,10 +1,6 @@
-import fs from "fs";
-import { PassThrough } from "node:stream";
 import path from "path";
 import chalk from "chalk";
-import { fileURLToPath } from "url";
 import chokidar from "chokidar";
-import { renderToPipeableStream } from "react-dom/server";
 
 import findConfig from "./lib/utils/findConfig.js";
 import { getGraphs, printGraph } from "./lib/graph.js";
@@ -14,12 +10,8 @@ import { Thanos, MODE } from "./lib/thanos.js";
 import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
 import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
 import { resetId } from "./lib/utils/getId.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-let renderer = renderToPipeableStream;
-
-const clientReplacerCode = fs.readFileSync(path.join(__dirname, "lib", "client", "client.min.js")).toString("utf8");
+import { serveApp, setRenderer, setRequestContext } from "./lib/server/serveApp.js";
+import serveServerActions from './lib/server/serveServerActions.js';
 
 export default async function Forket(customOptions = {}) {
   let options = await findConfig();
@@ -96,88 +88,16 @@ export default async function Forket(customOptions = {}) {
       console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`));
     }
   }
-  function client(serverActionsEndpoint, options = { enableLogging: true }) {
-    let str = clientReplacerCode;
-    str = str.replace(/__FORKET_SERVER_ACTIONS_ENDPOINT__/g, serverActionsEndpoint);
-    str = str.replace(/__ENABLE_LOGGIGN__/g, options?.enableLogging ? "1" : "0");
-    return str;
-  }
-  function forketServerActions(handler) {
-    if (!handler) {
-      throw new Error(`‎𐂐 Forket: something is wrong with the server actions handler. Check your server entry point.`);
-    }
-    return handler;
-  }
-  function serveApp(options) {
-    if (!options) {
-      throw new Error(`‎𐂐 Forket: serveApp requires options object with "factory" and "serverActionsEndpoint" properties.`);
-    }
-    if (typeof options.factory !== "function") {
-      throw new Error(`‎𐂐 Forket: serveApp requires "factory" to be a function. Received ${typeof options.factory}`);
-    }
-    if (typeof options.serverActionsEndpoint !== "string") {
-      throw new Error(`‎𐂐 Forket: serveApp requires "serverActionsEndpoint" to be a string. Received ${typeof options.serverActionsEndpoint}`);
-    }
-    const { factory, serverActionsEndpoint } = options;
-
-    return (req, res) => {
-      const reactStream = new PassThrough();
-      let reactEnded = false;
-
-      reactStream.pipe(res, { end: false });
-      reactStream.on("end", () => {
-        reactEnded = true;
-        maybeEnd();
-      });
-
-      const pending = new Set();
-
-      function maybeEnd() {
-        if (reactEnded && pending.size === 0 && !res.writableEnded) {
-          res.end();
-        }
-      }
-
-      const { pipe, abort } = renderer(factory(req), {
-        bootstrapScriptContent: client(serverActionsEndpoint),
-        onShellReady() {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "text/html; charset=utf-8");
-          pipe(reactStream);
-        },
-        onAllReady() {
-          
-        },
-        onError(err) {
-          console.error(err);
-        }
-      });
-
-      res.on("close", () => {
-        try {
-          abort();
-        } catch {}
-        try {
-          reactStream.end();
-        } catch {}
-      });
-    }
-  }
-  function setRenderer(r) {
-    if (typeof r !== "function") {
-      throw new Error(`‎𐂐 Forket: renderer must be a function. Received ${typeof r}`);
-    }
-    renderer = r;
-  }
+  
 
   return {
     process,
     getGraphs,
     printGraph,
-    client,
-    forketServerActions,
+    forketServerActions: serveServerActions,
     serveApp,
-    setRenderer
+    setRenderer,
+    setRequestContext
   };
 }
 

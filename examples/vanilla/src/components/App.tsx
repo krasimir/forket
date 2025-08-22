@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
@@ -16,6 +16,12 @@ export default async function App({ request }) {
     images = await DB.getImagesByUsername(username);
   }
 
+  const greeting = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Heyyyy");
+    }, 3000);
+  });
+
   return (
     <html>
       <head>
@@ -23,7 +29,9 @@ export default async function App({ request }) {
         <link rel="stylesheet" href="/assets/styles.css" />
       </head>
       <body>
-        <Header username={username} logout={logout} />
+        <Suspense>
+          <Header username={username} logout={logout} greeting={greeting} />
+        </Suspense>
         {!username && (
           <section className="container mxauto">
             <LoginForm login={login} />
@@ -35,11 +43,11 @@ export default async function App({ request }) {
               username={username}
               processImage={processImage}
               updateImage={updateImage}
-              getImages={async ({ data: [ username ] }) => {
+              getImages={async ({ data: [username] }) => {
                 "use server";
                 return await DB.getImagesByUsername(username);
               }}
-              deleteImage={async ({ data: [ id ] }) => {
+              deleteImage={async ({ data: [id] }) => {
                 "use server";
                 await DB.deleteImage(id);
               }}

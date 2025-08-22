@@ -1,5 +1,5 @@
 import forketSerializeProps from "forket/lib/utils/serializeProps.js";
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 import { login, logout } from "../server-actions/auth.js";
@@ -21,13 +21,20 @@ export default async function App({ request }) {
     if (username) {
         images = await DB.getImagesByUsername(username);
     }
+    const greeting = new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve("Heyyyy");
+        }, 3000);
+    });
     return (<html>
       <head>
         <title>👋</title>
         <link rel="stylesheet" href="/assets/styles.css"/>
       </head>
       <body>
-        <HeaderBoundary username={username} logout={"$FSA_logout"}/>
+        <Suspense>
+          <HeaderBoundary username={username} logout={"$FSA_logout"} greeting={greeting}/>
+        </Suspense>
         {!username && (<section className="container mxauto">
             <LoginFormBoundary login={"$FSA_login"}/>
           </section>)}
@@ -39,7 +46,7 @@ export default async function App({ request }) {
     </html>);
 }
 function HeaderBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Header"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_22"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
@@ -61,7 +68,7 @@ function HeaderBoundary(props) {
     </>);
 }
 function LoginFormBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_23"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
@@ -83,7 +90,7 @@ function LoginFormBoundary(props) {
     </>);
 }
 function ImagesManagerBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_24"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{

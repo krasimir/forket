@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import multer from "multer";
 // import Forket from "forket";
 import Forket from "../../../../forket/index.js";
+import { requestContext } from "forket/lib/server/requestContext.js";
 
 import App from './components/App.js'
 import serveImage from './handlers/serve-image.js';
@@ -28,13 +29,18 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/image/:id", serveImage);
 
 Forket().then((forket) => {
-  // This is only needed here because we are using relative path to Forket.
+  // <start> This is only needed here because we are using relative path to Forket.
   forket.setRenderer(renderToPipeableStream);
+  forket.setRequestContext(requestContext);
+  // </end> This is only needed here because we are using relative path to Forket.
   app.use("/@forket", fromDataHandler.any(), forket.forketServerActions());
-  app.get("/", forket.serveApp({
-    factory: (req) => <App request={req} />,
-    serverActionsEndpoint: "/@forket",
-  }));
+  app.get(
+    "/",
+    forket.serveApp({
+      factory: (req) => <App request={req} />,
+      serverActionsEndpoint: "/@forket"
+    })
+  );
 });
 
 server.listen(port, () => {
