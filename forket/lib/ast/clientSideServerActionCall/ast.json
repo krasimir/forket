@@ -1,0 +1,101 @@
+{
+  "type": "Module",
+  "span": {
+    "start": 1043,
+    "end": 1090
+  },
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "span": {
+        "start": 1043,
+        "end": 1090
+      },
+      "ctxt": 0,
+      "kind": "const",
+      "declare": false,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "span": {
+            "start": 1049,
+            "end": 1089
+          },
+          "id": {
+            "type": "Identifier",
+            "span": {
+              "start": 1049,
+              "end": 1055
+            },
+            "ctxt": 2,
+            "value": "FooBar",
+            "optional": false,
+            "typeAnnotation": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "span": {
+              "start": 1058,
+              "end": 1089
+            },
+            "ctxt": 0,
+            "callee": {
+              "type": "MemberExpression",
+              "span": {
+                "start": 1058,
+                "end": 1073
+              },
+              "object": {
+                "type": "Identifier",
+                "span": {
+                  "start": 1058,
+                  "end": 1064
+                },
+                "ctxt": 1,
+                "value": "window",
+                "optional": false
+              },
+              "property": {
+                "type": "Identifier",
+                "span": {
+                  "start": 1065,
+                  "end": 1073
+                },
+                "value": "FSA_call"
+              }
+            },
+            "arguments": [
+              {
+                "spread": null,
+                "expression": {
+                  "type": "StringLiteral",
+                  "span": {
+                    "start": 1074,
+                    "end": 1078
+                  },
+                  "value": "ID",
+                  "raw": "\"ID\""
+                }
+              },
+              {
+                "spread": null,
+                "expression": {
+                  "type": "StringLiteral",
+                  "span": {
+                    "start": 1080,
+                    "end": 1088
+                  },
+                  "value": "FooBar",
+                  "raw": "\"FooBar\""
+                }
+              }
+            ],
+            "typeArguments": null
+          },
+          "definite": false
+        }
+      ]
+    }
+  ],
+  "interpreter": null
+}

@@ -14,7 +14,7 @@ const FILES = [
       let json = JSON.stringify(ast.body[0], null, 2);
       json = json.replace(/"\ComponentName"/g, 'componentName + "Boundary"');
       json = json.replace(/"value": "ProductsList"/g, '"value": componentName');
-      json = json.replace(/"f_1"/g, 'id');
+      json = json.replace(/"f_1"/g, "id");
       json = json.replace(/\\"f_1\\"/g, '\\"" + id + "\\"');
       json = json.replace(/\\"ProductsList\\"/g, '\\"" + componentName + "\\"');
       return `export default function (id, componentName) {
@@ -42,6 +42,19 @@ const FILES = [
       json = json.replace(/"react"/g, "where");
       json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
       return `export default function (what, where) {
+  return ${json}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "clientSideServerActionCall", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"FooBar"/g, "funcName");
+      json = json.replace(/\\"FooBar\\"/g, '\\"" + funcName + "\\"');
+      json = json.replace(/"ID"/g, "id");
+      json = json.replace(/\\"ID\\"/g, '\\"" + id + "\\"');
+      return `export default function (id, funcName) {
   return ${json}
 }`;
     }

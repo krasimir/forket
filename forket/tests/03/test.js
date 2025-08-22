@@ -7,17 +7,18 @@ import Forket from '../../index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-let cases = ["a"];
-cases = ["a"];
+let cases = ["a", "b"];
+// cases = ["b"];
 
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly transform source code (${cases.join(', ')})`, async () => {
+    let pass = true;
     for (let i = 0; i < cases.length; i++) {
       const buildDir = path.join(__dirname, cases[i], "build");
       const expectedDir = path.join(__dirname, cases[i], "expected");
       // running forket
       await clearDirectory(buildDir);
-      const forket = await Forket({}, path.join(__dirname, cases[i], "forket.config.js"));
+      const forket = await Forket({ printGraph: false }, path.join(__dirname, cases[i], "forket.config.js"));
       await forket.process();
       traverseTree(readFileTree(buildDir), (file) => {
         const dir = path.dirname(file);
@@ -28,15 +29,14 @@ export default async function ({ test, toAST, toCode }) {
         const actual = fs.readFileSync(file, "utf-8");
         const expected = fs.readFileSync(expectedFile, "utf-8");
         if (actual !== expected) {
-          // console.log("-------------------------");
-          // console.log(`${cases[i]}: ${expectedFile}:`);
-          // console.log(chalk.magenta("Expected:\n", expected));
-          // console.log(chalk.red("Actual:\n", actual));
-          throw new Error(`File ${expectedFile} does not match expected output.`);
+          console.log(chalk.red(`--> ${expectedFile.replace(__dirname, "")} does not match expected output.`));
+          // console.log(chalk.green("Actual:\n", actual));
+          // console.log(chalk.red("Expected:\n", expected));
+          pass = false;
         }
       });
     }
-    return true;
+    return pass;
   });
 };
 

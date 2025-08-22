@@ -1,4 +1,3 @@
-"use server";
 import DB from "../db.js";
 async function processImage(data, context) {
   "use server";

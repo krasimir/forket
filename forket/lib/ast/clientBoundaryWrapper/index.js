@@ -6,8 +6,8 @@ export default function (id, componentName) {
   "identifier": {
     "type": "Identifier",
     "span": {
-      "start": 10,
-      "end": 23
+      "start": 46,
+      "end": 59
     },
     "ctxt": 2,
     "value": componentName + "Boundary",
@@ -18,15 +18,15 @@ export default function (id, componentName) {
     {
       "type": "Parameter",
       "span": {
-        "start": 24,
-        "end": 29
+        "start": 60,
+        "end": 65
       },
       "decorators": [],
       "pat": {
         "type": "Identifier",
         "span": {
-          "start": 24,
-          "end": 29
+          "start": 60,
+          "end": 65
         },
         "ctxt": 3,
         "value": "props",
@@ -37,23 +37,23 @@ export default function (id, componentName) {
   ],
   "decorators": [],
   "span": {
-    "start": 1,
-    "end": 1005
+    "start": 37,
+    "end": 1041
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
-      "start": 31,
-      "end": 1005
+      "start": 67,
+      "end": 1041
     },
     "ctxt": 3,
     "stmts": [
       {
         "type": "VariableDeclaration",
         "span": {
-          "start": 35,
-          "end": 126
+          "start": 71,
+          "end": 162
         },
         "ctxt": 0,
         "kind": "const",
@@ -62,14 +62,14 @@ export default function (id, componentName) {
           {
             "type": "VariableDeclarator",
             "span": {
-              "start": 41,
-              "end": 125
+              "start": 77,
+              "end": 161
             },
             "id": {
               "type": "Identifier",
               "span": {
-                "start": 41,
-                "end": 56
+                "start": 77,
+                "end": 92
               },
               "ctxt": 3,
               "value": "serializedProps",
@@ -79,21 +79,21 @@ export default function (id, componentName) {
             "init": {
               "type": "CallExpression",
               "span": {
-                "start": 59,
-                "end": 125
+                "start": 95,
+                "end": 161
               },
               "ctxt": 0,
               "callee": {
                 "type": "MemberExpression",
                 "span": {
-                  "start": 59,
-                  "end": 73
+                  "start": 95,
+                  "end": 109
                 },
                 "object": {
                   "type": "Identifier",
                   "span": {
-                    "start": 59,
-                    "end": 63
+                    "start": 95,
+                    "end": 99
                   },
                   "ctxt": 1,
                   "value": "JSON",
@@ -102,8 +102,8 @@ export default function (id, componentName) {
                 "property": {
                   "type": "Identifier",
                   "span": {
-                    "start": 64,
-                    "end": 73
+                    "start": 100,
+                    "end": 109
                   },
                   "value": "stringify"
                 }
@@ -114,15 +114,15 @@ export default function (id, componentName) {
                   "expression": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 74,
-                      "end": 124
+                      "start": 110,
+                      "end": 160
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "Identifier",
                       "span": {
-                        "start": 74,
-                        "end": 94
+                        "start": 110,
+                        "end": 130
                       },
                       "ctxt": 1,
                       "value": "forketSerializeProps",
@@ -134,8 +134,8 @@ export default function (id, componentName) {
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 95,
-                            "end": 100
+                            "start": 131,
+                            "end": 136
                           },
                           "ctxt": 3,
                           "value": "props",
@@ -147,8 +147,8 @@ export default function (id, componentName) {
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 102,
-                            "end": 116
+                            "start": 138,
+                            "end": 152
                           },
                           "value": componentName,
                           "raw": "\"" + componentName + "\""
@@ -159,8 +159,8 @@ export default function (id, componentName) {
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 118,
-                            "end": 123
+                            "start": 154,
+                            "end": 159
                           },
                           "value": id,
                           "raw": "\"" + id + "\""
@@ -180,8 +180,8 @@ export default function (id, componentName) {
       {
         "type": "VariableDeclaration",
         "span": {
-          "start": 129,
-          "end": 167
+          "start": 165,
+          "end": 203
         },
         "ctxt": 0,
         "kind": "const",
@@ -190,14 +190,14 @@ export default function (id, componentName) {
           {
             "type": "VariableDeclarator",
             "span": {
-              "start": 135,
-              "end": 166
+              "start": 171,
+              "end": 202
             },
             "id": {
               "type": "Identifier",
               "span": {
-                "start": 135,
-                "end": 143
+                "start": 171,
+                "end": 179
               },
               "ctxt": 3,
               "value": "children",
@@ -207,21 +207,21 @@ export default function (id, componentName) {
             "init": {
               "type": "BinaryExpression",
               "span": {
-                "start": 146,
-                "end": 166
+                "start": 182,
+                "end": 202
               },
               "operator": "||",
               "left": {
                 "type": "MemberExpression",
                 "span": {
-                  "start": 146,
-                  "end": 160
+                  "start": 182,
+                  "end": 196
                 },
                 "object": {
                   "type": "Identifier",
                   "span": {
-                    "start": 146,
-                    "end": 151
+                    "start": 182,
+                    "end": 187
                   },
                   "ctxt": 3,
                   "value": "props",
@@ -230,8 +230,8 @@ export default function (id, componentName) {
                 "property": {
                   "type": "Identifier",
                   "span": {
-                    "start": 152,
-                    "end": 160
+                    "start": 188,
+                    "end": 196
                   },
                   "value": "children"
                 }
@@ -239,8 +239,8 @@ export default function (id, componentName) {
               "right": {
                 "type": "ArrayExpression",
                 "span": {
-                  "start": 164,
-                  "end": 166
+                  "start": 200,
+                  "end": 202
                 },
                 "elements": []
               }
@@ -252,34 +252,34 @@ export default function (id, componentName) {
       {
         "type": "ReturnStatement",
         "span": {
-          "start": 170,
-          "end": 1003
+          "start": 206,
+          "end": 1039
         },
         "argument": {
           "type": "ParenthesisExpression",
           "span": {
-            "start": 177,
-            "end": 1002
+            "start": 213,
+            "end": 1038
           },
           "expression": {
             "type": "JSXFragment",
             "span": {
-              "start": 183,
-              "end": 998
+              "start": 219,
+              "end": 1034
             },
             "opening": {
               "type": "JSXOpeningFragment",
               "span": {
-                "start": 183,
-                "end": 185
+                "start": 219,
+                "end": 221
               }
             },
             "children": [
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 185,
-                  "end": 192
+                  "start": 221,
+                  "end": 228
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -287,51 +287,51 @@ export default function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 192,
-                  "end": 613
+                  "start": 228,
+                  "end": 649
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 193,
-                      "end": 199
+                      "start": 229,
+                      "end": 235
                     },
                     "ctxt": 1,
                     "value": "script",
                     "optional": false
                   },
                   "span": {
-                    "start": 192,
-                    "end": 604
+                    "start": 228,
+                    "end": 640
                   },
                   "attributes": [
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 208,
-                        "end": 596
+                        "start": 244,
+                        "end": 632
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 208,
-                          "end": 231
+                          "start": 244,
+                          "end": 267
                         },
                         "value": "dangerouslySetInnerHTML"
                       },
                       "value": {
                         "type": "JSXExpressionContainer",
                         "span": {
-                          "start": 232,
-                          "end": 596
+                          "start": 268,
+                          "end": 632
                         },
                         "expression": {
                           "type": "ObjectExpression",
                           "span": {
-                            "start": 233,
-                            "end": 595
+                            "start": 269,
+                            "end": 631
                           },
                           "properties": [
                             {
@@ -339,36 +339,36 @@ export default function (id, componentName) {
                               "key": {
                                 "type": "Identifier",
                                 "span": {
-                                  "start": 245,
-                                  "end": 251
+                                  "start": 281,
+                                  "end": 287
                                 },
                                 "value": "__html"
                               },
                               "value": {
                                 "type": "TemplateLiteral",
                                 "span": {
-                                  "start": 253,
-                                  "end": 585
+                                  "start": 289,
+                                  "end": 621
                                 },
                                 "expressions": [
                                   {
                                     "type": "CallExpression",
                                     "span": {
-                                      "start": 313,
-                                      "end": 344
+                                      "start": 349,
+                                      "end": 380
                                     },
                                     "ctxt": 0,
                                     "callee": {
                                       "type": "MemberExpression",
                                       "span": {
-                                        "start": 313,
-                                        "end": 327
+                                        "start": 349,
+                                        "end": 363
                                       },
                                       "object": {
                                         "type": "Identifier",
                                         "span": {
-                                          "start": 313,
-                                          "end": 317
+                                          "start": 349,
+                                          "end": 353
                                         },
                                         "ctxt": 1,
                                         "value": "JSON",
@@ -377,8 +377,8 @@ export default function (id, componentName) {
                                       "property": {
                                         "type": "Identifier",
                                         "span": {
-                                          "start": 318,
-                                          "end": 327
+                                          "start": 354,
+                                          "end": 363
                                         },
                                         "value": "stringify"
                                       }
@@ -389,8 +389,8 @@ export default function (id, componentName) {
                                         "expression": {
                                           "type": "Identifier",
                                           "span": {
-                                            "start": 328,
-                                            "end": 343
+                                            "start": 364,
+                                            "end": 379
                                           },
                                           "ctxt": 3,
                                           "value": "serializedProps",
@@ -405,8 +405,8 @@ export default function (id, componentName) {
                                   {
                                     "type": "TemplateElement",
                                     "span": {
-                                      "start": 254,
-                                      "end": 311
+                                      "start": 290,
+                                      "end": 347
                                     },
                                     "tail": false,
                                     "cooked": "(function () {\n          let a = [\"" + id + "\", \"" + componentName + "\", ",
@@ -415,8 +415,8 @@ export default function (id, componentName) {
                                   {
                                     "type": "TemplateElement",
                                     "span": {
-                                      "start": 345,
-                                      "end": 584
+                                      "start": 381,
+                                      "end": 620
                                     },
                                     "tail": true,
                                     "cooked": "];\n          if (typeof $FRSC !== 'undefined') return $FRSC(a);\n          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n          $FRSC_.push(a);\n          let me = document.currentScript;\n          if (me) me.remove();\n        })();",
@@ -437,14 +437,14 @@ export default function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 604,
-                    "end": 613
+                    "start": 640,
+                    "end": 649
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 606,
-                      "end": 612
+                      "start": 642,
+                      "end": 648
                     },
                     "ctxt": 1,
                     "value": "script",
@@ -455,8 +455,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 613,
-                  "end": 620
+                  "start": 649,
+                  "end": 656
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -464,28 +464,28 @@ export default function (id, componentName) {
               {
                 "type": "JSXExpressionContainer",
                 "span": {
-                  "start": 620,
-                  "end": 780
+                  "start": 656,
+                  "end": 816
                 },
                 "expression": {
                   "type": "BinaryExpression",
                   "span": {
-                    "start": 621,
-                    "end": 779
+                    "start": 657,
+                    "end": 815
                   },
                   "operator": "&&",
                   "left": {
                     "type": "BinaryExpression",
                     "span": {
-                      "start": 621,
-                      "end": 652
+                      "start": 657,
+                      "end": 688
                     },
                     "operator": "&&",
                     "left": {
                       "type": "Identifier",
                       "span": {
-                        "start": 621,
-                        "end": 629
+                        "start": 657,
+                        "end": 665
                       },
                       "ctxt": 3,
                       "value": "children",
@@ -494,21 +494,21 @@ export default function (id, componentName) {
                     "right": {
                       "type": "BinaryExpression",
                       "span": {
-                        "start": 633,
-                        "end": 652
+                        "start": 669,
+                        "end": 688
                       },
                       "operator": ">",
                       "left": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 633,
-                          "end": 648
+                          "start": 669,
+                          "end": 684
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 633,
-                            "end": 641
+                            "start": 669,
+                            "end": 677
                           },
                           "ctxt": 3,
                           "value": "children",
@@ -517,8 +517,8 @@ export default function (id, componentName) {
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 642,
-                            "end": 648
+                            "start": 678,
+                            "end": 684
                           },
                           "value": "length"
                         }
@@ -526,8 +526,8 @@ export default function (id, componentName) {
                       "right": {
                         "type": "NumericLiteral",
                         "span": {
-                          "start": 651,
-                          "end": 652
+                          "start": 687,
+                          "end": 688
                         },
                         "value": 0,
                         "raw": "0"
@@ -537,51 +537,51 @@ export default function (id, componentName) {
                   "right": {
                     "type": "ParenthesisExpression",
                     "span": {
-                      "start": 656,
-                      "end": 779
+                      "start": 692,
+                      "end": 815
                     },
                     "expression": {
                       "type": "JSXElement",
                       "span": {
-                        "start": 666,
-                        "end": 771
+                        "start": 702,
+                        "end": 807
                       },
                       "opening": {
                         "type": "JSXOpeningElement",
                         "name": {
                           "type": "Identifier",
                           "span": {
-                            "start": 667,
-                            "end": 675
+                            "start": 703,
+                            "end": 711
                           },
                           "ctxt": 1,
                           "value": "template",
                           "optional": false
                         },
                         "span": {
-                          "start": 666,
-                          "end": 730
+                          "start": 702,
+                          "end": 766
                         },
                         "attributes": [
                           {
                             "type": "JSXAttribute",
                             "span": {
-                              "start": 676,
-                              "end": 698
+                              "start": 712,
+                              "end": 734
                             },
                             "name": {
                               "type": "Identifier",
                               "span": {
-                                "start": 676,
-                                "end": 680
+                                "start": 712,
+                                "end": 716
                               },
                               "value": "type"
                             },
                             "value": {
                               "type": "StringLiteral",
                               "span": {
-                                "start": 681,
-                                "end": 698
+                                "start": 717,
+                                "end": 734
                               },
                               "value": "forket/children",
                               "raw": "\"forket/children\""
@@ -590,22 +590,22 @@ export default function (id, componentName) {
                           {
                             "type": "JSXAttribute",
                             "span": {
-                              "start": 699,
-                              "end": 707
+                              "start": 735,
+                              "end": 743
                             },
                             "name": {
                               "type": "Identifier",
                               "span": {
-                                "start": 699,
-                                "end": 701
+                                "start": 735,
+                                "end": 737
                               },
                               "value": "id"
                             },
                             "value": {
                               "type": "StringLiteral",
                               "span": {
-                                "start": 702,
-                                "end": 707
+                                "start": 738,
+                                "end": 743
                               },
                               "value": id,
                               "raw": "\"" + id + "\""
@@ -614,22 +614,22 @@ export default function (id, componentName) {
                           {
                             "type": "JSXAttribute",
                             "span": {
-                              "start": 708,
-                              "end": 729
+                              "start": 744,
+                              "end": 765
                             },
                             "name": {
                               "type": "Identifier",
                               "span": {
-                                "start": 708,
-                                "end": 714
+                                "start": 744,
+                                "end": 750
                               },
                               "value": "data-c"
                             },
                             "value": {
                               "type": "StringLiteral",
                               "span": {
-                                "start": 715,
-                                "end": 729
+                                "start": 751,
+                                "end": 765
                               },
                               "value": componentName,
                               "raw": "\"" + componentName + "\""
@@ -643,8 +643,8 @@ export default function (id, componentName) {
                         {
                           "type": "JSXText",
                           "span": {
-                            "start": 730,
-                            "end": 741
+                            "start": 766,
+                            "end": 777
                           },
                           "value": "\n          ",
                           "raw": "\n          "
@@ -652,14 +652,14 @@ export default function (id, componentName) {
                         {
                           "type": "JSXExpressionContainer",
                           "span": {
-                            "start": 741,
-                            "end": 751
+                            "start": 777,
+                            "end": 787
                           },
                           "expression": {
                             "type": "Identifier",
                             "span": {
-                              "start": 742,
-                              "end": 750
+                              "start": 778,
+                              "end": 786
                             },
                             "ctxt": 3,
                             "value": "children",
@@ -669,8 +669,8 @@ export default function (id, componentName) {
                         {
                           "type": "JSXText",
                           "span": {
-                            "start": 751,
-                            "end": 760
+                            "start": 787,
+                            "end": 796
                           },
                           "value": "\n        ",
                           "raw": "\n        "
@@ -679,14 +679,14 @@ export default function (id, componentName) {
                       "closing": {
                         "type": "JSXClosingElement",
                         "span": {
-                          "start": 760,
-                          "end": 771
+                          "start": 796,
+                          "end": 807
                         },
                         "name": {
                           "type": "Identifier",
                           "span": {
-                            "start": 762,
-                            "end": 770
+                            "start": 798,
+                            "end": 806
                           },
                           "ctxt": 1,
                           "value": "template",
@@ -700,8 +700,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 780,
-                  "end": 787
+                  "start": 816,
+                  "end": 823
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -709,45 +709,45 @@ export default function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 787,
-                  "end": 859
+                  "start": 823,
+                  "end": 895
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 788,
-                      "end": 796
+                      "start": 824,
+                      "end": 832
                     },
                     "ctxt": 1,
                     "value": "template",
                     "optional": false
                   },
                   "span": {
-                    "start": 787,
-                    "end": 848
+                    "start": 823,
+                    "end": 884
                   },
                   "attributes": [
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 797,
-                        "end": 816
+                        "start": 833,
+                        "end": 852
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 797,
-                          "end": 801
+                          "start": 833,
+                          "end": 837
                         },
                         "value": "type"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 802,
-                          "end": 816
+                          "start": 838,
+                          "end": 852
                         },
                         "value": "forket/start",
                         "raw": "\"forket/start\""
@@ -756,22 +756,22 @@ export default function (id, componentName) {
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 817,
-                        "end": 825
+                        "start": 853,
+                        "end": 861
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 817,
-                          "end": 819
+                          "start": 853,
+                          "end": 855
                         },
                         "value": "id"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 820,
-                          "end": 825
+                          "start": 856,
+                          "end": 861
                         },
                         "value": id,
                         "raw": "\"" + id + "\""
@@ -780,22 +780,22 @@ export default function (id, componentName) {
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 826,
-                        "end": 847
+                        "start": 862,
+                        "end": 883
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 826,
-                          "end": 832
+                          "start": 862,
+                          "end": 868
                         },
                         "value": "data-c"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 833,
-                          "end": 847
+                          "start": 869,
+                          "end": 883
                         },
                         "value": componentName,
                         "raw": "\"" + componentName + "\""
@@ -809,14 +809,14 @@ export default function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 848,
-                    "end": 859
+                    "start": 884,
+                    "end": 895
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 850,
-                      "end": 858
+                      "start": 886,
+                      "end": 894
                     },
                     "ctxt": 1,
                     "value": "template",
@@ -827,8 +827,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 859,
-                  "end": 866
+                  "start": 895,
+                  "end": 902
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -836,37 +836,37 @@ export default function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 866,
-                  "end": 913
+                  "start": 902,
+                  "end": 949
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 867,
-                      "end": 879
+                      "start": 903,
+                      "end": 915
                     },
                     "ctxt": 1,
                     "value": componentName,
                     "optional": false
                   },
                   "span": {
-                    "start": 866,
-                    "end": 913
+                    "start": 902,
+                    "end": 949
                   },
                   "attributes": [
                     {
                       "type": "SpreadElement",
                       "spread": {
-                        "start": 881,
-                        "end": 884
+                        "start": 917,
+                        "end": 920
                       },
                       "arguments": {
                         "type": "Identifier",
                         "span": {
-                          "start": 884,
-                          "end": 889
+                          "start": 920,
+                          "end": 925
                         },
                         "ctxt": 3,
                         "value": "props",
@@ -876,28 +876,28 @@ export default function (id, componentName) {
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 891,
-                        "end": 910
+                        "start": 927,
+                        "end": 946
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 891,
-                          "end": 899
+                          "start": 927,
+                          "end": 935
                         },
                         "value": "children"
                       },
                       "value": {
                         "type": "JSXExpressionContainer",
                         "span": {
-                          "start": 900,
-                          "end": 910
+                          "start": 936,
+                          "end": 946
                         },
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 901,
-                            "end": 909
+                            "start": 937,
+                            "end": 945
                           },
                           "ctxt": 3,
                           "value": "children",
@@ -915,8 +915,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 913,
-                  "end": 920
+                  "start": 949,
+                  "end": 956
                 },
                 "value": "\n      ",
                 "raw": "\n      "
@@ -924,45 +924,45 @@ export default function (id, componentName) {
               {
                 "type": "JSXElement",
                 "span": {
-                  "start": 920,
-                  "end": 990
+                  "start": 956,
+                  "end": 1026
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 921,
-                      "end": 929
+                      "start": 957,
+                      "end": 965
                     },
                     "ctxt": 1,
                     "value": "template",
                     "optional": false
                   },
                   "span": {
-                    "start": 920,
-                    "end": 979
+                    "start": 956,
+                    "end": 1015
                   },
                   "attributes": [
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 930,
-                        "end": 947
+                        "start": 966,
+                        "end": 983
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 930,
-                          "end": 934
+                          "start": 966,
+                          "end": 970
                         },
                         "value": "type"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 935,
-                          "end": 947
+                          "start": 971,
+                          "end": 983
                         },
                         "value": "forket/end",
                         "raw": "\"forket/end\""
@@ -971,22 +971,22 @@ export default function (id, componentName) {
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 948,
-                        "end": 956
+                        "start": 984,
+                        "end": 992
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 948,
-                          "end": 950
+                          "start": 984,
+                          "end": 986
                         },
                         "value": "id"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 951,
-                          "end": 956
+                          "start": 987,
+                          "end": 992
                         },
                         "value": id,
                         "raw": "\"" + id + "\""
@@ -995,22 +995,22 @@ export default function (id, componentName) {
                     {
                       "type": "JSXAttribute",
                       "span": {
-                        "start": 957,
-                        "end": 978
+                        "start": 993,
+                        "end": 1014
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 957,
-                          "end": 963
+                          "start": 993,
+                          "end": 999
                         },
                         "value": "data-c"
                       },
                       "value": {
                         "type": "StringLiteral",
                         "span": {
-                          "start": 964,
-                          "end": 978
+                          "start": 1000,
+                          "end": 1014
                         },
                         "value": componentName,
                         "raw": "\"" + componentName + "\""
@@ -1024,14 +1024,14 @@ export default function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 979,
-                    "end": 990
+                    "start": 1015,
+                    "end": 1026
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 981,
-                      "end": 989
+                      "start": 1017,
+                      "end": 1025
                     },
                     "ctxt": 1,
                     "value": "template",
@@ -1042,8 +1042,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 990,
-                  "end": 995
+                  "start": 1026,
+                  "end": 1031
                 },
                 "value": "\n    ",
                 "raw": "\n    "
@@ -1052,8 +1052,8 @@ export default function (id, componentName) {
             "closing": {
               "type": "JSXClosingFragment",
               "span": {
-                "start": 995,
-                "end": 998
+                "start": 1031,
+                "end": 1034
               }
             }
           }

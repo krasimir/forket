@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import React from "react";
 
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
@@ -33,6 +33,7 @@ export default async function App({ request }) {
           <section className="container mxauto">
             <ImagesManager
               username={username}
+              processImage={processImage}
               updateImage={updateImage}
               getImages={async ({ data: [username] }) => {
                 "use server";

@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 
-import processServerAction from '../../lib/utils/processServerActions.js';
+import { processServerActions } from "../../lib/utils/processServerActions.js";
 import { getGraph, getNodesContainingServerActions, printGraph } from "../../lib/graph.js";
 
 import { resetId } from "../../lib/utils/getId.js";
@@ -21,7 +21,7 @@ export default async function ({ test, toAST, toCode }) {
       // printGraph(rootNode);
       const serverActionsContainingNodes = getNodesContainingServerActions(rootNode)
       
-      const handlers = processServerAction(rootNode, serverActionsContainingNodes, []);
+      const handlers = processServerActions(rootNode, serverActionsContainingNodes, []);
       
       const code = await toCode(rootNode.ast);
       const expected = fs.readFileSync(path.join(__dirname, cases[i], "expected.js"), "utf8");

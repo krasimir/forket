@@ -3,7 +3,7 @@ import Image from "./Image.js";
 import { Suggestion } from "../types.js";
 
 type ImageUploaderProps = {
-  processImage: (formData: FormData) => Promise<any>;
+  processImage: Function;
   updateImage: Function;
   onImageUpdated: Function;
 };

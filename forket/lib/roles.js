@@ -7,7 +7,7 @@ export function setRoles(node) {
     }
     if (node.children.length > 0) {
       node.children.forEach(child => {
-        if (node.role === ROLE.CLIENT) {
+        if (node.role === ROLE.CLIENT && !child.useServer) {
           child.role = ROLE.CLIENT;
         }
         visitNode(child);

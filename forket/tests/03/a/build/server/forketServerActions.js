@@ -1,4 +1,7 @@
-const actions = {};
+import { markAsRead } from "./components/App.js";
+const actions = {
+    $FSA_markAsRead: markAsRead
+};
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
     if (!req.body && !req.files) {

@@ -12,6 +12,7 @@ import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
 import { resetId } from "./lib/utils/getId.js";
 import { serveApp, setRenderer, setRequestContext } from "./lib/server/serveApp.js";
 import serveServerActions from './lib/server/serveServerActions.js';
+import {removeDuplicates} from "./lib/utils/processServerActions.js";
 
 export default async function Forket(customOptions = {}, configPath = null) {
   let options = await findConfig(configPath);
@@ -77,8 +78,10 @@ export default async function Forket(customOptions = {}, configPath = null) {
       );
 
       console.log(chalk.cyan(`‎𐂐 Setting up server actions handler`));
+      const allServerActions = removeDuplicates([...thanosServer.serverActions, ...thanosClient.serverActions]);
+
       await setupServerActionsHandler(
-        thanosServer.serverActions,
+        allServerActions,
         options.sourceDir,
         path.join(buildServerDir, options.forketServerActionsHandler)
       );

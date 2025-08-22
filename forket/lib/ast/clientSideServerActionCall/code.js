@@ -1,0 +1,1 @@
+const FooBar = window.FSA_call("ID", "FooBar");

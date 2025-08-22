@@ -1,8 +1,8 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
-import getId from "./getId.js";
+import clientSideServerActionCall from "../ast/clientSideServerActionCall/index.js";
 
-export default function processServerActions(node, serverActionsContainingNodes, current = []) {
+export function processServerActions(node, serverActionsContainingNodes, current = []) {
   const serverActionsHandlers = [];
   // Dealing with the cases when the action is in the same file
   if (node.serverActions && node.serverActions.length > 0) {
@@ -74,10 +74,8 @@ export default function processServerActions(node, serverActionsContainingNodes,
   });
 
   function createActionHandler(action) {
-    // console.log('createActionHandler', action);
     const found = current.find((a) => a.funcName === action.funcName && a.filePath === action.filePath);
     if (found) {
-      // console.log('--- !!! ---');
       return found;
     }
     serverActionsHandlers.push(action);
@@ -85,6 +83,71 @@ export default function processServerActions(node, serverActionsContainingNodes,
   }
 
   return serverActionsHandlers;
+}
+export function dealWithSAImportedInClientNode(node, importEntry) {
+  let serverActions = [];
+  node.ast.body = node.ast.body.filter(n => {
+    if (n.type === "ImportDeclaration" && n?.source?.value === importEntry.source) {
+      (n?.specifiers || []).forEach((s) => {
+        if (s.type === "ImportSpecifier" || s.type === 'ImportDefaultSpecifier') {
+          const funcName = s?.local?.value;
+          const serverActionClientId = `$FSA_${funcName}`;
+          serverActions.push({
+            filePath: importEntry.resolvedTo,
+            funcName,
+            serverActionClientId,
+            isDefault: s.type === "ImportDefaultSpecifier"
+          });
+        }
+      });
+      return false;
+    } else if (n.type === "VariableDeclaration") {
+      const declaration = (n?.declarations || []).find((d) => {
+        return (d?.init?.arguments || []).find((a) => a?.expression?.value === importEntry.source)
+      })
+      if (declaration?.id?.type === "Identifier" && declaration?.id?.value) {
+        const funcName = declaration?.id?.value;
+        const serverActionClientId = `$FSA_${funcName}`;
+        serverActions.push({
+          filePath: importEntry.resolvedTo,
+          funcName,
+          serverActionClientId,
+          isDefault: true
+        });
+      } else if (declaration?.id?.type === "ObjectPattern") {
+        (declaration?.id?.properties || []).forEach(p => {
+          if (p?.key.type === "Identifier" && p?.key?.value) {
+            const funcName = p.key.value;
+            const serverActionClientId = `$FSA_${funcName}`;
+            serverActions.push({
+              filePath: importEntry.resolvedTo,
+              funcName,
+              serverActionClientId,
+              isDefault: false
+            });
+          }
+        })
+      }
+      return !(!!declaration);
+    }
+    return true;
+  })
+
+  serverActions = removeDuplicates(serverActions);
+
+  serverActions.forEach(({ serverActionClientId, funcName }) => {
+    insertAtTheTop(node.ast, clientSideServerActionCall(serverActionClientId, funcName));
+  });
+
+  return serverActions;
+}
+export function removeDuplicates(serverActions) {
+  return serverActions.reduce((acc, curr) => {
+    if (!acc.find(a => a.funcName === curr.funcName && a.filePath === curr.filePath)) {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
 }
 
 function makeSureThatItIsGlobal(ast, funcNode, stack) {

@@ -99,35 +99,7 @@
           }
           if (typeof value === "string" && value.match(/^\$FSA_/)) {
             const funcName = value.replace(/^\$FSA_/, "");
-            return async function (...args) {
-              const data = args.length > 0 ? args[0] : {};
-              if (typeof FormData !== "undefined" && data instanceof FormData) {
-                const fd = new FormData();
-                fd.set("__actionId", value);
-                for (const [k, v] of data.entries()) fd.append(k, v);
-                const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
-                  method: "POST",
-                  body: fd
-                });
-
-                if (!result.ok) {
-                  throw new Error(`Server action ${value} failed with status ${result.status}`);
-                }
-                const responseData = await result.json();
-                if (responseData.error) throw new Error(responseData.error);
-                return responseData.result;
-              }
-              const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ __actionId: value, data: args })
-              });
-              if (!result.ok) {
-                throw new Error(`Server action ${value} failed with status ${result.status}`);
-              }
-              const responseData = await result.json();
-              return responseData.result;
-            };
+            return window.FSA_call(value, funcName);
           } else if (typeof value === "string" && value.match(/^\$FLP_/)) {
             return new Promise((resolve, reject) => {
               const id = value.replace(/^\$FLP_/, "");
@@ -287,6 +259,38 @@
     SSR_DONE = true;
     FLP_process();
   }
+  function FSA_call(id, funcName) {
+    return async function (...args) {
+      const data = args.length > 0 ? args[0] : {};
+      if (typeof FormData !== "undefined" && data instanceof FormData) {
+        const fd = new FormData();
+        fd.set("__actionId", id);
+        for (const [k, v] of data.entries()) fd.append(k, v);
+        const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+          method: "POST",
+          body: fd
+        });
+
+        if (!result.ok) {
+          throw new Error(`Server action ${id} failed with status ${result.status}`);
+        }
+        const responseData = await result.json();
+        if (responseData.error) throw new Error(responseData.error);
+        return responseData.result;
+      }
+      const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ __actionId: id, data: args })
+      });
+      if (!result.ok) {
+        throw new Error(`Server action ${id} failed with status ${result.status}`);
+      }
+      const responseData = await result.json();
+      return responseData.result;
+    }
+  }
+  window.FSA_call = FSA_call;
   window.FLP_process = FLP_process;
   window.FSSR_done = FSSR_done;
   FRSC_init();

@@ -1,28 +1,28 @@
 {
   "type": "Module",
   "span": {
-    "start": 1075,
-    "end": 1101
+    "start": 1124,
+    "end": 1150
   },
   "body": [
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 1075,
-        "end": 1101
+        "start": 1124,
+        "end": 1150
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 1082,
-            "end": 1087
+            "start": 1131,
+            "end": 1136
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 1082,
-              "end": 1087
+              "start": 1131,
+              "end": 1136
             },
             "ctxt": 2,
             "value": "React",
@@ -33,8 +33,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 1093,
-          "end": 1100
+          "start": 1142,
+          "end": 1149
         },
         "value": "react",
         "raw": "\"react\""
