@@ -1,0 +1,28 @@
+body, btml {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+h2, p {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+}
+.flex {
+  display: flex;
+}
+.space-between {
+  justify-content: space-between;
+}
+.mr1 {
+  margin-right: 1rem;
+}
+hr {
+  border-bottom: none;
+  border-top: dotted 4px #999;
+  margin: 1rem 0;
+}
