@@ -18,7 +18,7 @@ function ExpandableBoundary(props) {
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_7", "data-c": "Expandable" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_7", "data-c": "Expandable" }), /* @__PURE__ */ React.createElement(Expandable, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_7", "data-c": "Expandable" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_7", "data-c": "Expandable" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_7", "data-c": "Expandable" }), /* @__PURE__ */ React.createElement(Expandable, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_7", "data-c": "Expandable" }));
 }
 export {
   Notes as default

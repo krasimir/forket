@@ -127,7 +127,7 @@
       }
       return content;
     }
-    function getChildren(type, id) {
+    function getChildren(id) {
       const template = d.querySelector(`template[type="forket/children"]#${id}`);
       if (!template) {
         return null;

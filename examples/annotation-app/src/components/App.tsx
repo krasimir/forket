@@ -6,6 +6,7 @@ import { login, logout } from "../server-actions/auth.js";
 import { COOKIES } from "../constants.js";
 import DB from '../db.js';
 import ImagesManager from "./ImagesManager.js";
+import Expandable from "./Expandable.js";
 
 export default async function App({ request }) {
   const username = request.cookies[COOKIES.name];
@@ -44,6 +45,13 @@ export default async function App({ request }) {
             />
           </section>
         )}
+        <section className="container mxauto">
+          <div className="loading-box mt2 pt1">
+            <Expandable label="What's this?">
+              <p>This is an experimental app that exercises the implementation of React Server Components.</p>
+            </Expandable>
+          </div>
+        </section>
         <script src="/bundle.js"></script>
       </body>
     </html>

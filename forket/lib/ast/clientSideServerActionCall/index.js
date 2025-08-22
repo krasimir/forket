@@ -5,8 +5,8 @@ export default function (id, funcName) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1075,
-      "end": 1162
+      "start": 1052,
+      "end": 1139
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ export default function (id, funcName) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 1081,
-          "end": 1162
+          "start": 1058,
+          "end": 1139
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 1081,
-            "end": 1087
+            "start": 1058,
+            "end": 1064
           },
           "ctxt": 2,
           "value": funcName,
@@ -36,25 +36,25 @@ export default function (id, funcName) {
             {
               "type": "Parameter",
               "span": {
-                "start": 1099,
-                "end": 1106
+                "start": 1076,
+                "end": 1083
               },
               "decorators": [],
               "pat": {
                 "type": "RestElement",
                 "span": {
-                  "start": 1099,
-                  "end": 1106
+                  "start": 1076,
+                  "end": 1083
                 },
                 "rest": {
-                  "start": 1099,
-                  "end": 1102
+                  "start": 1076,
+                  "end": 1079
                 },
                 "argument": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1102,
-                    "end": 1106
+                    "start": 1079,
+                    "end": 1083
                   },
                   "ctxt": 3,
                   "value": "args",
@@ -67,49 +67,49 @@ export default function (id, funcName) {
           ],
           "decorators": [],
           "span": {
-            "start": 1090,
-            "end": 1162
+            "start": 1067,
+            "end": 1139
           },
           "ctxt": 3,
           "body": {
             "type": "BlockStatement",
             "span": {
-              "start": 1108,
-              "end": 1162
+              "start": 1085,
+              "end": 1139
             },
             "ctxt": 3,
             "stmts": [
               {
                 "type": "ReturnStatement",
                 "span": {
-                  "start": 1112,
-                  "end": 1160
+                  "start": 1089,
+                  "end": 1137
                 },
                 "argument": {
                   "type": "CallExpression",
                   "span": {
-                    "start": 1119,
-                    "end": 1159
+                    "start": 1096,
+                    "end": 1136
                   },
                   "ctxt": 0,
                   "callee": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 1119,
-                      "end": 1150
+                      "start": 1096,
+                      "end": 1127
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "MemberExpression",
                       "span": {
-                        "start": 1119,
-                        "end": 1134
+                        "start": 1096,
+                        "end": 1111
                       },
                       "object": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1119,
-                          "end": 1125
+                          "start": 1096,
+                          "end": 1102
                         },
                         "ctxt": 1,
                         "value": "window",
@@ -118,8 +118,8 @@ export default function (id, funcName) {
                       "property": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1126,
-                          "end": 1134
+                          "start": 1103,
+                          "end": 1111
                         },
                         "value": "FSA_call"
                       }
@@ -130,8 +130,8 @@ export default function (id, funcName) {
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 1135,
-                            "end": 1139
+                            "start": 1112,
+                            "end": 1116
                           },
                           "value": id,
                           "raw": "\"" + id + "\""
@@ -142,8 +142,8 @@ export default function (id, funcName) {
                         "expression": {
                           "type": "StringLiteral",
                           "span": {
-                            "start": 1141,
-                            "end": 1149
+                            "start": 1118,
+                            "end": 1126
                           },
                           "value": funcName,
                           "raw": "\"" + funcName + "\""
@@ -155,14 +155,14 @@ export default function (id, funcName) {
                   "arguments": [
                     {
                       "spread": {
-                        "start": 1151,
-                        "end": 1154
+                        "start": 1128,
+                        "end": 1131
                       },
                       "expression": {
                         "type": "Identifier",
                         "span": {
-                          "start": 1154,
-                          "end": 1158
+                          "start": 1131,
+                          "end": 1135
                         },
                         "ctxt": 3,
                         "value": "args",

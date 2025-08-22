@@ -5,6 +5,7 @@ import LoginForm from "./LoginForm.js";
 import { COOKIES } from "../constants.js";
 import DB from "../db.js";
 import ImagesManager from "./ImagesManager.js";
+import Expandable from "./Expandable.js";
 const AFf_7 = async ({ data: [id] }) => {
   "use server";
   await DB.deleteImage(id);
@@ -19,49 +20,63 @@ async function App({ request }) {
   if (username) {
     images = await DB.getImagesByUsername(username);
   }
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_logout" }), !username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_login" })), username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(ImagesManagerBoundary, { username, getImages: "$FSA_AFf_6", deleteImage: "$FSA_AFf_7", initialImages: images })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_logout" }), !username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_login" })), username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(ImagesManagerBoundary, { username, getImages: "$FSA_AFf_6", deleteImage: "$FSA_AFf_7", initialImages: images })), /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement("div", { className: "loading-box mt2 pt1" }, /* @__PURE__ */ React.createElement(ExpandableBoundary, { label: "What's this?" }, /* @__PURE__ */ React.createElement("p", null, "This is an experimental app that exercises the implementation of React Server Components.")))), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
 }
 function HeaderBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_22"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_23"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_22", "Header", ${JSON.stringify(serializedProps)}];
+          let a = ["f_23", "Header", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_22", "data-c": "Header" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_22", "data-c": "Header" }), /* @__PURE__ */ React.createElement(Header, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_22", "data-c": "Header" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_23", "data-c": "Header" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_23", "data-c": "Header" }), /* @__PURE__ */ React.createElement(Header, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_23", "data-c": "Header" }));
 }
 function LoginFormBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_23"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_24"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_23", "LoginForm", ${JSON.stringify(serializedProps)}];
+          let a = ["f_24", "LoginForm", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_23", "data-c": "LoginForm" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_23", "data-c": "LoginForm" }), /* @__PURE__ */ React.createElement(LoginForm, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_23", "data-c": "LoginForm" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_24", "data-c": "LoginForm" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_24", "data-c": "LoginForm" }), /* @__PURE__ */ React.createElement(LoginForm, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_24", "data-c": "LoginForm" }));
 }
 function ImagesManagerBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_24"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_25"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_24", "ImagesManager", ${JSON.stringify(serializedProps)}];
+          let a = ["f_25", "ImagesManager", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_24", "data-c": "ImagesManager" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_24", "data-c": "ImagesManager" }), /* @__PURE__ */ React.createElement(ImagesManager, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_24", "data-c": "ImagesManager" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_25", "data-c": "ImagesManager" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_25", "data-c": "ImagesManager" }), /* @__PURE__ */ React.createElement(ImagesManager, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_25", "data-c": "ImagesManager" }));
+}
+function ExpandableBoundary(props) {
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_26"));
+  const children = props.children || [];
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
+    __html: `(function () {
+          let a = ["f_26", "Expandable", ${JSON.stringify(serializedProps)}];
+          if (typeof $FRSC !== 'undefined') return $FRSC(a);
+          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
+          $FRSC_.push(a);
+          let me = document.currentScript;
+          if (me) me.remove();
+        })();`
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_26", "data-c": "Expandable" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_26", "data-c": "Expandable" }), /* @__PURE__ */ React.createElement(Expandable, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_26", "data-c": "Expandable" }));
 }
 export {
   AFf_6,

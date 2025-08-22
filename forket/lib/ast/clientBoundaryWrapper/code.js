@@ -15,7 +15,7 @@ function ComponentName(props) {
         })();`
         }}
       ></script>
-      {children && children.length > 0 && (
+      {children && (
         <template type="forket/children" id="f_1" data-c="ProductsList">
           {children}
         </template>

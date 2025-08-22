@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 1039,
-    "end": 1074
+    "start": 1016,
+    "end": 1051
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 1039,
-        "end": 1074
+        "start": 1016,
+        "end": 1051
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,27 +18,27 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 1045,
-            "end": 1073
+            "start": 1022,
+            "end": 1050
           },
           "id": {
             "type": "ObjectPattern",
             "span": {
-              "start": 1045,
-              "end": 1054
+              "start": 1022,
+              "end": 1031
             },
             "properties": [
               {
                 "type": "AssignmentPatternProperty",
                 "span": {
-                  "start": 1047,
-                  "end": 1052
+                  "start": 1024,
+                  "end": 1029
                 },
                 "key": {
                   "type": "Identifier",
                   "span": {
-                    "start": 1047,
-                    "end": 1052
+                    "start": 1024,
+                    "end": 1029
                   },
                   "ctxt": 2,
                   "value": "React",
@@ -54,15 +54,15 @@
           "init": {
             "type": "CallExpression",
             "span": {
-              "start": 1057,
-              "end": 1073
+              "start": 1034,
+              "end": 1050
             },
             "ctxt": 0,
             "callee": {
               "type": "Identifier",
               "span": {
-                "start": 1057,
-                "end": 1064
+                "start": 1034,
+                "end": 1041
               },
               "ctxt": 1,
               "value": "require",
@@ -74,8 +74,8 @@
                 "expression": {
                   "type": "StringLiteral",
                   "span": {
-                    "start": 1065,
-                    "end": 1072
+                    "start": 1042,
+                    "end": 1049
                   },
                   "value": "react",
                   "raw": "\"react\""

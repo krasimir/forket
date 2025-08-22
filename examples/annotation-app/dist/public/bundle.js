@@ -1474,7 +1474,7 @@
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React8 = require_react(), Internals = {
+        var React9 = require_react(), Internals = {
           d: {
             f: noop,
             r: function() {
@@ -1492,7 +1492,7 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React9.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -2948,7 +2948,7 @@
           "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React8.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React9.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -16418,13 +16418,13 @@
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React8 = require_react(), ReactDOM = require_react_dom(), REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React9 = require_react(), ReactDOM = require_react_dom(), REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
         Symbol.for("react.scope");
         Symbol.for("react.debug_trace_mode");
         var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
         Symbol.for("react.legacy_hidden");
         Symbol.for("react.tracing_marker");
-        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, assign = Object.assign, disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
+        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React9.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, assign = Object.assign, disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
         disabledLog.__reactDisabledLog = true;
         var prefix, suffix, reentry = false;
         var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map)();
@@ -19144,7 +19144,7 @@
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React8.version;
+          var isomorphicReactPackageVersion = React9.version;
           if ("19.0.0" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.0.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -19286,40 +19286,47 @@
   });
 
   // build/client/client.tsx
-  var import_react7 = __toESM(require_react(), 1);
+  var import_react8 = __toESM(require_react(), 1);
   var import_client = __toESM(require_client(), 1);
 
+  // build/client/components/Expandable.tsx
+  var import_react = __toESM(require_react(), 1);
+  function Expandable({ children, label }) {
+    const [expanded, setExpanded] = (0, import_react.useState)(false);
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", { onClick: () => setExpanded(!expanded), className: "reset fz08" }, label), expanded && children);
+  }
+
   // build/client/components/ImagesManager.tsx
-  var import_react4 = __toESM(require_react(), 1);
+  var import_react5 = __toESM(require_react(), 1);
 
   // build/client/components/ImageUploader.tsx
-  var import_react2 = __toESM(require_react(), 1);
+  var import_react3 = __toESM(require_react(), 1);
 
   // build/client/components/Image.tsx
-  var import_react = __toESM(require_react(), 1);
+  var import_react2 = __toESM(require_react(), 1);
   function Image({ id, className, isPlaceholder, children }) {
     if (isPlaceholder) {
-      return /* @__PURE__ */ import_react.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: {
+      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: {
         gridTemplateColumns: "1fr 4fr"
-      } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, generateFakeText()));
+      } }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "image-placeholder" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "px1" }, generateFakeText()));
     }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: {
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "rel grid p1 card " + (className || ""), style: {
       gridTemplateColumns: "1fr 4fr"
-    } }, /* @__PURE__ */ import_react.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "px1" }, children));
+    } }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "lh0" }, /* @__PURE__ */ import_react2.default.createElement("a", { href: `/image/${id}`, target: "_blank" }, /* @__PURE__ */ import_react2.default.createElement("img", { src: `/image/${id}`, alt: "Uploaded content", className: "image-fit" }))), /* @__PURE__ */ import_react2.default.createElement("div", { className: "px1" }, children));
   }
   function generateFakeText(lines = 10) {
     const text = [];
     for (let i = 0; i < lines; i++) {
       text.push("----- --------------- - ------ --- -----------");
     }
-    return /* @__PURE__ */ import_react.default.createElement("span", { className: "op05" }, text.join(""));
+    return /* @__PURE__ */ import_react2.default.createElement("span", { className: "op05" }, text.join(""));
   }
 
   // build/client/components/ImageUploader.tsx
   function ImageUploader({ processImage: processImage2, updateImage: updateImage2, onImageUpdated }) {
-    const [processedImage, setProcessedImage] = (0, import_react2.useState)(null);
-    const [isImageUpdating, startImageUpdate] = (0, import_react2.useTransition)();
-    let [_, formAction, isPending] = (0, import_react2.useActionState)(async (currentState, formData) => {
+    const [processedImage, setProcessedImage] = (0, import_react3.useState)(null);
+    const [isImageUpdating, startImageUpdate] = (0, import_react3.useTransition)();
+    let [_, formAction, isPending] = (0, import_react3.useActionState)(async (currentState, formData) => {
       const result = await processImage2(formData);
       setProcessedImage(result);
     }, null);
@@ -19340,16 +19347,16 @@
         onImageUpdated();
       });
     }
-    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "loading-box pt1", "data-loading": isPending }, /* @__PURE__ */ import_react2.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react2.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react2.default.createElement("input", { type: "file", id: "image", name: "image", accept: "image/*", required: true, className: "hide", onChange: uploadImage, disabled: isPending }))), !isPending && processedImage && /* @__PURE__ */ import_react2.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react2.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react2.default.createElement("li", { key: index }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "reset", onClick: () => setImageContent(processedImage.id, item.label), disabled: isImageUpdating }, Math.round(item.score * 100), "% - ", /* @__PURE__ */ import_react2.default.createElement("strong", null, item.label)))))));
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "loading-box pt1", "data-loading": isPending }, /* @__PURE__ */ import_react3.default.createElement("form", { action: formAction }, /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "image", className: "p1" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "btn", "aria-disabled": isPending }, isPending ? "Reading the image ..." : "Upload image"), /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", id: "image", name: "image", accept: "image/*", required: true, className: "hide", onChange: uploadImage, disabled: isPending }))), !isPending && processedImage && /* @__PURE__ */ import_react3.default.createElement(Image, { className: "mt1", id: processedImage.id }, /* @__PURE__ */ import_react3.default.createElement("ul", { className: "reset" }, processedImage.suggestions.map((item, index) => /* @__PURE__ */ import_react3.default.createElement("li", { key: index }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "reset", onClick: () => setImageContent(processedImage.id, item.label), disabled: isImageUpdating }, Math.round(item.score * 100), "% - ", /* @__PURE__ */ import_react3.default.createElement("strong", null, item.label)))))));
   }
 
   // build/client/components/ImagesList.tsx
-  var import_react3 = __toESM(require_react(), 1);
+  var import_react4 = __toESM(require_react(), 1);
   function ImagesList({ images, updating, onDeleteImage }) {
     if (!images || images.length === 0) {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "loading-box mt1 pt1 tac" }, "No images yet ...");
+      return /* @__PURE__ */ import_react4.default.createElement("div", { className: "loading-box mt1 pt1 tac" }, "No images yet ...");
     } else {
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "loading-box grid2 gap03 mt1 pt1", "data-loading": updating }, images.map((image) => /* @__PURE__ */ import_react3.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "reset" }, image.content), /* @__PURE__ */ import_react3.default.createElement("button", { className: "reset abs", onClick: async () => {
+      return /* @__PURE__ */ import_react4.default.createElement("div", { className: "loading-box grid2 gap03 mt1 pt1", "data-loading": updating }, images.map((image) => /* @__PURE__ */ import_react4.default.createElement(Image, { key: image.id, id: image.id }, /* @__PURE__ */ import_react4.default.createElement("p", { className: "reset" }, image.content), /* @__PURE__ */ import_react4.default.createElement("button", { className: "reset abs", onClick: async () => {
         if (confirm("Are you sure?")) {
           onDeleteImage(image.id);
         }
@@ -19368,8 +19375,8 @@
     return window.FSA_call("$FSA_processImage", "processImage")(...args);
   };
   function ImagesManager({ username, initialImages = [], getImages, deleteImage }) {
-    const [images, setImages] = (0, import_react4.useState)(initialImages);
-    const [isUpdating, startUpdating] = (0, import_react4.useTransition)();
+    const [images, setImages] = (0, import_react5.useState)(initialImages);
+    const [isUpdating, startUpdating] = (0, import_react5.useTransition)();
     async function onImageUpdated() {
       startUpdating(async () => {
         const images2 = await getImages(username);
@@ -19383,14 +19390,14 @@
         setImages(images2);
       });
     }
-    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
+    return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react5.default.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
   }
 
   // build/client/components/LoginForm.tsx
-  var import_react5 = __toESM(require_react(), 1);
+  var import_react6 = __toESM(require_react(), 1);
   function LoginForm({ login }) {
-    const [isPending, startTransition] = (0, import_react5.useTransition)();
-    const [error, setError] = (0, import_react5.useState)(null);
+    const [isPending, startTransition] = (0, import_react6.useTransition)();
+    const [error, setError] = (0, import_react6.useState)(null);
     async function formSubmit(data) {
       setError(null);
       startTransition(async () => {
@@ -19401,16 +19408,16 @@
         window.location.reload();
       });
     }
-    return /* @__PURE__ */ import_react5.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "I need to know your name."), /* @__PURE__ */ import_react5.default.createElement("input", { type: "text", id: "name", name: "name", required: true, placeholder: "Your name", autoFocus: true, disabled: isPending })), /* @__PURE__ */ import_react5.default.createElement("button", { type: "submit", className: "mt2", disabled: isPending }, isPending ? "Please wait ..." : "Let's go!"));
+    return /* @__PURE__ */ import_react6.default.createElement("form", { action: formSubmit, className: "container-small mxauto" }, error && /* @__PURE__ */ import_react6.default.createElement("div", { className: "fz08 mb1 p1 error" }, error), /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "username", className: "block mb1" }, "I need to know your name."), /* @__PURE__ */ import_react6.default.createElement("input", { type: "text", id: "name", name: "name", required: true, placeholder: "Your name", autoFocus: true, disabled: isPending })), /* @__PURE__ */ import_react6.default.createElement("button", { type: "submit", className: "mt2", disabled: isPending }, isPending ? "Please wait ..." : "Let's go!"));
   }
 
   // build/client/components/Header.tsx
-  var import_react6 = __toESM(require_react(), 1);
+  var import_react7 = __toESM(require_react(), 1);
   function Header({ username, logout }) {
-    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: {
+    return /* @__PURE__ */ import_react7.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react7.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react7.default.createElement("span", { className: "block abs tar p05 op05", style: {
       top: 0,
       right: "90px"
-    } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement("button", { className: "reset abs", onClick: async () => {
+    } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react7.default.createElement("button", { className: "reset abs", onClick: async () => {
       if (await logout()) {
         window.location.reload();
       }
@@ -19421,11 +19428,12 @@
   }
 
   // build/client/client.tsx
-  window.React = import_react7.default;
+  window.React = import_react8.default;
   window.ReactDOMClient = import_client.default;
   window.Header = Header;
   window.LoginForm = LoginForm;
   window.ImagesManager = ImagesManager;
+  window.Expandable = Expandable;
 })();
 /*! Bundled license information:
 

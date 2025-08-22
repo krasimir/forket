@@ -24,7 +24,7 @@ function ExpandableBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && children.length > 0 && (<template type="forket/children" id="f_7" data-c="Expandable">
+      {children && (<template type="forket/children" id="f_7" data-c="Expandable">
           {children}
         </template>)}
       <template type="forket/start" id="f_7" data-c="Expandable"></template>

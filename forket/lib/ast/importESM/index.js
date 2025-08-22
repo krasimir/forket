@@ -5,21 +5,21 @@ export default function (what, where, specifier = "ImportDefaultSpecifier") {
   {
     "type": "ImportDeclaration",
     "span": {
-      "start": 1163,
-      "end": 1189
+      "start": 1140,
+      "end": 1166
     },
     "specifiers": [
       {
         "type": specifier,
         "span": {
-          "start": 1170,
-          "end": 1175
+          "start": 1147,
+          "end": 1152
         },
         "local": {
           "type": "Identifier",
           "span": {
-            "start": 1170,
-            "end": 1175
+            "start": 1147,
+            "end": 1152
           },
           "ctxt": 2,
           "value": what,
@@ -30,8 +30,8 @@ export default function (what, where, specifier = "ImportDefaultSpecifier") {
     "source": {
       "type": "StringLiteral",
       "span": {
-        "start": 1181,
-        "end": 1188
+        "start": 1158,
+        "end": 1165
       },
       "value": where,
       "raw": "\"" + where + "\""

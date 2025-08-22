@@ -1,6 +1,7 @@
 'use client';
 import React from "react";
 import ReactDOMClient from "react-dom/client";
+import Expandable from "./components/Expandable";
 import ImagesManager from "./components/ImagesManager";
 import LoginForm from "./components/LoginForm";
 import Header from "./components/Header";
@@ -9,3 +10,4 @@ window.ReactDOMClient = ReactDOMClient;
 window.Header = Header;
 window.LoginForm = LoginForm;
 window.ImagesManager = ImagesManager;
+window.Expandable = Expandable;

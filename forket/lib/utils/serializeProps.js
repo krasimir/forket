@@ -20,11 +20,11 @@ export default function serializeProps(props, componentName, boundaryID) {
     return props.map((v) => serializeProps(v, componentName, boundaryID));
   }
   if (isValidElement(props)) {
-    console.warn(
-      chalk.gray(
-        `𐂐 Prop serlizer: React element found in props. It will not be serialized. Used on <${componentName}> component.`
-      )
-    );
+    // console.warn(
+    //   chalk.gray(
+    //     `𐂐 Prop serlizer: React element found in props. It will not be serialized. Used on <${componentName}> component.`
+    //   )
+    // );
     return false;
   }
 
