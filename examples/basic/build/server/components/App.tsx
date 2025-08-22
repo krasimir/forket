@@ -1,6 +1,7 @@
 import React from 'react';
 import AddInteractivity from './adding-interactivity-to-server-components/Page.js';
 import AsyncComponents from './async-components-with-server-components/Page.js';
+import CreatingServerFunction from './creating-server-function-from-server-component/Page.js';
 const EXAMPLES = [
     {
         title: "Adding interactivity to Server Components",
@@ -13,6 +14,12 @@ const EXAMPLES = [
         reactdocs: "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
         route: "async-components-with-server-components",
         Page: AsyncComponents
+    },
+    {
+        title: "Creating a Server Function from a Server Component",
+        reactdocs: "https://react.dev/reference/rsc/server-functions#creating-a-server-function-from-a-server-component",
+        route: "creating-server-function-from-server-component",
+        Page: CreatingServerFunction
     }
 ];
 export default function App({ request }) {

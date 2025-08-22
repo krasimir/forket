@@ -15,7 +15,8 @@
     "forket": "0.7.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "chokidar": "3.5.2"
+    "chokidar": "3.5.2",
+    "body-parser": "^2.2.0"
   },
   "engines": {
     "node": ">=14.8.0"

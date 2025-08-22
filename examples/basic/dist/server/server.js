@@ -5,12 +5,14 @@ import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
 import Forket from "forket";
+import bodyParser from "body-parser";
 import App from "./components/App.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const port = 8087;
 const app = express();
 const server = http.createServer(app);
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 Forket().then((forket) => {
   app.use("/@forket", forket.forketServerActions(forketServerActionsHandler));

@@ -1,4 +1,7 @@
-const actions = {};
+import { createNoteAction } from "./components/creating-server-function-from-server-component/Page.js";
+const actions = {
+    $FSA_createNoteAction: createNoteAction
+};
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
     if (!req.body && !req.files) {
