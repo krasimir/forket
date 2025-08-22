@@ -28,10 +28,10 @@ export default async function ({ test, toAST, toCode }) {
         const actual = fs.readFileSync(file, "utf-8");
         const expected = fs.readFileSync(expectedFile, "utf-8");
         if (actual !== expected) {
-          console.log("-------------------------");
-          console.log(`${cases[i]}: ${expectedFile}:`);
-          console.log(chalk.magenta("Expected:\n", expected));
-          console.log(chalk.red("Actual:\n", actual));
+          // console.log("-------------------------");
+          // console.log(`${cases[i]}: ${expectedFile}:`);
+          // console.log(chalk.magenta("Expected:\n", expected));
+          // console.log(chalk.red("Actual:\n", actual));
           throw new Error(`File ${expectedFile} does not match expected output.`);
         }
       });
