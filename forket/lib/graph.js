@@ -78,6 +78,29 @@ export async function createNode(file, parentNode = null) {
         if (stack[0]?.type === 'Module') {
           useClient = false;
           useServer = true;
+          ast.body.forEach(n => {
+            if (n?.type === "ExportDeclaration" && n?.declaration?.type === "FunctionDeclaration") {
+              const funcName = n.declaration.identifier?.value;
+              if (funcName) {
+                serverActions.push({
+                  funcName,
+                  funcNode: n.declaration,
+                  stack,
+                  isDefault: false
+                });
+              }
+            } else if (n?.type === "ExportDefaultDeclaration" && n?.decl?.identifier) {
+              const funcName = n?.decl?.identifier;
+              if (funcName) {
+                serverActions.push({
+                  funcName,
+                  funcNode: n?.decl,
+                  stack,
+                  isDefault: true
+                });
+              }
+            }
+          })
           return;
         }
         const funcNode = stack[1];
@@ -288,5 +311,7 @@ export function flattenNodes(graph) {
   return result;
 }
 export function getNodesContainingServerActions(graph) {
-  return flattenNodes(graph).filter((node) => node.serverActions.length > 0);
+  return flattenNodes(graph).filter((node) => {
+    return node.serverActions.length > 0;
+  });
 }

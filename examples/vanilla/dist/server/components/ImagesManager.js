@@ -2,9 +2,9 @@
 import React, { useState, useTransition } from "react";
 import ImageUploader from "./ImageUploader.js";
 import ImagesList from "./ImagesList.js";
+import { processImage } from "../server-actions/data.js";
 function ImagesManager({
   username,
-  processImage,
   updateImage,
   initialImages = [],
   getImages,

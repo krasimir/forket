@@ -1,3 +1,4 @@
+"use server";
 import DB from '../db.js';
 
 export async function processImage(data, context) {

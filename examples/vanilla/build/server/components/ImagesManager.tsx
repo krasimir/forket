@@ -4,10 +4,10 @@ import React, { useState, useTransition } from "react";
 import ImageUploader from './ImageUploader.js';
 import ImagesList from './ImagesList.js';
 import { Image } from '../types';
+import { processImage } from '../server-actions/data.js'
 
 type ImagesManagerProps = {
   username: string;
-  processImage: Function;
   updateImage: Function;
   initialImages?: Image[];
   getImages: (data: any) => Promise<Image[]>;
@@ -16,7 +16,6 @@ type ImagesManagerProps = {
 
 export default function ImagesManager({
   username,
-  processImage,
   updateImage,
   initialImages = [],
   getImages,

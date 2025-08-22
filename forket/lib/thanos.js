@@ -43,6 +43,12 @@ export function Thanos() {
             minify: false
           });
           return transformed.code;
+        } else {
+          if (node?.serverActions && node?.serverActions.length > 0 && node?.role === ROLE.CLIENT) {
+            throw new Error(
+              `‎file ${node.file} contains server actions but looks like is marked as client component. Add "use server" at the top.`
+            );
+          }
         }
       }
       return content;

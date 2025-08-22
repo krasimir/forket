@@ -5,8 +5,8 @@ export default function (id, funcName) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1043,
-      "end": 1090
+      "start": 1075,
+      "end": 1162
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ export default function (id, funcName) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 1049,
-          "end": 1089
+          "start": 1081,
+          "end": 1162
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 1049,
-            "end": 1055
+            "start": 1081,
+            "end": 1087
           },
           "ctxt": 2,
           "value": funcName,
@@ -30,64 +30,155 @@ export default function (id, funcName) {
           "typeAnnotation": null
         },
         "init": {
-          "type": "CallExpression",
-          "span": {
-            "start": 1058,
-            "end": 1089
-          },
-          "ctxt": 0,
-          "callee": {
-            "type": "MemberExpression",
-            "span": {
-              "start": 1058,
-              "end": 1073
-            },
-            "object": {
-              "type": "Identifier",
-              "span": {
-                "start": 1058,
-                "end": 1064
-              },
-              "ctxt": 1,
-              "value": "window",
-              "optional": false
-            },
-            "property": {
-              "type": "Identifier",
-              "span": {
-                "start": 1065,
-                "end": 1073
-              },
-              "value": "FSA_call"
-            }
-          },
-          "arguments": [
+          "type": "FunctionExpression",
+          "identifier": null,
+          "params": [
             {
-              "spread": null,
-              "expression": {
-                "type": "StringLiteral",
+              "type": "Parameter",
+              "span": {
+                "start": 1099,
+                "end": 1106
+              },
+              "decorators": [],
+              "pat": {
+                "type": "RestElement",
                 "span": {
-                  "start": 1074,
-                  "end": 1078
+                  "start": 1099,
+                  "end": 1106
                 },
-                "value": id,
-                "raw": "\"" + id + "\""
-              }
-            },
-            {
-              "spread": null,
-              "expression": {
-                "type": "StringLiteral",
-                "span": {
-                  "start": 1080,
-                  "end": 1088
+                "rest": {
+                  "start": 1099,
+                  "end": 1102
                 },
-                "value": funcName,
-                "raw": "\"" + funcName + "\""
+                "argument": {
+                  "type": "Identifier",
+                  "span": {
+                    "start": 1102,
+                    "end": 1106
+                  },
+                  "ctxt": 3,
+                  "value": "args",
+                  "optional": false,
+                  "typeAnnotation": null
+                },
+                "typeAnnotation": null
               }
             }
           ],
-          "typeArguments": null
+          "decorators": [],
+          "span": {
+            "start": 1090,
+            "end": 1162
+          },
+          "ctxt": 3,
+          "body": {
+            "type": "BlockStatement",
+            "span": {
+              "start": 1108,
+              "end": 1162
+            },
+            "ctxt": 3,
+            "stmts": [
+              {
+                "type": "ReturnStatement",
+                "span": {
+                  "start": 1112,
+                  "end": 1160
+                },
+                "argument": {
+                  "type": "CallExpression",
+                  "span": {
+                    "start": 1119,
+                    "end": 1159
+                  },
+                  "ctxt": 0,
+                  "callee": {
+                    "type": "CallExpression",
+                    "span": {
+                      "start": 1119,
+                      "end": 1150
+                    },
+                    "ctxt": 0,
+                    "callee": {
+                      "type": "MemberExpression",
+                      "span": {
+                        "start": 1119,
+                        "end": 1134
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 1119,
+                          "end": 1125
+                        },
+                        "ctxt": 1,
+                        "value": "window",
+                        "optional": false
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 1126,
+                          "end": 1134
+                        },
+                        "value": "FSA_call"
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
+                          "span": {
+                            "start": 1135,
+                            "end": 1139
+                          },
+                          "value": id,
+                          "raw": "\"" + id + "\""
+                        }
+                      },
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
+                          "span": {
+                            "start": 1141,
+                            "end": 1149
+                          },
+                          "value": funcName,
+                          "raw": "\"" + funcName + "\""
+                        }
+                      }
+                    ],
+                    "typeArguments": null
+                  },
+                  "arguments": [
+                    {
+                      "spread": {
+                        "start": 1151,
+                        "end": 1154
+                      },
+                      "expression": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 1154,
+                          "end": 1158
+                        },
+                        "ctxt": 3,
+                        "value": "args",
+                        "optional": false
+                      }
+                    }
+                  ],
+                  "typeArguments": null
+                }
+              }
+            ]
+          },
+          "generator": false,
+          "async": false,
+          "typeParameters": null,
+          "returnType": null
         },
         "definite": false
       }

@@ -3,15 +3,17 @@ import React, { useState, useTransition } from "react";
 import ImageUploader from './ImageUploader.js';
 import ImagesList from './ImagesList.js';
 import { Image } from '../types';
+const processImage = function(...args) {
+    return window.FSA_call("$FSA_processImage", "processImage")(...args);
+};
 type ImagesManagerProps = {
     username: string;
-    processImage: Function;
     updateImage: Function;
     initialImages?: Image[];
     getImages: (data: any) => Promise<Image[]>;
     deleteImage: Function;
 };
-export default function ImagesManager({ username, processImage, updateImage, initialImages = [], getImages, deleteImage }: ImagesManagerProps) {
+export default function ImagesManager({ username, updateImage, initialImages = [], getImages, deleteImage }: ImagesManagerProps) {
     const [images, setImages] = useState<Image[]>(initialImages);
     const [isUpdating, startUpdating] = useTransition();
     async function onImageUpdated() {

@@ -79,7 +79,6 @@ export default async function Forket(customOptions = {}, configPath = null) {
 
       console.log(chalk.cyan(`‎𐂐 Setting up server actions handler`));
       const allServerActions = removeDuplicates([...thanosServer.serverActions, ...thanosClient.serverActions]);
-
       await setupServerActionsHandler(
         allServerActions,
         options.sourceDir,
