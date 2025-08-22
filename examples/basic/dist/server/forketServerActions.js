@@ -1,6 +1,8 @@
+import { createNote } from "./components/importing-server-functions-from-client-components/actions.js";
 import { createNoteAction } from "./components/creating-server-function-from-server-component/Page.js";
 const actions = {
-  $FSA_createNoteAction: createNoteAction
+  $FSA_createNoteAction: createNoteAction,
+  $FSA_createNote: createNote
 };
 async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");

@@ -1,10 +1,7 @@
 import forketSerializeProps from "forket/lib/utils/serializeProps.js";
 import React, { Suspense } from "react";
-import db from './db.js';
-import Comments from './Comments.js';
+import EmptyNote from "./EmptyNote.js";
 export default async function Page({ example }) {
-    const note = await db.notes.get(42);
-    const commentsPromise = db.comments.get(note.id);
     return (<div className="container">
       <p className="flex space-between">
         <a href="/">👈 Back</a>
@@ -13,21 +10,16 @@ export default async function Page({ example }) {
         </a>
       </p>
       <hr/>
-      <div>
-        {note.content}
-        <Suspense fallback={<p>Loading Comments...</p>}>
-          <CommentsBoundary commentsPromise={commentsPromise}/>
-        </Suspense>
-      </div>
+      <EmptyNoteBoundary/>
     </div>);
 }
-function CommentsBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_19"));
+function EmptyNoteBoundary(props) {
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_18"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_19", "Comments", ${JSON.stringify(serializedProps)}];
+          let a = ["f_18", "EmptyNote", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -35,11 +27,11 @@ function CommentsBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_19" data-c="Comments">
+      {children && (<template type="forket/children" id="f_18" data-c="EmptyNote">
           {children}
         </template>)}
-      <template type="forket/start" id="f_19" data-c="Comments"></template>
-      <Comments {...props} children={children}/>
-      <template type="forket/end" id="f_19" data-c="Comments"></template>
+      <template type="forket/start" id="f_18" data-c="EmptyNote"></template>
+      <EmptyNote {...props} children={children}/>
+      <template type="forket/end" id="f_18" data-c="EmptyNote"></template>
     </>);
 }

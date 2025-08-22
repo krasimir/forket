@@ -3,6 +3,7 @@ import React from 'react';
 import AddInteractivity from './adding-interactivity-to-server-components/Page.js';
 import AsyncComponents from './async-components-with-server-components/Page.js';
 import CreatingServerFunction from './creating-server-function-from-server-component/Page.js';
+import ImportingServerFunctions from './importing-server-functions-from-client-components/Page.js';
 
 const EXAMPLES = [
   {
@@ -22,6 +23,12 @@ const EXAMPLES = [
     reactdocs: "https://react.dev/reference/rsc/server-functions#creating-a-server-function-from-a-server-component",
     route: "creating-server-function-from-server-component",
     Page: CreatingServerFunction
+  },
+  {
+    title: "Importing Server Functions from Client Components",
+    reactdocs: "https://react.dev/reference/rsc/server-functions#importing-server-functions-from-client-components",
+    route: "importing-server-functions-from-client-components",
+    Page: ImportingServerFunctions
   }
 ];
 

@@ -2,10 +2,12 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
 import Expandable from "./components/adding-interactivity-to-server-components/Expandable";
-import Button from "./components/creating-server-function-from-server-component/Button";
 import Comments from "./components/async-components-with-server-components/Comments";
+import EmptyNote from "./components/importing-server-functions-from-client-components/EmptyNote";
+import Button from "./components/creating-server-function-from-server-component/Button";
 window.React = React;
 window.ReactDOMClient = ReactDOMClient;
-window.Comments = Comments;
 window.Button = Button;
+window.EmptyNote = EmptyNote;
+window.Comments = Comments;
 window.Expandable = Expandable;

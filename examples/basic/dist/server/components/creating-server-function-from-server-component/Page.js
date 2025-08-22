@@ -13,18 +13,18 @@ function EmptyNote() {
   return /* @__PURE__ */ React.createElement(ButtonBoundary, { onClick: "$FSA_createNoteAction" });
 }
 function ButtonBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "Button", "f_14"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "Button", "f_17"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_14", "Button", ${JSON.stringify(serializedProps)}];
+          let a = ["f_17", "Button", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_14", "data-c": "Button" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_14", "data-c": "Button" }), /* @__PURE__ */ React.createElement(Button, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_14", "data-c": "Button" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_17", "data-c": "Button" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_17", "data-c": "Button" }), /* @__PURE__ */ React.createElement(Button, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_17", "data-c": "Button" }));
 }
 export {
   createNoteAction,
