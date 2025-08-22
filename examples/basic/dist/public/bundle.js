@@ -19310,14 +19310,15 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react.default.createElement("form", { action: submitAction }, /* @__PURE__ */ import_react.default.createElement("input", { type: "text", name: "name", disabled: isPending, value: name, onChange: (e) => setName(e.target.value) }), error && /* @__PURE__ */ import_react.default.createElement("span", null, "Failed: ", error));
+    return /* @__PURE__ */ import_react.default.createElement("form", { action: submitAction }, /* @__PURE__ */ import_react.default.createElement("input", { type: "text", name: "name", disabled: isPending, value: name, onChange: (e) => setName(e.target.value), placeholder: "type your name here" }), error && /* @__PURE__ */ import_react.default.createElement("span", null, "Failed: ", error));
   }
 
-  // build/client/components/async-components-with-server-components/Comments.tsx
+  // build/client/components/creating-server-function-from-server-component/Button.tsx
   var import_react2 = __toESM(require_react(), 1);
-  function Comments({ commentsPromise }) {
-    const comments = (0, import_react2.use)(commentsPromise);
-    return comments.map((comment) => /* @__PURE__ */ import_react2.default.createElement("p", { key: comment.id }, comment.content));
+  function Button({ onClick }) {
+    return /* @__PURE__ */ import_react2.default.createElement("button", { onClick: () => {
+      onClick().then(console.log);
+    } }, "Create Empty Note");
   }
 
   // build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx
@@ -19329,28 +19330,28 @@
     return /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => createNote().then(console.log) }, "Create note");
   }
 
-  // build/client/components/adding-interactivity-to-server-components/Expandable.tsx
+  // build/client/components/async-components-with-server-components/Comments.tsx
   var import_react4 = __toESM(require_react(), 1);
-  function Expandable({ children }) {
-    const [expanded, setExpanded] = (0, import_react4.useState)(false);
-    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("button", { onClick: () => setExpanded(!expanded) }, "Toggle"), expanded && children);
+  function Comments({ commentsPromise }) {
+    const comments = (0, import_react4.use)(commentsPromise);
+    return comments.map((comment) => /* @__PURE__ */ import_react4.default.createElement("p", { key: comment.id }, comment.content));
   }
 
-  // build/client/components/creating-server-function-from-server-component/Button.tsx
+  // build/client/components/adding-interactivity-to-server-components/Expandable.tsx
   var import_react5 = __toESM(require_react(), 1);
-  function Button({ onClick }) {
-    return /* @__PURE__ */ import_react5.default.createElement("button", { onClick: () => {
-      onClick().then(console.log);
-    } }, "Create Empty Note");
+  function Expandable({ children }) {
+    const [expanded, setExpanded] = (0, import_react5.useState)(false);
+    return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("button", { onClick: () => setExpanded(!expanded) }, "Toggle"), expanded && children);
   }
 
   // build/client/client.tsx
   window.React = import_react6.default;
   window.ReactDOMClient = import_client.default;
-  window.Button = Button;
   window.Expandable = Expandable;
-  window.EmptyNote = EmptyNote;
   window.Comments = Comments;
+  window.EmptyNote = EmptyNote;
+  window.Button = Button;
+  window.UpdateName = UpdateName;
   window.UpdateName = UpdateName;
 })();
 /*! Bundled license information:

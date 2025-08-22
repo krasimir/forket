@@ -4,6 +4,7 @@ import AsyncComponents from './async-components-with-server-components/Page.js';
 import CreatingServerFunction from './creating-server-function-from-server-component/Page.js';
 import ImportingServerFunctions from './importing-server-functions-from-client-components/Page.js';
 import ServerFunctionsWithActions from './server-fucntions-with-actions/Page.js';
+import ServerFunctionsWithForm from './server-functions-with-form-actions/Page.js';
 const EXAMPLES = [
     {
         title: "Adding interactivity to Server Components",
@@ -34,6 +35,12 @@ const EXAMPLES = [
         reactdocs: "https://react.dev/reference/rsc/server-functions#server-functions-with-actions",
         route: "server-fucntions-with-actions",
         Page: ServerFunctionsWithActions
+    },
+    {
+        title: "Server Functions with Form Actions",
+        reactdocs: "https://react.dev/reference/rsc/server-functions#using-server-functions-with-form-actions",
+        route: "server-functions-with-form-actions",
+        Page: ServerFunctionsWithForm
     }
 ];
 export default function App({ request }) {

@@ -1,6 +1,6 @@
 import forketSerializeProps from "forket/lib/utils/serializeProps.js";
 import React, { Suspense } from "react";
-import EmptyNote from "./EmptyNote.js";
+import UpdateName from "./UpdateName.js";
 export default async function Page({ example }) {
     return (<div className="container">
       <p className="flex space-between">
@@ -10,16 +10,16 @@ export default async function Page({ example }) {
         </a>
       </p>
       <hr/>
-      <EmptyNoteBoundary/>
+      <UpdateNameBoundary/>
     </div>);
 }
-function EmptyNoteBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_27"));
+function UpdateNameBoundary(props) {
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "UpdateName", "f_30"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_27", "EmptyNote", ${JSON.stringify(serializedProps)}];
+          let a = ["f_30", "UpdateName", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -27,11 +27,11 @@ function EmptyNoteBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_27" data-c="EmptyNote">
+      {children && (<template type="forket/children" id="f_30" data-c="UpdateName">
           {children}
         </template>)}
-      <template type="forket/start" id="f_27" data-c="EmptyNote"></template>
-      <EmptyNote {...props} children={children}/>
-      <template type="forket/end" id="f_27" data-c="EmptyNote"></template>
+      <template type="forket/start" id="f_30" data-c="UpdateName"></template>
+      <UpdateName {...props} children={children}/>
+      <template type="forket/end" id="f_30" data-c="UpdateName"></template>
     </>);
 }

@@ -17,7 +17,7 @@ function UpdateName() {
       }
     });
   };
-  return /* @__PURE__ */ React.createElement("form", { action: submitAction }, /* @__PURE__ */ React.createElement("input", { type: "text", name: "name", disabled: isPending, value: name, onChange: (e) => setName(e.target.value) }), error && /* @__PURE__ */ React.createElement("span", null, "Failed: ", error));
+  return /* @__PURE__ */ React.createElement("form", { action: submitAction }, /* @__PURE__ */ React.createElement("input", { type: "text", name: "name", disabled: isPending, value: name, onChange: (e) => setName(e.target.value), placeholder: "type your name here" }), error && /* @__PURE__ */ React.createElement("span", null, "Failed: ", error));
 }
 export {
   UpdateName as default

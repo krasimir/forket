@@ -14,12 +14,12 @@ export default async function Page({ example }) {
     </div>);
 }
 function UpdateNameBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "UpdateName", "f_25"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "UpdateName", "f_29"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_25", "UpdateName", ${JSON.stringify(serializedProps)}];
+          let a = ["f_29", "UpdateName", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -27,11 +27,11 @@ function UpdateNameBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_25" data-c="UpdateName">
+      {children && (<template type="forket/children" id="f_29" data-c="UpdateName">
           {children}
         </template>)}
-      <template type="forket/start" id="f_25" data-c="UpdateName"></template>
+      <template type="forket/start" id="f_29" data-c="UpdateName"></template>
       <UpdateName {...props} children={children}/>
-      <template type="forket/end" id="f_25" data-c="UpdateName"></template>
+      <template type="forket/end" id="f_29" data-c="UpdateName"></template>
     </>);
 }
