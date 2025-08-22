@@ -8,7 +8,7 @@ import Forket from '../../index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let cases = ["a", "b"];
-// cases = ["b"];
+cases = ["b"];
 
 export default async function ({ test, toAST, toCode }) {
   await test(`Should properly transform source code (${cases.join(', ')})`, async () => {

@@ -90,7 +90,7 @@ export async function createNode(file, parentNode = null) {
                 });
               }
             } else if (n?.type === "ExportDefaultDeclaration" && n?.decl?.identifier) {
-              const funcName = n?.decl?.identifier;
+              const funcName = n?.decl?.identifier?.value;
               if (funcName) {
                 serverActions.push({
                   funcName,

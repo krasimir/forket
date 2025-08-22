@@ -19316,7 +19316,7 @@
   }
 
   // build/client/components/ImageUploader.tsx
-  function ImageUploader({ processImage: processImage2, updateImage, onImageUpdated }) {
+  function ImageUploader({ processImage: processImage2, updateImage: updateImage2, onImageUpdated }) {
     const [processedImage, setProcessedImage] = (0, import_react2.useState)(null);
     const [isImageUpdating, startImageUpdate] = (0, import_react2.useTransition)();
     let [_, formAction, isPending] = (0, import_react2.useActionState)(async (currentState, formData) => {
@@ -19335,7 +19335,7 @@
     }
     function setImageContent(id, content) {
       startImageUpdate(async () => {
-        await updateImage(id, content);
+        await updateImage2(id, content);
         setProcessedImage(null);
         onImageUpdated();
       });
@@ -19361,10 +19361,13 @@
   }
 
   // build/client/components/ImagesManager.tsx
+  var updateImage = function(...args) {
+    return window.FSA_call("$FSA_updateImage", "updateImage")(...args);
+  };
   var processImage = function(...args) {
     return window.FSA_call("$FSA_processImage", "processImage")(...args);
   };
-  function ImagesManager({ username, updateImage, initialImages = [], getImages, deleteImage }) {
+  function ImagesManager({ username, initialImages = [], getImages, deleteImage }) {
     const [images, setImages] = (0, import_react4.useState)(initialImages);
     const [isUpdating, startUpdating] = (0, import_react4.useTransition)();
     async function onImageUpdated() {

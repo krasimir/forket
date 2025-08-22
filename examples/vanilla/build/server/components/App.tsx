@@ -3,7 +3,6 @@ import React from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 import { login, logout } from "../server-actions/auth.js";
-import { updateImage } from "../server-actions/data.js";
 import { COOKIES } from "../constants.js";
 import DB from '../db.js';
 import ImagesManager from "./ImagesManager.js";
@@ -32,7 +31,7 @@ export default async function App({ request }) {
             <LoginFormBoundary login={"$FSA_login"}/>
           </section>)}
         {username && (<section className="container mxauto">
-            <ImagesManagerBoundary username={username} updateImage={"$FSA_updateImage"} getImages={"$FSA_AFf_6"} deleteImage={"$FSA_AFf_7"} initialImages={images}/>
+            <ImagesManagerBoundary username={username} getImages={"$FSA_AFf_6"} deleteImage={"$FSA_AFf_7"} initialImages={images}/>
           </section>)}
         <script src="/bundle.js"></script>
       </body>

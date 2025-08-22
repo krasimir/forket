@@ -88,7 +88,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
       inProcess = false;
     } catch (err) {
       inProcess = false;
-      console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`));
+      console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`), err);
     }
   }
 
