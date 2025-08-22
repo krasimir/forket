@@ -22,7 +22,7 @@ async function App({ request }) {
   const greeting = new Promise((resolve) => {
     setTimeout(() => {
       resolve("Heyyyy");
-    }, 3e3);
+    }, 500);
   });
   return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Suspense, null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_logout", greeting })), !username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_login" })), username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(ImagesManagerBoundary, { username, processImage: "$FSA_processImage", updateImage: "$FSA_updateImage", getImages: "$FSA_AFf_6", deleteImage: "$FSA_AFf_7", initialImages: images })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
 }

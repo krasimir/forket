@@ -24,7 +24,7 @@ export default async function App({ request }) {
     const greeting = new Promise((resolve)=>{
         setTimeout(()=>{
             resolve("Heyyyy");
-        }, 3000);
+        }, 500);
     });
     return (<html>
       <head>

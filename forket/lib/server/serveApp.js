@@ -9,15 +9,6 @@ import serveClient from './serveClient.js';
 let renderer = renderToPipeableStream;
 let RQ = requestContext;
 
-export function setRenderer(r) {
-  if (typeof r !== "function") {
-    throw new Error(`‎𐂐 Forket: renderer must be a function. Received ${typeof r}`);
-  }
-  renderer = r;
-}
-export function setRequestContext(r) {
-  RQ = r;
-}
 export function serveApp(options) {
   if (!options) {
     throw new Error(
@@ -37,6 +28,7 @@ export function serveApp(options) {
   return (req, res) => {
 
     const { addTasks, areTasksDone, addTaskListener } = taskManager(res);
+    const sendToClient = clientSender(res);
 
     RQ.run({ getId, addTasks }, () => {
       const reactStream = new PassThrough();
@@ -46,13 +38,11 @@ export function serveApp(options) {
       reactStream.pipe(res, { end: false });
       reactStream.on("end", () => {
         reactEnded = true;
-        res.write(`<script>
-          if (typeof window.FSSR_done !== 'undefined') {
+        sendToClient(`
+          if (typeof window.FSSR_done === 'function') {
             window.FSSR_done();
           }
-          $me = document.currentScript;
-					if ($me) { $me.remove(); }
-        </script>`);
+        `);
         maybeEnd();
       });
       addTaskListener(maybeEnd);
@@ -97,10 +87,11 @@ export function serveApp(options) {
 
 function taskManager(res) {
   const tasks = new Map();
+  const sendToClient = clientSender(res);
   let notify = () => {};
 
   function handlePromise(status, id, value, boundaryID) {
-    res.write(`<script>
+    sendToClient(`
       if (typeof window.$FLP_ === 'undefined') {
         window.$FLP_ = {};
       }
@@ -118,9 +109,7 @@ function taskManager(res) {
       if (typeof window.FLP_process === 'function') {
         window.FLP_process();
       }
-      $me = document.currentScript;
-      if ($me) { $me.remove(); }
-    </script>`);
+    `);
     tasks.delete(id);
     notify();
   }
@@ -145,4 +134,23 @@ function taskManager(res) {
       });
     }
   };
+}
+export function setRenderer(r) {
+  if (typeof r !== "function") {
+    throw new Error(`‎𐂐 Forket: renderer must be a function. Received ${typeof r}`);
+  }
+  renderer = r;
+}
+export function setRequestContext(r) {
+  RQ = r;
+}
+
+function clientSender(res) {
+  return code => {
+    res.write(`<script>
+      ${code}
+      $me = document.currentScript;
+      if ($me) { $me.remove(); }
+    </script>`);
+  }
 }

@@ -6,12 +6,14 @@ type HeaderProps = { username?: string; logout: Function; greeting: Promise<any>
 
 export default function Header({ username, logout, greeting }: HeaderProps) {
   // const message = use(greeting);
+
   const [ message, setMessage ] = useState<string>("");
   useEffect(() => {
-    greeting.then(message => {
+    greeting.then((message) => {
       setMessage(message);
-    })
-  }, []);
+    });
+  }, [greeting]);
+  
   return (
     <header className="mxauto mt2 mb3">
       <img src="/assets/logo_white_350x84.png" alt="forket logo" width="200" className="block mxauto" />

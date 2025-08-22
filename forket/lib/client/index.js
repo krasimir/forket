@@ -59,9 +59,8 @@
       if (typeof window.$FRSC_renderers === "undefined") {
         window.$FRSC_renderers = {};
       }
-      window.$FRSC_renderers[id] = function () {
+      window.$FRSC_renderers[id] = function(newProps) {
         const Component = window[componentName];
-        // log("𐂐 (attempt) " + componentName + "(" + id + ")", { props, children });
         if (!Component) {
           console.error(`𐂐 Component "${componentName}" not found.`);
           return;
@@ -81,12 +80,15 @@
         boundary.end.parentNode.removeChild(boundary.start);
         boundary.end.parentNode.removeChild(boundary.end);
 
-        window.$FRSC_renderers[id] = () => {
+        window.$FRSC_renderers[id] = function(newProps) {
+          if (newProps) {
+            props = { ...props, ...newProps };
+          }
           log("𐂐 " + componentName + "(" + id + ")", { props, children });
           mountOrUpdate(container, React.createElement(Component, props, children));
-        }
-        window.$FRSC_renderers[id]();
-      }
+        };
+        window.$FRSC_renderers[id](newProps);
+      };
       window.$FRSC_renderers[id]();
     }
     function normalizeProps(content) {
@@ -141,8 +143,8 @@
               } else {
                 window.$FLP_[id].resolve = resolve;
                 window.$FLP_[id].reject = reject;
-                FLP_process(id);
               }
+              FLP_process();
             })
           }
           return value;
@@ -259,6 +261,7 @@
       Object.keys(window.$FLP_).forEach((id) => {
         FLP_process(id);
       });
+      return;
     }
     if (typeof window.$FLP_ !== "undefined" && window.$FLP_[id]) {
       const value = window.$FLP_[id].value;
