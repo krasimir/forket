@@ -1,5 +1,5 @@
 import forketSerializeProps from "forket/lib/utils/serializeProps.js";
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./Header.js";
 import LoginForm from "./LoginForm.js";
 import { COOKIES } from "../constants.js";
@@ -19,10 +19,15 @@ async function App({ request }) {
   if (username) {
     images = await DB.getImagesByUsername(username);
   }
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_logout" }), !username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_login" })), username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(ImagesManagerBoundary, { username, processImage: "$FSA_processImage", updateImage: "$FSA_updateImage", getImages: "$FSA_AFf_6", deleteImage: "$FSA_AFf_7", initialImages: images })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
+  const greeting = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Heyyyy");
+    }, 3e3);
+  });
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(Suspense, null, /* @__PURE__ */ React.createElement(HeaderBoundary, { username, logout: "$FSA_logout", greeting })), !username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(LoginFormBoundary, { login: "$FSA_login" })), username && /* @__PURE__ */ React.createElement("section", { className: "container mxauto" }, /* @__PURE__ */ React.createElement(ImagesManagerBoundary, { username, processImage: "$FSA_processImage", updateImage: "$FSA_updateImage", getImages: "$FSA_AFf_6", deleteImage: "$FSA_AFf_7", initialImages: images })), /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
 }
 function HeaderBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "Header"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_22"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
@@ -36,7 +41,7 @@ function HeaderBoundary(props) {
   } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_22", "data-c": "Header" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_22", "data-c": "Header" }), /* @__PURE__ */ React.createElement(Header, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_22", "data-c": "Header" }));
 }
 function LoginFormBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_23"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
@@ -50,7 +55,7 @@ function LoginFormBoundary(props) {
   } }), children && children.length > 0 && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_23", "data-c": "LoginForm" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_23", "data-c": "LoginForm" }), /* @__PURE__ */ React.createElement(LoginForm, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_23", "data-c": "LoginForm" }));
 }
 function ImagesManagerBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_24"));
   const children = props.children || [];
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {

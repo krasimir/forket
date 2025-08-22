@@ -5858,7 +5858,7 @@
           null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
           return thenable;
         }
-        function use(usable) {
+        function use2(usable) {
           if (null !== usable && "object" === typeof usable) {
             if ("function" === typeof usable.then) return useThenable(usable);
             if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
@@ -17719,7 +17719,7 @@
         };
         var ContextOnlyDispatcher = {
           readContext,
-          use,
+          use: use2,
           useCallback: throwInvalidHookError,
           useContext: throwInvalidHookError,
           useEffect: throwInvalidHookError,
@@ -17747,7 +17747,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             mountHookTypesDev();
@@ -17878,7 +17878,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18003,7 +18003,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18128,7 +18128,7 @@
           readContext: function(context) {
             return readContext(context);
           },
-          use,
+          use: use2,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
             updateHookTypesDev();
@@ -18256,7 +18256,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18405,7 +18405,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -18554,7 +18554,7 @@
           },
           use: function(usable) {
             warnInvalidHookAccess();
-            return use(usable);
+            return use2(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
@@ -19427,8 +19427,14 @@
 
   // build/client/components/Header.tsx
   var import_react6 = __toESM(require_react(), 1);
-  function Header({ username, logout }) {
-    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
+  function Header({ username, logout, greeting }) {
+    const [message, setMessage] = (0, import_react6.useState)("");
+    (0, import_react6.useEffect)(() => {
+      greeting.then((message2) => {
+        setMessage(message2);
+      });
+    }, []);
+    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, message, ", ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
       "button",
       {
         className: "reset abs",
