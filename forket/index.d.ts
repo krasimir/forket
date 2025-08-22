@@ -11,6 +11,7 @@ export interface ForketOptions {
 
 export interface ForketInstance {
   process(): Promise<void>;
+  resetId(): void;
   getGraphs(): Object;
   printGraph(): void;
   client(serverActionsEndpoint: string): string;
@@ -20,4 +21,4 @@ export interface ForketInstance {
   setRequestContext(requestContext: any): void;
 }
 
-export default function Forket(options?: ForketOptions): Promise<ForketInstance>;
+export default function Forket(options?: ForketOptions, configPath?: string): Promise<ForketInstance>;

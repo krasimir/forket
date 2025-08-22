@@ -21,25 +21,18 @@ export default async function App({ request }) {
     if (username) {
         images = await DB.getImagesByUsername(username);
     }
-    const greeting = new Promise((resolve)=>{
-        setTimeout(()=>{
-            resolve("Heyyyy");
-        }, 500);
-    });
     return (<html>
       <head>
         <title>👋</title>
         <link rel="stylesheet" href="/assets/styles.css"/>
       </head>
       <body>
-        <Suspense>
-          <HeaderBoundary username={username} logout={"$FSA_logout"} greeting={greeting}/>
-        </Suspense>
+        <HeaderBoundary username={username} logout={"$FSA_logout"}/>
         {!username && (<section className="container mxauto">
             <LoginFormBoundary login={"$FSA_login"}/>
           </section>)}
         {username && (<section className="container mxauto">
-            <ImagesManagerBoundary username={username} processImage={"$FSA_processImage"} updateImage={"$FSA_updateImage"} getImages={"$FSA_AFf_6"} deleteImage={"$FSA_AFf_7"} initialImages={images}/>
+            <ImagesManagerBoundary username={username} updateImage={"$FSA_updateImage"} getImages={"$FSA_AFf_6"} deleteImage={"$FSA_AFf_7"} initialImages={images}/>
           </section>)}
         <script src="/bundle.js"></script>
       </body>

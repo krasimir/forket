@@ -1,4 +1,3 @@
-import { printGraph } from "./graph.js";
 import { ROLE } from "./constants.js";
 
 export function setRoles(node) {

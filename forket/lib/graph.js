@@ -39,6 +39,7 @@ export async function createNode(file, parentNode = null) {
     const imports = [];
     const serverActions = [];
     let useClient = false;
+    let useServer = false;
 
     function processImports(node) {
       if ((node?.source?.value || '').match(/\/\.\.\/\.\.\/forket/)) {
@@ -74,6 +75,11 @@ export async function createNode(file, parentNode = null) {
       if (node?.expression.type === "StringLiteral" && node?.expression?.value === "use client") {
         useClient = true;
       } else if (node?.expression?.type === "StringLiteral" && node?.expression?.value == "use server") {
+        if (stack[0]?.type === 'Module') {
+          useClient = false;
+          useServer = true;
+          return;
+        }
         const funcNode = stack[1];
         if (funcNode && funcNode?.type === "FunctionDeclaration") {
           const funcName = funcNode?.identifier?.value;
@@ -133,6 +139,7 @@ export async function createNode(file, parentNode = null) {
     return {
       imports,
       useClient,
+      useServer,
       serverActions
     };
   }
@@ -147,6 +154,7 @@ export async function createNode(file, parentNode = null) {
     parentNode,
     imports: astProps.imports,
     useClient: astProps.useClient,
+    useServer: astProps.useServer,
     serverActions: astProps.serverActions
   };
 }

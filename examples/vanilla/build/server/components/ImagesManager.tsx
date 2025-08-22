@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useTransition } from "react";
+// import { processImage } from '../server-actions/data.js';
 
 import ImageUploader from './ImageUploader.js';
 import ImagesList from './ImagesList.js';
@@ -7,7 +8,6 @@ import { Image } from '../types';
 
 type ImagesManagerProps = {
   username: string;
-  processImage: (formData: FormData) => Promise<any>;
   updateImage: Function;
   initialImages?: Image[];
   getImages: (data: any) => Promise<Image[]>;
@@ -16,7 +16,6 @@ type ImagesManagerProps = {
 
 export default function ImagesManager({
   username,
-  processImage,
   updateImage,
   initialImages = [],
   getImages,
@@ -38,7 +37,7 @@ export default function ImagesManager({
       setImages(images);
     });
   }
-
+  const processImage = async () => {}
   return (
     <>
       <ImageUploader processImage={processImage} updateImage={updateImage} onImageUpdated={onImageUpdated} />

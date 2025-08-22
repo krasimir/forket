@@ -44,21 +44,20 @@ const DEFAULT_OPTIONS = {
   printGraph: false
 };
 
-export default async function findConfig(startDir = process.cwd()) {
-  let dir = startDir;
-
+export default async function findConfig(configPath) {
+  if (!configPath){
+    configPath = path.join(process.cwd(), "forket.config.js");
+  }
   while (true) {
-    const configPath = path.join(dir, "forket.config.js");
-
     if (fs.existsSync(configPath)) {
       const config = (await import(configPath)).default;
       return { ...DEFAULT_OPTIONS, ...config };
     }
-
+    const dir = path.dirname(configPath);
     const parentDir = path.dirname(dir);
     if (parentDir === dir) {
       throw new Error(`‎𐂐 Forket: missing forket.config.js. Create one at your root directory.`);
     }
-    dir = parentDir;
+    configPath = path.join(parentDir, "forket.config.js");
   }
 }

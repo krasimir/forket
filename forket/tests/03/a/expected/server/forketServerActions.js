@@ -1,17 +1,4 @@
-import { processImage } from "./server-actions/data.js";
-import { updateImage } from "./server-actions/data.js";
-import { login } from "./server-actions/auth.js";
-import { logout } from "./server-actions/auth.js";
-import { AFf_7 } from "./components/App.js";
-import { AFf_6 } from "./components/App.js";
-const actions = {
-    $FSA_AFf_6: AFf_6,
-    $FSA_AFf_7: AFf_7,
-    $FSA_logout: logout,
-    $FSA_login: login,
-    $FSA_updateImage: updateImage,
-    $FSA_processImage: processImage
-};
+const actions = {};
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
     if (!req.body && !req.files) {

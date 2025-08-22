@@ -13,8 +13,8 @@ import { resetId } from "./lib/utils/getId.js";
 import { serveApp, setRenderer, setRequestContext } from "./lib/server/serveApp.js";
 import serveServerActions from './lib/server/serveServerActions.js';
 
-export default async function Forket(customOptions = {}) {
-  let options = await findConfig();
+export default async function Forket(customOptions = {}, configPath = null) {
+  let options = await findConfig(configPath);
   options = { ...options, ...customOptions };
 
   if (!options.sourceDir) {
@@ -37,6 +37,8 @@ export default async function Forket(customOptions = {}) {
       process();
     });
   }
+
+  resetId();
 
   async function process() {
     if (inProcess) return;
@@ -82,16 +84,15 @@ export default async function Forket(customOptions = {}) {
       );
 
       inProcess = false;
-
-    } catch(err) {
+    } catch (err) {
       inProcess = false;
       console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`));
     }
   }
-  
 
   return {
     process,
+    resetId,
     getGraphs,
     printGraph,
     forketServerActions: serveServerActions,

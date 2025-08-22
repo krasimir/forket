@@ -8,10 +8,6 @@ import getImportPath from "./getImportPath.js";
 import insertAfterTop from './insertAtTheTop.js'
 
 export default async function setupServerActionsHandler(actions, sourceDir, filePath) {
-  if (actions.length === 0) {
-    return;
-  }
-
   const ast = template();
   const mapValues = [];
 

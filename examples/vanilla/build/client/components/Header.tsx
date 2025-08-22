@@ -2,24 +2,15 @@
 
 import React, { use, useState, useEffect } from "react";
 
-type HeaderProps = { username?: string; logout: Function; greeting: Promise<any> };
+type HeaderProps = { username?: string; logout: Function };
 
-export default function Header({ username, logout, greeting }: HeaderProps) {
-  // const message = use(greeting);
-
-  const [ message, setMessage ] = useState<string>("");
-  useEffect(() => {
-    greeting.then((message) => {
-      setMessage(message);
-    });
-  }, [greeting]);
-  
+export default function Header({ username, logout }: HeaderProps) {  
   return (
     <header className="mxauto mt2 mb3">
       <img src="/assets/logo_white_350x84.png" alt="forket logo" width="200" className="block mxauto" />
       {username && (
         <span className="block abs tar p05 op05" style={{ top: 0, right: "90px" }}>
-          {message}, {username}!
+          Hey, {username}!
         </span>
       )}
       {username && (

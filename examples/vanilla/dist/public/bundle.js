@@ -19383,7 +19383,6 @@
   // build/client/components/ImagesManager.tsx
   function ImagesManager({
     username,
-    processImage,
     updateImage,
     initialImages = [],
     getImages,
@@ -19404,6 +19403,8 @@
         setImages(images2);
       });
     }
+    const processImage = async () => {
+    };
     return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ import_react4.default.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
   }
 
@@ -19427,14 +19428,8 @@
 
   // build/client/components/Header.tsx
   var import_react6 = __toESM(require_react(), 1);
-  function Header({ username, logout, greeting }) {
-    const [message, setMessage] = (0, import_react6.useState)("");
-    (0, import_react6.useEffect)(() => {
-      greeting.then((message2) => {
-        setMessage(message2);
-      });
-    }, [greeting]);
-    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, message, ", ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
+  function Header({ username, logout }) {
+    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "mxauto mt2 mb3" }, /* @__PURE__ */ import_react6.default.createElement("img", { src: "/assets/logo_white_350x84.png", alt: "forket logo", width: "200", className: "block mxauto" }), username && /* @__PURE__ */ import_react6.default.createElement("span", { className: "block abs tar p05 op05", style: { top: 0, right: "90px" } }, "Hey, ", username, "!"), username && /* @__PURE__ */ import_react6.default.createElement(
       "button",
       {
         className: "reset abs",

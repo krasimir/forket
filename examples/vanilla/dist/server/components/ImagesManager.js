@@ -4,7 +4,6 @@ import ImageUploader from "./ImageUploader.js";
 import ImagesList from "./ImagesList.js";
 function ImagesManager({
   username,
-  processImage,
   updateImage,
   initialImages = [],
   getImages,
@@ -25,6 +24,8 @@ function ImagesManager({
       setImages(images2);
     });
   }
+  const processImage = async () => {
+  };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ImageUploader, { processImage, updateImage, onImageUpdated }), /* @__PURE__ */ React.createElement(ImagesList, { images, updating: isUpdating, onDeleteImage }));
 }
 export {

@@ -2,123 +2,434 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 52
+    "end": 287
   },
   "body": [
     {
-      "type": "ExportDeclaration",
+      "type": "ExpressionStatement",
       "span": {
         "start": 1,
-        "end": 52
+        "end": 14
+      },
+      "expression": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 1,
+          "end": 13
+        },
+        "value": "use server",
+        "raw": "\"use server\""
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 16,
+        "end": 42
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 23,
+            "end": 25
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 23,
+              "end": 25
+            },
+            "ctxt": 2,
+            "value": "DB",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 31,
+          "end": 41
+        },
+        "value": "../db.js",
+        "raw": "\"../db.js\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ExportDeclaration",
+      "span": {
+        "start": 44,
+        "end": 160
       },
       "declaration": {
-        "type": "VariableDeclaration",
-        "span": {
-          "start": 8,
-          "end": 52
+        "type": "FunctionDeclaration",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 66,
+            "end": 78
+          },
+          "ctxt": 2,
+          "value": "processImage",
+          "optional": false
         },
-        "ctxt": 0,
-        "kind": "const",
         "declare": false,
-        "declarations": [
+        "params": [
           {
-            "type": "VariableDeclarator",
+            "type": "Parameter",
             "span": {
-              "start": 14,
-              "end": 52
+              "start": 79,
+              "end": 83
             },
-            "id": {
+            "decorators": [],
+            "pat": {
               "type": "Identifier",
               "span": {
-                "start": 14,
-                "end": 17
+                "start": 79,
+                "end": 83
               },
-              "ctxt": 2,
-              "value": "f_0",
+              "ctxt": 3,
+              "value": "data",
               "optional": false,
               "typeAnnotation": null
+            }
+          },
+          {
+            "type": "Parameter",
+            "span": {
+              "start": 85,
+              "end": 92
             },
-            "init": {
-              "type": "ArrowFunctionExpression",
+            "decorators": [],
+            "pat": {
+              "type": "Identifier",
               "span": {
-                "start": 20,
-                "end": 52
+                "start": 85,
+                "end": 92
               },
-              "ctxt": 0,
-              "params": [],
-              "body": {
-                "type": "BlockStatement",
+              "ctxt": 3,
+              "value": "context",
+              "optional": false,
+              "typeAnnotation": null
+            }
+          }
+        ],
+        "decorators": [],
+        "span": {
+          "start": 51,
+          "end": 160
+        },
+        "ctxt": 3,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 94,
+            "end": 160
+          },
+          "ctxt": 3,
+          "stmts": [
+            {
+              "type": "ExpressionStatement",
+              "span": {
+                "start": 98,
+                "end": 111
+              },
+              "expression": {
+                "type": "StringLiteral",
                 "span": {
-                  "start": 26,
-                  "end": 52
+                  "start": 98,
+                  "end": 110
                 },
-                "ctxt": 3,
-                "stmts": [
-                  {
-                    "type": "ExpressionStatement",
+                "value": "use server",
+                "raw": "\"use server\""
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "span": {
+                "start": 114,
+                "end": 158
+              },
+              "argument": {
+                "type": "AwaitExpression",
+                "span": {
+                  "start": 121,
+                  "end": 157
+                },
+                "argument": {
+                  "type": "CallExpression",
+                  "span": {
+                    "start": 127,
+                    "end": 157
+                  },
+                  "ctxt": 0,
+                  "callee": {
+                    "type": "MemberExpression",
                     "span": {
-                      "start": 30,
-                      "end": 50
+                      "start": 127,
+                      "end": 140
                     },
-                    "expression": {
-                      "type": "CallExpression",
+                    "object": {
+                      "type": "Identifier",
                       "span": {
-                        "start": 30,
-                        "end": 49
+                        "start": 127,
+                        "end": 129
                       },
-                      "ctxt": 0,
-                      "callee": {
+                      "ctxt": 2,
+                      "value": "DB",
+                      "optional": false
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 130,
+                        "end": 140
+                      },
+                      "value": "storeImage"
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "spread": null,
+                      "expression": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 30,
-                          "end": 41
+                          "start": 141,
+                          "end": 156
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 30,
-                            "end": 37
+                            "start": 141,
+                            "end": 148
                           },
-                          "ctxt": 1,
-                          "value": "console",
+                          "ctxt": 3,
+                          "value": "context",
                           "optional": false
                         },
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 38,
-                            "end": 41
+                            "start": 149,
+                            "end": 156
                           },
-                          "value": "log"
+                          "value": "request"
                         }
-                      },
-                      "arguments": [
-                        {
-                          "spread": null,
-                          "expression": {
-                            "type": "StringLiteral",
-                            "span": {
-                              "start": 42,
-                              "end": 48
-                            },
-                            "value": "test",
-                            "raw": "'test'"
-                          }
-                        }
-                      ],
-                      "typeArguments": null
+                      }
                     }
-                  }
-                ]
-              },
-              "async": false,
-              "generator": false,
-              "typeParameters": null,
-              "returnType": null
+                  ],
+                  "typeArguments": null
+                }
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": true,
+        "typeParameters": null,
+        "returnType": null
+      }
+    },
+    {
+      "type": "ExportDeclaration",
+      "span": {
+        "start": 161,
+        "end": 287
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "identifier": {
+          "type": "Identifier",
+          "span": {
+            "start": 183,
+            "end": 194
+          },
+          "ctxt": 2,
+          "value": "updateImage",
+          "optional": false
+        },
+        "declare": false,
+        "params": [
+          {
+            "type": "Parameter",
+            "span": {
+              "start": 195,
+              "end": 218
             },
-            "definite": false
+            "decorators": [],
+            "pat": {
+              "type": "ObjectPattern",
+              "span": {
+                "start": 195,
+                "end": 218
+              },
+              "properties": [
+                {
+                  "type": "KeyValuePatternProperty",
+                  "key": {
+                    "type": "Identifier",
+                    "span": {
+                      "start": 197,
+                      "end": 201
+                    },
+                    "value": "data"
+                  },
+                  "value": {
+                    "type": "ArrayPattern",
+                    "span": {
+                      "start": 203,
+                      "end": 216
+                    },
+                    "elements": [
+                      {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 204,
+                          "end": 206
+                        },
+                        "ctxt": 4,
+                        "value": "id",
+                        "optional": false,
+                        "typeAnnotation": null
+                      },
+                      {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 208,
+                          "end": 215
+                        },
+                        "ctxt": 4,
+                        "value": "content",
+                        "optional": false,
+                        "typeAnnotation": null
+                      }
+                    ],
+                    "optional": false,
+                    "typeAnnotation": null
+                  }
+                }
+              ],
+              "optional": false,
+              "typeAnnotation": null
+            }
           }
-        ]
+        ],
+        "decorators": [],
+        "span": {
+          "start": 168,
+          "end": 287
+        },
+        "ctxt": 4,
+        "body": {
+          "type": "BlockStatement",
+          "span": {
+            "start": 220,
+            "end": 287
+          },
+          "ctxt": 4,
+          "stmts": [
+            {
+              "type": "ExpressionStatement",
+              "span": {
+                "start": 224,
+                "end": 237
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "span": {
+                  "start": 224,
+                  "end": 236
+                },
+                "value": "use server",
+                "raw": "\"use server\""
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "span": {
+                "start": 240,
+                "end": 285
+              },
+              "argument": {
+                "type": "AwaitExpression",
+                "span": {
+                  "start": 247,
+                  "end": 284
+                },
+                "argument": {
+                  "type": "CallExpression",
+                  "span": {
+                    "start": 253,
+                    "end": 284
+                  },
+                  "ctxt": 0,
+                  "callee": {
+                    "type": "MemberExpression",
+                    "span": {
+                      "start": 253,
+                      "end": 271
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 253,
+                        "end": 255
+                      },
+                      "ctxt": 2,
+                      "value": "DB",
+                      "optional": false
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "span": {
+                        "start": 256,
+                        "end": 271
+                      },
+                      "value": "setImageContent"
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "spread": null,
+                      "expression": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 272,
+                          "end": 274
+                        },
+                        "ctxt": 4,
+                        "value": "id",
+                        "optional": false
+                      }
+                    },
+                    {
+                      "spread": null,
+                      "expression": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 276,
+                          "end": 283
+                        },
+                        "ctxt": 4,
+                        "value": "content",
+                        "optional": false
+                      }
+                    }
+                  ],
+                  "typeArguments": null
+                }
+              }
+            }
+          ]
+        },
+        "generator": false,
+        "async": true,
+        "typeParameters": null,
+        "returnType": null
       }
     }
   ],
