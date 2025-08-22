@@ -1,6 +1,7 @@
 const db = {
     notes: {
         getAll: async ()=>{
+            await new Promise((resolve)=>setTimeout(resolve, 1000));
             return [
                 {
                     id: 1,

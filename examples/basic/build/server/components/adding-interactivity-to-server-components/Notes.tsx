@@ -11,12 +11,12 @@ export default async function Notes() {
     </div>);
 }
 function ExpandableBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_7"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_11"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_7", "Expandable", ${JSON.stringify(serializedProps)}];
+          let a = ["f_11", "Expandable", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -24,11 +24,11 @@ function ExpandableBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_7" data-c="Expandable">
+      {children && (<template type="forket/children" id="f_11" data-c="Expandable">
           {children}
         </template>)}
-      <template type="forket/start" id="f_7" data-c="Expandable"></template>
+      <template type="forket/start" id="f_11" data-c="Expandable"></template>
       <Expandable {...props} children={children}/>
-      <template type="forket/end" id="f_7" data-c="Expandable"></template>
+      <template type="forket/end" id="f_11" data-c="Expandable"></template>
     </>);
 }

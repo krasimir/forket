@@ -1,11 +1,18 @@
 import React from 'react';
 import AddInteractivity from './adding-interactivity-to-server-components/Page.js';
+import AsyncComponents from './async-components-with-server-components/Page.js';
 const EXAMPLES = [
     {
         title: "Adding interactivity to Server Components",
         reactdocs: "https://react.dev/reference/rsc/server-components#adding-interactivity-to-server-components",
         route: "adding-interactivity-to-server-components",
         Page: AddInteractivity
+    },
+    {
+        title: "Async components with Server Components",
+        reactdocs: "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
+        route: "async-components-with-server-components",
+        Page: AsyncComponents
     }
 ];
 export default function App({ request }) {

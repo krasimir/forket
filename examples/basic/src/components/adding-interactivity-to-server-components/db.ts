@@ -1,7 +1,7 @@
 const db = {
   notes: {
     getAll: async () => {
-      // await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate a delay
       return [
         { id: 1, content: 'Note 1' },
         { id: 2, content: 'Note 2' },
