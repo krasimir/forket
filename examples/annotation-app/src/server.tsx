@@ -7,9 +7,9 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import multer from "multer";
-// import Forket from "forket";
-import Forket from "../../../../forket/index.js";
-import { requestContext } from "forket/lib/server/requestContext.js";
+import Forket from "forket";
+// import Forket from "../../../../forket/index.js";
+// import { requestContext } from "forket/lib/server/requestContext.js";
 
 import App from './components/App.js'
 import serveImage from './handlers/serve-image.js';
@@ -30,8 +30,8 @@ app.get("/image/:id", serveImage);
 
 Forket().then((forket) => {
   // <start> This is only needed here because we are using relative path to Forket.
-  forket.setRenderer(renderToPipeableStream);
-  forket.setRequestContext(requestContext);
+  // forket.setRenderer(renderToPipeableStream);
+  // forket.setRequestContext(requestContext);
   // </end> This is only needed here because we are using relative path to Forket.
   app.use("/@forket", fromDataHandler.any(), forket.forketServerActions());
   app.get(

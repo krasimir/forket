@@ -2,8 +2,8 @@ import path from "path";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
 import { fileURLToPath } from "url";
-// import Forket from 'forket';
-import Forket from '../../../forket/index.js';
+import Forket from 'forket';
+// import Forket from '../../../forket/index.js';
 
 import command from "./utils/command.js";
 import getAllFiles from "./utils/getAllFiles.js";
