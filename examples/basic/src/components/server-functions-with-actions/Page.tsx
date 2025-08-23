@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import UpdateName from "./UpdateName.js";
+import UpdateMyName from "./UpdateMyName.js";
 
 export default async function Page({ example }) {
   return (
@@ -12,7 +12,7 @@ export default async function Page({ example }) {
         </a>
       </p>
       <hr />
-      <UpdateName />
+      <UpdateMyName />
     </div>
   );
 }

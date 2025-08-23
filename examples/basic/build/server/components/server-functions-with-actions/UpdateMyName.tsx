@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useTransition } from "react";
 
-import { updateName } from "./actions.js";
+import { updateMyName } from "./actions.js";
 
-export default function UpdateName() {
+export default function UpdateMyName() {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ export default function UpdateName() {
 
   const submitAction = async () => {
     startTransition(async () => {
-      const response = await updateName(name);
+      const response = await updateMyName(name);
       console.log("Response from updateName:", response);
       if (response.error) {
         setError(response.error);
@@ -24,7 +24,14 @@ export default function UpdateName() {
 
   return (
     <form action={submitAction}>
-      <input type="text" name="name" disabled={isPending} value={name} onChange={e => setName(e.target.value)} placeholder="type your name here"/>
+      <input
+        type="text"
+        name="name"
+        disabled={isPending}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="type your name here"
+      />
       {error && <span>Failed: {error}</span>}
     </form>
   );

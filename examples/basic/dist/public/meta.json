@@ -97,6 +97,17 @@
       ],
       "format": "esm"
     },
+    "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
+      "bytes": 1008,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
     "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
       "bytes": 279,
       "imports": [
@@ -167,17 +178,6 @@
       ],
       "format": "esm"
     },
-    "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
-      "bytes": 288,
-      "imports": [
-        {
-          "path": "node_modules/react/index.js",
-          "kind": "import-statement",
-          "original": "react"
-        }
-      ],
-      "format": "esm"
-    },
     "build/client/components/async-components-with-server-components/Comments.tsx": {
       "bytes": 230,
       "imports": [
@@ -189,8 +189,19 @@
       ],
       "format": "esm"
     },
+    "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
+      "bytes": 288,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
     "build/client/client.tsx": {
-      "bytes": 1243,
+      "bytes": 1251,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -203,14 +214,14 @@
           "original": "react-dom/client"
         },
         {
-          "path": "./components/server-fucntions-with-actions/UpdateName",
-          "kind": "import-statement",
-          "external": true
-        },
-        {
           "path": "build/client/components/server-functions-with-form-actions/UpdateName.tsx",
           "kind": "import-statement",
           "original": "./components/server-functions-with-form-actions/UpdateName"
+        },
+        {
+          "path": "build/client/components/server-functions-with-actions/UpdateMyName.tsx",
+          "kind": "import-statement",
+          "original": "./components/server-functions-with-actions/UpdateMyName"
         },
         {
           "path": "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx",
@@ -238,14 +249,14 @@
           "original": "./components/calling-server-function-outside-form/LikeButton"
         },
         {
-          "path": "build/client/components/adding-interactivity-to-server-components/Expandable.tsx",
-          "kind": "import-statement",
-          "original": "./components/adding-interactivity-to-server-components/Expandable"
-        },
-        {
           "path": "build/client/components/async-components-with-server-components/Comments.tsx",
           "kind": "import-statement",
           "original": "./components/async-components-with-server-components/Comments"
+        },
+        {
+          "path": "build/client/components/adding-interactivity-to-server-components/Expandable.tsx",
+          "kind": "import-statement",
+          "original": "./components/adding-interactivity-to-server-components/Expandable"
         }
       ],
       "format": "esm"
@@ -256,7 +267,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 878109
+      "bytes": 880032
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -288,10 +299,13 @@
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 280
+          "bytesInOutput": 282
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
           "bytesInOutput": 390
+        },
+        "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
+          "bytesInOutput": 569
         },
         "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
           "bytesInOutput": 205
@@ -311,14 +325,14 @@
         "build/client/components/calling-server-function-outside-form/LikeButton.tsx": {
           "bytesInOutput": 407
         },
-        "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
-          "bytesInOutput": 186
-        },
         "build/client/components/async-components-with-server-components/Comments.tsx": {
           "bytesInOutput": 130
+        },
+        "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
+          "bytesInOutput": 186
         }
       },
-      "bytes": 187499
+      "bytes": 188070
     }
   }
 }

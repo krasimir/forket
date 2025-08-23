@@ -1,6 +1,6 @@
 {
   "name": "forket",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
   "author": "Krasimir Tsonev",
   "main": "index.js",
@@ -15,7 +15,6 @@
     "type": "git",
     "url": "git+https://github.com/krasimir/forket.git"
   },
-  "author": "Krasimir Tsonev",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/krasimir/forket/issues"
@@ -29,7 +28,6 @@
     "enhanced-resolve": "5.18.2",
     "esbuild": "0.25.0",
     "lodash": "4.17.21",
-    "p-limit": "3.1.0",
     "treeify": "^1.1.0"
   },
   "devDependencies": {

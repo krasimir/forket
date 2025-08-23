@@ -1,6 +1,6 @@
 "use server";
 import db from "./db.js";
-async function updateName({ data: [name] }) {
+async function updateMyName({ data: [name] }) {
   if (!name) {
     return {
       error: "Name is required"
@@ -9,5 +9,5 @@ async function updateName({ data: [name] }) {
   return await db.users.updateName(name);
 }
 export {
-  updateName
+  updateMyName
 };

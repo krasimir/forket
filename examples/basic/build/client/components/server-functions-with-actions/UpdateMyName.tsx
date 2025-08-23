@@ -1,15 +1,15 @@
 "use client";
 import React, { useState, useTransition } from "react";
-const updateName = function(...args) {
-    return window.FSA_call("$FSA_updateName", "updateName")(...args);
+const updateMyName = function(...args) {
+    return window.FSA_call("$FSA_updateMyName", "updateMyName")(...args);
 };
-export default function UpdateName() {
+export default function UpdateMyName() {
     const [name, setName] = useState("");
     const [error, setError] = useState(null);
     const [isPending, startTransition] = useTransition();
     const submitAction = async ()=>{
         startTransition(async ()=>{
-            const response = await updateName(name);
+            const response = await updateMyName(name);
             console.log("Response from updateName:", response);
             if (response.error) {
                 setError(response.error);

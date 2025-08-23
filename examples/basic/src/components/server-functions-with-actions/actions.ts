@@ -2,7 +2,7 @@
 
 import db from './db.js';
 
-export async function updateName({ data: [name] }) {
+export async function updateMyName({ data: [name] }) {
   if (!name) {
     return { error: "Name is required" };
   }

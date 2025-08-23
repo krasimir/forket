@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 import findConfig from "./lib/utils/findConfig.js";
 import { getGraphs, printGraph } from "./lib/graph.js";
-import { copyFolder, clearPath } from "./lib/utils/fsHelpers.js";
+import { copyFolder, clearPath, emptySourceContentCache } from "./lib/utils/fsHelpers.js";
 import { setRoles } from "./lib/roles.js";
 import { Thanos, MODE } from "./lib/thanos.js";
 import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
@@ -39,7 +39,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
   // Watching mode
   if (options.watch) {
     chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
-      console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
+      console.log(chalk.gray(`‎𐂐 ${event} ${clearPath(file)} ${inProcess ? 1 : 0}`));
       resetId();
       process();
     });
@@ -94,8 +94,10 @@ export default async function Forket(customOptions = {}, configPath = null) {
       );
 
       console.log(chalk.greenBright(`‎𐂐 Processing completed successfully!\n`));
+      emptySourceContentCache();
       inProcess = false;
     } catch (err) {
+      emptySourceContentCache();
       inProcess = false;
       console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`), err);
     }

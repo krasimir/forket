@@ -3,7 +3,7 @@ import AddInteractivity from './adding-interactivity-to-server-components/Page.j
 import AsyncComponents from './async-components-with-server-components/Page.js';
 import CreatingServerFunction from './creating-server-function-from-server-component/Page.js';
 import ImportingServerFunctions from './importing-server-functions-from-client-components/Page.js';
-import ServerFunctionsWithActions from './server-fucntions-with-actions/Page.js';
+import ServerFunctionsWithActions from './server-functions-with-actions/Page.js';
 import ServerFunctionsWithForm from './server-functions-with-form-actions/Page.js';
 import HowUseClient from './how-use-client-marks-client-code/Page.js';
 import CallingServerFunctionOutside from './calling-server-function-outside-form/Page.js';

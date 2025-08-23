@@ -8,7 +8,7 @@ import treeify from "treeify";
 
 import { clearPath } from "./utils/fsHelpers.js";
 import traverseNode from "./utils/traverseNode.js";
-import { VALID_ENTRY_POINTS, ROLE } from "./constants.js";
+import { VALID_FILES_TO_PROCESS, ROLE } from "./constants.js";
 import { ResolverError, ResolverModuleNotFoundError, ResolverIsInNodeModulesError } from "./utils/errors.js";
 import getId from './utils/getId.js';
 
@@ -22,7 +22,7 @@ const resolver = ResolverFactory.createResolver({
   conditionNames: ["import", "require", "default"],
   useSyncFileSystemCalls: false,
   fileSystem,
-  extensions: VALID_ENTRY_POINTS
+  extensions: VALID_FILES_TO_PROCESS
 });
 
 export async function createNode(file, parentNode = null) {
@@ -257,7 +257,7 @@ export async function getGraphs(dir) {
   const entryPoints = fs
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => {
-      return entry.isFile() && VALID_ENTRY_POINTS.includes("." + (entry.name.split(".").pop() || ""));
+      return entry.isFile() && VALID_FILES_TO_PROCESS.includes("." + (entry.name.split(".").pop() || ""));
     })
     .map((entry) => path.join(dir, entry.name));
 

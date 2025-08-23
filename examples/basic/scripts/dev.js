@@ -24,10 +24,12 @@ const forket = await Forket({
   watch: true,
   printGraph: true,
 });
+console.log("Forket created");
 await forket.process();
 
 // Watching for changes in the build directory, transpile, bundle and restart the server
 chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
+  // console.log(`‎DEV ${event} ${path.relative(ROOT, file)} ${restart} ${!!serverProcess ? 1 : 0}`);
   if (!restart) {
     restart = true;
     if (serverProcess) {
@@ -37,6 +39,7 @@ chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file)
     }
   }
 });
+
 run();
 
 async function run() {
@@ -69,6 +72,7 @@ async function buildServer() {
         plugins: []
       });
     }));
+    // console.log(`Server files compiled successfully to ${DIST}`);
   } catch (error) {
     console.error(`Error compiling server: ${error.message}`);
   }
@@ -87,6 +91,7 @@ async function buildClient() {
     });
     fs.writeFileSync(path.join(DIST, "public", "meta.json"), JSON.stringify(result.metafile, null, 2));
     copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
+    // console.log(`Client files compiled successfully to ${path.join(DIST, "public")}`);
   } catch (error) {
     console.error(`Error compiling client: ${error.message}`);
   }
