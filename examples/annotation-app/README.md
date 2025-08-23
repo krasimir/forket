@@ -3,7 +3,7 @@ Upload an image and the Xenova model will suggest what's on the picture. Pick on
 ![screenshot](./app.png)
 
 ```
-> npm install
+> npm i
 > npm run dev
 ```
 

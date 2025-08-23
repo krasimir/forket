@@ -6,6 +6,7 @@ A tool that splits your code into client and server so you have [RSC (React Serv
 ‎
 ## Examples
 
+* [Basic code snippets](./examples/basic/) (Little app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs. It uses [esbuild](https://esbuild.github.io/) to transpile the .tsx files to valid JavaScript)
 * [Annotation app](./examples/annotation-app/) (It uses [esbuild](https://esbuild.github.io/) to transpile the .tsx files to valid JavaScript)
 * [Vite](./examples/vite/) (It uses [Vite](https://vite.dev/) as a transpiler)
 
