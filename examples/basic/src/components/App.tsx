@@ -7,6 +7,7 @@ import ImportingServerFunctions from './importing-server-functions-from-client-c
 import ServerFunctionsWithActions from './server-fucntions-with-actions/Page.js';
 import ServerFunctionsWithForm from './server-functions-with-form-actions/Page.js';
 import HowUseClient from './how-use-client-marks-client-code/Page.js';
+import CallingServerFunctionOutside from './calling-server-function-outside-form/Page.js';
 
 const EXAMPLES = [
   {
@@ -20,6 +21,12 @@ const EXAMPLES = [
     reactdocs: "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
     route: "async-components-with-server-components",
     Page: AsyncComponents
+  },
+  {
+    title: "How 'use client' marks client code",
+    reactdocs: "https://react.dev/reference/rsc/use-client#how-use-client-marks-client-code",
+    route: "how-use-client-marks-client-code",
+    Page: HowUseClient
   },
   {
     title: "Creating a Server Function from a Server Component",
@@ -46,10 +53,10 @@ const EXAMPLES = [
     Page: ServerFunctionsWithForm
   },
   {
-    title: "How 'use client' marks client code",
-    reactdocs: "https://react.dev/reference/rsc/use-client#how-use-client-marks-client-code",
-    route: "how-use-client-marks-client-code",
-    Page: HowUseClient
+    title: "Calling a Server Function outside of <form>",
+    reactdocs: "https://react.dev/reference/rsc/use-server#calling-a-server-function-outside-of-form",
+    route: "calling-server-function-outside-form",
+    Page: CallingServerFunctionOutside
   }
 ];
 

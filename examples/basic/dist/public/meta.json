@@ -1,0 +1,324 @@
+{
+  "inputs": {
+    "node_modules/react/cjs/react.production.js": {
+      "bytes": 16856,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/react/index.js": {
+      "bytes": 186,
+      "imports": [
+        {
+          "path": "node_modules/react/cjs/react.production.js",
+          "kind": "require-call",
+          "original": "./cjs/react.production.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/scheduler/cjs/scheduler.production.js": {
+      "bytes": 10346,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/scheduler/index.js": {
+      "bytes": 194,
+      "imports": [
+        {
+          "path": "node_modules/scheduler/cjs/scheduler.production.js",
+          "kind": "require-call",
+          "original": "./cjs/scheduler.production.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/react-dom/cjs/react-dom.production.js": {
+      "bytes": 6655,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "require-call",
+          "original": "react"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/react-dom/index.js": {
+      "bytes": 1359,
+      "imports": [
+        {
+          "path": "node_modules/react-dom/cjs/react-dom.production.js",
+          "kind": "require-call",
+          "original": "./cjs/react-dom.production.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/react-dom/cjs/react-dom-client.production.js": {
+      "bytes": 508988,
+      "imports": [
+        {
+          "path": "node_modules/scheduler/index.js",
+          "kind": "require-call",
+          "original": "scheduler"
+        },
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "require-call",
+          "original": "react"
+        },
+        {
+          "path": "node_modules/react-dom/index.js",
+          "kind": "require-call",
+          "original": "react-dom"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/react-dom/client.js": {
+      "bytes": 1373,
+      "imports": [
+        {
+          "path": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "kind": "require-call",
+          "original": "./cjs/react-dom-client.production.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
+      "bytes": 586,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
+      "bytes": 279,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/how-use-client-marks-client-code/inspirations.ts": {
+      "bytes": 196,
+      "imports": [],
+      "format": "esm"
+    },
+    "build/client/components/how-use-client-marks-client-code/FancyText.tsx": {
+      "bytes": 230,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx": {
+      "bytes": 523,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "build/client/components/how-use-client-marks-client-code/inspirations.ts",
+          "kind": "import-statement",
+          "original": "./inspirations.js"
+        },
+        {
+          "path": "build/client/components/how-use-client-marks-client-code/FancyText.tsx",
+          "kind": "import-statement",
+          "original": "./FancyText.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/creating-server-function-from-server-component/Button.tsx": {
+      "bytes": 195,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/calling-server-function-outside-form/LikeButton.tsx": {
+      "bytes": 691,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
+      "bytes": 288,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/components/async-components-with-server-components/Comments.tsx": {
+      "bytes": 230,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
+    "build/client/client.tsx": {
+      "bytes": 1243,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        },
+        {
+          "path": "node_modules/react-dom/client.js",
+          "kind": "import-statement",
+          "original": "react-dom/client"
+        },
+        {
+          "path": "./components/server-fucntions-with-actions/UpdateName",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "build/client/components/server-functions-with-form-actions/UpdateName.tsx",
+          "kind": "import-statement",
+          "original": "./components/server-functions-with-form-actions/UpdateName"
+        },
+        {
+          "path": "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx",
+          "kind": "import-statement",
+          "original": "./components/importing-server-functions-from-client-components/EmptyNote"
+        },
+        {
+          "path": "build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx",
+          "kind": "import-statement",
+          "original": "./components/how-use-client-marks-client-code/InspirationGenerator"
+        },
+        {
+          "path": "build/client/components/how-use-client-marks-client-code/FancyText.tsx",
+          "kind": "import-statement",
+          "original": "./components/how-use-client-marks-client-code/FancyText"
+        },
+        {
+          "path": "build/client/components/creating-server-function-from-server-component/Button.tsx",
+          "kind": "import-statement",
+          "original": "./components/creating-server-function-from-server-component/Button"
+        },
+        {
+          "path": "build/client/components/calling-server-function-outside-form/LikeButton.tsx",
+          "kind": "import-statement",
+          "original": "./components/calling-server-function-outside-form/LikeButton"
+        },
+        {
+          "path": "build/client/components/adding-interactivity-to-server-components/Expandable.tsx",
+          "kind": "import-statement",
+          "original": "./components/adding-interactivity-to-server-components/Expandable"
+        },
+        {
+          "path": "build/client/components/async-components-with-server-components/Comments.tsx",
+          "kind": "import-statement",
+          "original": "./components/async-components-with-server-components/Comments"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "dist/public/bundle.js.map": {
+      "imports": [],
+      "exports": [],
+      "inputs": {},
+      "bytes": 878109
+    },
+    "dist/public/bundle.js": {
+      "imports": [],
+      "exports": [],
+      "entryPoint": "build/client/client.tsx",
+      "inputs": {
+        "node_modules/react/cjs/react.production.js": {
+          "bytesInOutput": 7513
+        },
+        "node_modules/react/index.js": {
+          "bytesInOutput": 51
+        },
+        "node_modules/scheduler/cjs/scheduler.production.js": {
+          "bytesInOutput": 3780
+        },
+        "node_modules/scheduler/index.js": {
+          "bytesInOutput": 51
+        },
+        "node_modules/react-dom/cjs/react-dom.production.js": {
+          "bytesInOutput": 3343
+        },
+        "node_modules/react-dom/index.js": {
+          "bytesInOutput": 253
+        },
+        "node_modules/react-dom/cjs/react-dom-client.production.js": {
+          "bytesInOutput": 168002
+        },
+        "node_modules/react-dom/client.js": {
+          "bytesInOutput": 253
+        },
+        "build/client/client.tsx": {
+          "bytesInOutput": 280
+        },
+        "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
+          "bytesInOutput": 390
+        },
+        "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
+          "bytesInOutput": 205
+        },
+        "build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx": {
+          "bytesInOutput": 331
+        },
+        "build/client/components/how-use-client-marks-client-code/inspirations.ts": {
+          "bytesInOutput": 180
+        },
+        "build/client/components/how-use-client-marks-client-code/FancyText.tsx": {
+          "bytesInOutput": 177
+        },
+        "build/client/components/creating-server-function-from-server-component/Button.tsx": {
+          "bytesInOutput": 143
+        },
+        "build/client/components/calling-server-function-outside-form/LikeButton.tsx": {
+          "bytesInOutput": 407
+        },
+        "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
+          "bytesInOutput": 186
+        },
+        "build/client/components/async-components-with-server-components/Comments.tsx": {
+          "bytesInOutput": 130
+        }
+      },
+      "bytes": 187499
+    }
+  }
+}

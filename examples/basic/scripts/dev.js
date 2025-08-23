@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
 import { fileURLToPath } from "url";
@@ -74,14 +75,17 @@ async function buildServer() {
 }
 async function buildClient() {
   try {
-    await esbuild.build({
+    const result = await esbuild.build({
       entryPoints: [path.join(BUILD, "client", "/client.tsx")],
       bundle: true,
+      minify: true,
+      metafile: true,
       outfile: path.join(DIST, "public", "bundle.js"),
       platform: "browser",
       sourcemap: true,
       plugins: []
     });
+    fs.writeFileSync(path.join(DIST, "public", "meta.json"), JSON.stringify(result.metafile, null, 2));
     copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
   } catch (error) {
     console.error(`Error compiling client: ${error.message}`);
