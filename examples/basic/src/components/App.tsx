@@ -6,6 +6,7 @@ import CreatingServerFunction from './creating-server-function-from-server-compo
 import ImportingServerFunctions from './importing-server-functions-from-client-components/Page.js';
 import ServerFunctionsWithActions from './server-fucntions-with-actions/Page.js';
 import ServerFunctionsWithForm from './server-functions-with-form-actions/Page.js';
+import HowUseClient from './how-use-client-marks-client-code/Page.js';
 
 const EXAMPLES = [
   {
@@ -43,6 +44,12 @@ const EXAMPLES = [
     reactdocs: "https://react.dev/reference/rsc/server-functions#using-server-functions-with-form-actions",
     route: "server-functions-with-form-actions",
     Page: ServerFunctionsWithForm
+  },
+  {
+    title: "How 'use client' marks client code",
+    reactdocs: "https://react.dev/reference/rsc/use-client#how-use-client-marks-client-code",
+    route: "how-use-client-marks-client-code",
+    Page: HowUseClient
   }
 ];
 

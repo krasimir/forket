@@ -13,7 +13,7 @@ export interface ForketInstance {
   process(): Promise<void>;
   resetId(): void;
   getGraphs(): Object;
-  printGraph(): void;
+  printGraph(node: any): void;
   client(serverActionsEndpoint: string): string;
   forketServerActions(forketServerActionsHandler?: Function): Promise<void>;
   serveApp({ factory: Function, serverActionsEndpoint: string }): (req: any, res: any) => void;

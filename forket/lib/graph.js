@@ -4,6 +4,7 @@ import swc from '@swc/core';
 import get from 'lodash/get.js';
 import enhancedResolve from 'enhanced-resolve';
 import chalk from "chalk";
+import treeify from "treeify";
 
 import { clearPath } from "./utils/fsHelpers.js";
 import traverseNode from "./utils/traverseNode.js";
@@ -268,18 +269,21 @@ export async function getGraphs(dir) {
   }
   return graphs;
 }
-export function printGraph(node, indent = "") {
-  console.log(
-    chalk.grey(`${indent}#${node.id}`) +
-      chalk.magenta(` ${clearPath(node.file)}`) +
-      chalk.grey(` (${node.role})`) +
-      (node.serverActions.length > 0 ? chalk.grey(` (SAs: ${node.serverActions.map(({ funcName }) => funcName)})`) : "")
-  );
-  if (node.children.length > 0) {
-    node.children.forEach((child) => {
-      printGraph(child, indent + "   ");
+export function printGraph(node) {
+  function processNode(n, root) {
+    const children = {};
+    let label = `#${chalk.grey(n.id)} ${chalk.green(clearPath(n.file))} (${chalk.grey(n.role)})`;
+    if (n.serverActions.length > 0) {
+      label += ` (${chalk.cyan('SAs:')} ${chalk.grey(n.serverActions.map(({ funcName }) => funcName).join(", "))})`;
+    }
+    root[label] = children;
+    n.children.forEach((child) => {
+      processNode(child, children);
     });
+    return root;
   }
+  const tree = processNode(node, {});
+  console.log(treeify.asTree(tree).trimEnd());
 }
 export function toJSON(node) {
   return {

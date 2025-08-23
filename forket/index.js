@@ -31,7 +31,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
 
   // Watching mode
   if (options.watch) {
-    console.log(chalk.cyan(`‎𐂐 Listening for changes. Directory: ${clearPath(options.sourceDir)}`));
+    console.log(chalk.cyan(`‎𐂐 Listening for changes ... (${clearPath(options.sourceDir)})`));
     chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
       console.log(chalk.gray(`‎𐂐 ${event} ${file}`));
       resetId();
@@ -47,13 +47,14 @@ export default async function Forket(customOptions = {}, configPath = null) {
     inProcess = true;
 
     try {
-      console.log(chalk.cyan(`‎𐂐 Generating the graph. Directory: ${clearPath(options.sourceDir)} ...`));
+      console.log(chalk.cyan(`‎𐂐 Generating graphs ... (${clearPath(options.sourceDir)})`));
 
       const graphs = await getGraphs(options.sourceDir);
       graphs.forEach((g) => {
         setRoles(g);
         if (options.printGraph) {
-          printGraph(g, "  ");
+          console.log(chalk.cyan(`‎𐂐 Graph with entry point ${clearPath(g.file)}:`));
+          printGraph(g);
         }
       });
 
