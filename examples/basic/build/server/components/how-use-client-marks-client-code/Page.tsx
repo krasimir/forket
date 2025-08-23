@@ -19,12 +19,12 @@ export default async function Page({ example }) {
     </div>);
 }
 function FancyTextBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "FancyText", "f_32"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "FancyText", "f_33"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_32", "FancyText", ${JSON.stringify(serializedProps)}];
+          let a = ["f_33", "FancyText", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -32,21 +32,21 @@ function FancyTextBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_32" data-c="FancyText">
+      {children && (<template type="forket/children" id="f_33" data-c="FancyText">
           {children}
         </template>)}
-      <template type="forket/start" id="f_32" data-c="FancyText"></template>
+      <template type="forket/start" id="f_33" data-c="FancyText"></template>
       <FancyText {...props} children={children}/>
-      <template type="forket/end" id="f_32" data-c="FancyText"></template>
+      <template type="forket/end" id="f_33" data-c="FancyText"></template>
     </>);
 }
 function InspirationGeneratorBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "InspirationGenerator", "f_33"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "InspirationGenerator", "f_34"));
     const children = props.children || [];
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_33", "InspirationGenerator", ${JSON.stringify(serializedProps)}];
+          let a = ["f_34", "InspirationGenerator", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -54,11 +54,11 @@ function InspirationGeneratorBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_33" data-c="InspirationGenerator">
+      {children && (<template type="forket/children" id="f_34" data-c="InspirationGenerator">
           {children}
         </template>)}
-      <template type="forket/start" id="f_33" data-c="InspirationGenerator"></template>
+      <template type="forket/start" id="f_34" data-c="InspirationGenerator"></template>
       <InspirationGenerator {...props} children={children}/>
-      <template type="forket/end" id="f_33" data-c="InspirationGenerator"></template>
+      <template type="forket/end" id="f_34" data-c="InspirationGenerator"></template>
     </>);
 }

@@ -1,10 +1,12 @@
 import fs from "fs";
 import swc from "@swc/core";
 import path from "path";
+import chalk from "chalk";
 
 import exposeGlobal from "../ast/exposeGlobal/index.js";
 import insertImports from "./insertImports.js";
 import getImportPath from "./getImportPath.js";
+import {clearPath} from "./fsHelpers.js";
 
 export default async function setupClientEntryPoints(
   sourceDir,
@@ -17,8 +19,10 @@ export default async function setupClientEntryPoints(
   }
   await Promise.all(
     clientEntrypoints.map(async (entryPoint) => {
+      console.log(chalk.green("└─ " + clearPath(entryPoint.file)));
       clientBoundaries.forEach(({ compNames, importedNode }) => {
         compNames.forEach((compName) => {
+          console.log(chalk.gray("   └─ <" + compName + ">"));
           insertImports(entryPoint.ast, compName, getImportPath(entryPoint.file, importedNode.file));
         });
       });

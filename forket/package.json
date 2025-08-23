@@ -1,7 +1,8 @@
 {
   "name": "forket",
-  "version": "0.7.3",
-  "description": "𐂐",
+  "version": "0.7.4",
+  "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
+  "author": "Krasimir Tsonev",
   "main": "index.js",
   "type": "module",
   "scripts": {

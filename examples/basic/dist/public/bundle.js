@@ -19322,16 +19322,8 @@
     return /* @__PURE__ */ import_react2.default.createElement("button", { onClick: () => createNote().then(console.log) }, "Create note");
   }
 
-  // build/client/components/creating-server-function-from-server-component/Button.tsx
-  var import_react3 = __toESM(require_react(), 1);
-  function Button({ onClick }) {
-    return /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => {
-      onClick().then(console.log);
-    } }, "Create Empty Note");
-  }
-
   // build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx
-  var import_react5 = __toESM(require_react(), 1);
+  var import_react4 = __toESM(require_react(), 1);
 
   // build/client/components/how-use-client-marks-client-code/inspirations.ts
   var inspirations_default = [
@@ -19341,41 +19333,49 @@
   ];
 
   // build/client/components/how-use-client-marks-client-code/FancyText.tsx
-  var import_react4 = __toESM(require_react(), 1);
+  var import_react3 = __toESM(require_react(), 1);
   function FancyText({ title, text }) {
-    return title ? /* @__PURE__ */ import_react4.default.createElement("h1", { className: "fancy title" }, text) : /* @__PURE__ */ import_react4.default.createElement("h3", { className: "fancy cursive" }, text);
+    return title ? /* @__PURE__ */ import_react3.default.createElement("h1", { className: "fancy title" }, text) : /* @__PURE__ */ import_react3.default.createElement("h3", { className: "fancy cursive" }, text);
   }
 
   // build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx
   function InspirationGenerator({ children }) {
-    const [index, setIndex] = (0, import_react5.useState)(0);
+    const [index, setIndex] = (0, import_react4.useState)(0);
     const quote = inspirations_default[index];
     const next = () => setIndex((index + 1) % inspirations_default.length);
-    return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("p", null, "Your inspirational quote is:"), /* @__PURE__ */ import_react5.default.createElement(FancyText, { text: quote }), /* @__PURE__ */ import_react5.default.createElement("button", { onClick: next }, "Inspire me again"), children);
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("p", null, "Your inspirational quote is:"), /* @__PURE__ */ import_react4.default.createElement(FancyText, { text: quote }), /* @__PURE__ */ import_react4.default.createElement("button", { onClick: next }, "Inspire me again"), children);
   }
 
-  // build/client/components/async-components-with-server-components/Comments.tsx
-  var import_react6 = __toESM(require_react(), 1);
-  function Comments({ commentsPromise }) {
-    const comments = (0, import_react6.use)(commentsPromise);
-    return comments.map((comment) => /* @__PURE__ */ import_react6.default.createElement("p", { key: comment.id }, comment.content));
+  // build/client/components/creating-server-function-from-server-component/Button.tsx
+  var import_react5 = __toESM(require_react(), 1);
+  function Button({ onClick }) {
+    return /* @__PURE__ */ import_react5.default.createElement("button", { onClick: () => {
+      onClick().then(console.log);
+    } }, "Create Empty Note");
   }
 
   // build/client/components/adding-interactivity-to-server-components/Expandable.tsx
-  var import_react7 = __toESM(require_react(), 1);
+  var import_react6 = __toESM(require_react(), 1);
   function Expandable({ children }) {
-    const [expanded, setExpanded] = (0, import_react7.useState)(false);
-    return /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement("button", { onClick: () => setExpanded(!expanded) }, "Toggle"), expanded && children);
+    const [expanded, setExpanded] = (0, import_react6.useState)(false);
+    return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("button", { onClick: () => setExpanded(!expanded) }, "Toggle"), expanded && children);
+  }
+
+  // build/client/components/async-components-with-server-components/Comments.tsx
+  var import_react7 = __toESM(require_react(), 1);
+  function Comments({ commentsPromise }) {
+    const comments = (0, import_react7.use)(commentsPromise);
+    return comments.map((comment) => /* @__PURE__ */ import_react7.default.createElement("p", { key: comment.id }, comment.content));
   }
 
   // build/client/client.tsx
   window.React = import_react8.default;
   window.ReactDOMClient = import_client.default;
-  window.Expandable = Expandable;
   window.Comments = Comments;
+  window.Expandable = Expandable;
+  window.Button = Button;
   window.FancyText = FancyText;
   window.InspirationGenerator = InspirationGenerator;
-  window.Button = Button;
   window.EmptyNote = EmptyNote;
   window.UpdateName = UpdateName;
   window.UpdateName = UpdateName;

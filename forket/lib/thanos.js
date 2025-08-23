@@ -7,6 +7,7 @@ import { ROLE } from "./constants.js";
 import { dealWithSAImportedInClientNode, processServerActions } from "./utils/processServerActions.js";
 import faceliftTheServerActionsSetup from "./utils/faceliftTheServerActionsSetup.js";
 import createClientBoundary from "./utils/createClientBoundary.js";
+import {clearPath} from "./utils/fsHelpers.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -32,7 +33,15 @@ export function Thanos() {
             if (node.imports[j].resolvedTo) {
               const importedNode = getNode(graph, node.imports[j].resolvedTo);
               if (importedNode && importedNode?.role === ROLE.CLIENT && node?.role !== ROLE.CLIENT) {
-                console.log(chalk.gray("  - Client boundary found for " + node.imports[j].source));
+                console.log(
+                  chalk.gray(
+                    "└─ Client boundary found in " +
+                      clearPath(node.file) +
+                      " (" +
+                      clearPath(node.imports[j].what.join(", ")) +
+                      ")"
+                  )
+                );
                 const compNames = await createClientBoundary(node, node.imports[j], filePath);
                 clientBoundaries.push({ compNames, importedNode });
               }
@@ -60,7 +69,7 @@ export function Thanos() {
           if (node.role === ROLE.CLIENT) {
             // finding out the client entry point
             if (!node.parentNode) {
-              console.log(chalk.gray("  - Client entry point found: " + node.file));
+              console.log(chalk.gray("└─ Client entry point found: " + clearPath(node.file)));
               clientEntryPoints.push(node);
             }
             // checking if the client component is importing server actions
