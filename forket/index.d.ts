@@ -7,6 +7,7 @@ export interface ForketOptions {
   clientCopyableFiles?: string[];
   watch?: boolean;
   printGraph?: boolean;
+  exposeReactGlobally?: boolean;
 }
 
 export interface ForketInstance {

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf ./build/*",
+    "clean": "rm -rf ./build/* && rm -rf ./dist/*",
     "dev_": "npm run clean && vite --config vite.config.ts",
     "dev": "npm run clean && node ./scripts/dev.js",
     "build": "tsc -b && vite build",

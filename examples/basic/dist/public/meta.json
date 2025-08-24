@@ -201,7 +201,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 1251,
+      "bytes": 1287,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -216,47 +216,47 @@
         {
           "path": "build/client/components/server-functions-with-form-actions/UpdateName.tsx",
           "kind": "import-statement",
-          "original": "./components/server-functions-with-form-actions/UpdateName"
+          "original": "./components/server-functions-with-form-actions/UpdateName.tsx"
         },
         {
           "path": "build/client/components/server-functions-with-actions/UpdateMyName.tsx",
           "kind": "import-statement",
-          "original": "./components/server-functions-with-actions/UpdateMyName"
+          "original": "./components/server-functions-with-actions/UpdateMyName.tsx"
         },
         {
           "path": "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx",
           "kind": "import-statement",
-          "original": "./components/importing-server-functions-from-client-components/EmptyNote"
+          "original": "./components/importing-server-functions-from-client-components/EmptyNote.tsx"
         },
         {
           "path": "build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx",
           "kind": "import-statement",
-          "original": "./components/how-use-client-marks-client-code/InspirationGenerator"
+          "original": "./components/how-use-client-marks-client-code/InspirationGenerator.tsx"
         },
         {
           "path": "build/client/components/how-use-client-marks-client-code/FancyText.tsx",
           "kind": "import-statement",
-          "original": "./components/how-use-client-marks-client-code/FancyText"
+          "original": "./components/how-use-client-marks-client-code/FancyText.tsx"
         },
         {
           "path": "build/client/components/creating-server-function-from-server-component/Button.tsx",
           "kind": "import-statement",
-          "original": "./components/creating-server-function-from-server-component/Button"
+          "original": "./components/creating-server-function-from-server-component/Button.tsx"
         },
         {
           "path": "build/client/components/calling-server-function-outside-form/LikeButton.tsx",
           "kind": "import-statement",
-          "original": "./components/calling-server-function-outside-form/LikeButton"
+          "original": "./components/calling-server-function-outside-form/LikeButton.tsx"
         },
         {
           "path": "build/client/components/async-components-with-server-components/Comments.tsx",
           "kind": "import-statement",
-          "original": "./components/async-components-with-server-components/Comments"
+          "original": "./components/async-components-with-server-components/Comments.tsx"
         },
         {
           "path": "build/client/components/adding-interactivity-to-server-components/Expandable.tsx",
           "kind": "import-statement",
-          "original": "./components/adding-interactivity-to-server-components/Expandable"
+          "original": "./components/adding-interactivity-to-server-components/Expandable.tsx"
         }
       ],
       "format": "esm"
@@ -267,7 +267,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 880032
+      "bytes": 880068
     },
     "dist/public/bundle.js": {
       "imports": [],

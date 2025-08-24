@@ -60,7 +60,6 @@ export default async function Forket(customOptions = {}, configPath = null) {
       graphs.forEach((g) => {
         setRoles(g);
         if (options.printGraph) {
-          console.log(chalk.cyan(`‎𐂐 Graph with entry point ${clearPath(g.file)}:`));
           printGraph(g);
         }
       });
@@ -82,7 +81,8 @@ export default async function Forket(customOptions = {}, configPath = null) {
         options.sourceDir,
         buildClientDir,
         thanosServer.clientBoundaries,
-        thanosClient.clientEntryPoints
+        thanosClient.clientEntryPoints,
+        options.exposeReactGlobally
       );
 
       const allServerActions = removeDuplicates([...thanosServer.serverActions, ...thanosClient.serverActions]);

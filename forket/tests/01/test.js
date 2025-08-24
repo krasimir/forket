@@ -10,6 +10,7 @@ import clientBoundaryWrapper from "../../lib/ast/clientBoundaryWrapper/index.js"
 import insertAtTheTop from "../../lib/utils/insertAtTheTop.js";
 import traverseNode from "../../lib/utils/traverseNode.js";
 import {resetId} from "../../lib/utils/getId.js";
+import getImportPath from "../../lib/utils/getImportPath.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -194,6 +195,29 @@ export default async function ({ test, xtest, toAST, toCode }) {
       if (expected !== result) {
         console.log(`(${cases[i]}) Expected:\n${expected}`);
         console.log(`Result:\n${result}`);
+        return false;
+      }
+    }
+    return true;
+  });
+  await test("Should properly suggest import path", async () => {
+    const cases = [
+      {
+        usedIn: "/src/main.tsx",
+        willImport: "/src/components/App.tsx",
+        expected: "./components/App"
+      },
+      {
+        usedIn: "/src/components/common/Button.tsx",
+        willImport: "/src/utils/formatters/date.ts",
+        expected: "../../utils/formatters/date"
+      }
+    ];
+    for (let i = 0; i < cases.length; i++) {
+      const result = getImportPath(cases[i].usedIn, cases[i].willImport);
+      if (result !== cases[i].expected) {
+        console.log(`(${i}) Expected: ${cases[i].expected}`);
+        console.log(`(${i}) Result  : ${result}`);
         return false;
       }
     }

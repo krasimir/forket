@@ -13,7 +13,7 @@ export default function faceliftTheServerActionsSetup(node, options, serverEntry
       MemberExpression(n, stack) {
         if (n?.property?.value === "forketServerActions") {
           serverEntryPoints.push(node);
-          if (stack[0].arguments && Array.isArray(stack[0].arguments)) {
+          if (stack[0].arguments && Array.isArray(stack[0].arguments) && stack[0].arguments.length === 0) {
             stack[0].arguments.push({
               spread: null,
               expression: {
@@ -28,7 +28,7 @@ export default function faceliftTheServerActionsSetup(node, options, serverEntry
               }
             });
             const handlerPath =
-              getImportPath(node.file, path.join(options.sourceDir, options.forketServerActionsHandler)) + ".js";
+              getImportPath(node.file, path.join(options.sourceDir, options.forketServerActionsHandler));
             insertImports(node.ast, "forketServerActionsHandler", handlerPath);
           }
           found = true;

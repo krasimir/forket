@@ -13,12 +13,8 @@ export default async function setupServerActionsHandler(actions, sourceDir, file
  
   actions.forEach((action) => {
     mapValues.push([ action.serverActionClientId, action.funcName ]);
-    insertImports(
-      ast,
-      action.funcName,
-      getImportPath(path.join(sourceDir, '_.js'), action.filePath) + '.js',
-      action.isDefault
-    );
+    const importPath = getImportPath(path.join(sourceDir, "imaginaryFile.js"), action.filePath);
+    insertImports(ast, action.funcName, importPath, action.isDefault);
   });
   insertAfterTop(ast, createMap('actions', mapValues))
 

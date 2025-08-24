@@ -298,11 +298,15 @@ export async function getGraphs(dir) {
   return graphs;
 }
 export function printGraph(node) {
+  if (node.children.length === 0) {
+    return;
+  }
+  console.log(chalk.cyan(`┌─ ${clearPath(node.file)}:`));
   function processNode(n, root) {
     const children = {};
-    let label = `#${chalk.grey(n.id)} ${chalk.green(clearPath(n.file))} (${chalk.grey(n.role)})`;
+    let label = `${chalk.green(clearPath(n.file))} (${chalk.grey(n.role)})`;
     if (n.serverActions.length > 0) {
-      label += ` (${chalk.cyan('SAs:')} ${chalk.grey(n.serverActions.map(({ funcName }) => funcName).join(", "))})`;
+      label += ` (${chalk.cyan("SAs:")} ${chalk.grey(n.serverActions.map(({ funcName }) => funcName).join(", "))})`;
     }
     root[label] = children;
     n.children.forEach((child) => {
@@ -310,7 +314,10 @@ export function printGraph(node) {
     });
     return root;
   }
-  const tree = processNode(node, {});
+  const tree = {};
+  node.children.forEach((child) => {
+    processNode(child, tree);
+  });
   console.log(treeify.asTree(tree).trimEnd());
 }
 export function toJSON(node) {

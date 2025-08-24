@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
-import ReactDOMClient from "react-dom/client";
-window.React = React;
-window.ReactDOMClient = ReactDOMClient;
+import EmptyNote from "./components/EmptyNote";
+console.log('Log from client.tsx');
+window.EmptyNote = EmptyNote;

@@ -29,7 +29,6 @@ await forket.process();
 
 // Watching for changes in the build directory, transpile, bundle and restart the server
 chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-  // console.log(`‎DEV ${event} ${path.relative(ROOT, file)} ${restart} ${!!serverProcess ? 1 : 0}`);
   if (!restart) {
     restart = true;
     if (serverProcess) {
@@ -54,6 +53,25 @@ async function run() {
   });
 };
 
+function rewriteTsImportsPlugin() {
+  return {
+    name: "rewrite-imports-to-js",
+    setup(build) {
+      build.onLoad({ filter: /\.(tsx?|jsx?|mjs|cjs)$/ }, async (args) => {
+        let contents = await fs.readFileSync(args.path, "utf8");
+
+        // Replace only *relative* imports that end with .ts/.tsx/.mts/.cts
+        contents = contents.replace(
+          /(\bfrom\s+['"]|import\s*\(\s*['"])(\.{1,2}\/[^'"]+?)\.(ts|tsx|mts|cts)(['"]\s*\)?)/g,
+          (_m, p1, p2, _ext, p4) => `${p1}${p2}.js${p4}`
+        );
+
+        return { contents, loader: args.path.endsWith("x") ? "tsx" : "ts" };
+      });
+    }
+  }
+};
+
 async function buildServer() {
   const serverBuildDir = path.join(BUILD, "server");;
   const files = getAllFiles(serverBuildDir);
@@ -69,7 +87,7 @@ async function buildServer() {
         outfile,
         platform: "node",
         format: "esm",
-        plugins: []
+        plugins: [rewriteTsImportsPlugin()]
       });
     }));
     // console.log(`Server files compiled successfully to ${DIST}`);

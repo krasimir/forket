@@ -6,13 +6,14 @@ import chalk from "chalk";
 import exposeGlobal from "../ast/exposeGlobal/index.js";
 import insertImports from "./insertImports.js";
 import getImportPath from "./getImportPath.js";
-import {clearPath} from "./fsHelpers.js";
+import { clearPath } from "./fsHelpers.js";
 
 export default async function setupClientEntryPoints(
   sourceDir,
   buildDir,
   clientBoundaries,
-  clientEntrypoints
+  clientEntrypoints,
+  exposeReactGlobally = true
 ) {
   if (clientEntrypoints.length === 0) {
     throw new Error(`No client entry points found. Make sure that you have at least one file in your root directory with "use client" directive.`);
@@ -26,11 +27,13 @@ export default async function setupClientEntryPoints(
           insertImports(entryPoint.ast, compName, getImportPath(entryPoint.file, importedNode.file));
         });
       });
-      insertImports(entryPoint.ast, "ReactDOMClient", "react-dom/client");
-      insertImports(entryPoint.ast, "React", "react");
-      entryPoint.ast.body = entryPoint.ast.body
-        .concat(exposeGlobal("React", "React"))
-        .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"));
+      if (exposeReactGlobally) {
+        insertImports(entryPoint.ast, "ReactDOMClient", "react-dom/client");
+        insertImports(entryPoint.ast, "React", "react");
+        entryPoint.ast.body = entryPoint.ast.body
+          .concat(exposeGlobal("React", "React"))
+          .concat(exposeGlobal("ReactDOMClient", "ReactDOMClient"));
+      }
       clientBoundaries.forEach(({ compNames }) => {
         compNames.forEach((compName) => {
           entryPoint.ast.body = entryPoint.ast.body.concat(exposeGlobal(compName, compName));

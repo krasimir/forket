@@ -1,19 +1,25 @@
 import { useState, Suspense } from "react";
 import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
-import "./App.css";
+
+import "./styles.css";
 
 import EmptyNote from "./EmptyNote.js";
 
-function App() {
+function App({ clientBundleFile }: { clientBundleFile: string }) {
   return (
-    <>
-      <header>
-        <h1>Hey</h1>
-      </header>
-      <EmptyNote />
-      <script type="module" src="/@vite/client"></script>
-    </>
+    <html>
+      <head>
+        <title>👋</title>
+      </head>
+      <body>
+        <header>
+          <h1>Hey</h1>
+        </header>
+        <EmptyNote />
+        <script type="module" src="/@vite/client"></script>
+        <script type="module" src={clientBundleFile}></script>
+      </body>
+    </html>
   );
 }
 

@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import chokidar from "chokidar";
 import esbuild from "esbuild";
@@ -50,6 +51,25 @@ async function run() {
   });
 };
 
+function rewriteTsImportsPlugin() {
+  return {
+    name: "rewrite-imports-to-js",
+    setup(build) {
+      build.onLoad({ filter: /\.(tsx?|jsx?|mjs|cjs)$/ }, async (args) => {
+        let contents = await fs.readFileSync(args.path, "utf8");
+
+        // Replace only *relative* imports that end with .ts/.tsx/.mts/.cts
+        contents = contents.replace(
+          /(\bfrom\s+['"]|import\s*\(\s*['"])(\.{1,2}\/[^'"]+?)\.(ts|tsx|mts|cts)(['"]\s*\)?)/g,
+          (_m, p1, p2, _ext, p4) => `${p1}${p2}.js${p4}`
+        );
+
+        return { contents, loader: args.path.endsWith("x") ? "tsx" : "ts" };
+      });
+    }
+  }
+};
+
 async function buildServer() {
   const serverBuildDir = path.join(BUILD, "server");;
   const files = getAllFiles(serverBuildDir);
@@ -65,7 +85,7 @@ async function buildServer() {
         outfile,
         platform: "node",
         format: "esm",
-        plugins: []
+        plugins: [rewriteTsImportsPlugin()]
       });
     }));
   } catch (error) {

@@ -41,7 +41,8 @@ const DEFAULT_OPTIONS = {
     ".wasm"
   ],
   watch: false,
-  printGraph: false
+  printGraph: false,
+  exposeReactGlobally: true,
 };
 
 export default async function findConfig(configPath) {

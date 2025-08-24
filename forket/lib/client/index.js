@@ -5,7 +5,6 @@
   let SSR_DONE = false;
   const roots = new Map();
 
-  log("𐂐 v" + __VERSION__);
   const ATTR_MAP = {
     class: "className",
     for: "htmlFor",
@@ -42,6 +41,7 @@
     "selected"
   ]);
   function FRSC_init() {
+    log("𐂐 v" + __VERSION__);
     const d = document;
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
@@ -86,10 +86,11 @@
           }
           log("𐂐 " + componentName + "(" + id + ")", { props, children });
           mountOrUpdate(container, React.createElement(Component, props, children));
+          return true;
         };
-        window.$FRSC_renderers[id](newProps);
+        return window.$FRSC_renderers[id](newProps);
       };
-      window.$FRSC_renderers[id]();
+      return window.$FRSC_renderers[id]();
     }
     function normalizeProps(content) {
       try {
