@@ -2,443 +2,203 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 291
+    "end": 113
   },
   "body": [
     {
-      "type": "ExpressionStatement",
+      "type": "FunctionDeclaration",
+      "identifier": {
+        "type": "Identifier",
+        "span": {
+          "start": 16,
+          "end": 20
+        },
+        "ctxt": 2,
+        "value": "test",
+        "optional": false
+      },
+      "declare": false,
+      "params": [],
+      "decorators": [],
       "span": {
         "start": 1,
-        "end": 14
+        "end": 113
       },
-      "expression": {
-        "type": "StringLiteral",
+      "ctxt": 3,
+      "body": {
+        "type": "BlockStatement",
         "span": {
-          "start": 1,
-          "end": 13
-        },
-        "value": "use server",
-        "raw": "\"use server\""
-      }
-    },
-    {
-      "type": "ImportDeclaration",
-      "span": {
-        "start": 15,
-        "end": 41
-      },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "span": {
-            "start": 22,
-            "end": 24
-          },
-          "local": {
-            "type": "Identifier",
-            "span": {
-              "start": 22,
-              "end": 24
-            },
-            "ctxt": 2,
-            "value": "DB",
-            "optional": false
-          }
-        }
-      ],
-      "source": {
-        "type": "StringLiteral",
-        "span": {
-          "start": 30,
-          "end": 40
-        },
-        "value": "../db.js",
-        "raw": "\"../db.js\""
-      },
-      "typeOnly": false,
-      "with": null,
-      "phase": "evaluation"
-    },
-    {
-      "type": "ExportDeclaration",
-      "span": {
-        "start": 43,
-        "end": 143
-      },
-      "declaration": {
-        "type": "FunctionDeclaration",
-        "identifier": {
-          "type": "Identifier",
-          "span": {
-            "start": 65,
-            "end": 77
-          },
-          "ctxt": 2,
-          "value": "processImage",
-          "optional": false
-        },
-        "declare": false,
-        "params": [
-          {
-            "type": "Parameter",
-            "span": {
-              "start": 78,
-              "end": 82
-            },
-            "decorators": [],
-            "pat": {
-              "type": "Identifier",
-              "span": {
-                "start": 78,
-                "end": 82
-              },
-              "ctxt": 3,
-              "value": "data",
-              "optional": false,
-              "typeAnnotation": null
-            }
-          },
-          {
-            "type": "Parameter",
-            "span": {
-              "start": 84,
-              "end": 91
-            },
-            "decorators": [],
-            "pat": {
-              "type": "Identifier",
-              "span": {
-                "start": 84,
-                "end": 91
-              },
-              "ctxt": 3,
-              "value": "context",
-              "optional": false,
-              "typeAnnotation": null
-            }
-          }
-        ],
-        "decorators": [],
-        "span": {
-          "start": 50,
-          "end": 143
+          "start": 23,
+          "end": 113
         },
         "ctxt": 3,
-        "body": {
-          "type": "BlockStatement",
-          "span": {
-            "start": 93,
-            "end": 143
-          },
-          "ctxt": 3,
-          "stmts": [
-            {
-              "type": "ReturnStatement",
-              "span": {
-                "start": 97,
-                "end": 141
-              },
-              "argument": {
-                "type": "AwaitExpression",
+        "stmts": [
+          {
+            "type": "VariableDeclaration",
+            "span": {
+              "start": 27,
+              "end": 61
+            },
+            "ctxt": 0,
+            "kind": "const",
+            "declare": false,
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
                 "span": {
-                  "start": 104,
-                  "end": 140
+                  "start": 33,
+                  "end": 60
                 },
-                "argument": {
-                  "type": "CallExpression",
+                "id": {
+                  "type": "Identifier",
                   "span": {
-                    "start": 110,
-                    "end": 140
+                    "start": 33,
+                    "end": 36
                   },
-                  "ctxt": 0,
-                  "callee": {
-                    "type": "MemberExpression",
+                  "ctxt": 3,
+                  "value": "foo",
+                  "optional": false,
+                  "typeAnnotation": null
+                },
+                "init": {
+                  "type": "AwaitExpression",
+                  "span": {
+                    "start": 39,
+                    "end": 60
+                  },
+                  "argument": {
+                    "type": "CallExpression",
                     "span": {
-                      "start": 110,
-                      "end": 123
+                      "start": 45,
+                      "end": 60
                     },
-                    "object": {
-                      "type": "Identifier",
+                    "ctxt": 0,
+                    "callee": {
+                      "type": "Import",
                       "span": {
-                        "start": 110,
-                        "end": 112
+                        "start": 45,
+                        "end": 51
                       },
-                      "ctxt": 2,
-                      "value": "DB",
-                      "optional": false
+                      "phase": "evaluation"
                     },
-                    "property": {
-                      "type": "Identifier",
-                      "span": {
-                        "start": 113,
-                        "end": 123
-                      },
-                      "value": "storeImage"
-                    }
-                  },
-                  "arguments": [
-                    {
-                      "spread": null,
-                      "expression": {
-                        "type": "MemberExpression",
-                        "span": {
-                          "start": 124,
-                          "end": 139
-                        },
-                        "object": {
-                          "type": "Identifier",
+                    "arguments": [
+                      {
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
                           "span": {
-                            "start": 124,
-                            "end": 131
+                            "start": 52,
+                            "end": 59
                           },
-                          "ctxt": 3,
-                          "value": "context",
-                          "optional": false
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "span": {
-                            "start": 132,
-                            "end": 139
-                          },
-                          "value": "request"
+                          "value": "./A/B",
+                          "raw": "\"./A/B\""
                         }
                       }
+                    ],
+                    "typeArguments": null
+                  }
+                },
+                "definite": false
+              }
+            ]
+          },
+          {
+            "type": "VariableDeclaration",
+            "span": {
+              "start": 64,
+              "end": 111
+            },
+            "ctxt": 0,
+            "kind": "const",
+            "declare": false,
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "span": {
+                  "start": 70,
+                  "end": 110
+                },
+                "id": {
+                  "type": "ObjectPattern",
+                  "span": {
+                    "start": 70,
+                    "end": 86
+                  },
+                  "properties": [
+                    {
+                      "type": "KeyValuePatternProperty",
+                      "key": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 72,
+                          "end": 79
+                        },
+                        "value": "default"
+                      },
+                      "value": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 81,
+                          "end": 84
+                        },
+                        "ctxt": 3,
+                        "value": "bar",
+                        "optional": false,
+                        "typeAnnotation": null
+                      }
                     }
                   ],
-                  "typeArguments": null
-                }
-              }
-            }
-          ]
-        },
-        "generator": false,
-        "async": true,
-        "typeParameters": null,
-        "returnType": null
-      }
-    },
-    {
-      "type": "ExportDeclaration",
-      "span": {
-        "start": 144,
-        "end": 254
-      },
-      "declaration": {
-        "type": "FunctionDeclaration",
-        "identifier": {
-          "type": "Identifier",
-          "span": {
-            "start": 166,
-            "end": 177
-          },
-          "ctxt": 2,
-          "value": "updateImage",
-          "optional": false
-        },
-        "declare": false,
-        "params": [
-          {
-            "type": "Parameter",
-            "span": {
-              "start": 178,
-              "end": 201
-            },
-            "decorators": [],
-            "pat": {
-              "type": "ObjectPattern",
-              "span": {
-                "start": 178,
-                "end": 201
-              },
-              "properties": [
-                {
-                  "type": "KeyValuePatternProperty",
-                  "key": {
-                    "type": "Identifier",
-                    "span": {
-                      "start": 180,
-                      "end": 184
-                    },
-                    "value": "data"
+                  "optional": false,
+                  "typeAnnotation": null
+                },
+                "init": {
+                  "type": "AwaitExpression",
+                  "span": {
+                    "start": 89,
+                    "end": 110
                   },
-                  "value": {
-                    "type": "ArrayPattern",
+                  "argument": {
+                    "type": "CallExpression",
                     "span": {
-                      "start": 186,
-                      "end": 199
+                      "start": 95,
+                      "end": 110
                     },
-                    "elements": [
-                      {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 187,
-                          "end": 189
-                        },
-                        "ctxt": 4,
-                        "value": "id",
-                        "optional": false,
-                        "typeAnnotation": null
+                    "ctxt": 0,
+                    "callee": {
+                      "type": "Import",
+                      "span": {
+                        "start": 95,
+                        "end": 101
                       },
+                      "phase": "evaluation"
+                    },
+                    "arguments": [
                       {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 191,
-                          "end": 198
-                        },
-                        "ctxt": 4,
-                        "value": "content",
-                        "optional": false,
-                        "typeAnnotation": null
+                        "spread": null,
+                        "expression": {
+                          "type": "StringLiteral",
+                          "span": {
+                            "start": 102,
+                            "end": 109
+                          },
+                          "value": "./A/B",
+                          "raw": "\"./A/B\""
+                        }
                       }
                     ],
-                    "optional": false,
-                    "typeAnnotation": null
+                    "typeArguments": null
                   }
-                }
-              ],
-              "optional": false,
-              "typeAnnotation": null
-            }
-          }
-        ],
-        "decorators": [],
-        "span": {
-          "start": 151,
-          "end": 254
-        },
-        "ctxt": 4,
-        "body": {
-          "type": "BlockStatement",
-          "span": {
-            "start": 203,
-            "end": 254
-          },
-          "ctxt": 4,
-          "stmts": [
-            {
-              "type": "ReturnStatement",
-              "span": {
-                "start": 207,
-                "end": 252
-              },
-              "argument": {
-                "type": "AwaitExpression",
-                "span": {
-                  "start": 214,
-                  "end": 251
                 },
-                "argument": {
-                  "type": "CallExpression",
-                  "span": {
-                    "start": 220,
-                    "end": 251
-                  },
-                  "ctxt": 0,
-                  "callee": {
-                    "type": "MemberExpression",
-                    "span": {
-                      "start": 220,
-                      "end": 238
-                    },
-                    "object": {
-                      "type": "Identifier",
-                      "span": {
-                        "start": 220,
-                        "end": 222
-                      },
-                      "ctxt": 2,
-                      "value": "DB",
-                      "optional": false
-                    },
-                    "property": {
-                      "type": "Identifier",
-                      "span": {
-                        "start": 223,
-                        "end": 238
-                      },
-                      "value": "setImageContent"
-                    }
-                  },
-                  "arguments": [
-                    {
-                      "spread": null,
-                      "expression": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 239,
-                          "end": 241
-                        },
-                        "ctxt": 4,
-                        "value": "id",
-                        "optional": false
-                      }
-                    },
-                    {
-                      "spread": null,
-                      "expression": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 243,
-                          "end": 250
-                        },
-                        "ctxt": 4,
-                        "value": "content",
-                        "optional": false
-                      }
-                    }
-                  ],
-                  "typeArguments": null
-                }
+                "definite": false
               }
-            }
-          ]
-        },
-        "generator": false,
-        "async": true,
-        "typeParameters": null,
-        "returnType": null
-      }
-    },
-    {
-      "type": "ExportDefaultDeclaration",
-      "span": {
-        "start": 256,
-        "end": 291
+            ]
+          }
+        ]
       },
-      "decl": {
-        "type": "FunctionExpression",
-        "identifier": {
-          "type": "Identifier",
-          "span": {
-            "start": 280,
-            "end": 284
-          },
-          "ctxt": 2,
-          "value": "test",
-          "optional": false
-        },
-        "params": [],
-        "decorators": [],
-        "span": {
-          "start": 271,
-          "end": 291
-        },
-        "ctxt": 5,
-        "body": {
-          "type": "BlockStatement",
-          "span": {
-            "start": 287,
-            "end": 291
-          },
-          "ctxt": 5,
-          "stmts": []
-        },
-        "generator": false,
-        "async": false,
-        "typeParameters": null,
-        "returnType": null
-      }
+      "generator": false,
+      "async": true,
+      "typeParameters": null,
+      "returnType": null
     }
   ],
   "interpreter": null

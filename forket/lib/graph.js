@@ -47,29 +47,57 @@ export async function createNode(file, parentNode = null) {
         // Ignoring the Forket source import that we use while developing with the playground
         return;
       }
-      imports.push({
-        what: (node?.specifiers || []).map((s) => {
-          return s?.local?.value;
-        }).filter(Boolean),
-        source: get(node, "source.value")
-      });
+      const source = get(node, "source.value");
+      const ext = path.extname(source);
+      if (source && (VALID_FILES_TO_PROCESS.includes(ext) || ext === '')) {
+        imports.push({
+          what: (node?.specifiers || [])
+            .map((s) => {
+              return s?.local?.value;
+            })
+            .filter(Boolean),
+          source
+        });
+      }
     }
     function processCallExpression(node, stack) {
+      function getWhat(n) {
+        if (n?.id?.type === "ObjectPattern") {
+          return (n?.id?.properties || [])
+            .map((prop) => {
+              if (prop.value) {
+                return prop.value?.value;
+              }
+              return prop?.key?.value;
+            })
+            .filter(Boolean);
+        } else {
+          return [n?.id?.value];
+        }
+      }
       if (node?.callee.value === "require") {
         let what;
         if (stack[0]?.type === 'VariableDeclarator') {
-          if (stack[0]?.id?.type === 'ObjectPattern') {
-            what = (stack[0]?.id?.properties || [])
-              .map((prop) => prop?.key?.value)
-              .filter(Boolean);
-          } else {
-            what = [stack[0]?.id?.value];
-          }
+          what = getWhat(stack[0]);
         }
-        imports.push({
-          what: (what || []).filter(Boolean),
-          source: get(node, "arguments[0].expression.value")
-        });
+        const source = get(node, "arguments[0].expression.value");
+        const ext = path.extname(source);
+        if (source && (VALID_FILES_TO_PROCESS.includes(ext) || ext === '')) {
+          imports.push({
+            what: (what || []).filter(Boolean),
+            source
+          });
+        }
+      } else if (node?.callee?.type === "Import") {
+        const source = get(node, "arguments[0].expression.value");
+        const what = getWhat(stack[1]);
+        const ext = path.extname(source);
+        if (source && (VALID_FILES_TO_PROCESS.includes(ext) || ext === "")) {
+          imports.push({
+            what: (what || []).filter(Boolean),
+            source
+          });
+        }
       }
     }
     function processExpressionStatement(node, stack) {

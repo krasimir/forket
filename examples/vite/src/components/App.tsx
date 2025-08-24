@@ -2,18 +2,17 @@ import { useState, Suspense } from "react";
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import "./App.css";
-import Products from './Products';
+
+import EmptyNote from "./EmptyNote.js";
 
 function App() {
   return (
     <>
       <header>
-        <h1>Hello world</h1>
+        <h1>Hey</h1>
       </header>
-      <Suspense>
-        <Products />
-      </Suspense>
-      <footer>I'm a footer</footer>
+      <EmptyNote />
+      <script type="module" src="/@vite/client"></script>
     </>
   );
 }

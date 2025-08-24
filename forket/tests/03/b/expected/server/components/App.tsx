@@ -19,7 +19,7 @@ function NoteBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && children.length > 0 && (<template type="forket/children" id="f_5" data-c="Note">
+      {children && (<template type="forket/children" id="f_5" data-c="Note">
           {children}
         </template>)}
       <template type="forket/start" id="f_5" data-c="Note"></template>

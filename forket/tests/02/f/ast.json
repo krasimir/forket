@@ -1,28 +1,28 @@
 {
   "type": "Module",
   "span": {
-    "start": 5108,
-    "end": 5357
+    "start": 5371,
+    "end": 5620
   },
   "body": [
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 5108,
-        "end": 5169
+        "start": 5371,
+        "end": 5432
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 5115,
-            "end": 5131
+            "start": 5378,
+            "end": 5394
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 5115,
-              "end": 5131
+              "start": 5378,
+              "end": 5394
             },
             "ctxt": 2,
             "value": "createNoteAction",
@@ -33,8 +33,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 5137,
-          "end": 5168
+          "start": 5400,
+          "end": 5431
         },
         "value": "./actions/createNoteAction.js",
         "raw": "\"./actions/createNoteAction.js\""
@@ -46,21 +46,21 @@
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 5170,
-        "end": 5218
+        "start": 5433,
+        "end": 5481
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 5177,
-            "end": 5187
+            "start": 5440,
+            "end": 5450
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 5177,
-              "end": 5187
+              "start": 5440,
+              "end": 5450
             },
             "ctxt": 2,
             "value": "deleteNote",
@@ -71,8 +71,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 5193,
-          "end": 5218
+          "start": 5456,
+          "end": 5481
         },
         "value": "./actions/deleteNote.js",
         "raw": "'./actions/deleteNote.js'"
@@ -86,8 +86,8 @@
       "identifier": {
         "type": "Identifier",
         "span": {
-          "start": 5229,
-          "end": 5238
+          "start": 5492,
+          "end": 5501
         },
         "ctxt": 2,
         "value": "EmptyNote",
@@ -97,49 +97,49 @@
       "params": [],
       "decorators": [],
       "span": {
-        "start": 5220,
-        "end": 5357
+        "start": 5483,
+        "end": 5620
       },
       "ctxt": 3,
       "body": {
         "type": "BlockStatement",
         "span": {
-          "start": 5241,
-          "end": 5357
+          "start": 5504,
+          "end": 5620
         },
         "ctxt": 3,
         "stmts": [
           {
             "type": "ReturnStatement",
             "span": {
-              "start": 5245,
-              "end": 5355
+              "start": 5508,
+              "end": 5618
             },
             "argument": {
               "type": "ParenthesisExpression",
               "span": {
-                "start": 5252,
-                "end": 5354
+                "start": 5515,
+                "end": 5617
               },
               "expression": {
                 "type": "JSXFragment",
                 "span": {
-                  "start": 5258,
-                  "end": 5350
+                  "start": 5521,
+                  "end": 5613
                 },
                 "opening": {
                   "type": "JSXOpeningFragment",
                   "span": {
-                    "start": 5258,
-                    "end": 5260
+                    "start": 5521,
+                    "end": 5523
                   }
                 },
                 "children": [
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 5260,
-                      "end": 5267
+                      "start": 5523,
+                      "end": 5530
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -147,45 +147,45 @@
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 5267,
-                      "end": 5304
+                      "start": 5530,
+                      "end": 5567
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 5268,
-                          "end": 5274
+                          "start": 5531,
+                          "end": 5537
                         },
                         "ctxt": 1,
                         "value": "Button",
                         "optional": false
                       },
                       "span": {
-                        "start": 5267,
-                        "end": 5304
+                        "start": 5530,
+                        "end": 5567
                       },
                       "attributes": [
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 5275,
-                            "end": 5301
+                            "start": 5538,
+                            "end": 5564
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 5275,
-                              "end": 5282
+                              "start": 5538,
+                              "end": 5545
                             },
                             "value": "onClick"
                           },
                           "value": {
                             "type": "JSXExpressionContainer",
                             "span": {
-                              "start": 5283,
-                              "end": 5301
+                              "start": 5546,
+                              "end": 5564
                             },
                             "expression": {
                               "type": "StringLiteral",
@@ -208,8 +208,8 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 5304,
-                      "end": 5311
+                      "start": 5567,
+                      "end": 5574
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -217,45 +217,45 @@
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 5311,
-                      "end": 5342
+                      "start": 5574,
+                      "end": 5605
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 5312,
-                          "end": 5318
+                          "start": 5575,
+                          "end": 5581
                         },
                         "ctxt": 1,
                         "value": "Button",
                         "optional": false
                       },
                       "span": {
-                        "start": 5311,
-                        "end": 5342
+                        "start": 5574,
+                        "end": 5605
                       },
                       "attributes": [
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 5319,
-                            "end": 5339
+                            "start": 5582,
+                            "end": 5602
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 5319,
-                              "end": 5326
+                              "start": 5582,
+                              "end": 5589
                             },
                             "value": "onClick"
                           },
                           "value": {
                             "type": "JSXExpressionContainer",
                             "span": {
-                              "start": 5327,
-                              "end": 5339
+                              "start": 5590,
+                              "end": 5602
                             },
                             "expression": {
                               "type": "StringLiteral",
@@ -278,8 +278,8 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 5342,
-                      "end": 5347
+                      "start": 5605,
+                      "end": 5610
                     },
                     "value": "\n    ",
                     "raw": "\n    "
@@ -288,8 +288,8 @@
                 "closing": {
                   "type": "JSXClosingFragment",
                   "span": {
-                    "start": 5347,
-                    "end": 5350
+                    "start": 5610,
+                    "end": 5613
                   }
                 }
               }

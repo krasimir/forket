@@ -7,4 +7,4 @@ import "./index.css";
 // component somehow here. Otherwise all the imported CSS files are considered
 // unused and not injected onto the page.
 
-console.log(typeof App);
+console.log('Log from main.tsx');

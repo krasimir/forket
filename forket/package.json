@@ -1,6 +1,6 @@
 {
   "name": "forket",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
   "author": "Krasimir Tsonev",
   "main": "index.js",
@@ -35,8 +35,8 @@
     "arg": "5.0.2"
   },
   "peerDependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
   },
   "engines": {
     "node": ">=14.8.0"

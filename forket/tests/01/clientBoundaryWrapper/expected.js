@@ -12,7 +12,7 @@ function LoginFormBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && children.length > 0 && (<template type="forket/children" id="FORKETID111" data-c="LoginForm">
+      {children && (<template type="forket/children" id="FORKETID111" data-c="LoginForm">
           {children}
         </template>)}
       <template type="forket/start" id="FORKETID111" data-c="LoginForm"></template>

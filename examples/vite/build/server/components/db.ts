@@ -1,5 +1,12 @@
-export async function getProducts() {
-  const res = await fetch("http://localhost:3000/products");
-  const data = await res.json();
-  return data;
+const db = {
+  notes: {
+    create: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return {
+        ok: true
+      };
+    }
+  }
 }
+
+export default db;

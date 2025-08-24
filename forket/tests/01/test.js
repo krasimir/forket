@@ -14,7 +14,7 @@ import {resetId} from "../../lib/utils/getId.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default async function ({ test, toAST, toCode }) {
+export default async function ({ test, xtest, toAST, toCode }) {
   const [graph] = await getGraphs(path.join(__dirname, "src"));
   setRoles(graph);
   
@@ -59,7 +59,23 @@ export default async function ({ test, toAST, toCode }) {
     return expected === transformed;
   });
   await test("Should properly find the import/require statements", () => {
-    return graph.imports.map((i) => i.source).join(",") === "react,react-dom/client,./components/App,./foobar";
+    const actualSource = graph.imports.map((i) => i.source).join(",");
+    const expectedSource = "react,react-dom/client,./components/App,./foobar,./A/B,./C/D,./E/F";
+    const actualWhat = graph.imports.map((i) => i.what).join(",");
+    const expectedWhat = "React,hydrateRoot,App,foobar,foo,bar,cat,dog";
+    if (actualSource === expectedSource) {
+      if (actualWhat === expectedWhat) {
+        return true;
+      } else {
+        console.log(`Expected what: ${expectedWhat}`);
+        console.log(`Actual what  : ${actualWhat}`);
+        return false;
+      }
+    } else {
+      console.log(`Expected: ${expectedSource}`);
+      console.log(`Actual  : ${actualSource}`);
+      return false;
+    }
   });
   await test("Should build a graph and properly set the roles", () => {
     return (

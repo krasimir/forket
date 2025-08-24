@@ -24,7 +24,7 @@ const forket = await Forket({
   watch: true,
   printGraph: true,
 });
-console.log("Forket created");
+
 await forket.process();
 
 // Watching for changes in the build directory, transpile, bundle and restart the server

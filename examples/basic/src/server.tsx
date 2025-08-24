@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 Forket().then((forket) => {
-  // </end> This is only needed here because we are using relative path to Forket.
   app.use("/@forket", forket.forketServerActions());
   const handler = forket.serveApp({
     factory: (req) => <App request={req} />,

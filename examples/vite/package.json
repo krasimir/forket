@@ -6,14 +6,15 @@
   "scripts": {
     "clean": "rm -rf ./build/*",
     "dev_": "npm run clean && vite --config vite.config.ts",
-    "dev": "npm run clean && node ./server.js",
+    "dev": "npm run clean && node ./scripts/dev.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "express": "^5.1.0",
-    "forket": "0.1.4",
+    "forket": "0.7.7",
+    "chokidar": "3.5.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

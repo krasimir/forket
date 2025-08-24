@@ -31,7 +31,7 @@ function ExpandableBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && children.length > 0 && (<template type="forket/children" id="f_5" data-c="Expandable">
+      {children && (<template type="forket/children" id="f_5" data-c="Expandable">
           {children}
         </template>)}
       <template type="forket/start" id="f_5" data-c="Expandable"></template>
@@ -53,7 +53,7 @@ function FooterBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && children.length > 0 && (<template type="forket/children" id="f_6" data-c="Footer">
+      {children && (<template type="forket/children" id="f_6" data-c="Footer">
           {children}
         </template>)}
       <template type="forket/start" id="f_6" data-c="Footer"></template>
