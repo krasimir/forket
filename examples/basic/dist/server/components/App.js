@@ -7,6 +7,7 @@ import ServerFunctionsWithActions from "./server-functions-with-actions/Page.js"
 import ServerFunctionsWithForm from "./server-functions-with-form-actions/Page.js";
 import HowUseClient from "./how-use-client-marks-client-code/Page.js";
 import CallingServerFunctionOutside from "./calling-server-function-outside-form/Page.js";
+import PassingLivePromise from "./passing-live-promise-to-client/Page.js";
 const EXAMPLES = [
   {
     title: "Adding interactivity to Server Components",
@@ -19,6 +20,12 @@ const EXAMPLES = [
     reactdocs: "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
     route: "async-components-with-server-components",
     Page: AsyncComponents
+  },
+  {
+    title: "Passing live server promise to client (no Suspense)",
+    reactdocs: "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
+    route: "passing-live-promise-to-client",
+    Page: PassingLivePromise
   },
   {
     title: "How 'use client' marks client code",
@@ -67,7 +74,7 @@ function App({ request }) {
     const ExamplePage = currentExample.Page;
     page = /* @__PURE__ */ React.createElement(ExamplePage, { example: currentExample });
   }
-  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, page, /* @__PURE__ */ React.createElement("script", { src: "/bundle.js" })));
+  return /* @__PURE__ */ React.createElement("html", null, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("title", null, "\u{1F44B}"), /* @__PURE__ */ React.createElement("link", { rel: "stylesheet", href: "/assets/styles.css" })), /* @__PURE__ */ React.createElement("body", null, page, /* @__PURE__ */ React.createElement("script", { src: "/bundle.js", async: true, defer: true })));
 }
 function HomePage() {
   return EXAMPLES.map((example) => {

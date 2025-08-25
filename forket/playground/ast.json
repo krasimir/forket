@@ -2,203 +2,118 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 113
+    "end": 70
   },
   "body": [
     {
-      "type": "FunctionDeclaration",
-      "identifier": {
-        "type": "Identifier",
-        "span": {
-          "start": 16,
-          "end": 20
-        },
-        "ctxt": 2,
-        "value": "test",
-        "optional": false
-      },
-      "declare": false,
-      "params": [],
-      "decorators": [],
+      "type": "IfStatement",
       "span": {
         "start": 1,
-        "end": 113
+        "end": 70
       },
-      "ctxt": 3,
-      "body": {
+      "test": {
+        "type": "BinaryExpression",
+        "span": {
+          "start": 5,
+          "end": 43
+        },
+        "operator": "===",
+        "left": {
+          "type": "UnaryExpression",
+          "span": {
+            "start": 5,
+            "end": 28
+          },
+          "operator": "typeof",
+          "argument": {
+            "type": "MemberExpression",
+            "span": {
+              "start": 12,
+              "end": 28
+            },
+            "object": {
+              "type": "Identifier",
+              "span": {
+                "start": 12,
+                "end": 18
+              },
+              "ctxt": 1,
+              "value": "window",
+              "optional": false
+            },
+            "property": {
+              "type": "Identifier",
+              "span": {
+                "start": 19,
+                "end": 28
+              },
+              "value": "FRSC_init"
+            }
+          }
+        },
+        "right": {
+          "type": "StringLiteral",
+          "span": {
+            "start": 33,
+            "end": 43
+          },
+          "value": "function",
+          "raw": "'function'"
+        }
+      },
+      "consequent": {
         "type": "BlockStatement",
         "span": {
-          "start": 23,
-          "end": 113
+          "start": 45,
+          "end": 70
         },
         "ctxt": 3,
         "stmts": [
           {
-            "type": "VariableDeclaration",
+            "type": "ExpressionStatement",
             "span": {
-              "start": 27,
-              "end": 61
+              "start": 49,
+              "end": 68
             },
-            "ctxt": 0,
-            "kind": "const",
-            "declare": false,
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
+            "expression": {
+              "type": "CallExpression",
+              "span": {
+                "start": 49,
+                "end": 67
+              },
+              "ctxt": 0,
+              "callee": {
+                "type": "MemberExpression",
                 "span": {
-                  "start": 33,
-                  "end": 60
+                  "start": 49,
+                  "end": 65
                 },
-                "id": {
+                "object": {
                   "type": "Identifier",
                   "span": {
-                    "start": 33,
-                    "end": 36
+                    "start": 49,
+                    "end": 55
                   },
-                  "ctxt": 3,
-                  "value": "foo",
-                  "optional": false,
-                  "typeAnnotation": null
+                  "ctxt": 1,
+                  "value": "window",
+                  "optional": false
                 },
-                "init": {
-                  "type": "AwaitExpression",
+                "property": {
+                  "type": "Identifier",
                   "span": {
-                    "start": 39,
-                    "end": 60
+                    "start": 56,
+                    "end": 65
                   },
-                  "argument": {
-                    "type": "CallExpression",
-                    "span": {
-                      "start": 45,
-                      "end": 60
-                    },
-                    "ctxt": 0,
-                    "callee": {
-                      "type": "Import",
-                      "span": {
-                        "start": 45,
-                        "end": 51
-                      },
-                      "phase": "evaluation"
-                    },
-                    "arguments": [
-                      {
-                        "spread": null,
-                        "expression": {
-                          "type": "StringLiteral",
-                          "span": {
-                            "start": 52,
-                            "end": 59
-                          },
-                          "value": "./A/B",
-                          "raw": "\"./A/B\""
-                        }
-                      }
-                    ],
-                    "typeArguments": null
-                  }
-                },
-                "definite": false
-              }
-            ]
-          },
-          {
-            "type": "VariableDeclaration",
-            "span": {
-              "start": 64,
-              "end": 111
-            },
-            "ctxt": 0,
-            "kind": "const",
-            "declare": false,
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
-                "span": {
-                  "start": 70,
-                  "end": 110
-                },
-                "id": {
-                  "type": "ObjectPattern",
-                  "span": {
-                    "start": 70,
-                    "end": 86
-                  },
-                  "properties": [
-                    {
-                      "type": "KeyValuePatternProperty",
-                      "key": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 72,
-                          "end": 79
-                        },
-                        "value": "default"
-                      },
-                      "value": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 81,
-                          "end": 84
-                        },
-                        "ctxt": 3,
-                        "value": "bar",
-                        "optional": false,
-                        "typeAnnotation": null
-                      }
-                    }
-                  ],
-                  "optional": false,
-                  "typeAnnotation": null
-                },
-                "init": {
-                  "type": "AwaitExpression",
-                  "span": {
-                    "start": 89,
-                    "end": 110
-                  },
-                  "argument": {
-                    "type": "CallExpression",
-                    "span": {
-                      "start": 95,
-                      "end": 110
-                    },
-                    "ctxt": 0,
-                    "callee": {
-                      "type": "Import",
-                      "span": {
-                        "start": 95,
-                        "end": 101
-                      },
-                      "phase": "evaluation"
-                    },
-                    "arguments": [
-                      {
-                        "spread": null,
-                        "expression": {
-                          "type": "StringLiteral",
-                          "span": {
-                            "start": 102,
-                            "end": 109
-                          },
-                          "value": "./A/B",
-                          "raw": "\"./A/B\""
-                        }
-                      }
-                    ],
-                    "typeArguments": null
-                  }
-                },
-                "definite": false
-              }
-            ]
+                  "value": "FRSC_init"
+                }
+              },
+              "arguments": [],
+              "typeArguments": null
+            }
           }
         ]
       },
-      "generator": false,
-      "async": true,
-      "typeParameters": null,
-      "returnType": null
+      "alternate": null
     }
   ],
   "interpreter": null

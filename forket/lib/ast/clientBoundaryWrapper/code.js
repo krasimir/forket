@@ -1,6 +1,6 @@
 function ComponentName(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props, "ProductsList", "f_1"));
-  const children = props.children || [];
+  const children = props.children;
   return (
     <>
       <script

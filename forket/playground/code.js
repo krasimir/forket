@@ -1,4 +1,3 @@
-async function test() {
-  const foo = await import("./A/B");
-  const { default: bar } = await import("./A/B");
+if (typeof window.FRSC_init === 'function') {
+  window.FRSC_init();
 }

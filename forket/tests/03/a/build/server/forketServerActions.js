@@ -1,4 +1,4 @@
-import { markAsRead } from "./components/App";
+import { markAsRead } from "./components/App.tsx";
 const actions = {
     $FSA_markAsRead: markAsRead
 };

@@ -4,6 +4,9 @@
   const log = ENABLE_LOGGING ? console.log.bind(console) : () => {};
   let SSR_DONE = false;
   const roots = new Map();
+  const renderers = (window.$F_renderers = {});
+
+  log(`𐂐 Forket v${__VERSION__}`);
 
   const ATTR_MAP = {
     class: "className",
@@ -41,29 +44,27 @@
     "selected"
   ]);
   function FRSC_init() {
-    log("𐂐 v" + __VERSION__);
     const d = document;
+    let islands = typeof window.$FRSC_ !== "undefined" ? window.$FRSC_ : [];
+    log(`𐂐 Forket client (#${islands.length} 🏝️)`);
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
         const id = data[0];
         const componentName = data[1];
         const props = normalizeProps(data[2]);
         const children = getChildren(id);
-        hydrateComponentBetweenMarkers(id, componentName, props, children);
+        return hydrateComponentBetweenMarkers(id, componentName, props, children);
       };
-      if (typeof window.$FRSC_ !== "undefined" && window.$FRSC_.length > 0) {
-        window.$FRSC_.forEach(window.$FRSC);
-      }
+    }
+    if (islands.length > 0) {
+      islands = window.$FRSC_ = islands.filter((i) => !window.$FRSC(i));
     }
     function hydrateComponentBetweenMarkers(id, componentName, props, children) {
-      if (typeof window.$FRSC_renderers === "undefined") {
-        window.$FRSC_renderers = {};
-      }
-      window.$FRSC_renderers[id] = function(newProps) {
+      renderers[id] = function(newProps) {
         const Component = window[componentName];
         if (!Component) {
-          console.error(`𐂐 Component "${componentName}" not found.`);
-          return;
+          console.warn(`𐂐 Component <${componentName}> not found in the global scope yet.`);
+          return false;
         }
         const boundary = {
           start: d.querySelector(`template[type="forket/start"]#${id}`),
@@ -71,7 +72,7 @@
         };
         if (!boundary.start || !boundary.end) {
           // console.info("𐂐 Boundary not found for id: " + id);
-          return;
+          return false;
         }
         const container = d.createElement("div");
         moveInServerGeneratedElements(boundary.start, boundary.end, container);
@@ -80,17 +81,17 @@
         boundary.end.parentNode.removeChild(boundary.start);
         boundary.end.parentNode.removeChild(boundary.end);
 
-        window.$FRSC_renderers[id] = function(newProps) {
+        renderers[id] = function (newProps) {
           if (newProps) {
             props = { ...props, ...newProps };
           }
-          log("𐂐 " + componentName + "(" + id + ")", { props, children });
+          log("𐂐 Rendering <" + componentName + ">", { props, children });
           mountOrUpdate(container, React.createElement(Component, props, children));
           return true;
         };
-        return window.$FRSC_renderers[id](newProps);
+        return renderers[id](newProps);
       };
-      return window.$FRSC_renderers[id]();
+      return renderers[id]();
     }
     function normalizeProps(content) {
       try {
@@ -243,16 +244,18 @@
       const reject = window.$FLP_[id].reject;
       const boundaryID = window.$FLP_[id].boundaryID;
       if (status === "resolved") {
+        console.log(`𐂐 Live promise resolved.`, value);
         resolve(value);
       } else if (status === "rejected") {
+        console.log(`𐂐 Live promise rejected.`, value);
         reject(new Error(value));
       } else {
         console.warn(`𐂐 FLP: Promise with id ${id} is in unknown state: ${status}.`);
         return;
       }
       delete window.$FLP_[id];
-      if (typeof window.$FRSC_renderers !== "undefined" && window.$FRSC_renderers[boundaryID]) {
-        window.$FRSC_renderers[boundaryID]();
+      if (renderers[boundaryID]) {
+        renderers[boundaryID]();
       }
     }
   }
@@ -291,6 +294,7 @@
       return responseData.result;
     }
   }
+  window.FRSC_init = FRSC_init;
   window.FSA_call = FSA_call;
   window.FLP_process = FLP_process;
   window.FSSR_done = FSSR_done;

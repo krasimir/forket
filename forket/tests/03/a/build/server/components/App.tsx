@@ -19,7 +19,7 @@ export default async function App() {
 }
 function ExpandableBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_5"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
@@ -41,7 +41,7 @@ function ExpandableBoundary(props) {
 }
 function FooterBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Footer", "f_6"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {

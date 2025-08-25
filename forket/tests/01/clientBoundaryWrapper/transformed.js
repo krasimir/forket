@@ -1,6 +1,6 @@
 function LoginFormBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "FORKETID111"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {

@@ -108,6 +108,17 @@
       ],
       "format": "esm"
     },
+    "build/client/components/passing-live-promise-to-client/Comments.tsx": {
+      "bytes": 486,
+      "imports": [
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
+        }
+      ],
+      "format": "esm"
+    },
     "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
       "bytes": 279,
       "imports": [
@@ -201,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 1287,
+      "bytes": 1480,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -222,6 +233,11 @@
           "path": "build/client/components/server-functions-with-actions/UpdateMyName.tsx",
           "kind": "import-statement",
           "original": "./components/server-functions-with-actions/UpdateMyName.tsx"
+        },
+        {
+          "path": "build/client/components/passing-live-promise-to-client/Comments.tsx",
+          "kind": "import-statement",
+          "original": "./components/passing-live-promise-to-client/Comments.tsx"
         },
         {
           "path": "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx",
@@ -267,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 880068
+      "bytes": 881341
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -299,13 +315,16 @@
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 282
+          "bytesInOutput": 361
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
           "bytesInOutput": 390
         },
         "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
           "bytesInOutput": 569
+        },
+        "build/client/components/passing-live-promise-to-client/Comments.tsx": {
+          "bytesInOutput": 263
         },
         "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
           "bytesInOutput": 205
@@ -332,7 +351,7 @@
           "bytesInOutput": 186
         }
       },
-      "bytes": 188070
+      "bytes": 188412
     }
   }
 }

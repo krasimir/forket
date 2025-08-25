@@ -5,18 +5,18 @@ async function Page({ example }) {
   return /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("p", { className: "flex space-between" }, /* @__PURE__ */ React.createElement("a", { href: "/" }, "\u{1F448} Back"), /* @__PURE__ */ React.createElement("a", { href: example.reactdocs, target: "_blank" }, /* @__PURE__ */ React.createElement("small", null, "\u269B\uFE0F React docs"))), /* @__PURE__ */ React.createElement("hr", null), /* @__PURE__ */ React.createElement(EmptyNoteBoundary, null));
 }
 function EmptyNoteBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_39"));
-  const children = props.children || [];
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_42"));
+  const children = props.children;
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_39", "EmptyNote", ${JSON.stringify(serializedProps)}];
+          let a = ["f_42", "EmptyNote", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
           let me = document.currentScript;
           if (me) me.remove();
         })();`
-  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_39", "data-c": "EmptyNote" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_39", "data-c": "EmptyNote" }), /* @__PURE__ */ React.createElement(EmptyNote, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_39", "data-c": "EmptyNote" }));
+  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_42", "data-c": "EmptyNote" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_42", "data-c": "EmptyNote" }), /* @__PURE__ */ React.createElement(EmptyNote, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_42", "data-c": "EmptyNote" }));
 }
 export {
   Page as default

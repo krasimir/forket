@@ -22,12 +22,12 @@ function EmptyNote() {
     return <ButtonBoundary onClick={"$FSA_createNoteAction"}/>;
 }
 function ButtonBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Button", "f_36"));
-    const children = props.children || [];
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Button", "f_39"));
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
-          let a = ["f_36", "Button", ${JSON.stringify(serializedProps)}];
+          let a = ["f_39", "Button", ${JSON.stringify(serializedProps)}];
           if (typeof $FRSC !== 'undefined') return $FRSC(a);
           if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
           $FRSC_.push(a);
@@ -35,11 +35,11 @@ function ButtonBoundary(props) {
           if (me) me.remove();
         })();`
     }}></script>
-      {children && (<template type="forket/children" id="f_36" data-c="Button">
+      {children && (<template type="forket/children" id="f_39" data-c="Button">
           {children}
         </template>)}
-      <template type="forket/start" id="f_36" data-c="Button"></template>
+      <template type="forket/start" id="f_39" data-c="Button"></template>
       <Button {...props} children={children}/>
-      <template type="forket/end" id="f_36" data-c="Button"></template>
+      <template type="forket/end" id="f_39" data-c="Button"></template>
     </>);
 }

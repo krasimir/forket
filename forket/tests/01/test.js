@@ -205,12 +205,12 @@ export default async function ({ test, xtest, toAST, toCode }) {
       {
         usedIn: "/src/main.tsx",
         willImport: "/src/components/App.tsx",
-        expected: "./components/App"
+        expected: "./components/App.tsx"
       },
       {
         usedIn: "/src/components/common/Button.tsx",
         willImport: "/src/utils/formatters/date.ts",
-        expected: "../../utils/formatters/date"
+        expected: "../../utils/formatters/date.ts"
       }
     ];
     for (let i = 0; i < cases.length; i++) {

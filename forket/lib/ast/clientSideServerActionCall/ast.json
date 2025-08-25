@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 1052,
-    "end": 1139
+    "start": 1046,
+    "end": 1133
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 1052,
-        "end": 1139
+        "start": 1046,
+        "end": 1133
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,14 +18,14 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 1058,
-            "end": 1139
+            "start": 1052,
+            "end": 1133
           },
           "id": {
             "type": "Identifier",
             "span": {
-              "start": 1058,
-              "end": 1064
+              "start": 1052,
+              "end": 1058
             },
             "ctxt": 2,
             "value": "FooBar",
@@ -39,25 +39,25 @@
               {
                 "type": "Parameter",
                 "span": {
-                  "start": 1076,
-                  "end": 1083
+                  "start": 1070,
+                  "end": 1077
                 },
                 "decorators": [],
                 "pat": {
                   "type": "RestElement",
                   "span": {
-                    "start": 1076,
-                    "end": 1083
+                    "start": 1070,
+                    "end": 1077
                   },
                   "rest": {
-                    "start": 1076,
-                    "end": 1079
+                    "start": 1070,
+                    "end": 1073
                   },
                   "argument": {
                     "type": "Identifier",
                     "span": {
-                      "start": 1079,
-                      "end": 1083
+                      "start": 1073,
+                      "end": 1077
                     },
                     "ctxt": 3,
                     "value": "args",
@@ -70,49 +70,49 @@
             ],
             "decorators": [],
             "span": {
-              "start": 1067,
-              "end": 1139
+              "start": 1061,
+              "end": 1133
             },
             "ctxt": 3,
             "body": {
               "type": "BlockStatement",
               "span": {
-                "start": 1085,
-                "end": 1139
+                "start": 1079,
+                "end": 1133
               },
               "ctxt": 3,
               "stmts": [
                 {
                   "type": "ReturnStatement",
                   "span": {
-                    "start": 1089,
-                    "end": 1137
+                    "start": 1083,
+                    "end": 1131
                   },
                   "argument": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 1096,
-                      "end": 1136
+                      "start": 1090,
+                      "end": 1130
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "CallExpression",
                       "span": {
-                        "start": 1096,
-                        "end": 1127
+                        "start": 1090,
+                        "end": 1121
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 1096,
-                          "end": 1111
+                          "start": 1090,
+                          "end": 1105
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1096,
-                            "end": 1102
+                            "start": 1090,
+                            "end": 1096
                           },
                           "ctxt": 1,
                           "value": "window",
@@ -121,8 +121,8 @@
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1103,
-                            "end": 1111
+                            "start": 1097,
+                            "end": 1105
                           },
                           "value": "FSA_call"
                         }
@@ -133,8 +133,8 @@
                           "expression": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 1112,
-                              "end": 1116
+                              "start": 1106,
+                              "end": 1110
                             },
                             "value": "ID",
                             "raw": "\"ID\""
@@ -145,8 +145,8 @@
                           "expression": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 1118,
-                              "end": 1126
+                              "start": 1112,
+                              "end": 1120
                             },
                             "value": "FooBar",
                             "raw": "\"FooBar\""
@@ -158,14 +158,14 @@
                     "arguments": [
                       {
                         "spread": {
-                          "start": 1128,
-                          "end": 1131
+                          "start": 1122,
+                          "end": 1125
                         },
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 1131,
-                            "end": 1135
+                            "start": 1125,
+                            "end": 1129
                           },
                           "ctxt": 3,
                           "value": "args",

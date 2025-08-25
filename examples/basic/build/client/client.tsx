@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOMClient from "react-dom/client";
 import UpdateName from "./components/server-functions-with-form-actions/UpdateName.tsx";
 import UpdateMyName from "./components/server-functions-with-actions/UpdateMyName.tsx";
+import CommentsComp from "./components/passing-live-promise-to-client/Comments.tsx";
 import EmptyNote from "./components/importing-server-functions-from-client-components/EmptyNote.tsx";
 import InspirationGenerator from "./components/how-use-client-marks-client-code/InspirationGenerator.tsx";
 import FancyText from "./components/how-use-client-marks-client-code/FancyText.tsx";
@@ -19,5 +20,9 @@ window.Button = Button;
 window.FancyText = FancyText;
 window.InspirationGenerator = InspirationGenerator;
 window.EmptyNote = EmptyNote;
+window.CommentsComp = CommentsComp;
 window.UpdateMyName = UpdateMyName;
 window.UpdateName = UpdateName;
+if (typeof window.FRSC_init === "function") {
+    window.FRSC_init();
+}

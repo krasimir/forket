@@ -99,7 +99,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
     } catch (err) {
       emptySourceContentCache();
       inProcess = false;
-      console.error(chalk.red(`‎𐂐 Error during processing: ${err.message}`), err);
+      console.error(chalk.red(`‎𐂐 ${err.message}`), err);
     }
   }
 

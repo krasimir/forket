@@ -84,6 +84,15 @@ const FILES = [
     }
   },
   {
+    codeFile: path.join(__dirname, "initClientCode", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      return `export default function () {
+  return ${json}
+}`;
+    }
+  },
+  {
     codeFile: path.join(__dirname, "createMap", "/code.js"),
     generator: function (ast) {
       ast.body[0].declarations[0].init.properties = 1111;

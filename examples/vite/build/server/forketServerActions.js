@@ -1,4 +1,4 @@
-import { createNote } from "./components/actions";
+import { createNote } from "./components/actions.ts";
 const actions = {
     $FSA_createNote: createNote
 };

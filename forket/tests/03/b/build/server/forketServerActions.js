@@ -1,9 +1,9 @@
-import getNodes2 from "./server-actions/db";
-import { andMore } from "./server-actions/db";
-import { somethingElse } from "./server-actions/db";
-import { superSaveNote } from "./server-actions/db";
-import getNodes from "./server-actions/db";
-import { saveNote } from "./server-actions/db";
+import getNodes2 from "./server-actions/db.ts";
+import { andMore } from "./server-actions/db.ts";
+import { somethingElse } from "./server-actions/db.ts";
+import { superSaveNote } from "./server-actions/db.ts";
+import getNodes from "./server-actions/db.ts";
+import { saveNote } from "./server-actions/db.ts";
 const actions = {
     $FSA_saveNote: saveNote,
     $FSA_getNodes: getNodes,

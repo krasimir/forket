@@ -23,7 +23,7 @@ function App({ clientBundleFile }: {
 export default App;
 function EmptyNoteBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_8"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {

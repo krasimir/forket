@@ -7,7 +7,7 @@ export default async function App() {
 }
 function NoteBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Note", "f_5"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
       <script dangerouslySetInnerHTML={{
         __html: `(function () {
