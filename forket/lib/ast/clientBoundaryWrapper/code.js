@@ -40,7 +40,7 @@ function ComponentName(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_1' || n.querySelector('[id="forket/init/f_1"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;

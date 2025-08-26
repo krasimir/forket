@@ -13,6 +13,7 @@ function FancyTextBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_40", "FancyText", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("\u200E\u{10090} [server] <FancyText> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -36,7 +37,7 @@ function FancyTextBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_40' || n.querySelector('[id="forket/init/f_40"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;
@@ -63,6 +64,7 @@ function InspirationGeneratorBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_41", "InspirationGenerator", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("\u200E\u{10090} [server] <InspirationGenerator> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -86,7 +88,7 @@ function InspirationGeneratorBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_41' || n.querySelector('[id="forket/init/f_41"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;

@@ -39,6 +39,7 @@ function CommentsBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_37", "Comments", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("‎𐂐 [server] <Comments> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -62,7 +63,7 @@ function CommentsBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_37' || n.querySelector('[id="forket/init/f_37"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;

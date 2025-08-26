@@ -27,6 +27,7 @@ function UpdateMyNameBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_44", "UpdateMyName", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("‎𐂐 [server] <UpdateMyName> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -50,7 +51,7 @@ function UpdateMyNameBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_44' || n.querySelector('[id="forket/init/f_44"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;

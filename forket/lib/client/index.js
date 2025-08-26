@@ -60,7 +60,7 @@
       renderers[id] = function(newProps) {
         const Component = window['$' + id];
         if (!Component) {
-          console.warn(`𐂐 Component <${componentName}> not found in the global scope yet.`);
+          console.warn(`𐂐 Component <${componentName}> not found in the global scope yet. (${id})`);
           return false;
         }
         const boundary = {
@@ -83,7 +83,7 @@
           if (newProps) {
             props = { ...props, ...newProps };
           }
-          log("𐂐 [client] Rendering <" + componentName + ">", { props, children });
+          log(`𐂐 [client] Rendering <${componentName}>  (${id})`, { props, children });          
           mountOrUpdate(container, React.createElement(Component, props, children));
           return true;
         };
@@ -106,6 +106,7 @@
               if (typeof window.$FLP_ === "undefined") {
                 window.$FLP_ = {};
               }
+              console.log(window.$FLP_);
               if (typeof window.$FLP_[id] === "undefined") {
                 window.$FLP_[id] = {
                   status: 'unknown',
@@ -113,6 +114,7 @@
                   reject
                 };
               } else {
+                console.log(window.$FLP_[id]);
                 window.$FLP_[id].resolve = resolve;
                 window.$FLP_[id].reject = reject;
                 FLP_process(id);

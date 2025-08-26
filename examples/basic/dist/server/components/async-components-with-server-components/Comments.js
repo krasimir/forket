@@ -1,6 +1,7 @@
 "use client";
 import React, { use, useState } from "react";
 function Comments({ commentsPromise }) {
+  console.log("Comments---------------------", commentsPromise);
   const [likes, setLikes] = useState({});
   const comments = use(commentsPromise);
   console.log({ likes });

@@ -24,6 +24,7 @@ function ExpandableBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_36", "Expandable", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("‎𐂐 [server] <Expandable> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -47,7 +48,7 @@ function ExpandableBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_36' || n.querySelector('[id="forket/init/f_36"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;

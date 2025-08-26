@@ -86,7 +86,7 @@ function taskManager(res) {
 
   function handlePromise(status, id, value, boundaryID) {
     sendToClient(`
-      console.log("‎𐂐 [server] Promised resolved/rejected (${id}).");
+      console.log("‎𐂐 [server] Promise ${status} (${id})");
       if (typeof window.$FLP_ === 'undefined') {
         window.$FLP_ = {};
       }

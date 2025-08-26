@@ -2,6 +2,7 @@
 import React, { use, useState } from "react";
 
 export default function Comments({ commentsPromise }) {
+  console.log("Comments---------------------", commentsPromise);
   const [likes, setLikes] = useState({});
   const comments = use(commentsPromise);
   console.log({ likes });

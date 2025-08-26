@@ -11,6 +11,7 @@ function EmptyNoteBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_42", "EmptyNote", ${JSON.stringify(serializedProps)}];
+            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
               console.log("\u200E\u{10090} [server] <EmptyNote> streaming done. Hydration in flight ...");
               window.$FRSC(a);
@@ -34,7 +35,7 @@ function EmptyNoteBoundary(props) {
                   if (n.getAttribute) {
                     const scriptNode = n.getAttribute('id') === 'forket/init/f_42' || n.querySelector('[id="forket/init/f_42"]');
                     if (scriptNode) {
-                    init();
+                      init();
                       observer.disconnect();
                       scriptNode.remove();
                       return;
