@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 
 import db from './db.js';
-import CommentsComp from "./Comments.js";
+import Comments from "./Comments.js";
 
 export default async function Page({ example }) {
   const note = await db.notes.get(42);
@@ -17,7 +17,7 @@ export default async function Page({ example }) {
       <hr />
       <div>
         {note.content}
-        <CommentsComp commentsPromise={commentsPromise} />
+        <Comments commentsPromise={commentsPromise} />
       </div>
     </div>
   );

@@ -7,16 +7,52 @@ async function Page({ example }) {
 function EmptyNoteBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props, "EmptyNote", "f_42"));
   const children = props.children;
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("script", { dangerouslySetInnerHTML: {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_42", "data-c": "EmptyNote" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start/f_42", "data-c": "EmptyNote" }), /* @__PURE__ */ React.createElement(EmptyNote, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end/f_42", "data-c": "EmptyNote" }), /* @__PURE__ */ React.createElement("script", { id: "forket/init/f_42", dangerouslySetInnerHTML: {
     __html: `(function () {
-          let a = ["f_42", "EmptyNote", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-  } }), children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_42", "data-c": "EmptyNote" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start", id: "f_42", "data-c": "EmptyNote" }), /* @__PURE__ */ React.createElement(EmptyNote, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end", id: "f_42", "data-c": "EmptyNote" }));
+          function init() {
+            let a = ["f_42", "EmptyNote", ${JSON.stringify(serializedProps)}];
+            if (typeof window.$FRSC === 'function') {
+              console.log("\u200E\u{10090} [server] <EmptyNote> streaming done. Hydration in flight ...");
+              window.$FRSC(a);
+            } else {
+              if (typeof $FRSC_ === 'undefined') {
+                $FRSC_ = [];
+              }
+              console.log("\u200E\u{10090} [server] <EmptyNote> streaming done.");
+              $FRSC_.push(a);
+            }
+            let me = document.currentScript;
+            if (me) me.remove();
+          }
+          if (document.currentScript.closest("div[hidden]")) {
+            const observer = new MutationObserver((mutationsList) => {
+              for(let i=0; i<mutationsList.length; i++) {
+                const added = mutationsList[i].addedNodes;
+                for(let j=0; j<added.length; j++) {
+                  const n = added[j];
+                  if (n.nodeType !== 1) continue;
+                  if (n.getAttribute) {
+                    const scriptNode = n.getAttribute('id') === 'forket/init/f_42' || n.querySelector('[id="forket/init/f_42"]');
+                    if (scriptNode) {
+                    init();
+                      observer.disconnect();
+                      scriptNode.remove();
+                      return;
+                    }
+                  }
+                }
+              }
+            });
+            observer.observe(
+              document.documentElement,
+              { childList: true, subtree: true }
+            );
+          } else {
+            init();
+          }
+        })();
+        `
+  } }));
 }
 export {
   Page as default

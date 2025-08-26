@@ -12,7 +12,7 @@ const pkg = JSON.parse(readFileSync(path.join(__dirname, "..", "package.json"), 
   await esbuild.build({
     entryPoints: [path.join(__dirname, "..", "lib", "client", "index.js")],
     bundle: true,
-    minify: true,
+    minify: false,
     outfile: path.join(__dirname, "..", "lib", "client", "client.min.js"),
     platform: "browser",
     sourcemap: false,

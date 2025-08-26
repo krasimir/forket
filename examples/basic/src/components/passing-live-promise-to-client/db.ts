@@ -9,13 +9,17 @@ const db = {
   },
   comments: {
     get(id) {
+      // return Promise.resolve([
+      //   { id: 1, content: "This is the first comment." },
+      //   { id: 2, content: "This is the second comment." }
+      // ]);
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve([
             { id: 1, content: "This is the first comment." },
             { id: 2, content: "This is the second comment." }
           ]);
-        }, 2000);
+        }, 3000);
       });
     }
   }

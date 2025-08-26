@@ -22,7 +22,7 @@ let restart = false;
 const forket = await Forket({
   watch: true,
   printGraph: true,
-  exposeReactGlobally: false
+  exposeReactGlobally: true
 });
 
 forket.process().then(async () => {

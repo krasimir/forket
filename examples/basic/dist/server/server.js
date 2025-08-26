@@ -21,8 +21,7 @@ Forket().then((forket) => {
   forket.setRequestContext(requestContext);
   app.use("/@forket", forket.forketServerActions(forketServerActionsHandler));
   const handler = forket.serveApp({
-    factory: (req) => /* @__PURE__ */ React.createElement(App, { request: req }),
-    serverActionsEndpoint: "/@forket"
+    factory: (req) => /* @__PURE__ */ React.createElement(App, { request: req })
   });
   app.get("/examples/:example", handler);
   app.get("/", handler);

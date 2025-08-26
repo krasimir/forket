@@ -2,11 +2,8 @@
   const FORKET_SERVER_ACTIONS_ENDPOINT = "__FORKET_SERVER_ACTIONS_ENDPOINT__";
   const ENABLE_LOGGING = __ENABLE_LOGGIGN__;
   const log = ENABLE_LOGGING ? console.log.bind(console) : () => {};
-  let SSR_DONE = false;
   const roots = new Map();
   const renderers = (window.$F_renderers = {});
-
-  log(`𐂐 Forket v${__VERSION__}`);
 
   const ATTR_MAP = {
     class: "className",
@@ -46,7 +43,7 @@
   function FRSC_init() {
     const d = document;
     let islands = typeof window.$FRSC_ !== "undefined" ? window.$FRSC_ : [];
-    log(`𐂐 Forket client (#${islands.length} 🏝️)`);
+    log(`𐂐 [client] 🏝️(${islands.length}) v${__VERSION__}`);
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
         const id = data[0];
@@ -61,17 +58,18 @@
     }
     function hydrateComponentBetweenMarkers(id, componentName, props, children) {
       renderers[id] = function(newProps) {
-        const Component = window[componentName];
+        const Component = window['$' + id];
         if (!Component) {
           console.warn(`𐂐 Component <${componentName}> not found in the global scope yet.`);
           return false;
         }
         const boundary = {
-          start: d.querySelector(`template[type="forket/start"]#${id}`),
-          end: d.querySelector(`template[type="forket/end"]#${id}`)
+          start: d.querySelector(`template[type="forket/start/${id}"]`),
+          end: d.querySelector(`template[type="forket/end/${id}"]`)
         };
         if (!boundary.start || !boundary.end) {
-          // console.info("𐂐 Boundary not found for id: " + id);
+          console.warn(`𐂐 Boundary not found for <${componentName}>. Re-trying rendering in 1 sec.`);
+          setTimeout(() => renderers[id](newProps), 1000);
           return false;
         }
         const container = d.createElement("div");
@@ -85,7 +83,7 @@
           if (newProps) {
             props = { ...props, ...newProps };
           }
-          log("𐂐 Rendering <" + componentName + ">", { props, children });
+          log("𐂐 [client] Rendering <" + componentName + ">", { props, children });
           mountOrUpdate(container, React.createElement(Component, props, children));
           return true;
         };
@@ -117,8 +115,8 @@
               } else {
                 window.$FLP_[id].resolve = resolve;
                 window.$FLP_[id].reject = reject;
+                FLP_process(id);
               }
-              FLP_process();
             })
           }
           return value;
@@ -222,7 +220,7 @@
     function mountOrUpdate(container, element) {
       let root = roots.get(container);
       if (!root) {
-        root = ReactDOMClient.hydrateRoot(container, element);
+        root = ReactDomClient.hydrateRoot(container, element);
         roots.set(container, root);
       } else {
         root.render(element);
@@ -230,11 +228,8 @@
     }
   }
   function FLP_process(id) {
-    if (!SSR_DONE) return;
-    if (typeof id === "undefined" && typeof window.$FLP_ !== "undefined") {
-      Object.keys(window.$FLP_).forEach((id) => {
-        FLP_process(id);
-      });
+    if (typeof id === "undefined") {
+      console.warn("𐂐 FLP_process called without id.");
       return;
     }
     if (typeof window.$FLP_ !== "undefined" && window.$FLP_[id]) {
@@ -244,24 +239,24 @@
       const reject = window.$FLP_[id].reject;
       const boundaryID = window.$FLP_[id].boundaryID;
       if (status === "resolved") {
-        console.log(`𐂐 Live promise resolved.`, value);
-        resolve(value);
+        log(`𐂐 [client] Promise resolved (${id})`, value);
+        if (resolve) { resolve(value) };
       } else if (status === "rejected") {
-        console.log(`𐂐 Live promise rejected.`, value);
-        reject(new Error(value));
+        log(`𐂐 [client] Promise rejected (${id})`, value);
+        if (reject) { reject(new Error(value)); };
       } else {
-        console.warn(`𐂐 FLP: Promise with id ${id} is in unknown state: ${status}.`);
+        console.warn(`𐂐 [client] Promise with id ${id} is in unknown state: ${status}.`);
         return;
       }
       delete window.$FLP_[id];
       if (renderers[boundaryID]) {
         renderers[boundaryID]();
       }
+    } else {
+      console.warn(
+        `𐂐 [client] Promise with id ${id} not found in the global scope. The promise is resolved/rejected but the component boundary that needs it is not rendered yet or the promise is already consumed somehow.`
+      );
     }
-  }
-  function FSSR_done() {
-    SSR_DONE = true;
-    FLP_process();
   }
   function FSA_call(id, funcName) {
     return async function (...args) {
@@ -297,6 +292,5 @@
   window.FRSC_init = FRSC_init;
   window.FSA_call = FSA_call;
   window.FLP_process = FLP_process;
-  window.FSSR_done = FSSR_done;
   FRSC_init();
 })();

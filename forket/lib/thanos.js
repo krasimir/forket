@@ -42,8 +42,8 @@ export function Thanos() {
                       ")"
                   )
                 );
-                const compNames = await createClientBoundary(node, node.imports[j], filePath);
-                clientBoundaries.push({ compNames, importedNode });
+                const components = await createClientBoundary(node, node.imports[j]);
+                clientBoundaries.push({ components, importedNode });
               }
             }
           }

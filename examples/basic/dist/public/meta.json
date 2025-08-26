@@ -1,21 +1,5 @@
 {
   "inputs": {
-    "node_modules/react/cjs/react.production.js": {
-      "bytes": 16856,
-      "imports": [],
-      "format": "cjs"
-    },
-    "node_modules/react/index.js": {
-      "bytes": 186,
-      "imports": [
-        {
-          "path": "node_modules/react/cjs/react.production.js",
-          "kind": "require-call",
-          "original": "./cjs/react.production.js"
-        }
-      ],
-      "format": "cjs"
-    },
     "node_modules/scheduler/cjs/scheduler.production.js": {
       "bytes": 10346,
       "imports": [],
@@ -28,6 +12,22 @@
           "path": "node_modules/scheduler/cjs/scheduler.production.js",
           "kind": "require-call",
           "original": "./cjs/scheduler.production.js"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/react/cjs/react.production.js": {
+      "bytes": 16856,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/react/index.js": {
+      "bytes": 186,
+      "imports": [
+        {
+          "path": "node_modules/react/cjs/react.production.js",
+          "kind": "require-call",
+          "original": "./cjs/react.production.js"
         }
       ],
       "format": "cjs"
@@ -190,7 +190,7 @@
       "format": "esm"
     },
     "build/client/components/async-components-with-server-components/Comments.tsx": {
-      "bytes": 230,
+      "bytes": 764,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -212,17 +212,17 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 1480,
+      "bytes": 12340,
       "imports": [
-        {
-          "path": "node_modules/react/index.js",
-          "kind": "import-statement",
-          "original": "react"
-        },
         {
           "path": "node_modules/react-dom/client.js",
           "kind": "import-statement",
           "original": "react-dom/client"
+        },
+        {
+          "path": "node_modules/react/index.js",
+          "kind": "import-statement",
+          "original": "react"
         },
         {
           "path": "build/client/components/server-functions-with-form-actions/UpdateName.tsx",
@@ -283,23 +283,23 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 881341
+      "bytes": 900859
     },
     "dist/public/bundle.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "build/client/client.tsx",
       "inputs": {
-        "node_modules/react/cjs/react.production.js": {
-          "bytesInOutput": 7513
-        },
-        "node_modules/react/index.js": {
-          "bytesInOutput": 51
-        },
         "node_modules/scheduler/cjs/scheduler.production.js": {
           "bytesInOutput": 3780
         },
         "node_modules/scheduler/index.js": {
+          "bytesInOutput": 51
+        },
+        "node_modules/react/cjs/react.production.js": {
+          "bytesInOutput": 7513
+        },
+        "node_modules/react/index.js": {
           "bytesInOutput": 51
         },
         "node_modules/react-dom/cjs/react-dom.production.js": {
@@ -309,13 +309,13 @@
           "bytesInOutput": 253
         },
         "node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "bytesInOutput": 168002
+          "bytesInOutput": 168033
         },
         "node_modules/react-dom/client.js": {
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 361
+          "bytesInOutput": 5481
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
           "bytesInOutput": 390
@@ -345,13 +345,13 @@
           "bytesInOutput": 407
         },
         "build/client/components/async-components-with-server-components/Comments.tsx": {
-          "bytesInOutput": 130
+          "bytesInOutput": 448
         },
         "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
           "bytesInOutput": 186
         }
       },
-      "bytes": 188412
+      "bytes": 193881
     }
   }
 }

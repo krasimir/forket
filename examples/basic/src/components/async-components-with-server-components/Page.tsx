@@ -18,7 +18,11 @@ export default async function Page({ example }) {
       <div>
         {note.content}
         <Suspense fallback={<p>Loading Comments...</p>}>
-          <Comments commentsPromise={commentsPromise} />
+          <div>
+            <section>
+              <Comments commentsPromise={commentsPromise} />
+            </section>
+          </div>
         </Suspense>
       </div>
     </div>

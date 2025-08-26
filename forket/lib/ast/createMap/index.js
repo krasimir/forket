@@ -5,8 +5,8 @@ export default function (variableName, values) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1252,
-      "end": 1309
+      "start": 2552,
+      "end": 2609
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ export default function (variableName, values) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 1258,
-          "end": 1309
+          "start": 2558,
+          "end": 2609
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 1258,
-            "end": 1265
+            "start": 2558,
+            "end": 2565
           },
           "ctxt": 2,
           "value": variableName,
@@ -32,8 +32,8 @@ export default function (variableName, values) {
         "init": {
           "type": "ObjectExpression",
           "span": {
-            "start": 1268,
-            "end": 1309
+            "start": 2568,
+            "end": 2609
           },
           "properties": values.map(v => {
           return {

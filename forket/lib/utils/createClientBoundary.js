@@ -3,7 +3,7 @@ import traverseNode from "./traverseNode.js";
 import getClientBoundaryWrapper from "../ast/clientBoundaryWrapper/index.js";
 import getId from "./getId.js";
 
-export default async function createClientBoundary(node, imp, filePath) {
+export default async function createClientBoundary(node, imp) {
   const componentsToClientBoundaries = [];
 
   // Finding out the exact name of the component/s
@@ -14,7 +14,10 @@ export default async function createClientBoundary(node, imp, filePath) {
           for (let i = 0; i < (n?.specifiers || []).length; i++) {
             let specifier = n.specifiers[i];
             if (specifier.type === "ImportDefaultSpecifier" && specifier.local.value) {
-              componentsToClientBoundaries.push(specifier.local.value);
+              componentsToClientBoundaries.push({
+                compName: specifier.local.value,
+                id: getId()
+              });
             }
           }
         }
@@ -26,12 +29,12 @@ export default async function createClientBoundary(node, imp, filePath) {
   // Replacing the default export with the client boundary component
   traverseNode(node.ast, {
     JSXOpeningElement(n) {
-      if (n?.name?.value && componentsToClientBoundaries.includes(n.name.value)) {
+      if (n?.name?.value && componentsToClientBoundaries.find(({ compName }) => compName === n.name.value)) {
         n.name.value = `${n.name.value}Boundary`;
       }
     },
     JSXClosingElement(n) {
-      if (n?.name?.value && componentsToClientBoundaries.includes(n.name.value)) {
+      if (n?.name?.value && componentsToClientBoundaries.find(({ compName }) => compName === n.name.value)) {
         n.name.value = `${n.name.value}Boundary`;
       }
     }
@@ -39,11 +42,11 @@ export default async function createClientBoundary(node, imp, filePath) {
 
   // Creating the client boundary component
   if (componentsToClientBoundaries.length > 0) {
-    componentsToClientBoundaries.forEach((compName) => {
-      node.ast.body.push(getClientBoundaryWrapper(getId(), compName));
+    componentsToClientBoundaries.forEach(({ id, compName }) => {
+      node.ast.body.push(getClientBoundaryWrapper(id, compName));
     });
     insertImports(node.ast, "forketSerializeProps", "forket/lib/utils/serializeProps.js");
   }
-
+  
   return componentsToClientBoundaries;
 }

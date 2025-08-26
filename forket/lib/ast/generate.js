@@ -15,6 +15,8 @@ const FILES = [
       json = json.replace(/"\ComponentName"/g, 'componentName + "Boundary"');
       json = json.replace(/"value": "ProductsList"/g, '"value": componentName');
       json = json.replace(/"f_1"/g, "id");
+      json = json.replace(/f_1/g, '" + id + "');
+      json = json.replace(/\[server\] <ProductsList>/g, '[server] <" + componentName + ">');
       json = json.replace(/\\"f_1\\"/g, '\\"" + id + "\\"');
       json = json.replace(/\\"ProductsList\\"/g, '\\"" + componentName + "\\"');
       return `export default function (id, componentName) {
@@ -79,15 +81,6 @@ const FILES = [
       json = json.replace(/"Foo"/g, "windowKey");
       json = json.replace(/"Bar"/g, "value");
       return `export default function (windowKey, value) {
-  return ${json}
-}`;
-    }
-  },
-  {
-    codeFile: path.join(__dirname, "initClientCode", "/code.js"),
-    generator: function (ast) {
-      let json = JSON.stringify(ast.body, null, 2);
-      return `export default function () {
   return ${json}
 }`;
     }

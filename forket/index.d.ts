@@ -8,6 +8,7 @@ export interface ForketOptions {
   watch?: boolean;
   printGraph?: boolean;
   exposeReactGlobally?: boolean;
+  serverActionsEndpoint?: string;
 }
 
 export interface ForketInstance {
@@ -15,9 +16,8 @@ export interface ForketInstance {
   resetId(): void;
   getGraphs(): Object;
   printGraph(node: any): void;
-  client(serverActionsEndpoint: string): string;
   forketServerActions(forketServerActionsHandler?: Function): Promise<void>;
-  serveApp({ factory: Function, serverActionsEndpoint: string }): (req: any, res: any) => void;
+  serveApp({ factory: Function }): (req: any, res: any) => void;
   setRenderer(renderer: Function): void;
   setRequestContext(requestContext: any): void;
 }

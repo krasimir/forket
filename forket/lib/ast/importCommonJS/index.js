@@ -5,8 +5,8 @@ export default function (what, where) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 978,
-      "end": 1009
+      "start": 37,
+      "end": 68
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ export default function (what, where) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 984,
-          "end": 1008
+          "start": 43,
+          "end": 67
         },
         "id": {
           "type": "Identifier",
           "span": {
-            "start": 984,
-            "end": 989
+            "start": 43,
+            "end": 48
           },
           "ctxt": 2,
           "value": what,
@@ -32,15 +32,15 @@ export default function (what, where) {
         "init": {
           "type": "CallExpression",
           "span": {
-            "start": 992,
-            "end": 1008
+            "start": 51,
+            "end": 67
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 992,
-              "end": 999
+              "start": 51,
+              "end": 58
             },
             "ctxt": 1,
             "value": "require",
@@ -52,8 +52,8 @@ export default function (what, where) {
               "expression": {
                 "type": "StringLiteral",
                 "span": {
-                  "start": 1000,
-                  "end": 1007
+                  "start": 59,
+                  "end": 66
                 },
                 "value": where,
                 "raw": "\"" + where + "\""

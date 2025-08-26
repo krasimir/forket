@@ -9,7 +9,7 @@ import { getGraphs, printGraph } from "./lib/graph.js";
 import { copyFolder, clearPath, emptySourceContentCache } from "./lib/utils/fsHelpers.js";
 import { setRoles } from "./lib/roles.js";
 import { Thanos, MODE } from "./lib/thanos.js";
-import setupClientEntryPoints from "./lib/utils/setupClientEntryPoints.js";
+import annotateClientEntryPoints from "./lib/utils/annotateClientEntryPoints.js";
 import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
 import { resetId } from "./lib/utils/getId.js";
 import { serveApp, setRenderer, setRequestContext } from "./lib/server/serveApp.js";
@@ -76,13 +76,12 @@ export default async function Forket(customOptions = {}, configPath = null) {
         return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options);
       });
 
-      console.log(chalk.cyan(`‎𐂐 Injecting components in your client entry point/s`));
-      await setupClientEntryPoints(
-        options.sourceDir,
+      console.log(chalk.cyan(`‎𐂐 Annotating client entry point/s`));
+      await annotateClientEntryPoints(
+        options,
         buildClientDir,
         thanosServer.clientBoundaries,
-        thanosClient.clientEntryPoints,
-        options.exposeReactGlobally
+        thanosClient.clientEntryPoints
       );
 
       const allServerActions = removeDuplicates([...thanosServer.serverActions, ...thanosClient.serverActions]);

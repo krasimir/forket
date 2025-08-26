@@ -21,7 +21,7 @@ const db = {
                             content: "This is the second comment."
                         }
                     ]);
-                }, 2000);
+                }, 3000);
             });
         }
     }

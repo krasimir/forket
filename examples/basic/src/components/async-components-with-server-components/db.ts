@@ -15,7 +15,7 @@ const db = {
             { id: 1, content: "This is the first comment." },
             { id: 2, content: "This is the second comment." }
           ]);
-        }, 4000);
+        }, 1000);
       });
     }
   }
