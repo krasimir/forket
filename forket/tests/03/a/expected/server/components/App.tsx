@@ -21,43 +21,29 @@ function ExpandableBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_5"));
     const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_5", "Expandable", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_5" data-c="Expandable">
           {children}
         </template>)}
-      <template type="forket/start" id="f_5" data-c="Expandable"></template>
+      <template type="forket/start/f_5" data-c="Expandable"></template>
       <Expandable {...props} children={children}/>
-      <template type="forket/end" id="f_5" data-c="Expandable"></template>
+      <template type="forket/end/f_5" data-c="Expandable"></template>
+      <script id="forket/init/f_5" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_5", "Expandable", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }
 function FooterBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Footer", "f_6"));
     const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_6", "Footer", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_6" data-c="Footer">
           {children}
         </template>)}
-      <template type="forket/start" id="f_6" data-c="Footer"></template>
+      <template type="forket/start/f_6" data-c="Footer"></template>
       <Footer {...props} children={children}/>
-      <template type="forket/end" id="f_6" data-c="Footer"></template>
+      <template type="forket/end/f_6" data-c="Footer"></template>
+      <script id="forket/init/f_6" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_6", "Footer", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }
