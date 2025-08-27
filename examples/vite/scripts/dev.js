@@ -3,8 +3,8 @@ import path from "path";
 import chokidar from "chokidar";
 import { fileURLToPath } from "url";
 import { build as viteBuild } from "vite";
-// import Forket from 'forket';
-import Forket from '../../../forket/index.js';
+import Forket from 'forket';
+// import Forket from '../../../forket/index.js';
 import react from "@vitejs/plugin-react";
 
 import command from "./utils/command.js";
@@ -21,37 +21,36 @@ let restart = false;
 
 const forket = await Forket({
   watch: true,
-  printGraph: true,
-  exposeReactGlobally: true
+  printGraph: true
 });
 
 forket.process().then(async () => {
+  await run();
+  chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", async (event, file) => {
+    if (!restart) {
+      restart = true;
+      if (serverProcess) {
+        serverProcess.kill();
+      } else {
+        run();
+      }
+    }
+  });
+});
+async function compile() {
   await viteBuild({
     plugins: [react()],
     build: {
       outDir: DIST,
       manifest: true,
       ssrManifest: true,
-      rollupOptions: { input: `${BUILD}/client/client.tsx` },
-      watch: {}
-    },
-  });  
-  await run();
-});
-
-chokidar.watch(`${BUILD}/**/*`, { ignoreInitial: true }).on("all", (event, file) => {
-  if (!restart) {
-    restart = true;
-    if (serverProcess) {
-      serverProcess.kill();
-    } else {
-      run();
+      rollupOptions: { input: `${BUILD}/client/client.tsx` }
     }
-  }
-});
-
+  });
+}
 async function run() {
-  restart = false;  
+  restart = false;
+  await compile();
   serverProcess = command(`node ${path.join(BUILD, "server", "server.js")}`, ROOT, (code) => {
     serverProcess = null;
     if (code === null && restart) {

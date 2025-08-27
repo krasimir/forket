@@ -4,14 +4,20 @@ import express from "express";
 import React from "react";
 import { createServer as createViteServer } from "vite";
 import { fileURLToPath } from "url";
-import Forket from "../../../../forket/index.js";
+import bodyParser from "body-parser";
+import Forket from "forket";
+const isProd = process.env.NODE_ENV === "production";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DIST = path.join(__dirname, "..", "..", "dist");
 const manifest = JSON.parse(fs.readFileSync(path.join(DIST, ".vite", "manifest.json"), "utf8"));
-const clientBundleFile = `/${manifest["build/client/client.tsx"].file}`;
+const jsBundles = [
+    manifest["build/client/client.tsx"].file
+];
+const cssBundles = manifest["build/client/client.tsx"].css || [];
 async function createServer() {
     const app = express();
+    app.use(bodyParser.json());
     app.use(express.static(DIST, {
         index: false,
         maxAge: "1y",
@@ -30,9 +36,10 @@ async function createServer() {
         app.use("/@forket", forket.forketServerActions(forketServerActions));
         app.get("/", forket.serveApp({
             factory: (req)=>React.createElement(App, {
-                    clientBundleFile
-                }),
-            serverActionsEndpoint: "/@forket"
+                    js: jsBundles,
+                    css: cssBundles,
+                    viteClient: !isProd
+                })
         }));
     });
     app.listen(3000, ()=>{

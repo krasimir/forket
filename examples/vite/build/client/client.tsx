@@ -2,6 +2,7 @@
 import ReactDomClient from "react-dom/client";
 import React from "react";
 import f_8 from "./components/EmptyNote.tsx";
+import "./components/styles.css";
 window.$f_8 = f_8;
 
 /* FORKET CLIENT */
