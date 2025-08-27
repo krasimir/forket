@@ -1,7 +1,7 @@
 "use client";
 import ReactDomClient from "react-dom/client";
 import React from "react";
-import f_8 from "./components/EmptyNote.tsx";
+import f_8 from "./components/Quote.tsx";
 import "./components/styles.css";
 window.$f_8 = f_8;
 

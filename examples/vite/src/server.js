@@ -32,11 +32,12 @@ async function createServer() {
   Forket().then(async (forket) => {
     const { default: App } = await vite.ssrLoadModule("/build/server/main.tsx");
     const { default: forketServerActions } = await vite.ssrLoadModule("/build/server/forketServerActions.js");
+    const props = { js: jsBundles, css: cssBundles, viteClient: !isProd };
     app.use("/@forket", forket.forketServerActions(forketServerActions));
     app.get(
       "/",
       forket.serveApp({
-        factory: (req) => React.createElement(App, { js: jsBundles, css: cssBundles, viteClient: !isProd })
+        factory: (req) => React.createElement(App, props)
       })
     );
   });  

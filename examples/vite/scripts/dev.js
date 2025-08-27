@@ -31,6 +31,7 @@ forket.process().then(async () => {
       restart = true;
       if (serverProcess) {
         serverProcess.kill();
+        command("lsof -ti tcp:24678 | xargs kill -9", ROOT);
       } else {
         run();
       }
@@ -44,6 +45,7 @@ async function compile() {
       outDir: DIST,
       manifest: true,
       ssrManifest: true,
+      sourcemap: true,
       rollupOptions: { input: `${BUILD}/client/client.tsx` }
     }
   });

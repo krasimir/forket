@@ -1,9 +1,12 @@
 import { useState, Suspense } from "react";
-import reactLogo from '../assets/react.svg'
+import Header from "./Header";
+import {getQuote} from "../server-actions/quotes";
+import Quote from "./Quote";
 
-import EmptyNote from "./EmptyNote.js";
 
-function App({ js, css, viteClient }: { js: string[], css: string[], viteClient: boolean }) {
+async function App({ js, css, viteClient }: { js: string[], css: string[], viteClient: boolean }) {
+  const quote = await getQuote();
+
   return (
     <html>
       <head>
@@ -13,10 +16,8 @@ function App({ js, css, viteClient }: { js: string[], css: string[], viteClient:
         ))}
       </head>
       <body>
-        <header>
-          <img src={reactLogo} alt="React logo" />
-        </header>
-        <EmptyNote />
+        <Header />
+        <Quote quote={quote} />
         {viteClient && <script type="module" src="/@vite/client"></script>}
         {js.map((file) => (
           <script type="module" src={file} key={file}></script>

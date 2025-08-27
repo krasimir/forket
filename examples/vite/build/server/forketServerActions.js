@@ -1,6 +1,6 @@
-import { createNote } from "./components/actions.ts";
+import { getQuote } from "./server-actions/quotes.ts";
 const actions = {
-    $FSA_createNote: createNote
+    $FSA_getQuote: getQuote
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");

@@ -5,11 +5,9 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf ./build/* && rm -rf ./dist/*",
-    "dev": "npm run clean && NODE_ENV=development node ./scripts/dev.js",
     "build": "npm run clean && node ./scripts/build.js",
-    "start": "NODE_ENV=production node ./build/server/server.js",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "npm run clean && NODE_ENV=development node ./scripts/dev.js",
+    "start": "NODE_ENV=production node ./build/server/server.js"
   },
   "dependencies": {
     "express": "^5.1.0",
