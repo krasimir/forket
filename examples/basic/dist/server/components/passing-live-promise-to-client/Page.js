@@ -11,50 +11,7 @@ function CommentsBoundary(props) {
   const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_43"));
   const children = props.children;
   return /* @__PURE__ */ React.createElement(React.Fragment, null, children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_43", "data-c": "Comments" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start/f_43", "data-c": "Comments" }), /* @__PURE__ */ React.createElement(Comments, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end/f_43", "data-c": "Comments" }), /* @__PURE__ */ React.createElement("script", { id: "forket/init/f_43", dangerouslySetInnerHTML: {
-    __html: `(function () {
-          function init() {
-            let a = ["f_43", "Comments", ${JSON.stringify(serializedProps)}];
-            if (typeof window.$FRSC === 'function') {
-              $F_logs("\u200E\u{10090} [server] <Comments> (f_43) streaming done. Hydration in flight ...");
-              window.$FRSC(a);
-            } else {
-              if (typeof $FRSC_ === 'undefined') {
-                $FRSC_ = [];
-              }
-              $F_logs("\u200E\u{10090} [server] <Comments> (f_43) streaming done.");
-              $FRSC_.push(a);
-            }
-            let me = document.currentScript;
-            if (me) me.remove();
-          }
-          if (document.currentScript.closest("div[hidden]")) {
-            const observer = new MutationObserver((mutationsList) => {
-              for(let i=0; i<mutationsList.length; i++) {
-                const added = mutationsList[i].addedNodes;
-                for(let j=0; j<added.length; j++) {
-                  const n = added[j];
-                  if (n.nodeType !== 1) continue;
-                  if (n.getAttribute) {
-                    const scriptNode = n.getAttribute('id') === 'forket/init/f_43' || n.querySelector('[id="forket/init/f_43"]');
-                    if (scriptNode) {
-                      init();
-                      observer.disconnect();
-                      scriptNode.remove();
-                      return;
-                    }
-                  }
-                }
-              }
-            });
-            observer.observe(
-              document.documentElement,
-              { childList: true, subtree: true }
-            );
-          } else {
-            init();
-          }
-        })();
-        `
+    __html: `$F_booter(document.currentScript, "f_43", "Comments", ${JSON.stringify(serializedProps)});`
   } }));
 }
 export {

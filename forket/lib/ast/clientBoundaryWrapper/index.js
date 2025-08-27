@@ -38,14 +38,14 @@ export default function (id, componentName) {
   "decorators": [],
   "span": {
     "start": 1,
-    "end": 2353
+    "end": 758
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
       "start": 31,
-      "end": 2353
+      "end": 758
     },
     "ctxt": 3,
     "stmts": [
@@ -237,19 +237,19 @@ export default function (id, componentName) {
         "type": "ReturnStatement",
         "span": {
           "start": 164,
-          "end": 2351
+          "end": 756
         },
         "argument": {
           "type": "ParenthesisExpression",
           "span": {
             "start": 171,
-            "end": 2350
+            "end": 755
           },
           "expression": {
             "type": "JSXFragment",
             "span": {
               "start": 177,
-              "end": 2346
+              "end": 751
             },
             "opening": {
               "type": "JSXOpeningFragment",
@@ -761,7 +761,7 @@ export default function (id, componentName) {
                 "type": "JSXElement",
                 "span": {
                   "start": 530,
-                  "end": 2338
+                  "end": 743
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
@@ -777,7 +777,7 @@ export default function (id, componentName) {
                   },
                   "span": {
                     "start": 530,
-                    "end": 2329
+                    "end": 734
                   },
                   "attributes": [
                     {
@@ -808,7 +808,7 @@ export default function (id, componentName) {
                       "type": "JSXAttribute",
                       "span": {
                         "start": 575,
-                        "end": 2321
+                        "end": 726
                       },
                       "name": {
                         "type": "Identifier",
@@ -822,13 +822,13 @@ export default function (id, componentName) {
                         "type": "JSXExpressionContainer",
                         "span": {
                           "start": 599,
-                          "end": 2321
+                          "end": 726
                         },
                         "expression": {
                           "type": "ObjectExpression",
                           "span": {
                             "start": 600,
-                            "end": 2320
+                            "end": 725
                           },
                           "properties": [
                             {
@@ -845,27 +845,27 @@ export default function (id, componentName) {
                                 "type": "TemplateLiteral",
                                 "span": {
                                   "start": 620,
-                                  "end": 2310
+                                  "end": 715
                                 },
                                 "expressions": [
                                   {
                                     "type": "CallExpression",
                                     "span": {
-                                      "start": 710,
-                                      "end": 741
+                                      "start": 680,
+                                      "end": 711
                                     },
                                     "ctxt": 0,
                                     "callee": {
                                       "type": "MemberExpression",
                                       "span": {
-                                        "start": 710,
-                                        "end": 724
+                                        "start": 680,
+                                        "end": 694
                                       },
                                       "object": {
                                         "type": "Identifier",
                                         "span": {
-                                          "start": 710,
-                                          "end": 714
+                                          "start": 680,
+                                          "end": 684
                                         },
                                         "ctxt": 1,
                                         "value": "JSON",
@@ -874,8 +874,8 @@ export default function (id, componentName) {
                                       "property": {
                                         "type": "Identifier",
                                         "span": {
-                                          "start": 715,
-                                          "end": 724
+                                          "start": 685,
+                                          "end": 694
                                         },
                                         "value": "stringify"
                                       }
@@ -886,8 +886,8 @@ export default function (id, componentName) {
                                         "expression": {
                                           "type": "Identifier",
                                           "span": {
-                                            "start": 725,
-                                            "end": 740
+                                            "start": 695,
+                                            "end": 710
                                           },
                                           "ctxt": 3,
                                           "value": "serializedProps",
@@ -903,21 +903,21 @@ export default function (id, componentName) {
                                     "type": "TemplateElement",
                                     "span": {
                                       "start": 621,
-                                      "end": 708
+                                      "end": 678
                                     },
                                     "tail": false,
-                                    "cooked": "(function () {\n          function init() {\n            let a = [\"" + id + "\", \"" + componentName + "\", ",
-                                    "raw": "(function () {\n          function init() {\n            let a = [\"" + id + "\", \"" + componentName + "\", "
+                                    "cooked": "$F_booter(document.currentScript, \"" + id + "\", \"" + componentName + "\", ",
+                                    "raw": "$F_booter(document.currentScript, \"" + id + "\", \"" + componentName + "\", "
                                   },
                                   {
                                     "type": "TemplateElement",
                                     "span": {
-                                      "start": 742,
-                                      "end": 2309
+                                      "start": 712,
+                                      "end": 714
                                     },
                                     "tail": true,
-                                    "cooked": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        ",
-                                    "raw": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        "
+                                    "cooked": ");",
+                                    "raw": ");"
                                   }
                                 ]
                               }
@@ -934,14 +934,14 @@ export default function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 2329,
-                    "end": 2338
+                    "start": 734,
+                    "end": 743
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 2331,
-                      "end": 2337
+                      "start": 736,
+                      "end": 742
                     },
                     "ctxt": 1,
                     "value": "script",
@@ -952,8 +952,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 2338,
-                  "end": 2343
+                  "start": 743,
+                  "end": 748
                 },
                 "value": "\n    ",
                 "raw": "\n    "
@@ -962,8 +962,8 @@ export default function (id, componentName) {
             "closing": {
               "type": "JSXClosingFragment",
               "span": {
-                "start": 2343,
-                "end": 2346
+                "start": 748,
+                "end": 751
               }
             }
           }

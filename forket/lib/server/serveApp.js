@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from "url";
 import { PassThrough } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
 import chalk from "chalk";
@@ -5,11 +8,19 @@ import chalk from "chalk";
 import { requestContext } from "./requestContext.js";
 import getId from '../utils/getId.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const booter = fs.readFileSync(path.join(__dirname, "..", "client", "component-booter.min.js")).toString("utf8");
+const handlePromise = fs.readFileSync(path.join(__dirname, "..", "client", "handle-promise.min.js")).toString("utf8");
 let renderer = renderToPipeableStream;
 let RQ = requestContext;
 
 function getGlobals(options) {
   let str = [];
+  str.push(`$F_sae = ${JSON.stringify(options?.serverActionsEndpoint)};`);
+  str.push(booter);
+  str.push(handlePromise);
   str.push(
     options?.enableLogging
       ? `function $F_logs(m,...r){console.log("%c"+m,"color:${options.serverLogsColor};",...r);};`
@@ -20,7 +31,6 @@ function getGlobals(options) {
       ? `function $F_logc(m,...r){console.log("%c"+m,"color:${options.clientLogsColor};",...r);};`
       : `$F_log=function(){};`
   );
-  str.push(`$F_sae = ${JSON.stringify(options?.serverActionsEndpoint)};`);
   return str.join('');
 }
 
@@ -56,7 +66,7 @@ export function serveApp(options) {
       });
       addTaskListener(maybeEnd);
 
-      sendToClient(getGlobals(options), false);
+      sendToClient(getGlobals(options));
 
       function maybeEnd() {
         if (reactEnded && areTasksDone() && !res.writableEnded && !ended) {
@@ -103,26 +113,7 @@ function taskManager(res) {
   let notify = () => {};
 
   function handlePromise(status, id, value, boundaryID) {
-    sendToClient(`
-      $F_logs("‎𐂐 [server] Promise ${status} (${id})");
-      if (typeof window.$FLP_ === 'undefined') {
-        window.$FLP_ = {};
-      }
-      if (typeof window.$FLP_['${id}'] === 'undefined') {
-        window.$FLP_['${id}'] = {
-          value: ${JSON.stringify(value)},
-          status: "${status}",
-          boundaryID: "${boundaryID}",
-        };
-      } else {
-        window.$FLP_['${id}'].status = "${status}";
-        window.$FLP_['${id}'].value = ${JSON.stringify(value)};
-        window.$FLP_['${id}'].boundaryID = "${boundaryID}";
-      }
-      if (typeof window.FLP_process === 'function') {
-        window.FLP_process('${id}');
-      }
-    `);
+    sendToClient(`$F_handlePromise("${id}", "${status}", ${JSON.stringify(value)}, "${boundaryID}");`);    
     tasks.delete(id);
     notify();
   }
@@ -159,7 +150,7 @@ export function setRequestContext(r) {
 }
 
 function clientSender(res) {
-  return (code, removeAfterSend = true) => {
-    res.write(`<script>${code};${removeAfterSend ? '$me=document.currentScript;if($me){$me.remove();}' : ''}</script>`);
+  return (code) => {
+    res.write(`<script>${code}</script>`);
   }
 }

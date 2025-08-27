@@ -212,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 12946,
+      "bytes": 6963,
       "imports": [
         {
           "path": "node_modules/react-dom/client.js",
@@ -283,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 901553
+      "bytes": 894310
     },
     "dist/public/bundle.js": {
       "imports": [],

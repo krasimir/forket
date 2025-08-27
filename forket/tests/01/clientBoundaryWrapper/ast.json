@@ -42,14 +42,14 @@
       "decorators": [],
       "span": {
         "start": 1,
-        "end": 976
+        "end": 2353
       },
       "ctxt": 3,
       "body": {
         "type": "BlockStatement",
         "span": {
           "start": 31,
-          "end": 976
+          "end": 2353
         },
         "ctxt": 3,
         "stmts": [
@@ -241,19 +241,19 @@
             "type": "ReturnStatement",
             "span": {
               "start": 164,
-              "end": 974
+              "end": 2351
             },
             "argument": {
               "type": "ParenthesisExpression",
               "span": {
                 "start": 171,
-                "end": 973
+                "end": 2350
               },
               "expression": {
                 "type": "JSXFragment",
                 "span": {
                   "start": 177,
-                  "end": 969
+                  "end": 2346
                 },
                 "opening": {
                   "type": "JSXOpeningFragment",
@@ -273,200 +273,23 @@
                     "raw": "\n      "
                   },
                   {
-                    "type": "JSXElement",
-                    "span": {
-                      "start": 186,
-                      "end": 607
-                    },
-                    "opening": {
-                      "type": "JSXOpeningElement",
-                      "name": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 187,
-                          "end": 193
-                        },
-                        "ctxt": 1,
-                        "value": "script",
-                        "optional": false
-                      },
-                      "span": {
-                        "start": 186,
-                        "end": 598
-                      },
-                      "attributes": [
-                        {
-                          "type": "JSXAttribute",
-                          "span": {
-                            "start": 202,
-                            "end": 590
-                          },
-                          "name": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 202,
-                              "end": 225
-                            },
-                            "value": "dangerouslySetInnerHTML"
-                          },
-                          "value": {
-                            "type": "JSXExpressionContainer",
-                            "span": {
-                              "start": 226,
-                              "end": 590
-                            },
-                            "expression": {
-                              "type": "ObjectExpression",
-                              "span": {
-                                "start": 227,
-                                "end": 589
-                              },
-                              "properties": [
-                                {
-                                  "type": "KeyValueProperty",
-                                  "key": {
-                                    "type": "Identifier",
-                                    "span": {
-                                      "start": 239,
-                                      "end": 245
-                                    },
-                                    "value": "__html"
-                                  },
-                                  "value": {
-                                    "type": "TemplateLiteral",
-                                    "span": {
-                                      "start": 247,
-                                      "end": 579
-                                    },
-                                    "expressions": [
-                                      {
-                                        "type": "CallExpression",
-                                        "span": {
-                                          "start": 307,
-                                          "end": 338
-                                        },
-                                        "ctxt": 0,
-                                        "callee": {
-                                          "type": "MemberExpression",
-                                          "span": {
-                                            "start": 307,
-                                            "end": 321
-                                          },
-                                          "object": {
-                                            "type": "Identifier",
-                                            "span": {
-                                              "start": 307,
-                                              "end": 311
-                                            },
-                                            "ctxt": 1,
-                                            "value": "JSON",
-                                            "optional": false
-                                          },
-                                          "property": {
-                                            "type": "Identifier",
-                                            "span": {
-                                              "start": 312,
-                                              "end": 321
-                                            },
-                                            "value": "stringify"
-                                          }
-                                        },
-                                        "arguments": [
-                                          {
-                                            "spread": null,
-                                            "expression": {
-                                              "type": "Identifier",
-                                              "span": {
-                                                "start": 322,
-                                                "end": 337
-                                              },
-                                              "ctxt": 3,
-                                              "value": "serializedProps",
-                                              "optional": false
-                                            }
-                                          }
-                                        ],
-                                        "typeArguments": null
-                                      }
-                                    ],
-                                    "quasis": [
-                                      {
-                                        "type": "TemplateElement",
-                                        "span": {
-                                          "start": 248,
-                                          "end": 305
-                                        },
-                                        "tail": false,
-                                        "cooked": "(function () {\n          let a = [\"FORKETID111\", \"LoginForm\", ",
-                                        "raw": "(function () {\n          let a = [\"FORKETID111\", \"LoginForm\", "
-                                      },
-                                      {
-                                        "type": "TemplateElement",
-                                        "span": {
-                                          "start": 339,
-                                          "end": 578
-                                        },
-                                        "tail": true,
-                                        "cooked": "];\n          if (typeof $FRSC !== 'undefined') return $FRSC(a);\n          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n          $FRSC_.push(a);\n          let me = document.currentScript;\n          if (me) me.remove();\n        })();",
-                                        "raw": "];\n          if (typeof $FRSC !== 'undefined') return $FRSC(a);\n          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }\n          $FRSC_.push(a);\n          let me = document.currentScript;\n          if (me) me.remove();\n        })();"
-                                      }
-                                    ]
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      ],
-                      "selfClosing": false,
-                      "typeArguments": null
-                    },
-                    "children": [],
-                    "closing": {
-                      "type": "JSXClosingElement",
-                      "span": {
-                        "start": 598,
-                        "end": 607
-                      },
-                      "name": {
-                        "type": "Identifier",
-                        "span": {
-                          "start": 600,
-                          "end": 606
-                        },
-                        "ctxt": 1,
-                        "value": "script",
-                        "optional": false
-                      }
-                    }
-                  },
-                  {
-                    "type": "JSXText",
-                    "span": {
-                      "start": 607,
-                      "end": 614
-                    },
-                    "value": "\n      ",
-                    "raw": "\n      "
-                  },
-                  {
                     "type": "JSXExpressionContainer",
                     "span": {
-                      "start": 614,
-                      "end": 751
+                      "start": 186,
+                      "end": 323
                     },
                     "expression": {
                       "type": "BinaryExpression",
                       "span": {
-                        "start": 615,
-                        "end": 750
+                        "start": 187,
+                        "end": 322
                       },
                       "operator": "&&",
                       "left": {
                         "type": "Identifier",
                         "span": {
-                          "start": 615,
-                          "end": 623
+                          "start": 187,
+                          "end": 195
                         },
                         "ctxt": 3,
                         "value": "children",
@@ -475,51 +298,51 @@
                       "right": {
                         "type": "ParenthesisExpression",
                         "span": {
-                          "start": 627,
-                          "end": 750
+                          "start": 199,
+                          "end": 322
                         },
                         "expression": {
                           "type": "JSXElement",
                           "span": {
-                            "start": 637,
-                            "end": 742
+                            "start": 209,
+                            "end": 314
                           },
                           "opening": {
                             "type": "JSXOpeningElement",
                             "name": {
                               "type": "Identifier",
                               "span": {
-                                "start": 638,
-                                "end": 646
+                                "start": 210,
+                                "end": 218
                               },
                               "ctxt": 1,
                               "value": "template",
                               "optional": false
                             },
                             "span": {
-                              "start": 637,
-                              "end": 701
+                              "start": 209,
+                              "end": 273
                             },
                             "attributes": [
                               {
                                 "type": "JSXAttribute",
                                 "span": {
-                                  "start": 647,
-                                  "end": 669
+                                  "start": 219,
+                                  "end": 241
                                 },
                                 "name": {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 647,
-                                    "end": 651
+                                    "start": 219,
+                                    "end": 223
                                   },
                                   "value": "type"
                                 },
                                 "value": {
                                   "type": "StringLiteral",
                                   "span": {
-                                    "start": 652,
-                                    "end": 669
+                                    "start": 224,
+                                    "end": 241
                                   },
                                   "value": "forket/children",
                                   "raw": "\"forket/children\""
@@ -528,22 +351,22 @@
                               {
                                 "type": "JSXAttribute",
                                 "span": {
-                                  "start": 670,
-                                  "end": 678
+                                  "start": 242,
+                                  "end": 250
                                 },
                                 "name": {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 670,
-                                    "end": 672
+                                    "start": 242,
+                                    "end": 244
                                   },
                                   "value": "id"
                                 },
                                 "value": {
                                   "type": "StringLiteral",
                                   "span": {
-                                    "start": 673,
-                                    "end": 678
+                                    "start": 245,
+                                    "end": 250
                                   },
                                   "value": "FORKETID111",
                                   "raw": "\"FORKETID111\""
@@ -552,22 +375,22 @@
                               {
                                 "type": "JSXAttribute",
                                 "span": {
-                                  "start": 679,
-                                  "end": 700
+                                  "start": 251,
+                                  "end": 272
                                 },
                                 "name": {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 679,
-                                    "end": 685
+                                    "start": 251,
+                                    "end": 257
                                   },
                                   "value": "data-c"
                                 },
                                 "value": {
                                   "type": "StringLiteral",
                                   "span": {
-                                    "start": 686,
-                                    "end": 700
+                                    "start": 258,
+                                    "end": 272
                                   },
                                   "value": "LoginForm",
                                   "raw": "\"LoginForm\""
@@ -581,8 +404,8 @@
                             {
                               "type": "JSXText",
                               "span": {
-                                "start": 701,
-                                "end": 712
+                                "start": 273,
+                                "end": 284
                               },
                               "value": "\n          ",
                               "raw": "\n          "
@@ -590,14 +413,14 @@
                             {
                               "type": "JSXExpressionContainer",
                               "span": {
-                                "start": 712,
-                                "end": 722
+                                "start": 284,
+                                "end": 294
                               },
                               "expression": {
                                 "type": "Identifier",
                                 "span": {
-                                  "start": 713,
-                                  "end": 721
+                                  "start": 285,
+                                  "end": 293
                                 },
                                 "ctxt": 3,
                                 "value": "children",
@@ -607,8 +430,8 @@
                             {
                               "type": "JSXText",
                               "span": {
-                                "start": 722,
-                                "end": 731
+                                "start": 294,
+                                "end": 303
                               },
                               "value": "\n        ",
                               "raw": "\n        "
@@ -617,14 +440,14 @@
                           "closing": {
                             "type": "JSXClosingElement",
                             "span": {
-                              "start": 731,
-                              "end": 742
+                              "start": 303,
+                              "end": 314
                             },
                             "name": {
                               "type": "Identifier",
                               "span": {
-                                "start": 733,
-                                "end": 741
+                                "start": 305,
+                                "end": 313
                               },
                               "ctxt": 1,
                               "value": "template",
@@ -638,8 +461,8 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 751,
-                      "end": 758
+                      "start": 323,
+                      "end": 330
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -647,93 +470,69 @@
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 758,
-                      "end": 830
+                      "start": 330,
+                      "end": 397
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 759,
-                          "end": 767
+                          "start": 331,
+                          "end": 339
                         },
                         "ctxt": 1,
                         "value": "template",
                         "optional": false
                       },
                       "span": {
-                        "start": 758,
-                        "end": 819
+                        "start": 330,
+                        "end": 386
                       },
                       "attributes": [
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 768,
-                            "end": 787
+                            "start": 340,
+                            "end": 363
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 768,
-                              "end": 772
+                              "start": 340,
+                              "end": 344
                             },
                             "value": "type"
                           },
                           "value": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 773,
-                              "end": 787
+                              "start": 345,
+                              "end": 363
                             },
-                            "value": "forket/start",
-                            "raw": "\"forket/start\""
+                            "value": "forket/start/FORKETID111",
+                            "raw": "\"forket/start/FORKETID111\""
                           }
                         },
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 788,
-                            "end": 796
+                            "start": 364,
+                            "end": 385
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 788,
-                              "end": 790
-                            },
-                            "value": "id"
-                          },
-                          "value": {
-                            "type": "StringLiteral",
-                            "span": {
-                              "start": 791,
-                              "end": 796
-                            },
-                            "value": "FORKETID111",
-                            "raw": "\"FORKETID111\""
-                          }
-                        },
-                        {
-                          "type": "JSXAttribute",
-                          "span": {
-                            "start": 797,
-                            "end": 818
-                          },
-                          "name": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 797,
-                              "end": 803
+                              "start": 364,
+                              "end": 370
                             },
                             "value": "data-c"
                           },
                           "value": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 804,
-                              "end": 818
+                              "start": 371,
+                              "end": 385
                             },
                             "value": "LoginForm",
                             "raw": "\"LoginForm\""
@@ -747,14 +546,14 @@
                     "closing": {
                       "type": "JSXClosingElement",
                       "span": {
-                        "start": 819,
-                        "end": 830
+                        "start": 386,
+                        "end": 397
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 821,
-                          "end": 829
+                          "start": 388,
+                          "end": 396
                         },
                         "ctxt": 1,
                         "value": "template",
@@ -765,8 +564,8 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 830,
-                      "end": 837
+                      "start": 397,
+                      "end": 404
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -774,37 +573,37 @@
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 837,
-                      "end": 884
+                      "start": 404,
+                      "end": 451
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 838,
-                          "end": 850
+                          "start": 405,
+                          "end": 417
                         },
                         "ctxt": 1,
                         "value": "LoginForm",
                         "optional": false
                       },
                       "span": {
-                        "start": 837,
-                        "end": 884
+                        "start": 404,
+                        "end": 451
                       },
                       "attributes": [
                         {
                           "type": "SpreadElement",
                           "spread": {
-                            "start": 852,
-                            "end": 855
+                            "start": 419,
+                            "end": 422
                           },
                           "arguments": {
                             "type": "Identifier",
                             "span": {
-                              "start": 855,
-                              "end": 860
+                              "start": 422,
+                              "end": 427
                             },
                             "ctxt": 3,
                             "value": "props",
@@ -814,28 +613,28 @@
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 862,
-                            "end": 881
+                            "start": 429,
+                            "end": 448
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 862,
-                              "end": 870
+                              "start": 429,
+                              "end": 437
                             },
                             "value": "children"
                           },
                           "value": {
                             "type": "JSXExpressionContainer",
                             "span": {
-                              "start": 871,
-                              "end": 881
+                              "start": 438,
+                              "end": 448
                             },
                             "expression": {
                               "type": "Identifier",
                               "span": {
-                                "start": 872,
-                                "end": 880
+                                "start": 439,
+                                "end": 447
                               },
                               "ctxt": 3,
                               "value": "children",
@@ -853,8 +652,8 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 884,
-                      "end": 891
+                      "start": 451,
+                      "end": 458
                     },
                     "value": "\n      ",
                     "raw": "\n      "
@@ -862,93 +661,69 @@
                   {
                     "type": "JSXElement",
                     "span": {
-                      "start": 891,
-                      "end": 961
+                      "start": 458,
+                      "end": 523
                     },
                     "opening": {
                       "type": "JSXOpeningElement",
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 892,
-                          "end": 900
+                          "start": 459,
+                          "end": 467
                         },
                         "ctxt": 1,
                         "value": "template",
                         "optional": false
                       },
                       "span": {
-                        "start": 891,
-                        "end": 950
+                        "start": 458,
+                        "end": 512
                       },
                       "attributes": [
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 901,
-                            "end": 918
+                            "start": 468,
+                            "end": 489
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 901,
-                              "end": 905
+                              "start": 468,
+                              "end": 472
                             },
                             "value": "type"
                           },
                           "value": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 906,
-                              "end": 918
+                              "start": 473,
+                              "end": 489
                             },
-                            "value": "forket/end",
-                            "raw": "\"forket/end\""
+                            "value": "forket/end/FORKETID111",
+                            "raw": "\"forket/end/FORKETID111\""
                           }
                         },
                         {
                           "type": "JSXAttribute",
                           "span": {
-                            "start": 919,
-                            "end": 927
+                            "start": 490,
+                            "end": 511
                           },
                           "name": {
                             "type": "Identifier",
                             "span": {
-                              "start": 919,
-                              "end": 921
-                            },
-                            "value": "id"
-                          },
-                          "value": {
-                            "type": "StringLiteral",
-                            "span": {
-                              "start": 922,
-                              "end": 927
-                            },
-                            "value": "FORKETID111",
-                            "raw": "\"FORKETID111\""
-                          }
-                        },
-                        {
-                          "type": "JSXAttribute",
-                          "span": {
-                            "start": 928,
-                            "end": 949
-                          },
-                          "name": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 928,
-                              "end": 934
+                              "start": 490,
+                              "end": 496
                             },
                             "value": "data-c"
                           },
                           "value": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 935,
-                              "end": 949
+                              "start": 497,
+                              "end": 511
                             },
                             "value": "LoginForm",
                             "raw": "\"LoginForm\""
@@ -962,14 +737,14 @@
                     "closing": {
                       "type": "JSXClosingElement",
                       "span": {
-                        "start": 950,
-                        "end": 961
+                        "start": 512,
+                        "end": 523
                       },
                       "name": {
                         "type": "Identifier",
                         "span": {
-                          "start": 952,
-                          "end": 960
+                          "start": 514,
+                          "end": 522
                         },
                         "ctxt": 1,
                         "value": "template",
@@ -980,8 +755,209 @@
                   {
                     "type": "JSXText",
                     "span": {
-                      "start": 961,
-                      "end": 966
+                      "start": 523,
+                      "end": 530
+                    },
+                    "value": "\n      ",
+                    "raw": "\n      "
+                  },
+                  {
+                    "type": "JSXElement",
+                    "span": {
+                      "start": 530,
+                      "end": 2338
+                    },
+                    "opening": {
+                      "type": "JSXOpeningElement",
+                      "name": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 531,
+                          "end": 537
+                        },
+                        "ctxt": 1,
+                        "value": "script",
+                        "optional": false
+                      },
+                      "span": {
+                        "start": 530,
+                        "end": 2329
+                      },
+                      "attributes": [
+                        {
+                          "type": "JSXAttribute",
+                          "span": {
+                            "start": 546,
+                            "end": 566
+                          },
+                          "name": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 546,
+                              "end": 548
+                            },
+                            "value": "id"
+                          },
+                          "value": {
+                            "type": "StringLiteral",
+                            "span": {
+                              "start": 549,
+                              "end": 566
+                            },
+                            "value": "forket/init/FORKETID111",
+                            "raw": "\"forket/init/FORKETID111\""
+                          }
+                        },
+                        {
+                          "type": "JSXAttribute",
+                          "span": {
+                            "start": 575,
+                            "end": 2321
+                          },
+                          "name": {
+                            "type": "Identifier",
+                            "span": {
+                              "start": 575,
+                              "end": 598
+                            },
+                            "value": "dangerouslySetInnerHTML"
+                          },
+                          "value": {
+                            "type": "JSXExpressionContainer",
+                            "span": {
+                              "start": 599,
+                              "end": 2321
+                            },
+                            "expression": {
+                              "type": "ObjectExpression",
+                              "span": {
+                                "start": 600,
+                                "end": 2320
+                              },
+                              "properties": [
+                                {
+                                  "type": "KeyValueProperty",
+                                  "key": {
+                                    "type": "Identifier",
+                                    "span": {
+                                      "start": 612,
+                                      "end": 618
+                                    },
+                                    "value": "__html"
+                                  },
+                                  "value": {
+                                    "type": "TemplateLiteral",
+                                    "span": {
+                                      "start": 620,
+                                      "end": 2310
+                                    },
+                                    "expressions": [
+                                      {
+                                        "type": "CallExpression",
+                                        "span": {
+                                          "start": 710,
+                                          "end": 741
+                                        },
+                                        "ctxt": 0,
+                                        "callee": {
+                                          "type": "MemberExpression",
+                                          "span": {
+                                            "start": 710,
+                                            "end": 724
+                                          },
+                                          "object": {
+                                            "type": "Identifier",
+                                            "span": {
+                                              "start": 710,
+                                              "end": 714
+                                            },
+                                            "ctxt": 1,
+                                            "value": "JSON",
+                                            "optional": false
+                                          },
+                                          "property": {
+                                            "type": "Identifier",
+                                            "span": {
+                                              "start": 715,
+                                              "end": 724
+                                            },
+                                            "value": "stringify"
+                                          }
+                                        },
+                                        "arguments": [
+                                          {
+                                            "spread": null,
+                                            "expression": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 725,
+                                                "end": 740
+                                              },
+                                              "ctxt": 3,
+                                              "value": "serializedProps",
+                                              "optional": false
+                                            }
+                                          }
+                                        ],
+                                        "typeArguments": null
+                                      }
+                                    ],
+                                    "quasis": [
+                                      {
+                                        "type": "TemplateElement",
+                                        "span": {
+                                          "start": 621,
+                                          "end": 708
+                                        },
+                                        "tail": false,
+                                        "cooked": "(function () {\n          function init() {\n            let a = [\"FORKETID111\", \"LoginForm\", ",
+                                        "raw": "(function () {\n          function init() {\n            let a = [\"FORKETID111\", \"LoginForm\", "
+                                      },
+                                      {
+                                        "type": "TemplateElement",
+                                        "span": {
+                                          "start": 742,
+                                          "end": 2309
+                                        },
+                                        "tail": true,
+                                        "cooked": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <LoginForm> (FORKETID111) streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <LoginForm> (FORKETID111) streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/FORKETID111' || n.querySelector('[id=\"forket/init/FORKETID111\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        ",
+                                        "raw": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <LoginForm> (FORKETID111) streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <LoginForm> (FORKETID111) streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/FORKETID111' || n.querySelector('[id=\"forket/init/FORKETID111\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        "
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "selfClosing": false,
+                      "typeArguments": null
+                    },
+                    "children": [],
+                    "closing": {
+                      "type": "JSXClosingElement",
+                      "span": {
+                        "start": 2329,
+                        "end": 2338
+                      },
+                      "name": {
+                        "type": "Identifier",
+                        "span": {
+                          "start": 2331,
+                          "end": 2337
+                        },
+                        "ctxt": 1,
+                        "value": "script",
+                        "optional": false
+                      }
+                    }
+                  },
+                  {
+                    "type": "JSXText",
+                    "span": {
+                      "start": 2338,
+                      "end": 2343
                     },
                     "value": "\n    ",
                     "raw": "\n    "
@@ -990,8 +966,8 @@
                 "closing": {
                   "type": "JSXClosingFragment",
                   "span": {
-                    "start": 966,
-                    "end": 969
+                    "start": 2343,
+                    "end": 2346
                   }
                 }
               }

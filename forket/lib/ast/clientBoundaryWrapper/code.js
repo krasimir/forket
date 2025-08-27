@@ -14,50 +14,7 @@ function ComponentName(props) {
       <script
         id="forket/init/f_1"
         dangerouslySetInnerHTML={{
-          __html: `(function () {
-          function init() {
-            let a = ["f_1", "ProductsList", ${JSON.stringify(serializedProps)}];
-            if (typeof window.$FRSC === 'function') {
-              $F_logs("‎𐂐 [server] <ProductsList> (f_1) streaming done. Hydration in flight ...");
-              window.$FRSC(a);
-            } else {
-              if (typeof $FRSC_ === 'undefined') {
-                $FRSC_ = [];
-              }
-              $F_logs("‎𐂐 [server] <ProductsList> (f_1) streaming done.");
-              $FRSC_.push(a);
-            }
-            let me = document.currentScript;
-            if (me) me.remove();
-          }
-          if (document.currentScript.closest("div[hidden]")) {
-            const observer = new MutationObserver((mutationsList) => {
-              for(let i=0; i<mutationsList.length; i++) {
-                const added = mutationsList[i].addedNodes;
-                for(let j=0; j<added.length; j++) {
-                  const n = added[j];
-                  if (n.nodeType !== 1) continue;
-                  if (n.getAttribute) {
-                    const scriptNode = n.getAttribute('id') === 'forket/init/f_1' || n.querySelector('[id="forket/init/f_1"]');
-                    if (scriptNode) {
-                      init();
-                      observer.disconnect();
-                      scriptNode.remove();
-                      return;
-                    }
-                  }
-                }
-              }
-            });
-            observer.observe(
-              document.documentElement,
-              { childList: true, subtree: true }
-            );
-          } else {
-            init();
-          }
-        })();
-        `
+          __html: `$F_booter(document.currentScript, "f_1", "ProductsList", ${JSON.stringify(serializedProps)});`
         }}
       ></script>
     </>
