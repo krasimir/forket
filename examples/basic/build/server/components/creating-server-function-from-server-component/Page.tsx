@@ -35,15 +35,14 @@ function ButtonBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_39", "Button", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("‎𐂐 [server] <Button> streaming done. Hydration in flight ...");
+              $F_logs("‎𐂐 [server] <Button> (f_39) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("‎𐂐 [server] <Button> streaming done.");
+              $F_logs("‎𐂐 [server] <Button> (f_39) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

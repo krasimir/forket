@@ -1,15 +1,18 @@
-export interface ForketOptions {
+export type ForketOptions = {
   sourceDir?: string;
   buildDir?: string;
   serverDirName?: string;
   clientDirName?: string;
   forketServerActionsHandler?: string;
+  serverActionsEndpoint?: string;
   clientCopyableFiles?: string[];
   watch?: boolean;
   printGraph?: boolean;
   exposeReactGlobally?: boolean;
-  serverActionsEndpoint?: string;
-}
+  enableLogging?: boolean;
+  serverLogsColor?: string;
+  clientLogsColor?: string;
+};
 
 export interface ForketInstance {
   process(): Promise<void>;

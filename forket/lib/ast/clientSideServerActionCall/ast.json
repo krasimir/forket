@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 2474,
-    "end": 2561
+    "start": 2423,
+    "end": 2510
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 2474,
-        "end": 2561
+        "start": 2423,
+        "end": 2510
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,14 +18,14 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 2480,
-            "end": 2561
+            "start": 2429,
+            "end": 2510
           },
           "id": {
             "type": "Identifier",
             "span": {
-              "start": 2480,
-              "end": 2486
+              "start": 2429,
+              "end": 2435
             },
             "ctxt": 2,
             "value": "FooBar",
@@ -39,25 +39,25 @@
               {
                 "type": "Parameter",
                 "span": {
-                  "start": 2498,
-                  "end": 2505
+                  "start": 2447,
+                  "end": 2454
                 },
                 "decorators": [],
                 "pat": {
                   "type": "RestElement",
                   "span": {
-                    "start": 2498,
-                    "end": 2505
+                    "start": 2447,
+                    "end": 2454
                   },
                   "rest": {
-                    "start": 2498,
-                    "end": 2501
+                    "start": 2447,
+                    "end": 2450
                   },
                   "argument": {
                     "type": "Identifier",
                     "span": {
-                      "start": 2501,
-                      "end": 2505
+                      "start": 2450,
+                      "end": 2454
                     },
                     "ctxt": 3,
                     "value": "args",
@@ -70,49 +70,49 @@
             ],
             "decorators": [],
             "span": {
-              "start": 2489,
-              "end": 2561
+              "start": 2438,
+              "end": 2510
             },
             "ctxt": 3,
             "body": {
               "type": "BlockStatement",
               "span": {
-                "start": 2507,
-                "end": 2561
+                "start": 2456,
+                "end": 2510
               },
               "ctxt": 3,
               "stmts": [
                 {
                   "type": "ReturnStatement",
                   "span": {
-                    "start": 2511,
-                    "end": 2559
+                    "start": 2460,
+                    "end": 2508
                   },
                   "argument": {
                     "type": "CallExpression",
                     "span": {
-                      "start": 2518,
-                      "end": 2558
+                      "start": 2467,
+                      "end": 2507
                     },
                     "ctxt": 0,
                     "callee": {
                       "type": "CallExpression",
                       "span": {
-                        "start": 2518,
-                        "end": 2549
+                        "start": 2467,
+                        "end": 2498
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 2518,
-                          "end": 2533
+                          "start": 2467,
+                          "end": 2482
                         },
                         "object": {
                           "type": "Identifier",
                           "span": {
-                            "start": 2518,
-                            "end": 2524
+                            "start": 2467,
+                            "end": 2473
                           },
                           "ctxt": 1,
                           "value": "window",
@@ -121,8 +121,8 @@
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 2525,
-                            "end": 2533
+                            "start": 2474,
+                            "end": 2482
                           },
                           "value": "FSA_call"
                         }
@@ -133,8 +133,8 @@
                           "expression": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 2534,
-                              "end": 2538
+                              "start": 2483,
+                              "end": 2487
                             },
                             "value": "ID",
                             "raw": "\"ID\""
@@ -145,8 +145,8 @@
                           "expression": {
                             "type": "StringLiteral",
                             "span": {
-                              "start": 2540,
-                              "end": 2548
+                              "start": 2489,
+                              "end": 2497
                             },
                             "value": "FooBar",
                             "raw": "\"FooBar\""
@@ -158,14 +158,14 @@
                     "arguments": [
                       {
                         "spread": {
-                          "start": 2550,
-                          "end": 2553
+                          "start": 2499,
+                          "end": 2502
                         },
                         "expression": {
                           "type": "Identifier",
                           "span": {
-                            "start": 2553,
-                            "end": 2557
+                            "start": 2502,
+                            "end": 2506
                           },
                           "ctxt": 3,
                           "value": "args",

@@ -28,15 +28,14 @@ function LikeButtonBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_38", "LikeButton", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("‎𐂐 [server] <LikeButton> streaming done. Hydration in flight ...");
+              $F_logs("‎𐂐 [server] <LikeButton> (f_38) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("‎𐂐 [server] <LikeButton> streaming done.");
+              $F_logs("‎𐂐 [server] <LikeButton> (f_38) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

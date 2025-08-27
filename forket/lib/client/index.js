@@ -1,7 +1,4 @@
 (function () {
-  const FORKET_SERVER_ACTIONS_ENDPOINT = "__FORKET_SERVER_ACTIONS_ENDPOINT__";
-  const ENABLE_LOGGING = __ENABLE_LOGGIGN__;
-  const log = ENABLE_LOGGING ? console.log.bind(console) : () => {};
   const roots = new Map();
   const renderers = (window.$F_renderers = {});
 
@@ -43,7 +40,7 @@
   function FRSC_init() {
     const d = document;
     let islands = typeof window.$FRSC_ !== "undefined" ? window.$FRSC_ : [];
-    log(`𐂐 [client] 🏝️(${islands.length}) v${__VERSION__}`);
+    $F_logc(`𐂐 [client] 🏝️(${islands.length}) v${__VERSION__}`);
     if (typeof window.$FRSC === "undefined") {
       window.$FRSC = function (data) {
         const id = data[0];
@@ -83,7 +80,7 @@
           if (newProps) {
             props = { ...props, ...newProps };
           }
-          log(`𐂐 [client] Rendering <${componentName}>  (${id})`, { props, children });          
+          $F_logc(`𐂐 [client] Render <${componentName}> (${id})`, { props, children });          
           mountOrUpdate(container, React.createElement(Component, props, children));
           return true;
         };
@@ -106,7 +103,6 @@
               if (typeof window.$FLP_ === "undefined") {
                 window.$FLP_ = {};
               }
-              console.log(window.$FLP_);
               if (typeof window.$FLP_[id] === "undefined") {
                 window.$FLP_[id] = {
                   status: 'unknown',
@@ -114,10 +110,17 @@
                   reject
                 };
               } else {
-                console.log(window.$FLP_[id]);
-                window.$FLP_[id].resolve = resolve;
-                window.$FLP_[id].reject = reject;
-                FLP_process(id);
+                if (window.$FLP_[id].status === 'resolved') {
+                  resolve(window.$FLP_[id].value);
+                  return;
+                } else if (window.$FLP_[id].status === 'rejected') {
+                  reject(new Error(window.$FLP_[id].value));
+                  return;
+                } else {
+                  window.$FLP_[id].resolve = resolve;
+                  window.$FLP_[id].reject = reject;
+                  FLP_process(id);
+                }
               }
             })
           }
@@ -241,16 +244,29 @@
       const reject = window.$FLP_[id].reject;
       const boundaryID = window.$FLP_[id].boundaryID;
       if (status === "resolved") {
-        log(`𐂐 [client] Promise resolved (${id})`, value);
-        if (resolve) { resolve(value) };
+        $F_logc(`𐂐 [client] Promise resolved (${id})`, value);
+        if (resolve) {
+          resolve(value)
+          delete window.$FLP_[id];
+        } else {
+          $F_logc(
+            `𐂐 [client] Promise with id ${id} is resolved but can't be consumed because the client boundary that needs it is not render yet.`
+          );
+        }
       } else if (status === "rejected") {
-        log(`𐂐 [client] Promise rejected (${id})`, value);
-        if (reject) { reject(new Error(value)); };
+        $F_logc(`𐂐 [client] Promise rejected (${id})`, value);
+        if (reject) {
+          delete window.$FLP_[id];
+          reject(new Error(value));
+        } else {
+          $F_logc(
+            `𐂐 [client] Promise with id ${id} is rejected but can't be consumed because the client boundary that needs it is not render yet.`
+          );
+        }
       } else {
         console.warn(`𐂐 [client] Promise with id ${id} is in unknown state: ${status}.`);
         return;
       }
-      delete window.$FLP_[id];
       if (renderers[boundaryID]) {
         renderers[boundaryID]();
       }
@@ -267,7 +283,7 @@
         const fd = new FormData();
         fd.set("__actionId", id);
         for (const [k, v] of data.entries()) fd.append(k, v);
-        const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+        const result = await fetch($F_sae + "/" + funcName, {
           method: "POST",
           body: fd
         });
@@ -279,7 +295,7 @@
         if (responseData.error) throw new Error(responseData.error);
         return responseData.result;
       }
-      const result = await fetch(FORKET_SERVER_ACTIONS_ENDPOINT + "/" + funcName, {
+      const result = await fetch($F_sae + "/" + funcName, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ __actionId: id, data: args })

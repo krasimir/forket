@@ -190,7 +190,7 @@
       "format": "esm"
     },
     "build/client/components/async-components-with-server-components/Comments.tsx": {
-      "bytes": 831,
+      "bytes": 690,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -212,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 12444,
+      "bytes": 12946,
       "imports": [
         {
           "path": "node_modules/react-dom/client.js",
@@ -283,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 901145
+      "bytes": 901553
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -309,13 +309,13 @@
           "bytesInOutput": 253
         },
         "node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "bytesInOutput": 168033
+          "bytesInOutput": 168003
         },
         "node_modules/react-dom/client.js": {
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 5550
+          "bytesInOutput": 5963
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
           "bytesInOutput": 390
@@ -345,13 +345,13 @@
           "bytesInOutput": 407
         },
         "build/client/components/async-components-with-server-components/Comments.tsx": {
-          "bytesInOutput": 495
+          "bytesInOutput": 404
         },
         "build/client/components/adding-interactivity-to-server-components/Expandable.tsx": {
           "bytesInOutput": 186
         }
       },
-      "bytes": 193997
+      "bytes": 194289
     }
   }
 }

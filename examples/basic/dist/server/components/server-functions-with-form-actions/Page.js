@@ -11,15 +11,14 @@ function UpdateNameBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_45", "UpdateName", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("\u200E\u{10090} [server] <UpdateName> streaming done. Hydration in flight ...");
+              $F_logs("\u200E\u{10090} [server] <UpdateName> (f_45) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("\u200E\u{10090} [server] <UpdateName> streaming done.");
+              $F_logs("\u200E\u{10090} [server] <UpdateName> (f_45) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

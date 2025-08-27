@@ -33,15 +33,14 @@ function CommentsBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_43", "Comments", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("‎𐂐 [server] <Comments> streaming done. Hydration in flight ...");
+              $F_logs("‎𐂐 [server] <Comments> (f_43) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("‎𐂐 [server] <Comments> streaming done.");
+              $F_logs("‎𐂐 [server] <Comments> (f_43) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

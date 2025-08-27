@@ -40,7 +40,10 @@ export const DEFAULT_OPTIONS = {
   ],
   watch: false,
   printGraph: false,
-  exposeReactGlobally: true
+  exposeReactGlobally: true,
+  enableLogging: true,
+  serverLogsColor: '#999',
+  clientLogsColor: '#289c48',
 };
 export const ROLE = {
   SERVER: "server",

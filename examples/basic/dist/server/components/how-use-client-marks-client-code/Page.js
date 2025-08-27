@@ -13,15 +13,14 @@ function FancyTextBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_40", "FancyText", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("\u200E\u{10090} [server] <FancyText> streaming done. Hydration in flight ...");
+              $F_logs("\u200E\u{10090} [server] <FancyText> (f_40) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("\u200E\u{10090} [server] <FancyText> streaming done.");
+              $F_logs("\u200E\u{10090} [server] <FancyText> (f_40) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;
@@ -64,15 +63,14 @@ function InspirationGeneratorBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_41", "InspirationGenerator", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("\u200E\u{10090} [server] <InspirationGenerator> streaming done. Hydration in flight ...");
+              $F_logs("\u200E\u{10090} [server] <InspirationGenerator> (f_41) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("\u200E\u{10090} [server] <InspirationGenerator> streaming done.");
+              $F_logs("\u200E\u{10090} [server] <InspirationGenerator> (f_41) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

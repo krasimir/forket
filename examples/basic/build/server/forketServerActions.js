@@ -1,9 +1,9 @@
-import { updateUsername,  } from "./components/server-functions-with-form-actions/actions.ts";
-import { updateMyName,  } from "./components/server-functions-with-actions/actions.ts";
-import { createNote,  } from "./components/importing-server-functions-from-client-components/actions.ts";
-import { createNoteAction,  } from "./components/creating-server-function-from-server-component/Page.tsx";
-import { getLikeCount,  } from "./components/calling-server-function-outside-form/actions.ts";
-import { incrementLike,  } from "./components/calling-server-function-outside-form/actions.ts";
+import { updateUsername } from "./components/server-functions-with-form-actions/actions.ts";
+import { updateMyName } from "./components/server-functions-with-actions/actions.ts";
+import { createNote } from "./components/importing-server-functions-from-client-components/actions.ts";
+import { createNoteAction } from "./components/creating-server-function-from-server-component/Page.tsx";
+import { getLikeCount } from "./components/calling-server-function-outside-form/actions.ts";
+import { incrementLike } from "./components/calling-server-function-outside-form/actions.ts";
 const actions = {
     $FSA_incrementLike: incrementLike,
     $FSA_getLikeCount: getLikeCount,

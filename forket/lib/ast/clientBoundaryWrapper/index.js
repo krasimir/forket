@@ -38,14 +38,14 @@ export default function (id, componentName) {
   "decorators": [],
   "span": {
     "start": 1,
-    "end": 2404
+    "end": 2353
   },
   "ctxt": 3,
   "body": {
     "type": "BlockStatement",
     "span": {
       "start": 31,
-      "end": 2404
+      "end": 2353
     },
     "ctxt": 3,
     "stmts": [
@@ -237,19 +237,19 @@ export default function (id, componentName) {
         "type": "ReturnStatement",
         "span": {
           "start": 164,
-          "end": 2402
+          "end": 2351
         },
         "argument": {
           "type": "ParenthesisExpression",
           "span": {
             "start": 171,
-            "end": 2401
+            "end": 2350
           },
           "expression": {
             "type": "JSXFragment",
             "span": {
               "start": 177,
-              "end": 2397
+              "end": 2346
             },
             "opening": {
               "type": "JSXOpeningFragment",
@@ -761,7 +761,7 @@ export default function (id, componentName) {
                 "type": "JSXElement",
                 "span": {
                   "start": 530,
-                  "end": 2389
+                  "end": 2338
                 },
                 "opening": {
                   "type": "JSXOpeningElement",
@@ -777,7 +777,7 @@ export default function (id, componentName) {
                   },
                   "span": {
                     "start": 530,
-                    "end": 2380
+                    "end": 2329
                   },
                   "attributes": [
                     {
@@ -808,7 +808,7 @@ export default function (id, componentName) {
                       "type": "JSXAttribute",
                       "span": {
                         "start": 575,
-                        "end": 2372
+                        "end": 2321
                       },
                       "name": {
                         "type": "Identifier",
@@ -822,13 +822,13 @@ export default function (id, componentName) {
                         "type": "JSXExpressionContainer",
                         "span": {
                           "start": 599,
-                          "end": 2372
+                          "end": 2321
                         },
                         "expression": {
                           "type": "ObjectExpression",
                           "span": {
                             "start": 600,
-                            "end": 2371
+                            "end": 2320
                           },
                           "properties": [
                             {
@@ -845,7 +845,7 @@ export default function (id, componentName) {
                                 "type": "TemplateLiteral",
                                 "span": {
                                   "start": 620,
-                                  "end": 2361
+                                  "end": 2310
                                 },
                                 "expressions": [
                                   {
@@ -913,11 +913,11 @@ export default function (id, componentName) {
                                     "type": "TemplateElement",
                                     "span": {
                                       "start": 742,
-                                      "end": 2360
+                                      "end": 2309
                                     },
                                     "tail": true,
-                                    "cooked": "];\n            console.log(JSON.stringify(window.$FLP_));\n            if (typeof window.$FRSC === 'function') {\n              console.log(\"‎𐂐 [server] <" + componentName + "> streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              console.log(\"‎𐂐 [server] <" + componentName + "> streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        ",
-                                    "raw": "];\n            console.log(JSON.stringify(window.$FLP_));\n            if (typeof window.$FRSC === 'function') {\n              console.log(\"‎𐂐 [server] <" + componentName + "> streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              console.log(\"‎𐂐 [server] <" + componentName + "> streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        "
+                                    "cooked": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        ",
+                                    "raw": "];\n            if (typeof window.$FRSC === 'function') {\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done. Hydration in flight ...\");\n              window.$FRSC(a);\n            } else {\n              if (typeof $FRSC_ === 'undefined') {\n                $FRSC_ = [];\n              }\n              $F_logs(\"‎𐂐 [server] <" + componentName + "> (" + id + ") streaming done.\");\n              $FRSC_.push(a);\n            }\n            let me = document.currentScript;\n            if (me) me.remove();\n          }\n          if (document.currentScript.closest(\"div[hidden]\")) {\n            const observer = new MutationObserver((mutationsList) => {\n              for(let i=0; i<mutationsList.length; i++) {\n                const added = mutationsList[i].addedNodes;\n                for(let j=0; j<added.length; j++) {\n                  const n = added[j];\n                  if (n.nodeType !== 1) continue;\n                  if (n.getAttribute) {\n                    const scriptNode = n.getAttribute('id') === 'forket/init/" + id + "' || n.querySelector('[id=\"forket/init/" + id + "\"]');\n                    if (scriptNode) {\n                      init();\n                      observer.disconnect();\n                      scriptNode.remove();\n                      return;\n                    }\n                  }\n                }\n              }\n            });\n            observer.observe(\n              document.documentElement,\n              { childList: true, subtree: true }\n            );\n          } else {\n            init();\n          }\n        })();\n        "
                                   }
                                 ]
                               }
@@ -934,14 +934,14 @@ export default function (id, componentName) {
                 "closing": {
                   "type": "JSXClosingElement",
                   "span": {
-                    "start": 2380,
-                    "end": 2389
+                    "start": 2329,
+                    "end": 2338
                   },
                   "name": {
                     "type": "Identifier",
                     "span": {
-                      "start": 2382,
-                      "end": 2388
+                      "start": 2331,
+                      "end": 2337
                     },
                     "ctxt": 1,
                     "value": "script",
@@ -952,8 +952,8 @@ export default function (id, componentName) {
               {
                 "type": "JSXText",
                 "span": {
-                  "start": 2389,
-                  "end": 2394
+                  "start": 2338,
+                  "end": 2343
                 },
                 "value": "\n    ",
                 "raw": "\n    "
@@ -962,8 +962,8 @@ export default function (id, componentName) {
             "closing": {
               "type": "JSXClosingFragment",
               "span": {
-                "start": 2394,
-                "end": 2397
+                "start": 2343,
+                "end": 2346
               }
             }
           }

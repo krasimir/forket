@@ -13,15 +13,14 @@ function ExpandableBoundary(props) {
     __html: `(function () {
           function init() {
             let a = ["f_36", "Expandable", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("\u200E\u{10090} [server] <Expandable> streaming done. Hydration in flight ...");
+              $F_logs("\u200E\u{10090} [server] <Expandable> (f_36) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("\u200E\u{10090} [server] <Expandable> streaming done.");
+              $F_logs("\u200E\u{10090} [server] <Expandable> (f_36) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

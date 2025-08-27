@@ -18,13 +18,13 @@ function ComponentName(props) {
           function init() {
             let a = ["f_1", "ProductsList", ${JSON.stringify(serializedProps)}];
             if (typeof window.$FRSC === 'function') {
-              console.log("‎𐂐 [server] <ProductsList> streaming done. Hydration in flight ...");
+              $F_logs("‎𐂐 [server] <ProductsList> (f_1) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("‎𐂐 [server] <ProductsList> streaming done.");
+              $F_logs("‎𐂐 [server] <ProductsList> (f_1) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

@@ -27,15 +27,14 @@ function EmptyNoteBoundary(props) {
         __html: `(function () {
           function init() {
             let a = ["f_42", "EmptyNote", ${JSON.stringify(serializedProps)}];
-            console.log(JSON.stringify(window.$FLP_));
             if (typeof window.$FRSC === 'function') {
-              console.log("‎𐂐 [server] <EmptyNote> streaming done. Hydration in flight ...");
+              $F_logs("‎𐂐 [server] <EmptyNote> (f_42) streaming done. Hydration in flight ...");
               window.$FRSC(a);
             } else {
               if (typeof $FRSC_ === 'undefined') {
                 $FRSC_ = [];
               }
-              console.log("‎𐂐 [server] <EmptyNote> streaming done.");
+              $F_logs("‎𐂐 [server] <EmptyNote> (f_42) streaming done.");
               $FRSC_.push(a);
             }
             let me = document.currentScript;

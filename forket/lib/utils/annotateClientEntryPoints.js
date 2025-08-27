@@ -15,7 +15,7 @@ export default async function setupClientEntryPoints(
   clientBoundaries,
   clientEntrypoints,
 ) {
-  const { sourceDir, exposeReactGlobally, serverActionsEndpoint } = options;
+  const { sourceDir, exposeReactGlobally } = options;
   if (clientEntrypoints.length === 0) {
     throw new Error(`No client entry points found. Make sure that you have at least one file in your root directory with "use client" directive.`);
   }
@@ -45,7 +45,7 @@ export default async function setupClientEntryPoints(
       let newCode = transformed.code;
 
       newCode += "\n/* FORKET CLIENT */\n// @ts-ignore\n";
-      newCode += serveClient(serverActionsEndpoint);
+      newCode += serveClient();
 
       const relativePath = path.relative(sourceDir, entryPoint.file);
       const outputFile = path.join(buildDir, relativePath);

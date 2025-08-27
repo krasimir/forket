@@ -108,7 +108,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
     getGraphs,
     printGraph,
     forketServerActions: serveServerActions,
-    serveApp,
+    serveApp(ops) { return serveApp({ ...options, ...ops }); },
     setRenderer,
     setRequestContext
   };

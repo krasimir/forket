@@ -21,7 +21,6 @@ let serverProcess;
 let restart = false;
 
 const forket = await Forket({
-  serverActionsEndpoint: "/@forket",
   watch: true,
   printGraph: true,
 });

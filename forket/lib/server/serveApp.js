@@ -8,6 +8,22 @@ import getId from '../utils/getId.js';
 let renderer = renderToPipeableStream;
 let RQ = requestContext;
 
+function getGlobals(options) {
+  let str = [];
+  str.push(
+    options?.enableLogging
+      ? `function $F_logs(m,...r){console.log("%c"+m,"color:${options.serverLogsColor};",...r);};`
+      : `$F_log=function(){};`
+  );
+  str.push(
+    options?.enableLogging
+      ? `function $F_logc(m,...r){console.log("%c"+m,"color:${options.clientLogsColor};",...r);};`
+      : `$F_log=function(){};`
+  );
+  str.push(`$F_sae = ${JSON.stringify(options?.serverActionsEndpoint)};`);
+  return str.join('');
+}
+
 export function serveApp(options) {
   if (!options) {
     throw new Error(
@@ -20,6 +36,7 @@ export function serveApp(options) {
   const { factory } = options;
 
   return (req, res) => {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
 
     const { addTasks, areTasksDone, addTaskListener } = taskManager(res);
     const sendToClient = clientSender(res);
@@ -33,17 +50,19 @@ export function serveApp(options) {
       reactStream.on("end", () => {
         reactEnded = true;
         sendToClient(`
-          console.log("‎𐂐 [server] React streaming ended.");
+          $F_logs("‎𐂐 [server] React streaming done.");
         `);
         maybeEnd();
       });
       addTaskListener(maybeEnd);
 
+      sendToClient(getGlobals(options), false);
+
       function maybeEnd() {
         if (reactEnded && areTasksDone() && !res.writableEnded && !ended) {
           ended = true;
           sendToClient(`
-            console.log("‎𐂐 [server] HTTP streaming ended.");
+            $F_logs("‎𐂐 [server] HTTP streaming done.");
           `);
           res.end();
         }
@@ -59,7 +78,6 @@ export function serveApp(options) {
       const { pipe, abort } = renderer(factory(req), {
         onShellReady() {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "text/html; charset=utf-8");
           pipe(reactStream);
         },
         onAllReady() {},
@@ -86,7 +104,7 @@ function taskManager(res) {
 
   function handlePromise(status, id, value, boundaryID) {
     sendToClient(`
-      console.log("‎𐂐 [server] Promise ${status} (${id})");
+      $F_logs("‎𐂐 [server] Promise ${status} (${id})");
       if (typeof window.$FLP_ === 'undefined') {
         window.$FLP_ = {};
       }
@@ -141,11 +159,7 @@ export function setRequestContext(r) {
 }
 
 function clientSender(res) {
-  return code => {
-    res.write(`<script>
-      ${code};
-      $me = document.currentScript;
-      if ($me) { $me.remove(); }
-    </script>`);
+  return (code, removeAfterSend = true) => {
+    res.write(`<script>${code};${removeAfterSend ? '$me=document.currentScript;if($me){$me.remove();}' : ''}</script>`);
   }
 }
