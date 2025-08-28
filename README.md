@@ -8,8 +8,8 @@ A tool that splits your code into client and server so you have [RSC (React Serv
 
 * esbuild / [Basic code snippets](./examples/basic/) - app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs.
 * esbuild / [Image annotator](./examples/annotation-app/) - a little bit more complicated app for annotating pictures
-* Vite / [Inspirational quote generator](./examples/vite/)
-* Webpack / [Inspirational quote generator](./examples/webpack/)
+* Vite / [Inspirational quote generator](./examples/vite/) - generates inspirational quote
+* Webpack / [Inspirational quote generator](./examples/webpack/) - generates inspirational quote
 
 ## Materials/inspiration
 
