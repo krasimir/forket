@@ -22,7 +22,12 @@ function $F_booter(script, id, compName, serializedProps) {
           const n = added[j];
           if (n.nodeType !== 1) continue;
           if (n.getAttribute) {
-            const scriptNode = n.getAttribute('id') === 'forket/init/' + id || n.querySelector('[id="forket/init/' + id + '"]');
+            let scriptNode;
+            if (n.getAttribute('id') === 'forket/init/' + id) {
+              scriptNode = n;
+            } else {
+              scriptNode = n.querySelector('[id="forket/init/' + id + '"]');
+            }
             if (scriptNode) {
               init();
               observer.disconnect();

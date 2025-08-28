@@ -1,6 +1,8 @@
+import { getTotalNumberOfQuotes } from "./server-actions/quotes.ts";
 import { getQuote } from "./server-actions/quotes.ts";
 const actions = {
-    $FSA_getQuote: getQuote
+    $FSA_getQuote: getQuote,
+    $FSA_getTotalNumberOfQuotes: getTotalNumberOfQuotes
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");

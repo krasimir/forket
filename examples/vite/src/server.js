@@ -2,11 +2,13 @@ import fs from "fs";
 import path from "node:path";
 import express from "express";
 import React from "react";
+// import { renderToPipeableStream } from "react-dom/server";
 import { createServer as createViteServer } from "vite";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import Forket from "forket";
 // import Forket from "../../../../forket/index.js";
+// import { requestContext } from "forket/lib/server/requestContext.js";
 
 const isProd = process.env.NODE_ENV === "production";
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +32,10 @@ async function createServer() {
   app.use(vite.middlewares);
 
   Forket().then(async (forket) => {
+    // <start> This is only needed here because we are using relative path to Forket.
+    // forket.setRenderer(renderToPipeableStream);
+    // forket.setRequestContext(requestContext);
+    // </end> This is only needed here because we are using relative path to Forket.
     const { default: App } = await vite.ssrLoadModule("/build/server/main.tsx");
     const { default: forketServerActions } = await vite.ssrLoadModule("/build/server/forketServerActions.js");
     const props = { js: jsBundles, css: cssBundles, viteClient: !isProd };

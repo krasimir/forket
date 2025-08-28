@@ -1,6 +1,6 @@
 'use server';
 export async function getQuote() {
-    await new Promise((resolve)=>setTimeout(resolve, 1000));
+    await new Promise((resolve)=>setTimeout(resolve, 2000));
     const quotes = [
         {
             text: "The only limit to our realization of tomorrow is our doubts of today.",
@@ -45,4 +45,8 @@ export async function getQuote() {
     ];
     const randomIndex = Math.floor(Math.random() * quotes.length);
     return quotes[randomIndex];
+}
+export async function getTotalNumberOfQuotes() {
+    await new Promise((resolve)=>setTimeout(resolve, 2000));
+    return 1342989;
 }

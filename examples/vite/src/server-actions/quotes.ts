@@ -1,7 +1,7 @@
 'use server';
 
 export async function getQuote() {
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate async operation
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate async operation
   const quotes = [
     { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
     { text: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
@@ -23,4 +23,9 @@ export async function getQuote() {
 
   const randomIndex = Math.floor(Math.random() * quotes.length);
   return quotes[randomIndex];
+}
+
+export async function getTotalNumberOfQuotes() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  return 1342989;
 }

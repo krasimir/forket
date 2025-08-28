@@ -1,7 +1,7 @@
 import forketSerializeProps from "forket/lib/utils/serializeProps.js";
-import { useState, Suspense } from "react";
+import { Suspense } from "react";
 import Header from "./Header";
-import { getQuote } from "../server-actions/quotes";
+import { getQuote, getTotalNumberOfQuotes } from "../server-actions/quotes";
 import Quote from "./Quote";
 async function App({ js, css, viteClient }: {
     js: string[];
@@ -16,7 +16,9 @@ async function App({ js, css, viteClient }: {
       </head>
       <body>
         <Header/>
-        <QuoteBoundary quote={quote}/>
+        <Suspense fallback={<p className="tac">Loading...</p>}>
+          <QuoteBoundary quote={quote} totalNumberOfQuotes={getTotalNumberOfQuotes()}/>
+        </Suspense>
         {viteClient && <script type="module" src="/@vite/client"></script>}
         {js.map((file)=>(<script type="module" src={file} key={file}></script>))}
       </body>

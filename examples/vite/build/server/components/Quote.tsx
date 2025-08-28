@@ -1,21 +1,28 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useState, useTransition, use } from "react";
 import { getQuote } from "../server-actions/quotes";
 
 type Quote = {
   text: string;
   author: string;
 }
+type Props = {
+  quote: Quote;
+  totalNumberOfQuotes: Promise<number>
+}
 
-export default function Quote({ quote }: { quote: Quote }) {
+export default function Quote({ quote, totalNumberOfQuotes }: Props) {
   const [q, setQuote] = useState<{ text: string; author: string }>(quote);
   const [isPending, startTransition] = useTransition();
+  const total = use(totalNumberOfQuotes);
 
   return (
     <div className="mx-auto" style={{ maxWidth: 600 }}>
       <h1 className="tac">{q.text}</h1>
       <p className="b tac">{q.author}</p>
-      <button className="b my2 mx-auto" style={{ width: '250px' }}
+      <button
+        className="b my2 mx-auto"
+        style={{ width: "250px" }}
         disabled={isPending}
         onClick={() => {
           startTransition(async () => {
@@ -25,6 +32,8 @@ export default function Quote({ quote }: { quote: Quote }) {
       >
         Get some more wisdom!
       </button>
+      <hr />
+      <p className="tac">Total number of quotes: {total.toLocaleString()}</p>
     </div>
   );
 }
