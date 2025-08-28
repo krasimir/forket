@@ -32,7 +32,7 @@ async function createServer() {
   app.use(vite.middlewares);
 
   Forket().then(async (forket) => {
-    // <start> This is only needed here because we are using relative path to Forket.
+    // <start> This is only needed here because we are using relative path to Forket to exerice some bug fixes.
     // forket.setRenderer(renderToPipeableStream);
     // forket.setRequestContext(requestContext);
     // </end> This is only needed here because we are using relative path to Forket.

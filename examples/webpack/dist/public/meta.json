@@ -1,0 +1,127 @@
+{
+  "name": "client",
+  "hash": "944ba9ed749146f7c28d",
+  "builtAt": 1756384364595,
+  "assetsByChunkName": {
+    "main": [
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "bundle.js",
+      "size": 1071368,
+      "emitted": true,
+      "comparedForEmit": false,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "bundle.js.map"
+        },
+        "size": 1071368
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1
+    }
+  ],
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 1064796,
+      "sizes": {
+        "javascript": 1063736,
+        "runtime": 1060
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "auxiliaryFiles": [
+        "bundle.js.map"
+      ],
+      "hash": "57fa73430ec858769643",
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "type": "dependent modules",
+          "dependent": true,
+          "filteredChildren": 11,
+          "size": 1054742,
+          "sizes": {
+            "javascript": 1054742
+          }
+        },
+        {
+          "type": "runtime modules",
+          "moduleType": "runtime",
+          "filteredChildren": 5,
+          "size": 1060,
+          "sizes": {
+            "runtime": 1060
+          }
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 8994,
+          "sizes": {
+            "javascript": 8994
+          },
+          "built": true,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Users/krasimir/Work/Krasimir/forket/examples/webpack/node_modules/babel-loader/lib/index.js??ruleSet[1].rules[0].use!/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/client/client.tsx",
+          "name": "./build/client/client.tsx",
+          "nameForCondition": "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/client/client.tsx",
+          "index": 0,
+          "preOrderIndex": 0,
+          "index2": 11,
+          "postOrderIndex": 11,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "issuer": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "resolvedModuleIdentifier": null,
+              "resolvedModule": null,
+              "type": "entry",
+              "active": true,
+              "explanation": "",
+              "userRequest": "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/client/client.tsx",
+              "loc": "main"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

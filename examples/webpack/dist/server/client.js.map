@@ -1,0 +1,1 @@
+{"version":3,"file":"server/client.js","mappings":";;;AAAA,YAAY;;AAEZ,oC","sources":["webpack://forket-example/./build/server/client.tsx"],"sourcesContent":["\"use client\"\n\n// import \"./components/styles.css\";"],"names":[],"sourceRoot":""}

@@ -17,7 +17,7 @@
     "cookie-parser": "^1.4.7",
     "esbuild": "0.25.0",
     "express": "4.21.2",
-    "forket": "0.7.9",
+    "forket": "0.8.1",
     "multer": "^2.0.2",
     "onnxruntime-node": "^1.22.0-rev",
     "react": "19.0.0",
