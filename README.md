@@ -5,12 +5,6 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 * [Documentation](./forket/README.md)
 * [Examples/templates](#examplestemplates)
 
----
-
-<p align="center">
-  <img width="500" src="./assets/project_whitebg.png">
-</p>
-
 ## RSC features
 
 | Feature | Is supported |
