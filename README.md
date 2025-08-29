@@ -1,8 +1,22 @@
+Forket is a tool that splits your code to client and server so you have [RSC (React Server Components)](https://react.dev/reference/rsc/server-components) working without a framework.
+
 <p align="center">
   <img width="500" src="./assets/project_whitebg.png">
 </p>
 
-A tool that splits your code to client and server so you have [RSC (React Server Components)](https://react.dev/reference/rsc/server-components) working without a framework.
+## RSC features
+
+| Feature | Support |
+| ----------- | ----------- |
+| Streaming | ✅ |
+| Async server components | ✅ |
+| Mixing server and client components | ✅ |
+| `"use client"` and `"use server"` directives | ✅ |
+| `Suspense` + `use` | ✅ |
+| Server functions | ✅ |
+| Server actions | ✅ |
+| `useActionState`, `useTransition` | ✅ |
+| Passing live-promise from server to client | ✅ |
 ‎
 ## Examples/Templates
 
