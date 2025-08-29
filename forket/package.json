@@ -1,10 +1,26 @@
 {
   "name": "forket",
-  "version": "0.8.5",
+  "version": "0.8.7",
   "type": "module",
   "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
   "author": "Krasimir Tsonev",
   "main": "index.js",
+  "keywords": [
+    "react",
+    "react-server-components",
+    "rsc",
+    "server-components",
+    "ssr",
+    "ssg",
+    "static-site-generation",
+    "static-site-generator",
+    "framework",
+    "library",
+    "vite",
+    "webpack",
+    "esbuild",
+    "swc"
+  ],
   "bin": {
     "forket": "./cli.js"
   },
