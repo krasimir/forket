@@ -6,7 +6,7 @@ import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
-import Forket from "../../../../forket/index.js";
+import Forket from "forket";
 import { requestContext } from "forket/lib/server/requestContext.js";
 import App from './components/App.js';
 const __filename = fileURLToPath(import.meta.url);
@@ -17,8 +17,6 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 Forket().then((forket)=>{
-    forket.setRenderer(renderToPipeableStream);
-    forket.setRequestContext(requestContext);
     app.use("/@forket", forket.forketServerActions(forketServerActionsHandler));
     const handler = forket.serveApp({
         factory: (req)=><App request={req}/>

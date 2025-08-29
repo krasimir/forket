@@ -37,6 +37,48 @@ const forket = await Forket();
 await forket.process();
 ```
 
+This is the first part of the job. After that your code is split into `server` and `client` version.
+
+### At run time
+
+There is a bit of a glue code that is needed to make both server and client work together.
+
+#### Instrument your HTTP server
+
+Let's say that you have some sort of HTTP server library like [express](https://expressjs.com/).
+
+```js
+import express from "express";
+import Forket from "forket";
+
+const port = 8087;
+const app = express();
+const server = http.createServer(app);
+
+Forket().then((forket) => {
+  app.use("/@forket", forket.forketServerActions());
+  app.get("/", forket.serveApp({
+    factory: (req) => <App request={req} />
+  }));
+});
+
+server.listen(port, () => {
+  console.log(`App listening on port ${port}.`);
+});
+```
+
+We are defining an endpoint for our [server functions](https://react.dev/reference/rsc/server-functions) and making sure that Forket is serving our main page component. Internally the library is using [renderToPipeableStream](https://react.dev/reference/react-dom/server/renderToPipeableStream) to stream the React components. Notice that the path `/@forket` is configurable if you want to have something different.
+
+#### At least one client entry point
+
+Forket requires a client entry point because it is patching it with globally available React components. That's why you need at least one file in your root directory that has `"use client"`. Usually that's the file which you pass to your bundler.
+
+```js
+"use client"
+```
+
+## Configuration
+
 ## Running tests
 
 ```

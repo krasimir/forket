@@ -37,8 +37,7 @@ Forket().then((forket) => {
   app.get(
     "/",
     forket.serveApp({
-      factory: (req) => <App request={req} />,
-      serverActionsEndpoint: "/@forket"
+      factory: (req) => <App request={req} />
     })
   );
 });
