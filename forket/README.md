@@ -81,7 +81,7 @@ Forket requires a client entry point. It is placing some utilities in the global
 
 There are two ways to pass configuration to Forket - via `forket.config.js` file in your root directory or as an object to `Forket()` call. The recommended option is to use `forket.config.js` and only overwrite something (like the `watch` flag) via the second option. Here's an example of `forket.config.js` with its defaults:
 
-```
+```js
 // forket.config.js
 import path from "path";
 import { fileURLToPath } from "url";
@@ -116,13 +116,14 @@ In most of the cases you'll use `sourceDir`, `buildDir` and `watch`. Here's a ta
 | clientDirName | optional | The name of the folder for the client version of your code. | `"client"` |
 | serverActionsEndpoint | optional | The path at your HTTP server that will handle the server actions requests. | `"/@forket"` |
 | clientCopyableFiles | optional | While Forket is splitting your source code there are type of files that simply need to be copied over. | Some long list of file extensions. |
-| watch | optional | Someone needs to watch your source folder for changes and run the splitting over and over again. If you set this to `true` you'll get that. | `false` |
+| watch | optional | Someone needs to watch your source folder for changes and run the splitting over and over again. If you set this to `true` you'll get that. You usually want this on when you are developing locally. | `false` |
 | printGraph | optional | Forket renderes a nice graph showing your components and their dependencies. | `false` |
 | enableLogging | optional | If you want to silent Forket in the terminal and in the browser set this to `false` | `true` |
 
 ## Running tests
 
 ```
+> npm install
 > npm run test
 > npm run test --spec=01 --case=f
 ```
