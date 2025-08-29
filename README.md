@@ -18,6 +18,17 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 | Server actions | ✅ |
 | `useActionState`, `useTransition` | ✅ |
 | Passing live-promise from server to client | ✅ |
+
+## Caveats
+
+I'm quite happy with the result so far. The libarry is supporting almost everything that is listed into the official docs. However, to make all this work at a decent level I had to make some compromises. Here's the list:
+
+* You can’t have nester client boundaries or in other words nested islands.
+* There is an additional `div` with `display: content` for the root client components. So, no effect on your layout but there may be problems with some CSS selectors.
+* The server’s entry point also need to be processed by Forket. This means that it needs to be inside the `src` directory. Usually that's the case but who knows.
+* There must be at least one file in the root directory with “use client” directive. Forket need to inject some client-side utilities in order to operate.
+* The client entry points (the components that have “use client” need to default export a component)
+* Your http server should provide a parsed body in the request object. Or in other words “request.body”. Usually you have this already set up.
 ‎
 ## Examples/Templates
 

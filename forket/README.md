@@ -2,7 +2,7 @@
 
 ## Mental model
 
-The idea of this library is to work before your usual pipeline kicks in. Forket does static analyses of your code and produces client and server versions. After that you have to hook your current building tools to process the files - compile/transpile, create client bundles and running HTTP server. There is a small example [here](../examples//just-cli/) that demonstrates that split (check out the [src](../examples/just-cli/src/) directory and result [build](../examples/just-cli/build/)).
+The idea of this library is to work before your usual pipeline kicks in. Forket does static analyses of your code and produces client and server versions. After that you have to hook your current building tools to process the files - compile/transpile, create client bundles and running HTTP server. There is a small example [here](https://github.com/krasimir/forket/tree/main/examples/just-cli/) that demonstrates that split (check out the [src](https://github.com/krasimir/forket/tree/main/examples/just-cli/src/) directory and result [build](https://github.com/krasimir/forket/tree/main/examples/just-cli/build/)).
 
 <p align="center">
   <img width="500" src="../assets/project_whitebg.png">
@@ -26,7 +26,7 @@ You either use the CLI version or incorporate the library in your scripts. For e
 > npx forket
 ```
 
-will run Forket and as soon as you have `forket.config.js` nearby you'll get the splitting working. Check [this example](../examples//just-cli/). Install the dependencies and run the command there to replicate.
+will run Forket and as soon as you have `forket.config.js` nearby you'll get the splitting working. Check [this example](https://github.com/krasimir/forket/tree/main/examples//just-cli/). Install the dependencies and run the command there to replicate.
 
 Or if you have some sort of build scripting (recommended):
 
@@ -122,9 +122,9 @@ In most of the cases you'll use `sourceDir`, `buildDir` and `watch`. Here's a ta
 
 ## Where to start
 
-To get an idea of how it works jump to some of the [examples](../examples/). For example the [basic](../examples/basic/) one. Install the dependencies via `npm install` and run `npm run dev`. Then open http://localhost:8087. Notice how the build pipeline is done in the [`dev.js`](../examples/basic/scripts/dev.js) file and how the [`server.js`](../examples/basic/src/server.tsx) looks like.
+To get an idea of how it works jump to some of the [examples](https://github.com/krasimir/forket/tree/main/examples/). For example the [basic](https://github.com/krasimir/forket/tree/main/examples/basic/) one. Install the dependencies via `npm install` and run `npm run dev`. Then open http://localhost:8087. Notice how the build pipeline is done in the [`dev.js`](https://github.com/krasimir/forket/tree/main/examples/basic/scripts/dev.js) file and how the [`server.js`](https://github.com/krasimir/forket/tree/main/examples/basic/src/server.tsx) looks like.
 
-You probably currently rely on something like [Vite](../examples/vite) or [Webpack](../examples/webpack/). There are examples of those too. The main idea is to make Forket work before your current building steps. Trying to inject it into what you have at the moment will be a challenge.
+You probably currently rely on something like [Vite](https://github.com/krasimir/forket/tree/main/examples/vite) or [Webpack](https://github.com/krasimir/forket/tree/main/examples/webpack/). There are examples of those too. The main idea is to make Forket work before your current building steps. Trying to inject it into what you have at the moment will be a challenge.
 
 ## Running tests
 
