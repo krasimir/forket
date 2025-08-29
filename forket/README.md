@@ -120,6 +120,12 @@ In most of the cases you'll use `sourceDir`, `buildDir` and `watch`. Here's a ta
 | printGraph | optional | Forket renderes a nice graph showing your components and their dependencies. | `false` |
 | enableLogging | optional | If you want to silent Forket in the terminal and in the browser set this to `false` | `true` |
 
+## Where to start
+
+To get an idea of how it works jump to some of the [examples](../examples/). For example the [basic](../examples/basic/) one. Install the dependencies via `npm install` and run `npm run dev`. Then open http://localhost:8087. Notice how the build pipeline is done in the [`dev.js`](../examples/basic/scripts/dev.js) file and how the [`server.js`](../examples/basic/src/server.tsx) looks like.
+
+You probably currently rely on something like [Vite](../examples/vite) or [Webpack](../examples/webpack/). There are examples of those too. The main idea is to make Forket work before your current building steps. Trying to inject it into what you have at the moment will be a challenge.
+
 ## Running tests
 
 ```
