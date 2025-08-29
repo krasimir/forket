@@ -18,6 +18,14 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 | Server actions | ✅ |
 | `useActionState`, `useTransition` | ✅ |
 | Passing live-promise from server to client | ✅ |
+‎
+## Examples/Templates
+
+* esbuild / [Basic code snippets](./examples/basic/) - app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs.
+* esbuild / [Image annotator](./examples/annotation-app/) - a little bit more complicated app for annotating pictures
+* Vite / [Inspirational quote generator](./examples/vite/) - generates inspirational quote
+* Webpack / [Inspirational quote generator](./examples/webpack/) - generates inspirational quote
+* [CLI](./examples/just-cli) - No app really. Just Forket doing its magic.
 
 ## Caveats
 
@@ -29,14 +37,6 @@ I'm quite happy with the result so far. The libarry is supporting almost everyth
 * There must be at least one file in the root directory with “use client” directive. Forket need to inject some client-side utilities in order to operate.
 * The client entry points (the components that have “use client” need to default export a component)
 * Your http server should provide a parsed body in the request object. Or in other words “request.body”. Usually you have this already set up.
-‎
-## Examples/Templates
-
-* esbuild / [Basic code snippets](./examples/basic/) - app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs.
-* esbuild / [Image annotator](./examples/annotation-app/) - a little bit more complicated app for annotating pictures
-* Vite / [Inspirational quote generator](./examples/vite/) - generates inspirational quote
-* Webpack / [Inspirational quote generator](./examples/webpack/) - generates inspirational quote
-* [CLI](./examples/just-cli) - No app really. Just Forket doing its magic.
 
 ## Materials/inspiration
 
