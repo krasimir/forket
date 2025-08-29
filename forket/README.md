@@ -71,13 +71,54 @@ We are defining an endpoint for our [server functions](https://react.dev/referen
 
 #### At least one client entry point
 
-Forket requires a client entry point because it is patching it with globally available React components. That's why you need at least one file in your root directory that has `"use client"`. Usually that's the file which you pass to your bundler.
+Forket requires a client entry point. It is placing some utilities in the global scope. That's why you need at least one file in your root directory that has `"use client"`. Usually that's the file that you pass to your bundler.
 
 ```js
 "use client"
 ```
 
 ## Configuration
+
+There are two ways to pass configuration to Forket - via `forket.config.js` file in your root directory or as an object to `Forket()` call. The recommended option is to use `forket.config.js` and only overwrite something (like the `watch` flag) via the second option. Here's an example of `forket.config.js` with its defaults:
+
+```
+// forket.config.js
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const config = {
+  sourceDir: path.normalize(path.join(__dirname, "src")),
+  buildDir: path.normalize(path.join(__dirname, "build")),
+  serverDirName: "server",
+  clientDirName: "client",
+  serverActionsEndpoint: "/@forket",
+  clientCopyableFiles: [".css", ".scss",
+    ".sass", ".less", ".styl", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico", ".avif", ".woff", ".woff2", ".ttf", ".otf", ".eot", ".mp3", ".wav", ".ogg", ".mp4", ".webm", ".m4a", ".pdf", ".zip", ".gz", ".tar", ".bz2", ".7z", ".wasm"
+  ],
+  watch: false,
+  printGraph: false,
+  enableLogging: true
+}
+
+export default config;
+```
+
+In most of the cases you'll use `sourceDir`, `buildDir` and `watch`. Here's a table exaplaining each of fields:
+
+| Field | Required | Description | Default value |
+| ----------- | ----------- | ----------- | ----------- |
+| sourceDir | required | The location of your app's source code | None. You have to pass that. |
+| buildDir | required | The location where Forket will create the _server_ and _client_ version of your code | None. You have to pass that. |
+| serverDirName | optional | The name of the folder for the server version of your code. | `"server"` |
+| clientDirName | optional | The name of the folder for the client version of your code. | `"client"` |
+| serverActionsEndpoint | optional | The path at your HTTP server that will handle the server actions requests. | `"/@forket"` |
+| clientCopyableFiles | optional | While Forket is splitting your source code there are type of files that simply need to be copied over. | Some long list of file extensions. |
+| watch | optional | Someone needs to watch your source folder for changes and run the splitting over and over again. If you set this to `true` you'll get that. | `false` |
+| printGraph | optional | Forket renderes a nice graph showing your components and their dependencies. | `false` |
+| enableLogging | optional | If you want to silent Forket in the terminal and in the browser set this to `false` | `true` |
 
 ## Running tests
 
