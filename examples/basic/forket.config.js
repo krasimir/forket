@@ -7,6 +7,8 @@ const __dirname = path.dirname(__filename);
 const config = {
   sourceDir: path.normalize(path.join(__dirname, "src")),
   buildDir: path.normalize(path.join(__dirname, "build")),
+  printGraph: true,
+  watch: true
 }
 
 export default config;

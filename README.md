@@ -13,7 +13,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 
 ## RSC features
 
-| Feature | Support |
+| Feature | Is supported |
 | ----------- | ----------- |
 | Streaming | ✅ |
 | Async server components | ✅ |
@@ -23,7 +23,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 | Server functions | ✅ |
 | Server actions | ✅ |
 | `useActionState`, `useTransition` | ✅ |
-| Passing live-promise from server to client | ✅
+| Passing live-promise from server to client | ✅ |
 ‎
 ## Examples/Templates
 

@@ -7,6 +7,7 @@ import Forket from '../../index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "package.json"), "utf8"));
 let cases = ["a", "b"];
 // cases = ["b"];
 
@@ -27,7 +28,7 @@ export default async function ({ test, toAST, toCode }) {
           createFileSync(expectedFile, "");
         }
         const actual = fs.readFileSync(file, "utf-8");
-        const expected = fs.readFileSync(expectedFile, "utf-8");
+        const expected = fs.readFileSync(expectedFile, "utf-8").replace(/v\d+\.\d+\.\d+/, 'v' + pkg.version);
         if (actual !== expected) {
           console.log(chalk.red(`--> ${expectedFile.replace(__dirname, "")} does not match expected output.`));
           // console.log(chalk.green("Actual:\n", actual));

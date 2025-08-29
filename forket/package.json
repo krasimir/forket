@@ -1,10 +1,13 @@
 {
   "name": "forket",
-  "version": "0.8.1",
+  "version": "0.8.5",
+  "type": "module",
   "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
   "author": "Krasimir Tsonev",
   "main": "index.js",
-  "type": "module",
+  "bin": {
+    "forket": "./cli.js"
+  },
   "scripts": {
     "build": "npm run generate-ast-helpers && node ./scripts/build-client.js",
     "test": "node ./tests/tests.js",

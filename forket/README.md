@@ -1,5 +1,10 @@
-# forket
-‎𐂐
+# 𐂐 forket
+
+## Installation
+
+```
+> npm install forket
+```‎
 
 ## Running tests
 

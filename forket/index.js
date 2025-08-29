@@ -38,6 +38,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
 
   // Watching mode
   if (options.watch) {
+    console.log(chalk.gray(`‎𐂐 Watching for changes in ${clearPath(options.sourceDir)}`));
     chokidar.watch(options.sourceDir, { ignoreInitial: true }).on("all", (event, file) => {
       console.log(chalk.gray(`‎𐂐 ${event} ${clearPath(file)} ${inProcess ? 1 : 0}`));
       resetId();
