@@ -16,7 +16,7 @@ The idea of this library is to work before your usual pipeline kicks in. Forket 
 
 ## Usage
 
-You need Forket running in two modes - at build time and when your app is running.
+Forket will be part of your app when you are building it and when you are running it. That's because first we need to split and annotate the code and later we need someone to understand those annotations.
 
 ### At build time
 
@@ -37,7 +37,7 @@ const forket = await Forket();
 await forket.process();
 ```
 
-This is the first part of the job. After that your code is split into `server` and `client` version.
+This is the first part of the job. After that your code is split into `server` and `client` version. Check the [configuration](#configuration) section to see what's in `forket.config.js`.
 
 ### At run time
 
@@ -45,7 +45,7 @@ There is a bit of a glue code that is needed to make both server and client work
 
 #### Instrument your HTTP server
 
-Let's say that you have some sort of HTTP server library like [express](https://expressjs.com/).
+Let's say that you have some sort of HTTP server library like [express](https://expressjs.com/):
 
 ```js
 import express from "express";
