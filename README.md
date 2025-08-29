@@ -9,6 +9,8 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
   </h3>  
 </div>
 
+---
+
 <p align="center">
   <img width="500" src="./assets/project_whitebg.png">
 </p>
