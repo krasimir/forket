@@ -12,7 +12,7 @@ The idea of this library is to work before your usual pipeline kicks in. Forket 
 
 ```
 > npm install forket
-```‎
+```
 
 ## Usage
 
