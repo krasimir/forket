@@ -26,7 +26,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 The idea of this library is to work before your usual pipeline kicks in. Forket does static analyses of your code and produces client and server versions. After that you have to hook your current building tools to process the files - compile/transpile, create client bundles and running HTTP server. There is a small example [here](https://github.com/krasimir/forket/tree/main/examples/just-cli/) that demonstrates that split (check out the [src](https://github.com/krasimir/forket/tree/main/examples/just-cli/src/) directory and result [build](https://github.com/krasimir/forket/tree/main/examples/just-cli/build/)).
 
 <p align="center">
-  <img width="500" src="https://github.com/krasimir/forket/tree/main/assets/project_whitebg.png">
+  <img width="500" src="https://raw.githubusercontent.com/krasimir/forket/refs/heads/main/assets/project_whitebg.png">
 </p>
 
 ## Installation
