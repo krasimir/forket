@@ -1,0 +1,16 @@
+{
+  "name": "forket-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf ./dist/* && rm -rf ./build/*",
+    "dev": "npm run clean && node ./scripts/dev.js"
+  },
+  "dependencies": {
+    "forket": "0.8.5"
+  },
+  "engines": {
+    "node": ">=14.8.0"
+  }
+}

@@ -31,6 +31,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 * esbuild / [Image annotator](./examples/annotation-app/) - a little bit more complicated app for annotating pictures
 * Vite / [Inspirational quote generator](./examples/vite/) - generates inspirational quote
 * Webpack / [Inspirational quote generator](./examples/webpack/) - generates inspirational quote
+* [CLI](./examples/just-cli) - No app really. Just Forket doing its magic.
 
 ## Materials/inspiration
 
