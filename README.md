@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./assets/project_whitebg.png">
+  <img width="500" src="./assets/project_whitebg.png">
 </p>
 
-A tool that splits your code for client and server so you have [RSC (React Server Components)](https://react.dev/reference/rsc/server-components) working without a framework.
+A tool that splits your code to client and server so you have [RSC (React Server Components)](https://react.dev/reference/rsc/server-components) working without a framework.
 ‎
 ## Examples/Templates
 
