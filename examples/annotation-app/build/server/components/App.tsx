@@ -47,89 +47,61 @@ export default async function App({ request }) {
 }
 function HeaderBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_23"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_23", "Header", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_23" data-c="Header">
           {children}
         </template>)}
-      <template type="forket/start" id="f_23" data-c="Header"></template>
+      <template type="forket/start/f_23" data-c="Header"></template>
       <Header {...props} children={children}/>
-      <template type="forket/end" id="f_23" data-c="Header"></template>
+      <template type="forket/end/f_23" data-c="Header"></template>
+      <script id="forket/init/f_23" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_23", "Header", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }
 function LoginFormBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_24"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_24", "LoginForm", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_24" data-c="LoginForm">
           {children}
         </template>)}
-      <template type="forket/start" id="f_24" data-c="LoginForm"></template>
+      <template type="forket/start/f_24" data-c="LoginForm"></template>
       <LoginForm {...props} children={children}/>
-      <template type="forket/end" id="f_24" data-c="LoginForm"></template>
+      <template type="forket/end/f_24" data-c="LoginForm"></template>
+      <script id="forket/init/f_24" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_24", "LoginForm", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }
 function ImagesManagerBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_25"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_25", "ImagesManager", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_25" data-c="ImagesManager">
           {children}
         </template>)}
-      <template type="forket/start" id="f_25" data-c="ImagesManager"></template>
+      <template type="forket/start/f_25" data-c="ImagesManager"></template>
       <ImagesManager {...props} children={children}/>
-      <template type="forket/end" id="f_25" data-c="ImagesManager"></template>
+      <template type="forket/end/f_25" data-c="ImagesManager"></template>
+      <script id="forket/init/f_25" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_25", "ImagesManager", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }
 function ExpandableBoundary(props) {
     const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_26"));
-    const children = props.children || [];
+    const children = props.children;
     return (<>
-      <script dangerouslySetInnerHTML={{
-        __html: `(function () {
-          let a = ["f_26", "Expandable", ${JSON.stringify(serializedProps)}];
-          if (typeof $FRSC !== 'undefined') return $FRSC(a);
-          if (typeof $FRSC_ === 'undefined') { $FRSC_ = []; }
-          $FRSC_.push(a);
-          let me = document.currentScript;
-          if (me) me.remove();
-        })();`
-    }}></script>
       {children && (<template type="forket/children" id="f_26" data-c="Expandable">
           {children}
         </template>)}
-      <template type="forket/start" id="f_26" data-c="Expandable"></template>
+      <template type="forket/start/f_26" data-c="Expandable"></template>
       <Expandable {...props} children={children}/>
-      <template type="forket/end" id="f_26" data-c="Expandable"></template>
+      <template type="forket/end/f_26" data-c="Expandable"></template>
+      <script id="forket/init/f_26" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_26", "Expandable", ${JSON.stringify(serializedProps)});`
+    }}></script>
     </>);
 }

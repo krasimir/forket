@@ -26,8 +26,7 @@ app.get("/image/:id", serveImage);
 Forket().then((forket)=>{
     app.use("/@forket", fromDataHandler.any(), forket.forketServerActions(forketServerActionsHandler));
     app.get("/", forket.serveApp({
-        factory: (req)=><App request={req}/>,
-        serverActionsEndpoint: "/@forket"
+        factory: (req)=><App request={req}/>
     }));
 });
 server.listen(port, ()=>{

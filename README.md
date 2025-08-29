@@ -1,9 +1,10 @@
-<h1 align="center">Forket - the RSC support without a framework</h1>
+<h1 align="center">𐂐 Forket - the RSC support without a framework</h1>
 
 Forket is a tool that splits your code to client and server so you have [RSC (React Server Components)](https://react.dev/reference/rsc/server-components) working without a framework.
 
 * [Documentation](./forket/README.md)
 * [Examples/templates](#examplestemplates)
+* [A must-read intro blog post](https://krasimirtsonev.com/blog/article/vanilla-react-server-components-with-no-framework)
 
 ## RSC features
 
