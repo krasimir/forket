@@ -102,7 +102,7 @@ async function buildClient() {
       sourcemap: true,
       plugins: []
     });
-    copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
+    copyFolder(path.join(BUILD, "server", "assets"), path.join(DIST, "public", "assets"));
   } catch (error) {
     console.error(`Error compiling client: ${error.message}`);
   }

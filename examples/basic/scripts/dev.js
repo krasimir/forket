@@ -108,7 +108,7 @@ async function buildClient() {
       plugins: []
     });
     fs.writeFileSync(path.join(DIST, "public", "meta.json"), JSON.stringify(result.metafile, null, 2));
-    copyFolder(path.join(BUILD, "client", "assets"), path.join(DIST, "public", "assets"));
+    copyFolder(path.join(BUILD, "server", "assets"), path.join(DIST, "public", "assets"));
     // console.log(`Client files compiled successfully to ${path.join(DIST, "public")}`);
   } catch (error) {
     console.error(`Error compiling client: ${error.message}`);
