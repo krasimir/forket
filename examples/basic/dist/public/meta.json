@@ -212,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 6963,
+      "bytes": 6964,
       "imports": [
         {
           "path": "node_modules/react-dom/client.js",
@@ -283,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 894310
+      "bytes": 894311
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -315,7 +315,7 @@
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 5963
+          "bytesInOutput": 5964
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
           "bytesInOutput": 390
@@ -351,7 +351,7 @@
           "bytesInOutput": 186
         }
       },
-      "bytes": 194289
+      "bytes": 194290
     }
   }
 }

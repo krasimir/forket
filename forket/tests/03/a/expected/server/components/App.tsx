@@ -6,12 +6,16 @@ export function markAsRead(note) {
     "use server";
     db.notes.markAsRead(note.id);
 }
+const C = ExpandableBoundary;
+const P = {
+    foo: ExpandableBoundary
+};
 export default async function App() {
     const notes = await db.notes.getAll();
     return (<div>
-      {notes.map((note)=>(<ExpandableBoundary key={note.id} markAsRead={"$FSA_markAsRead"}>
+      {notes.map((note)=>(<C key={note.id} markAsRead={"$FSA_markAsRead"}>
           <p note={note}/>
-        </ExpandableBoundary>))}
+        </C>))}
       <Suspense>
         <FooterBoundary numOfNotes={db.notes.getNumOfNotes()}/>
       </Suspense>

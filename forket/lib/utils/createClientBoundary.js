@@ -37,6 +37,14 @@ export default async function createClientBoundary(node, imp) {
       if (n?.name?.value && componentsToClientBoundaries.find(({ compName }) => compName === n.name.value)) {
         n.name.value = `${n.name.value}Boundary`;
       }
+    },
+    Identifier(n, stack) {
+      if (n?.value && componentsToClientBoundaries.find(({ compName }) => compName === n.value)) {
+        if (stack.find(n => n.type === 'ImportDeclaration')) {
+          return;
+        }
+        n.value = `${n.value}Boundary`;
+      }
     }
   });
 

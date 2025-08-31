@@ -19437,7 +19437,7 @@
       let y = /* @__PURE__ */ new Map(), w = window.$F_renderers = {}, E = { class: "className", for: "htmlFor", readonly: "readOnly", tabindex: "tabIndex", maxlength: "maxLength", colspan: "colSpan", rowspan: "rowSpan" }, N = /* @__PURE__ */ new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
       function L() {
         let i = document, c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.8`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
+        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.10`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
           let n = t[0], e = t[1], o = f(t[2]), r = d(n);
           return l(n, e, o, r);
         }), c.length > 0 && (c = window.$FRSC_ = c.filter((t) => !window.$FRSC(t)));

@@ -28063,7 +28063,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
     function L() {
       let i = document,
         c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.1`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
+      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.10`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
         let n = t[0],
           e = t[1],
           o = f(t[2]),
