@@ -22,6 +22,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 
 <img width="500" src="https://raw.githubusercontent.com/krasimir/forket/refs/heads/main/assets/project_whitebg.png">
 ‎
+
 ## Examples/Templates
 
 * esbuild / [Basic code snippets](./examples/basic/) - app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs.
