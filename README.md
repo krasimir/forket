@@ -20,9 +20,7 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 | `useActionState`, `useTransition` | ✅ |
 | Passing live-promise from server to client | ✅ |
 
-<p align="center">
-  <img width="500" src="https://raw.githubusercontent.com/krasimir/forket/refs/heads/main/assets/project_whitebg.png">
-</p>
+![Forket mental model](https://raw.githubusercontent.com/krasimir/forket/refs/heads/main/assets/project_whitebg.png)
 ‎
 ## Examples/Templates
 
