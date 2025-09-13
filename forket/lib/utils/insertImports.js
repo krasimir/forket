@@ -1,7 +1,9 @@
 import defineModuleSystem from "./defineModuleSystem.js";
 import importCommonJS from "../ast/importCommonJS/index.js";
 import importCommonJSDestruct from "../ast/importCommonJSDestruct/index.js";
+import importCommonJSAs from "../ast/importCommonJSAs/index.js";
 import importESM from "../ast/importESM/index.js";
+import importESMAs from "../ast/importESMAs/index.js";
 
 function insert(ast, node) {
   if (!ast.body) {
@@ -46,20 +48,35 @@ function isAlreadyThereCommonJS(ast, what, where) {
   );
 }
 
-export default function insertImports(ast, what, where, defaultExport = true) {
+export default function insertImports(ast, what, where, defaultExport = true, asSomething = null) {
   if (defineModuleSystem(ast) === "commonjs") {
     if (defaultExport) {
       if (!isAlreadyThereCommonJS(ast, what, where)) {
-        insert(ast, importCommonJS(what, where));
+        insert(ast, importCommonJS(asSomething !== null ? asSomething : what, where));
       }
     } else {
       if (!isAlreadyThereCommonJS(ast, what, where)) {
-        insert(ast, importCommonJSDestruct(what, where));
+        if (asSomething) {
+          insert(ast, importCommonJSAs(what, where, asSomething));
+        } else {
+          insert(ast, importCommonJSDestruct(what, where));
+        }
       }
     }
   } else {
     if (!isAlreadyThereESM(ast, what, where)) {
-      insert(ast, importESM(what, where, defaultExport ? "ImportDefaultSpecifier" : "ImportSpecifier"));
+      if (asSomething && !defaultExport) {
+        insert(ast, importESMAs(what, where, asSomething));
+      } else {
+        insert(
+          ast,
+          importESM(
+            defaultExport ? (asSomething !== null ? asSomething : what) : what,
+            where,
+            defaultExport ? "ImportDefaultSpecifier" : "ImportSpecifier"
+          )
+        );
+      }
     }
   }
 };

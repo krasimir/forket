@@ -6,15 +6,18 @@ import createMap from "../ast/createMap/index.js";
 import insertImports from "./insertImports.js";
 import getImportPath from "./getImportPath.js";
 import insertAfterTop from './insertAtTheTop.js'
+import getId from "./getId.js";
 
 export default async function setupServerActionsHandler(actions, sourceDir, filePath) {
   const ast = template();
   const mapValues = [];
+  console.log('-----------------------------------------', actions);
  
   actions.forEach((action) => {
-    mapValues.push([ action.serverActionClientId, action.funcName ]);
+    const customName = getId();
+    mapValues.push([action.serverActionClientId, customName]);
     const importPath = getImportPath(path.join(sourceDir, "imaginaryFile.js"), action.filePath);
-    insertImports(ast, action.funcName, importPath, action.isDefault);
+    insertImports(ast, action.funcName, importPath, action.isDefault, customName);
   });
   insertAfterTop(ast, createMap('actions', mapValues))
 

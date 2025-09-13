@@ -1,9 +1,12 @@
 import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
 import clientSideServerActionCall from "../ast/clientSideServerActionCall/index.js";
+import getId from "./getId.js";
+import { clearPath } from "./fsHelpers.js";
 
-export function processServerActions(node, serverActionsContainingNodes, current = []) {
-  const serverActionsHandlers = [];
+export function processServerActions(node, serverActionsContainingNodes, serverActions) {
+  const createServerAction = createServerActionFactory(serverActions);
+
   // Dealing with the cases when the action is in the same file
   if (node.serverActions && node.serverActions.length > 0) {
     node.serverActions.forEach(({ funcName, funcNode, stack, isDefault, insideJSXAttribute, jsxAttribute }) => {
@@ -18,10 +21,9 @@ export function processServerActions(node, serverActionsContainingNodes, current
           }
         });
       }
-      const handler = createActionHandler({
+      const handler = createServerAction({
         filePath: node.file,
         funcName,
-        serverActionClientId: `$FSA_${funcName}`,
         isDefault: !!isDefault
       });
       setServerActionId(node.ast, funcName, handler.serverActionClientId);
@@ -35,7 +37,7 @@ export function processServerActions(node, serverActionsContainingNodes, current
     });
   }
 
-  // Dealing with the cases when the action is imported
+  // Replaceing the function inside a JSX attribute with the generated id
   traverseNode(node.ast, {
     JSXOpeningElement(n) {
       (n?.attributes || []).forEach((attr) => {
@@ -59,10 +61,9 @@ export function processServerActions(node, serverActionsContainingNodes, current
               const foundServerAction = nodeThatContainsTheServerAction.serverActions.find(
                 (sa) => sa.funcName === potentialServerAction
               );
-              const handler = createActionHandler({
+              const handler = createServerAction({
                 filePath: nodeThatContainsTheServerAction.file,
                 funcName: potentialServerAction,
-                serverActionClientId: `$FSA_${potentialServerAction}`,
                 isDefault: !!foundServerAction?.isDefault
               });
               setServerActionId(node.ast, potentialServerAction, handler.serverActionClientId);
@@ -72,83 +73,70 @@ export function processServerActions(node, serverActionsContainingNodes, current
       });
     }
   });
-
-  function createActionHandler(action) {
-    const found = current.find((a) => a.funcName === action.funcName && a.filePath === action.filePath);
-    if (found) {
-      return found;
-    }
-    serverActionsHandlers.push(action);
-    return action;
-  }
-
-  return serverActionsHandlers;
 }
-export function dealWithSAImportedInClientNode(node, importEntry) {
-  let serverActions = [];
-  node.ast.body = node.ast.body.filter(n => {
+export function dealWithSAImportedInClientNode(node, importEntry, serverActions) {
+  const createServerAction = createServerActionFactory(serverActions);
+  const foundInThisFile = [];
+  const registerForMockingAtTheTop = createServerActionFactory(foundInThisFile);
+  node.ast.body = node.ast.body.filter((n) => {
     if (n.type === "ImportDeclaration" && n?.source?.value === importEntry.source) {
       (n?.specifiers || []).forEach((s) => {
-        if (s.type === "ImportSpecifier" || s.type === 'ImportDefaultSpecifier') {
+        if (s.type === "ImportSpecifier" || s.type === "ImportDefaultSpecifier") {
+          // console.log("Found import of server action in client component", s.type, clearPath(node.file));
           const funcName = s?.local?.value;
-          const serverActionClientId = `$FSA_${funcName}`;
-          serverActions.push({
+          const action = createServerAction({
             filePath: importEntry.resolvedTo,
             funcName,
-            serverActionClientId,
             isDefault: s.type === "ImportDefaultSpecifier"
           });
+          registerForMockingAtTheTop(action);
         }
       });
       return false;
     } else if (n.type === "VariableDeclaration") {
       const declaration = (n?.declarations || []).find((d) => {
-        return (d?.init?.arguments || []).find((a) => a?.expression?.value === importEntry.source)
-      })
+        return (d?.init?.arguments || []).find((a) => a?.expression?.value === importEntry.source);
+      });
       if (declaration?.id?.type === "Identifier" && declaration?.id?.value) {
         const funcName = declaration?.id?.value;
-        const serverActionClientId = `$FSA_${funcName}`;
-        serverActions.push({
+        const action = createServerAction({
           filePath: importEntry.resolvedTo,
           funcName,
-          serverActionClientId,
           isDefault: true
         });
+        registerForMockingAtTheTop(action);
       } else if (declaration?.id?.type === "ObjectPattern") {
-        (declaration?.id?.properties || []).forEach(p => {
+        (declaration?.id?.properties || []).forEach((p) => {
           if (p?.key.type === "Identifier" && p?.key?.value) {
             const funcName = p.key.value;
-            const serverActionClientId = `$FSA_${funcName}`;
-            serverActions.push({
+            const action = createServerAction({
               filePath: importEntry.resolvedTo,
               funcName,
-              serverActionClientId,
               isDefault: false
             });
+            registerForMockingAtTheTop(action);
           }
-        })
+        });
       }
-      return !(!!declaration);
+      return !!!declaration;
     }
     return true;
-  })
-  serverActions = removeDuplicates(serverActions);
-
-  serverActions.forEach(({ serverActionClientId, funcName }) => {
+  });
+  foundInThisFile.forEach(({ serverActionClientId, funcName }) => {
     insertAtTheTop(node.ast, clientSideServerActionCall(serverActionClientId, funcName));
   });
-
-  return serverActions;
 }
-export function removeDuplicates(serverActions) {
-  return serverActions.reduce((acc, curr) => {
-    if (!acc.find(a => a.funcName === curr.funcName && a.filePath === curr.filePath)) {
-      acc.push(curr);
+function createServerActionFactory(serverActions) {
+  return action => {
+    const found = serverActions.find((a) => a.funcName === action.funcName && a.filePath === action.filePath);
+    if (found) {
+      return found;
     }
-    return acc;
-  }, []);
+    action.serverActionClientId = `$FSA_${getId()}_${action.funcName}`;
+    serverActions.push(action);
+    return action;
+  }
 }
-
 function makeSureThatItIsGlobal(ast, funcNode, stack) {
   if (ast.body.includes(funcNode)) {
     makeSureThatItIsExported(ast, funcNode);

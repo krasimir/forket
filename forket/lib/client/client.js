@@ -95,7 +95,7 @@
             return;
           }
           if (typeof value === "string" && value.match(/^\$FSA_/)) {
-            const funcName = value.replace(/^\$FSA_/, "");
+            const funcName = value.split('_').pop();
             return window.FSA_call(value, funcName);
           } else if (typeof value === "string" && value.match(/^\$FLP_/)) {
             return new Promise((resolve, reject) => {
