@@ -4,7 +4,6 @@ function LoginForm({ login }) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(null);
   async function formSubmit(data) {
-    setError(null);
     startTransition(async () => {
       if (!await login(data)) {
         setError("Ops! Something went wrong. Please try again later.");

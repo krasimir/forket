@@ -278,27 +278,19 @@
   }
   function FSA_call(id, funcName) {
     return async function (...args) {
-      const data = args.length > 0 ? args[0] : {};
-      if (typeof FormData !== "undefined" && data instanceof FormData) {
-        const fd = new FormData();
-        fd.set("__actionId", id);
-        for (const [k, v] of data.entries()) fd.append(k, v);
-        const result = await fetch($F_sae + "/" + funcName, {
-          method: "POST",
-          body: fd
-        });
-
-        if (!result.ok) {
-          throw new Error(`Server action ${id} failed with status ${result.status}`);
-        }
-        const responseData = await result.json();
-        if (responseData.error) throw new Error(responseData.error);
-        return responseData.result;
+      let fd;
+      if (typeof FormData !== "undefined" && args[0] instanceof FormData) {
+        fd = args[0];
+        fd.append('__kind', 'formdata');
+      } else {
+        fd = new FormData();
+        fd.append('__args', JSON.stringify(args));
+        fd.append("__kind", "json");
       }
+      fd.append("__actionId", id);
       const result = await fetch($F_sae + "/" + funcName, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ __actionId: id, data: args })
+        body: fd
       });
       if (!result.ok) {
         throw new Error(`Server action ${id} failed with status ${result.status}`);

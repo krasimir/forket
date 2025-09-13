@@ -7,11 +7,11 @@ import { COOKIES } from "../constants.js";
 import DB from '../db.js';
 import ImagesManager from "./ImagesManager.js";
 import Expandable from "./Expandable.js";
-export const AFf_7 = async ({ data: [id] })=>{
+export const AFf_7 = async (id)=>{
     "use server";
     await DB.deleteImage(id);
 };
-export const AFf_6 = async ({ data: [username] })=>{
+export const AFf_6 = async (username)=>{
     "use server";
     return await DB.getImagesByUsername(username);
 };

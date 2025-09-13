@@ -33,11 +33,11 @@ export default async function App({ request }) {
           <section className="container mxauto">
             <ImagesManager
               username={username}
-              getImages={async ({ data: [username] }) => {
+              getImages={async (username) => {
                 "use server";
                 return await DB.getImagesByUsername(username);
               }}
-              deleteImage={async ({ data: [id] }) => {
+              deleteImage={async (id) => {
                 "use server";
                 await DB.deleteImage(id);
               }}

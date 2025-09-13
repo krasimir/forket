@@ -1,6 +1,6 @@
 {
   "name": "forket",
-  "version": "0.8.12",
+  "version": "0.8.13",
   "type": "module",
   "description": "A library (not a framework) that brings the support of React Server Components in your React application.",
   "author": "Krasimir Tsonev",
@@ -47,6 +47,8 @@
     "chokidar": "^4.0.3",
     "enhanced-resolve": "5.18.2",
     "esbuild": "0.25.0",
+    "form-data": "^4.0.4",
+    "multer": "^2.0.2",
     "lodash": "4.17.21",
     "treeify": "^1.1.0"
   },

@@ -5,8 +5,6 @@ import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
-import multer from "multer";
 // import Forket from "forket";
 import Forket from "../../../../forket/index.js";
 import { requestContext } from "forket/lib/server/requestContext.js";
@@ -20,11 +18,9 @@ const __dirname = path.dirname(__filename);
 const port = 8087;
 const app = express();
 
-const fromDataHandler = multer({ storage: multer.memoryStorage() });
 const server = http.createServer(app);
 
 app.use(cookieParser());
-app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/image/:id", serveImage);
 
@@ -33,7 +29,7 @@ Forket().then((forket) => {
   forket.setRenderer(renderToPipeableStream);
   forket.setRequestContext(requestContext);
   // </end> This is only needed here because we are using relative path to Forket.
-  app.use("/@forket", fromDataHandler.any(), forket.forketServerActions());
+  app.use("/@forket", forket.forketServerActions());
   app.get(
     "/",
     forket.serveApp({

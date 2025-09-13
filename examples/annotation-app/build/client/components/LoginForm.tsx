@@ -7,7 +7,6 @@ export default function LoginForm({ login }: LoginFormProps) {
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | null>(null);
     async function formSubmit(data: FormData) {
-        setError(null);
         startTransition(async ()=>{
             if (!(await login(data))) {
                 setError('Ops! Something went wrong. Please try again later.');
