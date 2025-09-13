@@ -21,14 +21,15 @@ export default async function ({ test, toAST, toCode }) {
       // printGraph(rootNode);
       const serverActionsContainingNodes = getNodesContainingServerActions(rootNode)
       
-      const handlers = processServerActions(rootNode, serverActionsContainingNodes, []);
+      const actions = [];
+      processServerActions(rootNode, serverActionsContainingNodes, actions);
       
       const code = await toCode(rootNode.ast);
       const expected = fs.readFileSync(path.join(__dirname, cases[i], "expected.js"), "utf8");
       fs.writeFileSync(path.join(__dirname, cases[i], "ast.json"), JSON.stringify(rootNode.ast, null, 2));
       fs.writeFileSync(
         path.join(__dirname, cases[i], "handlers.json"),
-        JSON.stringify(maskHandlersFilePaths(handlers), null, 2)
+        JSON.stringify(maskHandlersFilePaths(actions), null, 2)
       );
       fs.writeFileSync(path.join(__dirname, cases[i], "transformed.js"), code);
       if (code !== expected) {
@@ -40,11 +41,11 @@ export default async function ({ test, toAST, toCode }) {
   });
 };
 
-function maskHandlersFilePaths(handlers) {
-  return handlers.map(handler => {
+function maskHandlersFilePaths(actions) {
+  return actions.map((action) => {
     return {
-      ...handler,
-      filePath: handler.filePath.replace(__dirname, ""),
+      ...action,
+      filePath: action.filePath.replace(__dirname, "")
     };
   });
 }

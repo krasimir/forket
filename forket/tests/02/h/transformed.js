@@ -12,6 +12,6 @@ export const AFf_0 = ()=>{
 };
 function EmptyNote() {
     return (<>
-      <Button foo="bar" onClick={"$FSA_AFf_0"} onBlur={"$FSA_IHaveAName"} andThis={"$FSA_FEf_1"}/>
+      <Button foo="bar" onClick={"$FSA_f_3_AFf_0"} onBlur={"$FSA_f_4_IHaveAName"} andThis={"$FSA_f_5_FEf_1"}/>
     </>);
 }

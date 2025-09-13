@@ -1,15 +1,15 @@
 {
   "type": "Module",
   "span": {
-    "start": 1,
-    "end": 38
+    "start": 828,
+    "end": 865
   },
   "body": [
     {
       "type": "VariableDeclaration",
       "span": {
-        "start": 1,
-        "end": 38
+        "start": 828,
+        "end": 865
       },
       "ctxt": 0,
       "kind": "const",
@@ -18,14 +18,14 @@
         {
           "type": "VariableDeclarator",
           "span": {
-            "start": 7,
-            "end": 37
+            "start": 834,
+            "end": 864
           },
           "id": {
             "type": "ObjectPattern",
             "span": {
-              "start": 7,
-              "end": 19
+              "start": 834,
+              "end": 846
             },
             "properties": [
               {
@@ -33,16 +33,16 @@
                 "key": {
                   "type": "Identifier",
                   "span": {
-                    "start": 9,
-                    "end": 12
+                    "start": 836,
+                    "end": 839
                   },
                   "value": "Foo"
                 },
                 "value": {
                   "type": "Identifier",
                   "span": {
-                    "start": 14,
-                    "end": 17
+                    "start": 841,
+                    "end": 844
                   },
                   "ctxt": 2,
                   "value": "Bar",
@@ -57,15 +57,15 @@
           "init": {
             "type": "CallExpression",
             "span": {
-              "start": 22,
-              "end": 37
+              "start": 849,
+              "end": 864
             },
             "ctxt": 0,
             "callee": {
               "type": "Identifier",
               "span": {
-                "start": 22,
-                "end": 29
+                "start": 849,
+                "end": 856
               },
               "ctxt": 1,
               "value": "require",
@@ -77,8 +77,8 @@
                 "expression": {
                   "type": "StringLiteral",
                   "span": {
-                    "start": 30,
-                    "end": 36
+                    "start": 857,
+                    "end": 863
                   },
                   "value": "AAAA",
                   "raw": "\"AAAA\""

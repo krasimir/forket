@@ -2,7 +2,6 @@ import traverseNode from "./traverseNode.js";
 import insertAtTheTop from "./insertAtTheTop.js";
 import clientSideServerActionCall from "../ast/clientSideServerActionCall/index.js";
 import getId from "./getId.js";
-import { clearPath } from "./fsHelpers.js";
 
 export function processServerActions(node, serverActionsContainingNodes, serverActions) {
   const createServerAction = createServerActionFactory(serverActions);

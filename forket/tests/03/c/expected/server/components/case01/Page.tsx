@@ -1,5 +1,10 @@
+"use client"
 import React from 'react';
-import { saveData } from './actions.js';
+
+import saveData from './actions.js';
+
 export default function Page() {
-    return (<button onClick={"$FSA_saveData"}></button>);
+  return (
+    <button onClick={saveData}></button>
+  )
 }

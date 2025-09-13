@@ -5,8 +5,8 @@ export default function (what, where, asSomething) {
   {
     "type": "VariableDeclaration",
     "span": {
-      "start": 1,
-      "end": 38
+      "start": 828,
+      "end": 865
     },
     "ctxt": 0,
     "kind": "const",
@@ -15,14 +15,14 @@ export default function (what, where, asSomething) {
       {
         "type": "VariableDeclarator",
         "span": {
-          "start": 7,
-          "end": 37
+          "start": 834,
+          "end": 864
         },
         "id": {
           "type": "ObjectPattern",
           "span": {
-            "start": 7,
-            "end": 19
+            "start": 834,
+            "end": 846
           },
           "properties": [
             {
@@ -30,16 +30,16 @@ export default function (what, where, asSomething) {
               "key": {
                 "type": "Identifier",
                 "span": {
-                  "start": 9,
-                  "end": 12
+                  "start": 836,
+                  "end": 839
                 },
                 "value": what
               },
               "value": {
                 "type": "Identifier",
                 "span": {
-                  "start": 14,
-                  "end": 17
+                  "start": 841,
+                  "end": 844
                 },
                 "ctxt": 2,
                 "value": asSomething,
@@ -54,15 +54,15 @@ export default function (what, where, asSomething) {
         "init": {
           "type": "CallExpression",
           "span": {
-            "start": 22,
-            "end": 37
+            "start": 849,
+            "end": 864
           },
           "ctxt": 0,
           "callee": {
             "type": "Identifier",
             "span": {
-              "start": 22,
-              "end": 29
+              "start": 849,
+              "end": 856
             },
             "ctxt": 1,
             "value": "require",
@@ -74,8 +74,8 @@ export default function (what, where, asSomething) {
               "expression": {
                 "type": "StringLiteral",
                 "span": {
-                  "start": 30,
-                  "end": 36
+                  "start": 857,
+                  "end": 863
                 },
                 "value": where,
                 "raw": "\"" + where + "\""

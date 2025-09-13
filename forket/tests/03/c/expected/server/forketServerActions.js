@@ -1,8 +1,10 @@
-import { saveData } from "./components/case02/actions.ts";
-import { saveData } from "./components/case01/actions.ts";
+import f_20 from "./components/case03/actions.ts";
+import { saveData as f_19 } from "./components/case02/actions.ts";
+import f_18 from "./components/case01/actions.ts";
 const actions = {
-    $FSA_saveData: saveData,
-    $FSA_saveData: saveData
+    $FSA_f_15_saveData: f_18,
+    $FSA_f_16_saveData: f_19,
+    $FSA_f_17_saveData: f_20
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");
