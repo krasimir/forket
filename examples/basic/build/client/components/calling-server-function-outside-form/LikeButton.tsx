@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useTransition } from "react";
 const incrementLike = function(...args) {
-    return window.FSA_call("$FSA_incrementLike", "incrementLike")(...args);
+    return window.FSA_call("$FSA_f_52_incrementLike", "incrementLike")(...args);
 };
 export default function LikeButton({ initialCount }) {
     const [isPending, startTransition] = useTransition();

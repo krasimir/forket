@@ -1,7 +1,7 @@
 {
   "name": "client",
-  "hash": "9c63166e2027a05c171d",
-  "builtAt": 1756650284572,
+  "hash": "602ff716fa8d1679c245",
+  "builtAt": 1757766976894,
   "assetsByChunkName": {
     "main": [
       "bundle.js"
@@ -11,7 +11,7 @@
     {
       "type": "asset",
       "name": "bundle.js",
-      "size": 1071369,
+      "size": 1071367,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
@@ -20,7 +20,7 @@
         "related": {
           "sourceMap": "bundle.js.map"
         },
-        "size": 1071369
+        "size": 1071367
       },
       "chunkNames": [
         "main"
@@ -37,9 +37,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 1064797,
+      "size": 1064795,
       "sizes": {
-        "javascript": 1063737,
+        "javascript": 1063735,
         "runtime": 1060
       },
       "names": [
@@ -55,16 +55,16 @@
       "auxiliaryFiles": [
         "bundle.js.map"
       ],
-      "hash": "679256d544c62e00a105",
+      "hash": "a567550ffb46e22ff91b",
       "childrenByOrder": {},
       "modules": [
         {
           "type": "dependent modules",
           "dependent": true,
           "filteredChildren": 11,
-          "size": 1054742,
+          "size": 1054746,
           "sizes": {
-            "javascript": 1054742
+            "javascript": 1054746
           }
         },
         {
@@ -80,9 +80,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 8995,
+          "size": 8989,
           "sizes": {
-            "javascript": 8995
+            "javascript": 8989
           },
           "built": true,
           "codeGenerated": true,

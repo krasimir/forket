@@ -8,10 +8,10 @@ async function Page({ example }) {
   return /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("p", { className: "flex space-between" }, /* @__PURE__ */ React.createElement("a", { href: "/" }, "\u{1F448} Back"), /* @__PURE__ */ React.createElement("a", { href: example.reactdocs, target: "_blank" }, /* @__PURE__ */ React.createElement("small", null, "\u269B\uFE0F React docs"))), /* @__PURE__ */ React.createElement("hr", null), /* @__PURE__ */ React.createElement("div", null, note.content, /* @__PURE__ */ React.createElement(CommentsBoundary, { commentsPromise })));
 }
 function CommentsBoundary(props) {
-  const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_43"));
+  const serializedProps = JSON.stringify(forketSerializeProps(props, "Comments", "f_47"));
   const children = props.children;
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_43", "data-c": "Comments" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start/f_43", "data-c": "Comments" }), /* @__PURE__ */ React.createElement(Comments, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end/f_43", "data-c": "Comments" }), /* @__PURE__ */ React.createElement("script", { id: "forket/init/f_43", dangerouslySetInnerHTML: {
-    __html: `$F_booter(document.currentScript, "f_43", "Comments", ${JSON.stringify(serializedProps)});`
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, children && /* @__PURE__ */ React.createElement("template", { type: "forket/children", id: "f_47", "data-c": "Comments" }, children), /* @__PURE__ */ React.createElement("template", { type: "forket/start/f_47", "data-c": "Comments" }), /* @__PURE__ */ React.createElement(Comments, { ...props, children }), /* @__PURE__ */ React.createElement("template", { type: "forket/end/f_47", "data-c": "Comments" }), /* @__PURE__ */ React.createElement("script", { id: "forket/init/f_47", dangerouslySetInnerHTML: {
+    __html: `$F_booter(document.currentScript, "f_47", "Comments", ${JSON.stringify(serializedProps)});`
   } }));
 }
 export {

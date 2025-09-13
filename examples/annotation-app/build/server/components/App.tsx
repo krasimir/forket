@@ -27,12 +27,12 @@ export default async function App({ request }) {
         <link rel="stylesheet" href="/assets/styles.css"/>
       </head>
       <body>
-        <HeaderBoundary username={username} logout={"$FSA_logout"}/>
+        <HeaderBoundary username={username} logout={"$FSA_f_25_logout"}/>
         {!username && (<section className="container mxauto">
-            <LoginFormBoundary login={"$FSA_login"}/>
+            <LoginFormBoundary login={"$FSA_f_26_login"}/>
           </section>)}
         {username && (<section className="container mxauto">
-            <ImagesManagerBoundary username={username} getImages={"$FSA_AFf_6"} deleteImage={"$FSA_AFf_7"} initialImages={images}/>
+            <ImagesManagerBoundary username={username} getImages={"$FSA_f_23_AFf_6"} deleteImage={"$FSA_f_24_AFf_7"} initialImages={images}/>
           </section>)}
         <section className="container mxauto">
           <div className="loading-box mt2 pt1">
@@ -46,62 +46,62 @@ export default async function App({ request }) {
     </html>);
 }
 function HeaderBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_23"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Header", "f_27"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_23" data-c="Header">
+      {children && (<template type="forket/children" id="f_27" data-c="Header">
           {children}
         </template>)}
-      <template type="forket/start/f_23" data-c="Header"></template>
+      <template type="forket/start/f_27" data-c="Header"></template>
       <Header {...props} children={children}/>
-      <template type="forket/end/f_23" data-c="Header"></template>
-      <script id="forket/init/f_23" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_23", "Header", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_27" data-c="Header"></template>
+      <script id="forket/init/f_27" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_27", "Header", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }
 function LoginFormBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_24"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "LoginForm", "f_28"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_24" data-c="LoginForm">
+      {children && (<template type="forket/children" id="f_28" data-c="LoginForm">
           {children}
         </template>)}
-      <template type="forket/start/f_24" data-c="LoginForm"></template>
+      <template type="forket/start/f_28" data-c="LoginForm"></template>
       <LoginForm {...props} children={children}/>
-      <template type="forket/end/f_24" data-c="LoginForm"></template>
-      <script id="forket/init/f_24" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_24", "LoginForm", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_28" data-c="LoginForm"></template>
+      <script id="forket/init/f_28" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_28", "LoginForm", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }
 function ImagesManagerBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_25"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "ImagesManager", "f_29"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_25" data-c="ImagesManager">
+      {children && (<template type="forket/children" id="f_29" data-c="ImagesManager">
           {children}
         </template>)}
-      <template type="forket/start/f_25" data-c="ImagesManager"></template>
+      <template type="forket/start/f_29" data-c="ImagesManager"></template>
       <ImagesManager {...props} children={children}/>
-      <template type="forket/end/f_25" data-c="ImagesManager"></template>
-      <script id="forket/init/f_25" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_25", "ImagesManager", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_29" data-c="ImagesManager"></template>
+      <script id="forket/init/f_29" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_29", "ImagesManager", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }
 function ExpandableBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_26"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Expandable", "f_30"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_26" data-c="Expandable">
+      {children && (<template type="forket/children" id="f_30" data-c="Expandable">
           {children}
         </template>)}
-      <template type="forket/start/f_26" data-c="Expandable"></template>
+      <template type="forket/start/f_30" data-c="Expandable"></template>
       <Expandable {...props} children={children}/>
-      <template type="forket/end/f_26" data-c="Expandable"></template>
-      <script id="forket/init/f_26" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_26", "Expandable", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_30" data-c="Expandable"></template>
+      <script id="forket/init/f_30" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_30", "Expandable", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }

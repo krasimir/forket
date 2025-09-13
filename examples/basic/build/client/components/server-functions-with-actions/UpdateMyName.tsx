@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useTransition } from "react";
 const updateMyName = function(...args) {
-    return window.FSA_call("$FSA_updateMyName", "updateMyName")(...args);
+    return window.FSA_call("$FSA_f_54_updateMyName", "updateMyName")(...args);
 };
 export default function UpdateMyName() {
     const [name, setName] = useState("");

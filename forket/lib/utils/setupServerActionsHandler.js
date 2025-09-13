@@ -11,7 +11,6 @@ import getId from "./getId.js";
 export default async function setupServerActionsHandler(actions, sourceDir, filePath) {
   const ast = template();
   const mapValues = [];
-  console.log('-----------------------------------------', actions);
  
   actions.forEach((action) => {
     const customName = getId();

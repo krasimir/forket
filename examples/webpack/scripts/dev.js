@@ -3,8 +3,8 @@ import fs from "fs";
 import chokidar from "chokidar";
 import { fileURLToPath } from "url";
 import webpack from "webpack";
-// import Forket from 'forket';
-import Forket from '../../../forket/index.js';
+import Forket from 'forket';
+// import Forket from '../../../forket/index.js';
 import serverConfigBase from "./webpack.server.config.js";
 import clientConfigBase from "./webpack.client.config.js";
 

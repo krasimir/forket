@@ -1,16 +1,16 @@
-import { updateImage } from "./server-actions/data.js";
-import { processImage } from "./server-actions/data.js";
-import { login } from "./server-actions/auth.js";
-import { logout } from "./server-actions/auth.js";
-import { AFf_7 } from "./components/App.tsx";
-import { AFf_6 } from "./components/App.tsx";
+import { updateImage as f_40 } from "./server-actions/data.js";
+import { processImage as f_39 } from "./server-actions/data.js";
+import { login as f_38 } from "./server-actions/auth.js";
+import { logout as f_37 } from "./server-actions/auth.js";
+import { AFf_7 as f_36 } from "./components/App.tsx";
+import { AFf_6 as f_35 } from "./components/App.tsx";
 const actions = {
-    $FSA_AFf_6: AFf_6,
-    $FSA_AFf_7: AFf_7,
-    $FSA_logout: logout,
-    $FSA_login: login,
-    $FSA_processImage: processImage,
-    $FSA_updateImage: updateImage
+    $FSA_f_23_AFf_6: f_35,
+    $FSA_f_24_AFf_7: f_36,
+    $FSA_f_25_logout: f_37,
+    $FSA_f_26_login: f_38,
+    $FSA_f_33_processImage: f_39,
+    $FSA_f_34_updateImage: f_40
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");

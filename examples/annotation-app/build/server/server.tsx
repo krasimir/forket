@@ -8,7 +8,8 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import multer from "multer";
-import Forket from "forket";
+import Forket from "../../../../forket/index.js";
+import { requestContext } from "forket/lib/server/requestContext.js";
 import App from './components/App.js';
 import serveImage from './handlers/serve-image.js';
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +25,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.get("/image/:id", serveImage);
 Forket().then((forket)=>{
+    forket.setRenderer(renderToPipeableStream);
+    forket.setRequestContext(requestContext);
     app.use("/@forket", fromDataHandler.any(), forket.forketServerActions(forketServerActionsHandler));
     app.get("/", forket.serveApp({
         factory: (req)=><App request={req}/>
