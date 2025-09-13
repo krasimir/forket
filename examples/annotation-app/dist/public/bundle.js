@@ -19369,10 +19369,10 @@
 
   // build/client/components/ImagesManager.tsx
   var updateImage = function(...args) {
-    return window.FSA_call("$FSA_updateImage", "updateImage")(...args);
+    return window.FSA_call("$FSA_f_34_updateImage", "updateImage")(...args);
   };
   var processImage = function(...args) {
-    return window.FSA_call("$FSA_processImage", "processImage")(...args);
+    return window.FSA_call("$FSA_f_33_processImage", "processImage")(...args);
   };
   function ImagesManager({ username, initialImages = [], getImages, deleteImage }) {
     const [images, setImages] = (0, import_react5.useState)(initialImages);
@@ -19428,16 +19428,16 @@
   }
 
   // build/client/client.tsx
-  window.$f_23 = Header;
-  window.$f_24 = LoginForm;
-  window.$f_25 = ImagesManager;
-  window.$f_26 = Expandable;
+  window.$f_27 = Header;
+  window.$f_28 = LoginForm;
+  window.$f_29 = ImagesManager;
+  window.$f_30 = Expandable;
   (() => {
     (function() {
-      let y = /* @__PURE__ */ new Map(), w = window.$F_renderers = {}, E = { class: "className", for: "htmlFor", readonly: "readOnly", tabindex: "tabIndex", maxlength: "maxLength", colspan: "colSpan", rowspan: "rowSpan" }, N = /* @__PURE__ */ new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
+      let F = /* @__PURE__ */ new Map(), w = window.$F_renderers = {}, E = { class: "className", for: "htmlFor", readonly: "readOnly", tabindex: "tabIndex", maxlength: "maxLength", colspan: "colSpan", rowspan: "rowSpan" }, N = /* @__PURE__ */ new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
       function L() {
         let i = document, c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.10`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
+        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.11`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
           let n = t[0], e = t[1], o = f(t[2]), r = d(n);
           return l(n, e, o, r);
         }), c.length > 0 && (c = window.$FRSC_ = c.filter((t) => !window.$FRSC(t)));
@@ -19458,7 +19458,7 @@
             t = JSON.parse(t, function(n, e) {
               if (n !== "children") {
                 if (typeof e == "string" && e.match(/^\$FSA_/)) {
-                  let o = e.replace(/^\$FSA_/, "");
+                  let o = e.split("_").pop();
                   return window.FSA_call(e, o);
                 } else if (typeof e == "string" && e.match(/^\$FLP_/)) return new Promise((o, r) => {
                   let s = e.replace(/^\$FLP_/, "");
@@ -19513,7 +19513,7 @@
             !Number.isNaN(Number(a)) && a !== "" && (a = Number(a)), n[s] = a;
           }), n;
         }
-        function F(t) {
+        function y(t) {
           let n = {};
           for (let e of t.attributes) {
             let o = e.name.toLowerCase(), r = E[o] || o;
@@ -19534,7 +19534,7 @@
         function _(t, n) {
           switch (t.nodeType) {
             case Node.ELEMENT_NODE: {
-              let e = t.tagName.toLowerCase(), o = { ...F(t), key: n }, r = [];
+              let e = t.tagName.toLowerCase(), o = { ...y(t), key: n }, r = [];
               return t.childNodes.forEach((s, a) => {
                 let u = _(s, `${n}.${a}`);
                 u !== null && u !== "" && r.push(u);
@@ -19556,8 +19556,8 @@
           }
         }
         function g(t, n) {
-          let e = y.get(t);
-          e ? e.render(n) : (e = import_client.default.hydrateRoot(t, n), y.set(t, e));
+          let e = F.get(t);
+          e ? e.render(n) : (e = import_client.default.hydrateRoot(t, n), F.set(t, e));
         }
       }
       function P(i) {
@@ -19582,7 +19582,7 @@
           if (typeof FormData < "u" && f instanceof FormData) {
             let $ = new FormData();
             $.set("__actionId", i);
-            for (let [F, _] of f.entries()) $.append(F, _);
+            for (let [y, _] of f.entries()) $.append(y, _);
             let h = await fetch($F_sae + "/" + c, { method: "POST", body: $ });
             if (!h.ok) throw new Error(`Server action ${i} failed with status ${h.status}`);
             let m = await h.json();

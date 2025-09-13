@@ -2,19 +2,19 @@
   {
     "filePath": "/h/code.js",
     "funcName": "AFf_0",
-    "serverActionClientId": "$FSA_AFf_0",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_3_AFf_0"
   },
   {
     "filePath": "/h/code.js",
     "funcName": "IHaveAName",
-    "serverActionClientId": "$FSA_IHaveAName",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_4_IHaveAName"
   },
   {
     "filePath": "/h/code.js",
     "funcName": "FEf_1",
-    "serverActionClientId": "$FSA_FEf_1",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_5_FEf_1"
   }
 ]

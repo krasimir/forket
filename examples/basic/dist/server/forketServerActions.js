@@ -1,16 +1,16 @@
-import { updateUsername } from "./components/server-functions-with-form-actions/actions.js";
-import { updateMyName } from "./components/server-functions-with-actions/actions.js";
-import { createNote } from "./components/importing-server-functions-from-client-components/actions.js";
-import { createNoteAction } from "./components/creating-server-function-from-server-component/Page.js";
-import { getLikeCount } from "./components/calling-server-function-outside-form/actions.js";
-import { incrementLike } from "./components/calling-server-function-outside-form/actions.js";
+import { updateUsername as f_61 } from "./components/server-functions-with-form-actions/actions.js";
+import { updateMyName as f_60 } from "./components/server-functions-with-actions/actions.js";
+import { createNote as f_59 } from "./components/importing-server-functions-from-client-components/actions.js";
+import { createNoteAction as f_58 } from "./components/creating-server-function-from-server-component/Page.js";
+import { getLikeCount as f_57 } from "./components/calling-server-function-outside-form/actions.js";
+import { incrementLike as f_56 } from "./components/calling-server-function-outside-form/actions.js";
 const actions = {
-  $FSA_incrementLike: incrementLike,
-  $FSA_getLikeCount: getLikeCount,
-  $FSA_createNoteAction: createNoteAction,
-  $FSA_createNote: createNote,
-  $FSA_updateMyName: updateMyName,
-  $FSA_updateUsername: updateUsername
+  $FSA_f_52_incrementLike: f_56,
+  $FSA_f_39_getLikeCount: f_57,
+  $FSA_f_41_createNoteAction: f_58,
+  $FSA_f_53_createNote: f_59,
+  $FSA_f_54_updateMyName: f_60,
+  $FSA_f_55_updateUsername: f_61
 };
 async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");

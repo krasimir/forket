@@ -18,17 +18,17 @@ export default async function App() {
     </div>);
 }
 function FeedBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "Feed", "f_6"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "Feed", "f_7"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_6" data-c="Feed">
+      {children && (<template type="forket/children" id="f_7" data-c="Feed">
           {children}
         </template>)}
-      <template type="forket/start/f_6" data-c="Feed"></template>
+      <template type="forket/start/f_7" data-c="Feed"></template>
       <Feed {...props} children={children}/>
-      <template type="forket/end/f_6" data-c="Feed"></template>
-      <script id="forket/init/f_6" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_6", "Feed", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_7" data-c="Feed"></template>
+      <script id="forket/init/f_7" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_7", "Feed", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }

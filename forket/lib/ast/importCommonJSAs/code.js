@@ -1,0 +1,1 @@
+const { Foo: Bar } = require("AAAA");

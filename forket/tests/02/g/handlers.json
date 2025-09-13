@@ -2,49 +2,49 @@
   {
     "filePath": "/g/code.js",
     "funcName": "A",
-    "serverActionClientId": "$FSA_A",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_1_A"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "B",
-    "serverActionClientId": "$FSA_B",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_2_B"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "C",
-    "serverActionClientId": "$FSA_C",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_3_C"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "D",
-    "serverActionClientId": "$FSA_D",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_4_D"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "E",
-    "serverActionClientId": "$FSA_E",
-    "isDefault": true
+    "isDefault": true,
+    "serverActionClientId": "$FSA_f_5_E"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "F",
-    "serverActionClientId": "$FSA_F",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_6_F"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "G",
-    "serverActionClientId": "$FSA_G",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_7_G"
   },
   {
     "filePath": "/g/code.js",
     "funcName": "H",
-    "serverActionClientId": "$FSA_H",
-    "isDefault": false
+    "isDefault": false,
+    "serverActionClientId": "$FSA_f_8_H"
   }
 ]

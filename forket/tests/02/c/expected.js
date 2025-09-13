@@ -4,5 +4,5 @@ export const createNoteAction = async ()=>{
     await db.notes.create();
 };
 function EmptyNote() {
-    return <Button onClick={"$FSA_createNoteAction"}/>;
+    return <Button onClick={"$FSA_f_1_createNoteAction"}/>;
 }

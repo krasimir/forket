@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 const likePost = function(...args) {
-    return window.FSA_call("$FSA_likePost", "likePost")(...args);
+    return window.FSA_call("$FSA_f_8_likePost", "likePost")(...args);
 };
 export default function User({ posts, numOfComments, children }) {
     const [n, setN] = useState(numOfComments);

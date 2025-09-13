@@ -152,7 +152,7 @@ You probably currently rely on something like [Vite](https://github.com/krasimir
 ```
 > npm install
 > npm run test
-> npm run test --spec=01 --case=f
+> npm run test -- --spec=01
 ```
 
 ## Caveats

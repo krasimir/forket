@@ -1,6 +1,6 @@
-import { likePost } from "./actions.ts";
+import { likePost as f_9 } from "./actions.ts";
 const actions = {
-    $FSA_likePost: likePost
+    $FSA_f_8_likePost: f_9
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");

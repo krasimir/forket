@@ -124,8 +124,8 @@ export default async function ({ test, xtest, toAST, toCode }) {
     );
   });
   await test("Should properly insert imports statements", async () => {
-    let cases = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
-    // cases = ['i']
+    let cases = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
+    // cases = ['k']
     for(let i=0; i<cases.length; i++) {
       const baseAST = await toAST(path.join(__dirname, "import_cases", cases[i] + '.js'));
       const expected = fs.readFileSync(path.join(__dirname, "import_cases", cases[i] + ".expected.js"), "utf8");
@@ -133,8 +133,14 @@ export default async function ({ test, xtest, toAST, toCode }) {
       insertImports(baseAST, "React", "react");
       if (cases[i] === "e" || cases[i] === "f" || cases[i] === "g" || cases[i] === "h") {
         insertImports(baseAST, "App", "./components/App", false);
-      } else if (cases[i] === 'i') {
+      } else if (cases[i] === "i") {
         insertImports(baseAST, "App", "./components/App");
+      } else if (cases[i] === "j") {
+        insertImports(baseAST, "A", "./components/A", false, "AA");
+        insertImports(baseAST, "B", "./components/B", true, "BB");
+      } else if (cases[i] === "k") {
+        insertImports(baseAST, "A", "./components/A", false, "AA");
+        insertImports(baseAST, "B", "./components/B", true, "BB");
       }
       const result = await toCode(baseAST);
       if (expected !== result) {

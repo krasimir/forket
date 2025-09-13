@@ -11,5 +11,5 @@ export const createNoteAction = async ()=>{
 };
 function EmptyNote() {
     ;
-    return <Button onClick={"$FSA_createNoteAction"} doSomethingElse={"$FSA_doSomethingElse"}/>;
+    return <Button onClick={"$FSA_f_1_createNoteAction"} doSomethingElse={"$FSA_f_2_doSomethingElse"}/>;
 }

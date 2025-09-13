@@ -4,6 +4,7 @@ import * as __WEBPACK_EXTERNAL_MODULE_forket__ from "forket";
 import * as __WEBPACK_EXTERNAL_MODULE_forket_lib_utils_serializeProps_js_ae048dd8__ from "forket/lib/utils/serializeProps.js";
 import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "node:module";
 import * as __WEBPACK_EXTERNAL_MODULE_react__ from "react";
+import * as __WEBPACK_EXTERNAL_MODULE_react_dom_server_ec84c2b9__ from "react-dom/server";
 import * as __WEBPACK_EXTERNAL_MODULE_react_jsx_dev_runtime_17c56db1__ from "react/jsx-dev-runtime";
 /******/ var __webpack_modules__ = ({
 
@@ -293,8 +294,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const actions = {
-  $FSA_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
-  $FSA_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
+  $FSA_f_9_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
+  $FSA_f_8_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
 };
 async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");
@@ -458,6 +459,16 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
 
 /***/ }),
 
+/***/ "react-dom/server":
+/*!***********************************!*\
+  !*** external "react-dom/server" ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react_dom_server_ec84c2b9__;
+
+/***/ }),
+
 /***/ "react/jsx-dev-runtime":
 /*!****************************************!*\
   !*** external "react/jsx-dev-runtime" ***!
@@ -543,14 +554,15 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forketServerActions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forketServerActions.js */ "./build/server/forketServerActions.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! http */ "http");
-/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! express */ "express");
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! url */ "url");
-/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! body-parser */ "body-parser");
-/* harmony import */ var forket__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! forket */ "forket");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/App */ "./build/server/components/App.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-dev-runtime */ "react/jsx-dev-runtime");
+/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom/server */ "react-dom/server");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! http */ "http");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! url */ "url");
+/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! body-parser */ "body-parser");
+/* harmony import */ var forket__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! forket */ "forket");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/App */ "./build/server/components/App.tsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-dev-runtime */ "react/jsx-dev-runtime");
 var _jsxFileName = "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/server/server.js";
 
 
@@ -562,21 +574,22 @@ var _jsxFileName = "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/
 
 
 
-const __filename = (0,url__WEBPACK_IMPORTED_MODULE_5__.fileURLToPath)("file:///Users/krasimir/Work/Krasimir/forket/examples/webpack/build/server/server.js");
-const __dirname = path__WEBPACK_IMPORTED_MODULE_2__.dirname(__filename);
+
+const __filename = (0,url__WEBPACK_IMPORTED_MODULE_6__.fileURLToPath)("file:///Users/krasimir/Work/Krasimir/forket/examples/webpack/build/server/server.js");
+const __dirname = path__WEBPACK_IMPORTED_MODULE_3__.dirname(__filename);
 const port = 8087;
-const app = (0,express__WEBPACK_IMPORTED_MODULE_4__["default"])();
-const server = http__WEBPACK_IMPORTED_MODULE_3__.createServer(app);
-app.use(body_parser__WEBPACK_IMPORTED_MODULE_6__["default"].json());
-app.use(express__WEBPACK_IMPORTED_MODULE_4__["default"]["static"](path__WEBPACK_IMPORTED_MODULE_2__.resolve(path__WEBPACK_IMPORTED_MODULE_2__.join(__dirname, "..", "..", "dist", "public"))));
-(0,forket__WEBPACK_IMPORTED_MODULE_7__["default"])().then(forket => {
+const app = (0,express__WEBPACK_IMPORTED_MODULE_5__["default"])();
+const server = http__WEBPACK_IMPORTED_MODULE_4__.createServer(app);
+app.use(body_parser__WEBPACK_IMPORTED_MODULE_7__["default"].json());
+app.use(express__WEBPACK_IMPORTED_MODULE_5__["default"]["static"](path__WEBPACK_IMPORTED_MODULE_3__.resolve(path__WEBPACK_IMPORTED_MODULE_3__.join(__dirname, "..", "..", "dist", "public"))));
+(0,forket__WEBPACK_IMPORTED_MODULE_8__["default"])().then(forket => {
   app.use("/@forket", forket.forketServerActions(_forketServerActions_js__WEBPACK_IMPORTED_MODULE_0__["default"]));
   const handler = forket.serveApp({
-    factory: req => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_components_App__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    factory: req => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_components_App__WEBPACK_IMPORTED_MODULE_9__["default"], {
       request: req
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 20,
+      lineNumber: 21,
       columnNumber: 25
     }, undefined)
   });

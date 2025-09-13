@@ -14,7 +14,6 @@ import setupServerActionsHandler from "./lib/utils/setupServerActionsHandler.js"
 import { resetId } from "./lib/utils/getId.js";
 import { serveApp, setRenderer, setRequestContext } from "./lib/server/serveApp.js";
 import serveServerActions from './lib/server/serveServerActions.js';
-import { removeDuplicates } from "./lib/utils/processServerActions.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,6 +56,7 @@ export default async function Forket(customOptions = {}, configPath = null) {
       console.log(chalk.greenBright(`‎𐂐 Forket v${pkg.version}`));
       console.log(chalk.cyan(`‎𐂐 Generating graphs ... (${clearPath(options.sourceDir)})`));
 
+      const serverActions = [];
       const graphs = await getGraphs(options.sourceDir);
       graphs.forEach((g) => {
         setRoles(g);
@@ -68,13 +68,13 @@ export default async function Forket(customOptions = {}, configPath = null) {
       let thanosServer = Thanos();
       console.log(chalk.cyan(`‎𐂐 Generating server code in ${clearPath(buildServerDir)}`));
       await copyFolder(options.sourceDir, buildServerDir, async (filePath, content) => {
-        return await thanosServer.snap(graphs, filePath, content, MODE.SERVER, options);
+        return await thanosServer.snap(graphs, filePath, content, MODE.SERVER, options, serverActions);
       });
 
       let thanosClient = Thanos();
       console.log(chalk.cyan(`‎𐂐 Generating client code in ${clearPath(buildClientDir)}`));
       await copyFolder(options.sourceDir, buildClientDir, async (filePath, content) => {
-        return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options);
+        return await thanosClient.snap(graphs, filePath, content, MODE.CLIENT, options, serverActions);
       });
 
       console.log(chalk.cyan(`‎𐂐 Annotating client entry point/s`));
@@ -85,10 +85,9 @@ export default async function Forket(customOptions = {}, configPath = null) {
         thanosClient.clientEntryPoints
       );
 
-      const allServerActions = removeDuplicates([...thanosServer.serverActions, ...thanosClient.serverActions]);
-      console.log(chalk.cyan(`‎𐂐 Setting up server actions handler (${allServerActions.length} action/s)`));
+      console.log(chalk.cyan(`‎𐂐 Setting up server actions handler (${serverActions.length} action/s)`));
       await setupServerActionsHandler(
-        allServerActions,
+        serverActions,
         options.sourceDir,
         path.join(buildServerDir, options.forketServerActionsHandler)
       );

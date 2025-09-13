@@ -1,6 +1,6 @@
-import { markAsRead } from "./components/App.tsx";
+import { markAsRead as f_8 } from "./components/App.tsx";
 const actions = {
-    $FSA_markAsRead: markAsRead
+    $FSA_f_5_markAsRead: f_8
 };
 export default async function forketServerActions(req, res) {
     res.setHeader("Content-Type", "application/json");

@@ -4,10 +4,10 @@ import path from 'path';
 
 import { getNode, getNodesContainingServerActions } from "./graph.js";
 import { ROLE } from "./constants.js";
-import { dealWithSAImportedInClientNode, processServerActions } from "./utils/processServerActions.js";
+import { processServerActions, dealWithSAImportedInClientNode } from "./utils/processServerActions.js";
 import faceliftTheServerActionsSetup from "./utils/faceliftTheServerActionsSetup.js";
 import createClientBoundary from "./utils/createClientBoundary.js";
-import {clearPath} from "./utils/fsHelpers.js";
+import { clearPath } from "./utils/fsHelpers.js";
 
 export const MODE = {
   CLIENT: "client",
@@ -18,16 +18,15 @@ export function Thanos() {
   const clientBoundaries = [];
   const clientEntryPoints = [];
   const serverEntryPoints = [];
-  const serverActions = [];
 
-  async function snap(graphs, filePath, content, mode, options) {
+  async function snap(graphs, filePath, content, mode, options, serverActions) {
     if (mode === MODE.SERVER) {
       for (let i = 0; i < graphs.length; i++) {
         const graph = graphs[i];
         const serverActionsContainingNodes = getNodesContainingServerActions(graph);
         const node = getNode(graph, filePath);
         if (node?.role === ROLE.SERVER) {
-          serverActions.push(...processServerActions(node, serverActionsContainingNodes, serverActions));
+          processServerActions(node, serverActionsContainingNodes, serverActions);
           // checking for client boundaries
           for (let j = 0; j < (node?.imports || []).length; j++) {
             if (node.imports[j].resolvedTo) {
@@ -77,7 +76,7 @@ export function Thanos() {
               if (node.imports[j].resolvedTo) {
                 const importedNode = getNode(graph, node.imports[j].resolvedTo);
                 if (importedNode.role === ROLE.SERVER) {
-                  serverActions.push(...dealWithSAImportedInClientNode(node, node.imports[j]));
+                  dealWithSAImportedInClientNode(node, node.imports[j], serverActions);
                 }
               }
             }
@@ -100,7 +99,6 @@ export function Thanos() {
     snap,
     clientBoundaries,
     clientEntryPoints,
-    serverEntryPoints,
-    serverActions
+    serverEntryPoints
   };
 }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useTransition, use } from "react";
 const getQuote = function(...args) {
-    return window.FSA_call("$FSA_getQuote", "getQuote")(...args);
+    return window.FSA_call("$FSA_f_11_getQuote", "getQuote")(...args);
 };
 type Quote = {
     text: string;

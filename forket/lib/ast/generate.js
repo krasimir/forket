@@ -49,6 +49,19 @@ const FILES = [
     }
   },
   {
+    codeFile: path.join(__dirname, "importCommonJSAs", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"Foo"/g, "what");
+      json = json.replace(/"AAAA"/g, "where");
+      json = json.replace(/"Bar"/g, "asSomething");
+      json = json.replace(/\\"AAAA\\"/g, '\\"" + where + "\\"');
+      return `export default function (what, where, asSomething) {
+  return ${json}
+}`;
+    }
+  },
+  {
     codeFile: path.join(__dirname, "clientSideServerActionCall", "/code.js"),
     generator: function (ast) {
       let json = JSON.stringify(ast.body, null, 2);
@@ -70,6 +83,19 @@ const FILES = [
       json = json.replace(/\\"react\\"/g, '\\"" + where + "\\"');
       json = json.replace(/"ImportDefaultSpecifier"/g, "specifier");
       return `export default function (what, where, specifier = "ImportDefaultSpecifier") {
+  return ${json}
+}`;
+    }
+  },
+  {
+    codeFile: path.join(__dirname, "importESMAs", "/code.js"),
+    generator: function (ast) {
+      let json = JSON.stringify(ast.body, null, 2);
+      json = json.replace(/"Foo"/g, "what");
+      json = json.replace(/"AAAAA"/g, "where");
+      json = json.replace(/\\"AAAAA\\"/g, '\\"" + where + "\\"');
+      json = json.replace(/"Bar"/g, "asSomething");
+      return `export default function (what, where, asSomething) {
   return ${json}
 }`;
     }

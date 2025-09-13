@@ -21,7 +21,7 @@ var _jsxFileName = "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/
 
 
 const getQuote = function () {
-  return window.FSA_call("$FSA_getQuote", "getQuote")(...arguments);
+  return window.FSA_call("$FSA_f_9_getQuote", "getQuote")(...arguments);
 };
 function Quote(_ref) {
   let {
@@ -28048,7 +28048,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
 // @ts-ignore
 (() => {
   (function () {
-    let y = new Map(),
+    let F = new Map(),
       w = window.$F_renderers = {},
       E = {
         class: "className",
@@ -28063,7 +28063,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
     function L() {
       let i = document,
         c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.10`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
+      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.11`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
         let n = t[0],
           e = t[1],
           o = f(t[2]),
@@ -28096,7 +28096,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
           t = JSON.parse(t, function (n, e) {
             if (n !== "children") {
               if (typeof e == "string" && e.match(/^\$FSA_/)) {
-                let o = e.replace(/^\$FSA_/, "");
+                let o = e.split("_").pop();
                 return window.FSA_call(e, o);
               } else if (typeof e == "string" && e.match(/^\$FLP_/)) return new Promise((o, r) => {
                 let s = e.replace(/^\$FLP_/, "");
@@ -28155,7 +28155,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
           !Number.isNaN(Number(a)) && a !== "" && (a = Number(a)), n[s] = a;
         }), n;
       }
-      function F(t) {
+      function y(t) {
         let n = {};
         for (let e of t.attributes) {
           let o = e.name.toLowerCase(),
@@ -28180,7 +28180,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
             {
               let e = t.tagName.toLowerCase(),
                 o = {
-                  ...F(t),
+                  ...y(t),
                   key: n
                 },
                 r = [];
@@ -28207,8 +28207,8 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
         }
       }
       function g(t, n) {
-        let e = y.get(t);
-        e ? e.render(n) : (e = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.hydrateRoot(t, n), y.set(t, e));
+        let e = F.get(t);
+        e ? e.render(n) : (e = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.hydrateRoot(t, n), F.set(t, e));
       }
     }
     function P(i) {
@@ -28238,7 +28238,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
         if (typeof FormData < "u" && f instanceof FormData) {
           let $ = new FormData();
           $.set("__actionId", i);
-          for (let [F, _] of f.entries()) $.append(F, _);
+          for (let [y, _] of f.entries()) $.append(y, _);
           let h = await fetch($F_sae + "/" + c, {
             method: "POST",
             body: $

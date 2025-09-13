@@ -87,7 +87,7 @@
       "format": "cjs"
     },
     "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
-      "bytes": 586,
+      "bytes": 591,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -98,7 +98,7 @@
       "format": "esm"
     },
     "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
-      "bytes": 1008,
+      "bytes": 1013,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -120,7 +120,7 @@
       "format": "esm"
     },
     "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
-      "bytes": 279,
+      "bytes": 284,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -179,7 +179,7 @@
       "format": "esm"
     },
     "build/client/components/calling-server-function-outside-form/LikeButton.tsx": {
-      "bytes": 691,
+      "bytes": 696,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -212,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 6964,
+      "bytes": 6959,
       "imports": [
         {
           "path": "node_modules/react-dom/client.js",
@@ -283,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 894311
+      "bytes": 894330
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -315,19 +315,19 @@
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 5964
+          "bytesInOutput": 5959
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
-          "bytesInOutput": 390
+          "bytesInOutput": 395
         },
         "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
-          "bytesInOutput": 569
+          "bytesInOutput": 574
         },
         "build/client/components/passing-live-promise-to-client/Comments.tsx": {
           "bytesInOutput": 263
         },
         "build/client/components/importing-server-functions-from-client-components/EmptyNote.tsx": {
-          "bytesInOutput": 205
+          "bytesInOutput": 210
         },
         "build/client/components/how-use-client-marks-client-code/InspirationGenerator.tsx": {
           "bytesInOutput": 331
@@ -342,7 +342,7 @@
           "bytesInOutput": 143
         },
         "build/client/components/calling-server-function-outside-form/LikeButton.tsx": {
-          "bytesInOutput": 407
+          "bytesInOutput": 412
         },
         "build/client/components/async-components-with-server-components/Comments.tsx": {
           "bytesInOutput": 404
@@ -351,7 +351,7 @@
           "bytesInOutput": 186
         }
       },
-      "bytes": 194290
+      "bytes": 194305
     }
   }
 }

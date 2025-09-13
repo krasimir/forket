@@ -4,10 +4,10 @@ import ImageUploader from './ImageUploader.js';
 import ImagesList from './ImagesList.js';
 import { Image } from '../types';
 const updateImage = function(...args) {
-    return window.FSA_call("$FSA_updateImage", "updateImage")(...args);
+    return window.FSA_call("$FSA_f_34_updateImage", "updateImage")(...args);
 };
 const processImage = function(...args) {
-    return window.FSA_call("$FSA_processImage", "processImage")(...args);
+    return window.FSA_call("$FSA_f_33_processImage", "processImage")(...args);
 };
 type ImagesManagerProps = {
     username: string;

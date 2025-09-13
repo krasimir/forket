@@ -15,17 +15,17 @@ export default function Page({ example }) {
     </div>);
 }
 function LikeButtonBoundary(props) {
-    const serializedProps = JSON.stringify(forketSerializeProps(props, "LikeButton", "f_38"));
+    const serializedProps = JSON.stringify(forketSerializeProps(props, "LikeButton", "f_40"));
     const children = props.children;
     return (<>
-      {children && (<template type="forket/children" id="f_38" data-c="LikeButton">
+      {children && (<template type="forket/children" id="f_40" data-c="LikeButton">
           {children}
         </template>)}
-      <template type="forket/start/f_38" data-c="LikeButton"></template>
+      <template type="forket/start/f_40" data-c="LikeButton"></template>
       <LikeButton {...props} children={children}/>
-      <template type="forket/end/f_38" data-c="LikeButton"></template>
-      <script id="forket/init/f_38" dangerouslySetInnerHTML={{
-        __html: `$F_booter(document.currentScript, "f_38", "LikeButton", ${JSON.stringify(serializedProps)});`
+      <template type="forket/end/f_40" data-c="LikeButton"></template>
+      <script id="forket/init/f_40" dangerouslySetInnerHTML={{
+        __html: `$F_booter(document.currentScript, "f_40", "LikeButton", ${JSON.stringify(serializedProps)});`
     }}></script>
     </>);
 }

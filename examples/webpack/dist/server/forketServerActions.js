@@ -126,8 +126,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const actions = {
-  $FSA_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
-  $FSA_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
+  $FSA_f_9_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
+  $FSA_f_8_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
 };
 async function forketServerActions(req, res) {
   res.setHeader("Content-Type", "application/json");

@@ -8,7 +8,7 @@
     "dev": "npm run clean && node ./scripts/dev.js"
   },
   "dependencies": {
-    "forket": "0.8.10"
+    "forket": "0.8.12"
   },
   "engines": {
     "node": ">=14.8.0"
