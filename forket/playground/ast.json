@@ -2,14 +2,14 @@
   "type": "Module",
   "span": {
     "start": 1,
-    "end": 594
+    "end": 336
   },
   "body": [
     {
       "type": "ImportDeclaration",
       "span": {
         "start": 1,
-        "end": 41
+        "end": 27
       },
       "specifiers": [
         {
@@ -28,32 +28,13 @@
             "value": "React",
             "optional": false
           }
-        },
-        {
-          "type": "ImportSpecifier",
-          "span": {
-            "start": 17,
-            "end": 25
-          },
-          "local": {
-            "type": "Identifier",
-            "span": {
-              "start": 17,
-              "end": 25
-            },
-            "ctxt": 2,
-            "value": "Suspense",
-            "optional": false
-          },
-          "imported": null,
-          "isTypeOnly": false
         }
       ],
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 33,
-          "end": 40
+          "start": 19,
+          "end": 26
         },
         "value": "react",
         "raw": "\"react\""
@@ -65,21 +46,59 @@
     {
       "type": "ImportDeclaration",
       "span": {
-        "start": 43,
-        "end": 81
+        "start": 28,
+        "end": 50
       },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
           "span": {
-            "start": 50,
-            "end": 60
+            "start": 35,
+            "end": 37
           },
           "local": {
             "type": "Identifier",
             "span": {
-              "start": 50,
-              "end": 60
+              "start": 35,
+              "end": 37
+            },
+            "ctxt": 2,
+            "value": "db",
+            "optional": false
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "span": {
+          "start": 43,
+          "end": 49
+        },
+        "value": "./db",
+        "raw": "\"./db\""
+      },
+      "typeOnly": false,
+      "with": null,
+      "phase": "evaluation"
+    },
+    {
+      "type": "ImportDeclaration",
+      "span": {
+        "start": 51,
+        "end": 89
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "span": {
+            "start": 58,
+            "end": 68
+          },
+          "local": {
+            "type": "Identifier",
+            "span": {
+              "start": 58,
+              "end": 68
             },
             "ctxt": 2,
             "value": "Expandable",
@@ -90,8 +109,8 @@
       "source": {
         "type": "StringLiteral",
         "span": {
-          "start": 66,
-          "end": 80
+          "start": 74,
+          "end": 88
         },
         "value": "./Expandable",
         "raw": "\"./Expandable\""
@@ -101,183 +120,43 @@
       "phase": "evaluation"
     },
     {
-      "type": "ImportDeclaration",
-      "span": {
-        "start": 82,
-        "end": 112
-      },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "span": {
-            "start": 89,
-            "end": 95
-          },
-          "local": {
-            "type": "Identifier",
-            "span": {
-              "start": 89,
-              "end": 95
-            },
-            "ctxt": 2,
-            "value": "Footer",
-            "optional": false
-          }
-        }
-      ],
-      "source": {
-        "type": "StringLiteral",
-        "span": {
-          "start": 101,
-          "end": 111
-        },
-        "value": "./Footer",
-        "raw": "\"./Footer\""
-      },
-      "typeOnly": false,
-      "with": null,
-      "phase": "evaluation"
-    },
-    {
-      "type": "VariableDeclaration",
-      "span": {
-        "start": 114,
-        "end": 135
-      },
-      "ctxt": 0,
-      "kind": "const",
-      "declare": false,
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "span": {
-            "start": 120,
-            "end": 134
-          },
-          "id": {
-            "type": "Identifier",
-            "span": {
-              "start": 120,
-              "end": 121
-            },
-            "ctxt": 2,
-            "value": "C",
-            "optional": false,
-            "typeAnnotation": null
-          },
-          "init": {
-            "type": "Identifier",
-            "span": {
-              "start": 124,
-              "end": 134
-            },
-            "ctxt": 2,
-            "value": "Expandable",
-            "optional": false
-          },
-          "definite": false
-        }
-      ]
-    },
-    {
-      "type": "VariableDeclaration",
-      "span": {
-        "start": 136,
-        "end": 167
-      },
-      "ctxt": 0,
-      "kind": "const",
-      "declare": false,
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "span": {
-            "start": 142,
-            "end": 167
-          },
-          "id": {
-            "type": "Identifier",
-            "span": {
-              "start": 142,
-              "end": 143
-            },
-            "ctxt": 2,
-            "value": "P",
-            "optional": false,
-            "typeAnnotation": null
-          },
-          "init": {
-            "type": "ObjectExpression",
-            "span": {
-              "start": 146,
-              "end": 167
-            },
-            "properties": [
-              {
-                "type": "KeyValueProperty",
-                "key": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 150,
-                    "end": 153
-                  },
-                  "value": "foo"
-                },
-                "value": {
-                  "type": "Identifier",
-                  "span": {
-                    "start": 155,
-                    "end": 165
-                  },
-                  "ctxt": 2,
-                  "value": "Expandable",
-                  "optional": false
-                }
-              }
-            ]
-          },
-          "definite": false
-        }
-      ]
-    },
-    {
       "type": "ExportDefaultDeclaration",
       "span": {
-        "start": 169,
-        "end": 594
+        "start": 90,
+        "end": 336
       },
       "decl": {
         "type": "FunctionExpression",
         "identifier": {
           "type": "Identifier",
           "span": {
-            "start": 199,
-            "end": 202
+            "start": 120,
+            "end": 124
           },
           "ctxt": 2,
-          "value": "App",
+          "value": "Page",
           "optional": false
         },
         "params": [],
         "decorators": [],
         "span": {
-          "start": 184,
-          "end": 594
+          "start": 105,
+          "end": 336
         },
         "ctxt": 3,
         "body": {
           "type": "BlockStatement",
           "span": {
-            "start": 205,
-            "end": 594
+            "start": 127,
+            "end": 336
           },
           "ctxt": 3,
           "stmts": [
             {
               "type": "VariableDeclaration",
               "span": {
-                "start": 209,
-                "end": 247
+                "start": 131,
+                "end": 169
               },
               "ctxt": 0,
               "kind": "const",
@@ -286,14 +165,14 @@
                 {
                   "type": "VariableDeclarator",
                   "span": {
-                    "start": 215,
-                    "end": 246
+                    "start": 137,
+                    "end": 168
                   },
                   "id": {
                     "type": "Identifier",
                     "span": {
-                      "start": 215,
-                      "end": 220
+                      "start": 137,
+                      "end": 142
                     },
                     "ctxt": 3,
                     "value": "notes",
@@ -303,43 +182,43 @@
                   "init": {
                     "type": "AwaitExpression",
                     "span": {
-                      "start": 223,
-                      "end": 246
+                      "start": 145,
+                      "end": 168
                     },
                     "argument": {
                       "type": "CallExpression",
                       "span": {
-                        "start": 229,
-                        "end": 246
+                        "start": 151,
+                        "end": 168
                       },
                       "ctxt": 0,
                       "callee": {
                         "type": "MemberExpression",
                         "span": {
-                          "start": 229,
-                          "end": 244
+                          "start": 151,
+                          "end": 166
                         },
                         "object": {
                           "type": "MemberExpression",
                           "span": {
-                            "start": 229,
-                            "end": 237
+                            "start": 151,
+                            "end": 159
                           },
                           "object": {
                             "type": "Identifier",
                             "span": {
-                              "start": 229,
-                              "end": 231
+                              "start": 151,
+                              "end": 153
                             },
-                            "ctxt": 1,
+                            "ctxt": 2,
                             "value": "db",
                             "optional": false
                           },
                           "property": {
                             "type": "Identifier",
                             "span": {
-                              "start": 232,
-                              "end": 237
+                              "start": 154,
+                              "end": 159
                             },
                             "value": "notes"
                           }
@@ -347,8 +226,8 @@
                         "property": {
                           "type": "Identifier",
                           "span": {
-                            "start": 238,
-                            "end": 244
+                            "start": 160,
+                            "end": 166
                           },
                           "value": "getAll"
                         }
@@ -362,195 +241,38 @@
               ]
             },
             {
-              "type": "FunctionDeclaration",
-              "identifier": {
-                "type": "Identifier",
-                "span": {
-                  "start": 259,
-                  "end": 269
-                },
-                "ctxt": 3,
-                "value": "markAsRead",
-                "optional": false
-              },
-              "declare": false,
-              "params": [
-                {
-                  "type": "Parameter",
-                  "span": {
-                    "start": 270,
-                    "end": 274
-                  },
-                  "decorators": [],
-                  "pat": {
-                    "type": "Identifier",
-                    "span": {
-                      "start": 270,
-                      "end": 274
-                    },
-                    "ctxt": 4,
-                    "value": "note",
-                    "optional": false,
-                    "typeAnnotation": null
-                  }
-                }
-              ],
-              "decorators": [],
-              "span": {
-                "start": 250,
-                "end": 333
-              },
-              "ctxt": 4,
-              "body": {
-                "type": "BlockStatement",
-                "span": {
-                  "start": 276,
-                  "end": 333
-                },
-                "ctxt": 4,
-                "stmts": [
-                  {
-                    "type": "ExpressionStatement",
-                    "span": {
-                      "start": 282,
-                      "end": 295
-                    },
-                    "expression": {
-                      "type": "StringLiteral",
-                      "span": {
-                        "start": 282,
-                        "end": 294
-                      },
-                      "value": "use server",
-                      "raw": "\"use server\""
-                    }
-                  },
-                  {
-                    "type": "ExpressionStatement",
-                    "span": {
-                      "start": 300,
-                      "end": 329
-                    },
-                    "expression": {
-                      "type": "CallExpression",
-                      "span": {
-                        "start": 300,
-                        "end": 328
-                      },
-                      "ctxt": 0,
-                      "callee": {
-                        "type": "MemberExpression",
-                        "span": {
-                          "start": 300,
-                          "end": 319
-                        },
-                        "object": {
-                          "type": "MemberExpression",
-                          "span": {
-                            "start": 300,
-                            "end": 308
-                          },
-                          "object": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 300,
-                              "end": 302
-                            },
-                            "ctxt": 1,
-                            "value": "db",
-                            "optional": false
-                          },
-                          "property": {
-                            "type": "Identifier",
-                            "span": {
-                              "start": 303,
-                              "end": 308
-                            },
-                            "value": "notes"
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "span": {
-                            "start": 309,
-                            "end": 319
-                          },
-                          "value": "markAsRead"
-                        }
-                      },
-                      "arguments": [
-                        {
-                          "spread": null,
-                          "expression": {
-                            "type": "MemberExpression",
-                            "span": {
-                              "start": 320,
-                              "end": 327
-                            },
-                            "object": {
-                              "type": "Identifier",
-                              "span": {
-                                "start": 320,
-                                "end": 324
-                              },
-                              "ctxt": 4,
-                              "value": "note",
-                              "optional": false
-                            },
-                            "property": {
-                              "type": "Identifier",
-                              "span": {
-                                "start": 325,
-                                "end": 327
-                              },
-                              "value": "id"
-                            }
-                          }
-                        }
-                      ],
-                      "typeArguments": null
-                    }
-                  }
-                ]
-              },
-              "generator": false,
-              "async": false,
-              "typeParameters": null,
-              "returnType": null
-            },
-            {
               "type": "ReturnStatement",
               "span": {
-                "start": 336,
-                "end": 592
+                "start": 172,
+                "end": 334
               },
               "argument": {
                 "type": "ParenthesisExpression",
                 "span": {
-                  "start": 343,
-                  "end": 591
+                  "start": 179,
+                  "end": 333
                 },
                 "expression": {
                   "type": "JSXElement",
                   "span": {
-                    "start": 349,
-                    "end": 587
+                    "start": 185,
+                    "end": 329
                   },
                   "opening": {
                     "type": "JSXOpeningElement",
                     "name": {
                       "type": "Identifier",
                       "span": {
-                        "start": 350,
-                        "end": 353
+                        "start": 186,
+                        "end": 189
                       },
                       "ctxt": 1,
                       "value": "div",
                       "optional": false
                     },
                     "span": {
-                      "start": 349,
-                      "end": 354
+                      "start": 185,
+                      "end": 190
                     },
                     "attributes": [],
                     "selfClosing": false,
@@ -560,8 +282,8 @@
                     {
                       "type": "JSXText",
                       "span": {
-                        "start": 354,
-                        "end": 361
+                        "start": 190,
+                        "end": 197
                       },
                       "value": "\n      ",
                       "raw": "\n      "
@@ -569,27 +291,27 @@
                     {
                       "type": "JSXExpressionContainer",
                       "span": {
-                        "start": 361,
-                        "end": 484
+                        "start": 197,
+                        "end": 318
                       },
                       "expression": {
                         "type": "CallExpression",
                         "span": {
-                          "start": 362,
-                          "end": 483
+                          "start": 198,
+                          "end": 317
                         },
                         "ctxt": 0,
                         "callee": {
                           "type": "MemberExpression",
                           "span": {
-                            "start": 362,
-                            "end": 371
+                            "start": 198,
+                            "end": 207
                           },
                           "object": {
                             "type": "Identifier",
                             "span": {
-                              "start": 362,
-                              "end": 367
+                              "start": 198,
+                              "end": 203
                             },
                             "ctxt": 3,
                             "value": "notes",
@@ -598,8 +320,8 @@
                           "property": {
                             "type": "Identifier",
                             "span": {
-                              "start": 368,
-                              "end": 371
+                              "start": 204,
+                              "end": 207
                             },
                             "value": "map"
                           }
@@ -610,18 +332,18 @@
                             "expression": {
                               "type": "ArrowFunctionExpression",
                               "span": {
-                                "start": 372,
-                                "end": 482
+                                "start": 208,
+                                "end": 316
                               },
                               "ctxt": 0,
                               "params": [
                                 {
                                   "type": "Identifier",
                                   "span": {
-                                    "start": 373,
-                                    "end": 377
+                                    "start": 209,
+                                    "end": 213
                                   },
-                                  "ctxt": 5,
+                                  "ctxt": 4,
                                   "value": "note",
                                   "optional": false,
                                   "typeAnnotation": null
@@ -630,108 +352,76 @@
                               "body": {
                                 "type": "ParenthesisExpression",
                                 "span": {
-                                  "start": 382,
-                                  "end": 482
+                                  "start": 218,
+                                  "end": 316
                                 },
                                 "expression": {
                                   "type": "JSXElement",
                                   "span": {
-                                    "start": 392,
-                                    "end": 474
+                                    "start": 228,
+                                    "end": 308
                                   },
                                   "opening": {
                                     "type": "JSXOpeningElement",
                                     "name": {
                                       "type": "Identifier",
                                       "span": {
-                                        "start": 393,
-                                        "end": 394
+                                        "start": 229,
+                                        "end": 239
                                       },
                                       "ctxt": 2,
-                                      "value": "C",
+                                      "value": "Expandable",
                                       "optional": false
                                     },
                                     "span": {
-                                      "start": 392,
-                                      "end": 433
+                                      "start": 228,
+                                      "end": 254
                                     },
                                     "attributes": [
                                       {
                                         "type": "JSXAttribute",
                                         "span": {
-                                          "start": 395,
-                                          "end": 408
+                                          "start": 240,
+                                          "end": 253
                                         },
                                         "name": {
                                           "type": "Identifier",
                                           "span": {
-                                            "start": 395,
-                                            "end": 398
+                                            "start": 240,
+                                            "end": 243
                                           },
                                           "value": "key"
                                         },
                                         "value": {
                                           "type": "JSXExpressionContainer",
                                           "span": {
-                                            "start": 399,
-                                            "end": 408
+                                            "start": 244,
+                                            "end": 253
                                           },
                                           "expression": {
                                             "type": "MemberExpression",
                                             "span": {
-                                              "start": 400,
-                                              "end": 407
+                                              "start": 245,
+                                              "end": 252
                                             },
                                             "object": {
                                               "type": "Identifier",
                                               "span": {
-                                                "start": 400,
-                                                "end": 404
+                                                "start": 245,
+                                                "end": 249
                                               },
-                                              "ctxt": 5,
+                                              "ctxt": 4,
                                               "value": "note",
                                               "optional": false
                                             },
                                             "property": {
                                               "type": "Identifier",
                                               "span": {
-                                                "start": 405,
-                                                "end": 407
+                                                "start": 250,
+                                                "end": 252
                                               },
                                               "value": "id"
                                             }
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "JSXAttribute",
-                                        "span": {
-                                          "start": 409,
-                                          "end": 432
-                                        },
-                                        "name": {
-                                          "type": "Identifier",
-                                          "span": {
-                                            "start": 409,
-                                            "end": 419
-                                          },
-                                          "value": "markAsRead"
-                                        },
-                                        "value": {
-                                          "type": "JSXExpressionContainer",
-                                          "span": {
-                                            "start": 420,
-                                            "end": 432
-                                          },
-                                          "expression": {
-                                            "type": "Identifier",
-                                            "span": {
-                                              "start": 421,
-                                              "end": 431
-                                            },
-                                            "ctxt": 3,
-                                            "value": "markAsRead",
-                                            "optional": false
                                           }
                                         }
                                       }
@@ -743,8 +433,8 @@
                                     {
                                       "type": "JSXText",
                                       "span": {
-                                        "start": 433,
-                                        "end": 444
+                                        "start": 254,
+                                        "end": 265
                                       },
                                       "value": "\n          ",
                                       "raw": "\n          "
@@ -752,70 +442,86 @@
                                     {
                                       "type": "JSXElement",
                                       "span": {
-                                        "start": 444,
-                                        "end": 461
+                                        "start": 265,
+                                        "end": 286
                                       },
                                       "opening": {
                                         "type": "JSXOpeningElement",
                                         "name": {
                                           "type": "Identifier",
                                           "span": {
-                                            "start": 445,
-                                            "end": 446
+                                            "start": 266,
+                                            "end": 267
                                           },
                                           "ctxt": 1,
                                           "value": "p",
                                           "optional": false
                                         },
                                         "span": {
-                                          "start": 444,
-                                          "end": 461
+                                          "start": 265,
+                                          "end": 268
                                         },
-                                        "attributes": [
-                                          {
-                                            "type": "JSXAttribute",
-                                            "span": {
-                                              "start": 447,
-                                              "end": 458
-                                            },
-                                            "name": {
-                                              "type": "Identifier",
-                                              "span": {
-                                                "start": 447,
-                                                "end": 451
-                                              },
-                                              "value": "note"
-                                            },
-                                            "value": {
-                                              "type": "JSXExpressionContainer",
-                                              "span": {
-                                                "start": 452,
-                                                "end": 458
-                                              },
-                                              "expression": {
-                                                "type": "Identifier",
-                                                "span": {
-                                                  "start": 453,
-                                                  "end": 457
-                                                },
-                                                "ctxt": 5,
-                                                "value": "note",
-                                                "optional": false
-                                              }
-                                            }
-                                          }
-                                        ],
-                                        "selfClosing": true,
+                                        "attributes": [],
+                                        "selfClosing": false,
                                         "typeArguments": null
                                       },
-                                      "children": [],
-                                      "closing": null
+                                      "children": [
+                                        {
+                                          "type": "JSXExpressionContainer",
+                                          "span": {
+                                            "start": 268,
+                                            "end": 282
+                                          },
+                                          "expression": {
+                                            "type": "MemberExpression",
+                                            "span": {
+                                              "start": 269,
+                                              "end": 281
+                                            },
+                                            "object": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 269,
+                                                "end": 273
+                                              },
+                                              "ctxt": 4,
+                                              "value": "note",
+                                              "optional": false
+                                            },
+                                            "property": {
+                                              "type": "Identifier",
+                                              "span": {
+                                                "start": 274,
+                                                "end": 281
+                                              },
+                                              "value": "content"
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "closing": {
+                                        "type": "JSXClosingElement",
+                                        "span": {
+                                          "start": 282,
+                                          "end": 286
+                                        },
+                                        "name": {
+                                          "type": "Identifier",
+                                          "span": {
+                                            "start": 284,
+                                            "end": 285
+                                          },
+                                          "ctxt": 1,
+                                          "value": "p",
+                                          "optional": false
+                                        }
+                                      }
                                     },
                                     {
                                       "type": "JSXText",
                                       "span": {
-                                        "start": 461,
-                                        "end": 470
+                                        "start": 286,
+                                        "end": 295
                                       },
                                       "value": "\n        ",
                                       "raw": "\n        "
@@ -824,17 +530,17 @@
                                   "closing": {
                                     "type": "JSXClosingElement",
                                     "span": {
-                                      "start": 470,
-                                      "end": 474
+                                      "start": 295,
+                                      "end": 308
                                     },
                                     "name": {
                                       "type": "Identifier",
                                       "span": {
-                                        "start": 472,
-                                        "end": 473
+                                        "start": 297,
+                                        "end": 307
                                       },
                                       "ctxt": 2,
-                                      "value": "C",
+                                      "value": "Expandable",
                                       "optional": false
                                     }
                                   }
@@ -853,183 +559,8 @@
                     {
                       "type": "JSXText",
                       "span": {
-                        "start": 484,
-                        "end": 491
-                      },
-                      "value": "\n      ",
-                      "raw": "\n      "
-                    },
-                    {
-                      "type": "JSXElement",
-                      "span": {
-                        "start": 491,
-                        "end": 576
-                      },
-                      "opening": {
-                        "type": "JSXOpeningElement",
-                        "name": {
-                          "type": "Identifier",
-                          "span": {
-                            "start": 492,
-                            "end": 500
-                          },
-                          "ctxt": 2,
-                          "value": "Suspense",
-                          "optional": false
-                        },
-                        "span": {
-                          "start": 491,
-                          "end": 501
-                        },
-                        "attributes": [],
-                        "selfClosing": false,
-                        "typeArguments": null
-                      },
-                      "children": [
-                        {
-                          "type": "JSXText",
-                          "span": {
-                            "start": 501,
-                            "end": 510
-                          },
-                          "value": "\n        ",
-                          "raw": "\n        "
-                        },
-                        {
-                          "type": "JSXElement",
-                          "span": {
-                            "start": 510,
-                            "end": 558
-                          },
-                          "opening": {
-                            "type": "JSXOpeningElement",
-                            "name": {
-                              "type": "Identifier",
-                              "span": {
-                                "start": 511,
-                                "end": 517
-                              },
-                              "ctxt": 2,
-                              "value": "Footer",
-                              "optional": false
-                            },
-                            "span": {
-                              "start": 510,
-                              "end": 558
-                            },
-                            "attributes": [
-                              {
-                                "type": "JSXAttribute",
-                                "span": {
-                                  "start": 518,
-                                  "end": 555
-                                },
-                                "name": {
-                                  "type": "Identifier",
-                                  "span": {
-                                    "start": 518,
-                                    "end": 528
-                                  },
-                                  "value": "numOfNotes"
-                                },
-                                "value": {
-                                  "type": "JSXExpressionContainer",
-                                  "span": {
-                                    "start": 529,
-                                    "end": 555
-                                  },
-                                  "expression": {
-                                    "type": "CallExpression",
-                                    "span": {
-                                      "start": 530,
-                                      "end": 554
-                                    },
-                                    "ctxt": 0,
-                                    "callee": {
-                                      "type": "MemberExpression",
-                                      "span": {
-                                        "start": 530,
-                                        "end": 552
-                                      },
-                                      "object": {
-                                        "type": "MemberExpression",
-                                        "span": {
-                                          "start": 530,
-                                          "end": 538
-                                        },
-                                        "object": {
-                                          "type": "Identifier",
-                                          "span": {
-                                            "start": 530,
-                                            "end": 532
-                                          },
-                                          "ctxt": 1,
-                                          "value": "db",
-                                          "optional": false
-                                        },
-                                        "property": {
-                                          "type": "Identifier",
-                                          "span": {
-                                            "start": 533,
-                                            "end": 538
-                                          },
-                                          "value": "notes"
-                                        }
-                                      },
-                                      "property": {
-                                        "type": "Identifier",
-                                        "span": {
-                                          "start": 539,
-                                          "end": 552
-                                        },
-                                        "value": "getNumOfNotes"
-                                      }
-                                    },
-                                    "arguments": [],
-                                    "typeArguments": null
-                                  }
-                                }
-                              }
-                            ],
-                            "selfClosing": true,
-                            "typeArguments": null
-                          },
-                          "children": [],
-                          "closing": null
-                        },
-                        {
-                          "type": "JSXText",
-                          "span": {
-                            "start": 558,
-                            "end": 565
-                          },
-                          "value": "\n      ",
-                          "raw": "\n      "
-                        }
-                      ],
-                      "closing": {
-                        "type": "JSXClosingElement",
-                        "span": {
-                          "start": 565,
-                          "end": 576
-                        },
-                        "name": {
-                          "type": "Identifier",
-                          "span": {
-                            "start": 567,
-                            "end": 575
-                          },
-                          "ctxt": 2,
-                          "value": "Suspense",
-                          "optional": false
-                        }
-                      }
-                    },
-                    {
-                      "type": "JSXText",
-                      "span": {
-                        "start": 576,
-                        "end": 581
+                        "start": 318,
+                        "end": 323
                       },
                       "value": "\n    ",
                       "raw": "\n    "
@@ -1038,14 +569,14 @@
                   "closing": {
                     "type": "JSXClosingElement",
                     "span": {
-                      "start": 581,
-                      "end": 587
+                      "start": 323,
+                      "end": 329
                     },
                     "name": {
                       "type": "Identifier",
                       "span": {
-                        "start": 583,
-                        "end": 586
+                        "start": 325,
+                        "end": 328
                       },
                       "ctxt": 1,
                       "value": "div",

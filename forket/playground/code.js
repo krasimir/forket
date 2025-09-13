@@ -1,29 +1,15 @@
-import React, { Suspense } from "react";
-
+import React from "react";
+import db from "./db";
 import Expandable from "./Expandable";
-import Footer from "./Footer";
-
-const C = Expandable;
-const P = {
-  foo: Expandable
-}
-
-export default async function App() {
+export default async function Page() {
   const notes = await db.notes.getAll();
-  function markAsRead(note) {
-    "use server";
-    db.notes.markAsRead(note.id);
-  }
   return (
     <div>
       {notes.map((note) => (
-        <C key={note.id} markAsRead={markAsRead}>
-          <p note={note} />
-        </C>
+        <Expandable key={note.id}>
+          <p>{note.content}</p>
+        </Expandable>
       ))}
-      <Suspense>
-        <Footer numOfNotes={db.notes.getNumOfNotes()} />
-      </Suspense>
     </div>
   );
 }

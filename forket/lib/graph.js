@@ -90,13 +90,15 @@ export async function createNode(file, parentNode = null) {
         }
       } else if (node?.callee?.type === "Import") {
         const source = get(node, "arguments[0].expression.value");
-        const what = getWhat(stack[1]);
-        const ext = path.extname(source);
-        if (source && (VALID_FILES_TO_PROCESS.includes(ext) || ext === "")) {
-          imports.push({
-            what: (what || []).filter(Boolean),
-            source
-          });
+        if (source) {
+          const what = getWhat(stack[1]);
+          const ext = path.extname(source);
+          if (source && (VALID_FILES_TO_PROCESS.includes(ext) || ext === "")) {
+            imports.push({
+              what: (what || []).filter(Boolean),
+              source
+            });
+          }
         }
       }
     }
