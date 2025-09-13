@@ -19433,24 +19433,24 @@
   window.$f_30 = Expandable;
   (() => {
     (function() {
-      let $ = /* @__PURE__ */ new Map(), f = window.$F_renderers = {}, y = { class: "className", for: "htmlFor", readonly: "readOnly", tabindex: "tabIndex", maxlength: "maxLength", colspan: "colSpan", rowspan: "rowSpan" }, L = /* @__PURE__ */ new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
-      function _() {
+      let y = /* @__PURE__ */ new Map(), w = window.$F_renderers = {}, S = { class: "className", for: "htmlFor", readonly: "readOnly", tabindex: "tabIndex", maxlength: "maxLength", colspan: "colSpan", rowspan: "rowSpan" }, g = /* @__PURE__ */ new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
+      function L() {
         let i = document, c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.9.0`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
+        $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.10.0`), typeof window.$FRSC > "u" && (window.$FRSC = function(t) {
           let n = t[0], e = t[1], o = l(t[2]), r = u(n);
           return d(n, e, o, r);
         }), c.length > 0 && (c = window.$FRSC_ = c.filter((t) => !window.$FRSC(t)));
         function d(t, n, e, o) {
-          return f[t] = function(r) {
+          return w[t] = function(r) {
             let s = window["$" + t];
             if (!s) return console.warn(`\u{10090} Component <${n}> not found in the global scope yet. (${t})`), false;
             let a = { start: i.querySelector(`template[type="forket/start/${t}"]`), end: i.querySelector(`template[type="forket/end/${t}"]`) };
-            if (!a.start || !a.end) return console.warn(`\u{10090} Boundary not found for <${n}>. Re-trying rendering in 1 sec.`), setTimeout(() => f[t](r), 1e3), false;
-            let w = i.createElement("div");
-            return p(a.start, a.end, w), w.style.display = "contents", a.end.parentNode.insertBefore(w, a.end), a.end.parentNode.removeChild(a.start), a.end.parentNode.removeChild(a.end), f[t] = function(F) {
-              return F && (e = { ...e, ...F }), $F_logc(`\u{10090} [client] Render <${n}> (${t})`, { props: e, children: o }), b(w, import_react8.default.createElement(s, e, o)), true;
-            }, f[t](r);
-          }, f[t]();
+            if (!a.start || !a.end) return console.warn(`\u{10090} Boundary not found for <${n}>. Re-trying rendering in 1 sec.`), setTimeout(() => w[t](r), 1e3), false;
+            let f = i.createElement("div");
+            return p(a.start, a.end, f), f.style.display = "contents", a.end.parentNode.insertBefore(f, a.end), a.end.parentNode.removeChild(a.start), a.end.parentNode.removeChild(a.end), w[t] = function(N) {
+              return N && (e = { ...e, ...N }), $F_logc(`\u{10090} [client] Render <${n}> (${t})`, { props: e, children: o }), b(f, import_react8.default.createElement(s, e, o)), true;
+            }, w[t](r);
+          }, w[t]();
         }
         function l(t) {
           try {
@@ -19468,7 +19468,7 @@
                   } else if (window.$FLP_[s].status === "rejected") {
                     r(new Error(window.$FLP_[s].value));
                     return;
-                  } else window.$FLP_[s].resolve = o, window.$FLP_[s].reject = r, h(s);
+                  } else window.$FLP_[s].resolve = o, window.$FLP_[s].reject = r, P(s);
                 });
                 return e;
               }
@@ -19482,7 +19482,7 @@
           let n = i.querySelector(`template[type="forket/children"]#${t}`);
           if (!n) return null;
           let e = n.innerHTML;
-          return n?.parentNode?.removeChild(n), N(e);
+          return n?.parentNode?.removeChild(n), m(e);
         }
         function p(t, n, e) {
           let o = t.nextSibling;
@@ -19491,37 +19491,37 @@
             e.appendChild(o), o = r;
           }
         }
-        function N(t) {
+        function m(t) {
           let n = document.createElement("template");
           n.innerHTML = t;
           let e = [];
           return n.content.childNodes.forEach((o, r) => {
-            let s = m(o, `root.${r}`);
+            let s = F(o, `root.${r}`);
             Array.isArray(s) ? e.push(...s) : s !== null && s !== "" && e.push(s);
           }), e;
         }
-        function S(t) {
+        function _(t) {
           return t.replace(/-([a-z])/g, (n, e) => e.toUpperCase());
         }
-        function g(t) {
+        function $(t) {
           let n = {};
           return t.split(";").forEach((e) => {
             let [o, r] = e.split(":");
             if (!o || !r) return;
-            let s = S(o.trim()), a = r.trim();
+            let s = _(o.trim()), a = r.trim();
             !Number.isNaN(Number(a)) && a !== "" && (a = Number(a)), n[s] = a;
           }), n;
         }
-        function E(t) {
+        function h(t) {
           let n = {};
           for (let e of t.attributes) {
-            let o = e.name.toLowerCase(), r = y[o] || o;
+            let o = e.name.toLowerCase(), r = S[o] || o;
             if (!/^on[a-z]+$/.test(r)) {
               if (r === "style") {
-                n.style = g(e.value || "");
+                n.style = $(e.value || "");
                 continue;
               }
-              if (L.has(o)) {
+              if (g.has(o)) {
                 n[r] = e.value === "" || e.value.toLowerCase() === o || e.value.toLowerCase() === "true";
                 continue;
               }
@@ -19530,13 +19530,13 @@
           }
           return n;
         }
-        function m(t, n) {
+        function F(t, n) {
           switch (t.nodeType) {
             case Node.ELEMENT_NODE: {
-              let e = t.tagName.toLowerCase(), o = { ...E(t), key: n }, r = [];
+              let e = t.tagName.toLowerCase(), o = { ...h(t), key: n }, r = [];
               return t.childNodes.forEach((s, a) => {
-                let w = m(s, `${n}.${a}`);
-                w !== null && w !== "" && r.push(w);
+                let f = F(s, `${n}.${a}`);
+                f !== null && f !== "" && r.push(f);
               }), r.length ? import_react8.default.createElement(e, o, ...r) : import_react8.default.createElement(e, o);
             }
             case Node.TEXT_NODE: {
@@ -19546,7 +19546,7 @@
             case Node.DOCUMENT_FRAGMENT_NODE: {
               let e = [];
               return t.childNodes.forEach((o, r) => {
-                let s = m(o, `${n}.${r}`);
+                let s = F(o, `${n}.${r}`);
                 s !== null && s !== "" && e.push(s);
               }), e.length ? e : null;
             }
@@ -19555,11 +19555,11 @@
           }
         }
         function b(t, n) {
-          let e = $.get(t);
-          e ? e.render(n) : (e = import_client.default.hydrateRoot(t, n), $.set(t, e));
+          let e = y.get(t);
+          e ? e.render(n) : (e = import_client.default.hydrateRoot(t, n), y.set(t, e));
         }
       }
-      function h(i) {
+      function P(i) {
         if (typeof i > "u") {
           console.warn("\u{10090} FLP_process called without id.");
           return;
@@ -19572,19 +19572,27 @@
             console.warn(`\u{10090} [client] Promise with id ${i} is in unknown state: ${d}.`);
             return;
           }
-          f[p] && f[p]();
+          w[p] && w[p]();
         } else console.warn(`\u{10090} [client] Promise with id ${i} not found in the global scope. The promise is resolved/rejected but the component boundary that needs it is not rendered yet or the promise is already consumed somehow.`);
       }
-      function P(i, c) {
+      function E(i, c) {
         return async function(...d) {
           let l;
-          typeof FormData < "u" && d[0] instanceof FormData ? (l = d[0], l.append("__kind", "formdata")) : (l = new FormData(), l.append("__args", JSON.stringify(d)), l.append("__kind", "json")), l.append("__actionId", i);
+          typeof FormData < "u" && d[0] instanceof FormData ? (l = d[0], l.append("__kind", "formdata")) : (l = new FormData(), l.append("__args", JSON.stringify(d.map((m) => {
+            if (typeof FormData < "u" && m instanceof FormData) {
+              let _ = {};
+              _.__fd = true;
+              for (let [$, h] of m.entries()) _[$] = h;
+              return _;
+            }
+            return m;
+          }))), l.append("__kind", "json")), l.append("__actionId", i);
           let u = await fetch($F_sae + "/" + c, { method: "POST", body: l });
           if (!u.ok) throw new Error(`Server action ${i} failed with status ${u.status}`);
           return (await u.json()).result;
         };
       }
-      window.FRSC_init = _, window.FSA_call = P, window.FLP_process = h, _();
+      window.FRSC_init = L, window.FSA_call = E, window.FLP_process = P, L();
     })();
   })();
 })();

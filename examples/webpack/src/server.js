@@ -4,7 +4,6 @@ import path from "path";
 import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
 import Forket from "forket";
 // import Forket from "../../../../forket/index.js";
 // import { requestContext } from "forket/lib/server/requestContext.js";
@@ -19,7 +18,6 @@ const app = express();
 
 const server = http.createServer(app);
 
-app.use(bodyParser.json());
 app.use(express.static(path.resolve(path.join(__dirname, "..", "..", "dist", "public"))));
 
 Forket().then((forket) => {

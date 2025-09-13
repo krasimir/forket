@@ -16,7 +16,7 @@
     "cookie-parser": "^1.4.7",
     "esbuild": "0.25.0",
     "express": "4.21.2",
-    "forket": "0.9.0",
+    "forket": "0.10.0",
     "onnxruntime-node": "^1.22.0-rev",
     "react": "19.0.0",
     "react-dom": "19.0.0"

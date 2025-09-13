@@ -5,7 +5,6 @@ import path from "path";
 import http from "http";
 import express from "express";
 import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
 import Forket from "../../../../forket/index.js";
 import { requestContext } from "forket/lib/server/requestContext.js";
 import App from "./components/App.js";
@@ -14,7 +13,6 @@ const __dirname = path.dirname(__filename);
 const port = 8087;
 const app = express();
 const server = http.createServer(app);
-app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 Forket().then((forket) => {
   forket.setRenderer(renderToPipeableStream);

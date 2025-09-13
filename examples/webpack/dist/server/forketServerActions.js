@@ -1,3 +1,5 @@
+import * as __WEBPACK_EXTERNAL_MODULE_form_data_737738cd__ from "form-data";
+import * as __WEBPACK_EXTERNAL_MODULE_multer__ from "multer";
 /******/ var __webpack_modules__ = ({
 
 /***/ "./build/server/server-actions/quotes.ts":
@@ -53,6 +55,26 @@ async function getTotalNumberOfQuotes() {
   await new Promise(resolve => setTimeout(resolve, 2000));
   return 1342989;
 }
+
+/***/ }),
+
+/***/ "form-data":
+/*!****************************!*\
+  !*** external "form-data" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_form_data_737738cd__;
+
+/***/ }),
+
+/***/ "multer":
+/*!*************************!*\
+  !*** external "multer" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_multer__;
 
 /***/ })
 
@@ -123,44 +145,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ forketServerActions)
 /* harmony export */ });
 /* harmony import */ var _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./server-actions/quotes.ts */ "./build/server/server-actions/quotes.ts");
+/* harmony import */ var form_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! form-data */ "form-data");
+/* harmony import */ var multer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! multer */ "multer");
+
+
 
 
 const actions = {
   $FSA_f_9_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
   $FSA_f_8_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
 };
+const fromDataHandler = (0,multer__WEBPACK_IMPORTED_MODULE_2__["default"])({
+  storage: multer__WEBPACK_IMPORTED_MODULE_2__["default"].memoryStorage()
+});
 async function forketServerActions(req, res) {
-  res.setHeader("Content-Type", "application/json");
-  if (!req.body && !req.files) {
-    console.warn(`‎𐂐 Forket: the request object has no body.`);
-    res.status(400).json({
-      error: "No body provided"
-    });
-    return;
-  }
-  if (!req.body.__actionId) {
-    console.warn(`‎𐂐 Forket: the request object body has no id.`);
-    res.status(400).json({
-      error: "No id provided"
-    });
-    return;
-  }
-  const id = req.body.__actionId;
+  fromDataHandler.any()(req, res, async () => {
+    res.setHeader("Content-Type", "application/json");
+    if (!req.body && !req.files) {
+      console.warn(`‎𐂐 Forket: the request object has no body.`);
+      res.status(400).json({
+        error: "No body provided"
+      });
+      return;
+    }
+    if (!req.body.__actionId) {
+      console.warn(`‎𐂐 Forket: the request object body has no id.`);
+      res.status(400).json({
+        error: "No id provided"
+      });
+      return;
+    }
+    const id = req.body.__actionId;
+    const actionArgs = parseArgs(req.body.__args);
+    const kind = req.body.__kind || "json";
+    try {
+      const context = {
+        request: req,
+        response: res
+      };
+      const args = [];
+      if (kind === "formdata") {
+        let fd;
+        if (typeof FormData !== 'undefined') {
+          fd = new FormData();
+        } else {
+          fd = new form_data__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        }
+        for (const [key, value] of Object.entries(req.body)) {
+          fd.append(key, value);
+        }
+        args.push(fd);
+      } else {
+        actionArgs.forEach(a => {
+          if (typeof a === 'object' && a && a.__fd === true) {
+            let fd;
+            if (typeof FormData !== "undefined") {
+              fd = new FormData();
+            } else {
+              fd = new form_data__WEBPACK_IMPORTED_MODULE_1__["default"]();
+            }
+            Object.keys(a).forEach(k => {
+              if (k === '__fd') return;
+              fd.append(k, a[k]);
+            });
+            args.push(fd);
+            return;
+          }
+          args.push(a);
+        });
+      }
+      args.push(context);
+      const result = await actions[id](...args);
+      res.status(200).json({
+        result
+      });
+    } catch (error) {
+      console.error(`‎𐂐 Forket: error in server action ${id}:`, error);
+      res.status(200).json({
+        error: error.message || `Error in server action ${id}`
+      });
+    }
+  });
+}
+function parseArgs(str) {
+  if (!str) return [];
+  let args = [];
   try {
-    const context = {
-      request: req,
-      response: res
-    };
-    const result = await actions[id](req.body || {}, context);
-    res.status(200).json({
-      result
-    });
-  } catch (error) {
-    console.error(`‎𐂐 Forket: error in server action ${id}:`, error);
-    res.status(200).json({
-      error: error.message || `Error in server action ${id}`
-    });
+    args = JSON.parse(str);
+  } catch (e) {
+    console.warn(`‎𐂐 Forket: could not parse action args:`, e);
   }
+  return args;
 }
 })();
 

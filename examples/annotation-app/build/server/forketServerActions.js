@@ -56,6 +56,20 @@ export default async function forketServerActions(req, res) {
                 args.push(fd);
             } else {
                 actionArgs.forEach((a)=>{
+                    if (typeof a === 'object' && a && a.__fd === true) {
+                        let fd;
+                        if (typeof FormData !== "undefined") {
+                            fd = new FormData();
+                        } else {
+                            fd = new FormDataFallback();
+                        }
+                        Object.keys(a).forEach((k)=>{
+                            if (k === '__fd') return;
+                            fd.append(k, a[k]);
+                        });
+                        args.push(fd);
+                        return;
+                    }
                     args.push(a);
                 });
             }

@@ -10,11 +10,10 @@
   "dependencies": {
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.8",
-    "body-parser": "^2.2.0",
     "chokidar": "3.5.2",
     "esbuild": "0.25.0",
     "express": "4.21.2",
-    "forket": "0.9.0",
+    "forket": "0.10.0",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },

@@ -28048,9 +28048,9 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
 // @ts-ignore
 (() => {
   (function () {
-    let F = new Map(),
+    let y = new Map(),
       w = window.$F_renderers = {},
-      E = {
+      S = {
         class: "className",
         for: "htmlFor",
         readonly: "readOnly",
@@ -28059,18 +28059,18 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
         colspan: "colSpan",
         rowspan: "rowSpan"
       },
-      N = new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
+      g = new Set(["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected"]);
     function L() {
       let i = document,
         c = typeof window.$FRSC_ < "u" ? window.$FRSC_ : [];
-      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.8.11`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
+      $F_logc(`\u{10090} [client] \u{1F3DD}\uFE0F(${c.length}) v0.10.0`), typeof window.$FRSC > "u" && (window.$FRSC = function (t) {
         let n = t[0],
           e = t[1],
-          o = f(t[2]),
-          r = d(n);
-        return l(n, e, o, r);
+          o = l(t[2]),
+          r = u(n);
+        return d(n, e, o, r);
       }), c.length > 0 && (c = window.$FRSC_ = c.filter(t => !window.$FRSC(t)));
-      function l(t, n, e, o) {
+      function d(t, n, e, o) {
         return w[t] = function (r) {
           let s = window["$" + t];
           if (!s) return console.warn(`\u{10090} Component <${n}> not found in the global scope yet. (${t})`), !1;
@@ -28079,19 +28079,19 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
             end: i.querySelector(`template[type="forket/end/${t}"]`)
           };
           if (!a.start || !a.end) return console.warn(`\u{10090} Boundary not found for <${n}>. Re-trying rendering in 1 sec.`), setTimeout(() => w[t](r), 1e3), !1;
-          let u = i.createElement("div");
-          return p(a.start, a.end, u), u.style.display = "contents", a.end.parentNode.insertBefore(u, a.end), a.end.parentNode.removeChild(a.start), a.end.parentNode.removeChild(a.end), w[t] = function (S) {
-            return S && (e = {
+          let f = i.createElement("div");
+          return p(a.start, a.end, f), f.style.display = "contents", a.end.parentNode.insertBefore(f, a.end), a.end.parentNode.removeChild(a.start), a.end.parentNode.removeChild(a.end), w[t] = function (N) {
+            return N && (e = {
               ...e,
-              ...S
+              ...N
             }), $F_logc(`\u{10090} [client] Render <${n}> (${t})`, {
               props: e,
               children: o
-            }), g(u, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(s, e, o)), !0;
+            }), b(f, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(s, e, o)), !0;
           }, w[t](r);
         }, w[t]();
       }
-      function f(t) {
+      function l(t) {
         try {
           t = JSON.parse(t, function (n, e) {
             if (n !== "children") {
@@ -28120,11 +28120,11 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
         }
         return t;
       }
-      function d(t) {
+      function u(t) {
         let n = i.querySelector(`template[type="forket/children"]#${t}`);
         if (!n) return null;
         let e = n.innerHTML;
-        return n?.parentNode?.removeChild(n), $(e);
+        return n?.parentNode?.removeChild(n), m(e);
       }
       function p(t, n, e) {
         let o = t.nextSibling;
@@ -28133,39 +28133,39 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
           e.appendChild(o), o = r;
         }
       }
-      function $(t) {
+      function m(t) {
         let n = document.createElement("template");
         n.innerHTML = t;
         let e = [];
         return n.content.childNodes.forEach((o, r) => {
-          let s = _(o, `root.${r}`);
+          let s = F(o, `root.${r}`);
           Array.isArray(s) ? e.push(...s) : s !== null && s !== "" && e.push(s);
         }), e;
       }
-      function h(t) {
+      function _(t) {
         return t.replace(/-([a-z])/g, (n, e) => e.toUpperCase());
       }
-      function m(t) {
+      function $(t) {
         let n = {};
         return t.split(";").forEach(e => {
           let [o, r] = e.split(":");
           if (!o || !r) return;
-          let s = h(o.trim()),
+          let s = _(o.trim()),
             a = r.trim();
           !Number.isNaN(Number(a)) && a !== "" && (a = Number(a)), n[s] = a;
         }), n;
       }
-      function y(t) {
+      function h(t) {
         let n = {};
         for (let e of t.attributes) {
           let o = e.name.toLowerCase(),
-            r = E[o] || o;
+            r = S[o] || o;
           if (!/^on[a-z]+$/.test(r)) {
             if (r === "style") {
-              n.style = m(e.value || "");
+              n.style = $(e.value || "");
               continue;
             }
-            if (N.has(o)) {
+            if (g.has(o)) {
               n[r] = e.value === "" || e.value.toLowerCase() === o || e.value.toLowerCase() === "true";
               continue;
             }
@@ -28174,19 +28174,19 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
         }
         return n;
       }
-      function _(t, n) {
+      function F(t, n) {
         switch (t.nodeType) {
           case Node.ELEMENT_NODE:
             {
               let e = t.tagName.toLowerCase(),
                 o = {
-                  ...y(t),
+                  ...h(t),
                   key: n
                 },
                 r = [];
               return t.childNodes.forEach((s, a) => {
-                let u = _(s, `${n}.${a}`);
-                u !== null && u !== "" && r.push(u);
+                let f = F(s, `${n}.${a}`);
+                f !== null && f !== "" && r.push(f);
               }), r.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(e, o, ...r) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(e, o);
             }
           case Node.TEXT_NODE:
@@ -28198,7 +28198,7 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
             {
               let e = [];
               return t.childNodes.forEach((o, r) => {
-                let s = _(o, `${n}.${r}`);
+                let s = F(o, `${n}.${r}`);
                 s !== null && s !== "" && e.push(s);
               }), e.length ? e : null;
             }
@@ -28206,9 +28206,9 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
             return null;
         }
       }
-      function g(t, n) {
-        let e = F.get(t);
-        e ? e.render(n) : (e = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.hydrateRoot(t, n), F.set(t, e));
+      function b(t, n) {
+        let e = y.get(t);
+        e ? e.render(n) : (e = react_dom_client__WEBPACK_IMPORTED_MODULE_0__.hydrateRoot(t, n), y.set(t, e));
       }
     }
     function P(i) {
@@ -28218,51 +28218,41 @@ window.$f_6 = _components_Quote_tsx__WEBPACK_IMPORTED_MODULE_2__["default"];
       }
       if (typeof window.$FLP_ < "u" && window.$FLP_[i]) {
         let c = window.$FLP_[i].value,
-          l = window.$FLP_[i].status,
-          f = window.$FLP_[i].resolve,
-          d = window.$FLP_[i].reject,
+          d = window.$FLP_[i].status,
+          l = window.$FLP_[i].resolve,
+          u = window.$FLP_[i].reject,
           p = window.$FLP_[i].boundaryID;
-        if (l === "resolved") $F_logc(`\u{10090} [client] Promise resolved (${i})`, c), f ? (f(c), delete window.$FLP_[i]) : $F_logc(`\u{10090} [client] Promise with id ${i} is resolved but can't be consumed because the client boundary that needs it is not render yet.`);else if (l === "rejected") $F_logc(`\u{10090} [client] Promise rejected (${i})`, c), d ? (delete window.$FLP_[i], d(new Error(c))) : $F_logc(`\u{10090} [client] Promise with id ${i} is rejected but can't be consumed because the client boundary that needs it is not render yet.`);else {
-          console.warn(`\u{10090} [client] Promise with id ${i} is in unknown state: ${l}.`);
+        if (d === "resolved") $F_logc(`\u{10090} [client] Promise resolved (${i})`, c), l ? (l(c), delete window.$FLP_[i]) : $F_logc(`\u{10090} [client] Promise with id ${i} is resolved but can't be consumed because the client boundary that needs it is not render yet.`);else if (d === "rejected") $F_logc(`\u{10090} [client] Promise rejected (${i})`, c), u ? (delete window.$FLP_[i], u(new Error(c))) : $F_logc(`\u{10090} [client] Promise with id ${i} is rejected but can't be consumed because the client boundary that needs it is not render yet.`);else {
+          console.warn(`\u{10090} [client] Promise with id ${i} is in unknown state: ${d}.`);
           return;
         }
         w[p] && w[p]();
       } else console.warn(`\u{10090} [client] Promise with id ${i} not found in the global scope. The promise is resolved/rejected but the component boundary that needs it is not rendered yet or the promise is already consumed somehow.`);
     }
-    function b(i, c) {
+    function E(i, c) {
       return async function () {
-        for (var _len = arguments.length, l = new Array(_len), _key = 0; _key < _len; _key++) {
-          l[_key] = arguments[_key];
+        let l;
+        for (var _len = arguments.length, d = new Array(_len), _key = 0; _key < _len; _key++) {
+          d[_key] = arguments[_key];
         }
-        let f = l.length > 0 ? l[0] : {};
-        if (typeof FormData < "u" && f instanceof FormData) {
-          let $ = new FormData();
-          $.set("__actionId", i);
-          for (let [y, _] of f.entries()) $.append(y, _);
-          let h = await fetch($F_sae + "/" + c, {
-            method: "POST",
-            body: $
-          });
-          if (!h.ok) throw new Error(`Server action ${i} failed with status ${h.status}`);
-          let m = await h.json();
-          if (m.error) throw new Error(m.error);
-          return m.result;
-        }
-        let d = await fetch($F_sae + "/" + c, {
+        typeof FormData < "u" && d[0] instanceof FormData ? (l = d[0], l.append("__kind", "formdata")) : (l = new FormData(), l.append("__args", JSON.stringify(d.map(m => {
+          if (typeof FormData < "u" && m instanceof FormData) {
+            let _ = {};
+            _.__fd = !0;
+            for (let [$, h] of m.entries()) _[$] = h;
+            return _;
+          }
+          return m;
+        }))), l.append("__kind", "json")), l.append("__actionId", i);
+        let u = await fetch($F_sae + "/" + c, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            __actionId: i,
-            data: l
-          })
+          body: l
         });
-        if (!d.ok) throw new Error(`Server action ${i} failed with status ${d.status}`);
-        return (await d.json()).result;
+        if (!u.ok) throw new Error(`Server action ${i} failed with status ${u.status}`);
+        return (await u.json()).result;
       };
     }
-    window.FRSC_init = L, window.FSA_call = b, window.FLP_process = P, L();
+    window.FRSC_init = L, window.FSA_call = E, window.FLP_process = P, L();
   })();
 })();
 })();

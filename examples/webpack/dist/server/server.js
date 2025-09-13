@@ -1,8 +1,9 @@
-import * as __WEBPACK_EXTERNAL_MODULE_body_parser_496b7721__ from "body-parser";
 import * as __WEBPACK_EXTERNAL_MODULE_express__ from "express";
 import * as __WEBPACK_EXTERNAL_MODULE_forket__ from "forket";
 import * as __WEBPACK_EXTERNAL_MODULE_forket_lib_utils_serializeProps_js_ae048dd8__ from "forket/lib/utils/serializeProps.js";
+import * as __WEBPACK_EXTERNAL_MODULE_form_data_737738cd__ from "form-data";
 import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "node:module";
+import * as __WEBPACK_EXTERNAL_MODULE_multer__ from "multer";
 import * as __WEBPACK_EXTERNAL_MODULE_react__ from "react";
 import * as __WEBPACK_EXTERNAL_MODULE_react_dom_server_ec84c2b9__ from "react-dom/server";
 import * as __WEBPACK_EXTERNAL_MODULE_react_jsx_dev_runtime_17c56db1__ from "react/jsx-dev-runtime";
@@ -291,44 +292,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ forketServerActions)
 /* harmony export */ });
 /* harmony import */ var _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./server-actions/quotes.ts */ "./build/server/server-actions/quotes.ts");
+/* harmony import */ var form_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! form-data */ "form-data");
+/* harmony import */ var multer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! multer */ "multer");
+
+
 
 
 const actions = {
   $FSA_f_9_getQuote: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getQuote,
   $FSA_f_8_getTotalNumberOfQuotes: _server_actions_quotes_ts__WEBPACK_IMPORTED_MODULE_0__.getTotalNumberOfQuotes
 };
+const fromDataHandler = (0,multer__WEBPACK_IMPORTED_MODULE_2__["default"])({
+  storage: multer__WEBPACK_IMPORTED_MODULE_2__["default"].memoryStorage()
+});
 async function forketServerActions(req, res) {
-  res.setHeader("Content-Type", "application/json");
-  if (!req.body && !req.files) {
-    console.warn(`‎𐂐 Forket: the request object has no body.`);
-    res.status(400).json({
-      error: "No body provided"
-    });
-    return;
-  }
-  if (!req.body.__actionId) {
-    console.warn(`‎𐂐 Forket: the request object body has no id.`);
-    res.status(400).json({
-      error: "No id provided"
-    });
-    return;
-  }
-  const id = req.body.__actionId;
+  fromDataHandler.any()(req, res, async () => {
+    res.setHeader("Content-Type", "application/json");
+    if (!req.body && !req.files) {
+      console.warn(`‎𐂐 Forket: the request object has no body.`);
+      res.status(400).json({
+        error: "No body provided"
+      });
+      return;
+    }
+    if (!req.body.__actionId) {
+      console.warn(`‎𐂐 Forket: the request object body has no id.`);
+      res.status(400).json({
+        error: "No id provided"
+      });
+      return;
+    }
+    const id = req.body.__actionId;
+    const actionArgs = parseArgs(req.body.__args);
+    const kind = req.body.__kind || "json";
+    try {
+      const context = {
+        request: req,
+        response: res
+      };
+      const args = [];
+      if (kind === "formdata") {
+        let fd;
+        if (typeof FormData !== 'undefined') {
+          fd = new FormData();
+        } else {
+          fd = new form_data__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        }
+        for (const [key, value] of Object.entries(req.body)) {
+          fd.append(key, value);
+        }
+        args.push(fd);
+      } else {
+        actionArgs.forEach(a => {
+          if (typeof a === 'object' && a && a.__fd === true) {
+            let fd;
+            if (typeof FormData !== "undefined") {
+              fd = new FormData();
+            } else {
+              fd = new form_data__WEBPACK_IMPORTED_MODULE_1__["default"]();
+            }
+            Object.keys(a).forEach(k => {
+              if (k === '__fd') return;
+              fd.append(k, a[k]);
+            });
+            args.push(fd);
+            return;
+          }
+          args.push(a);
+        });
+      }
+      args.push(context);
+      const result = await actions[id](...args);
+      res.status(200).json({
+        result
+      });
+    } catch (error) {
+      console.error(`‎𐂐 Forket: error in server action ${id}:`, error);
+      res.status(200).json({
+        error: error.message || `Error in server action ${id}`
+      });
+    }
+  });
+}
+function parseArgs(str) {
+  if (!str) return [];
+  let args = [];
   try {
-    const context = {
-      request: req,
-      response: res
-    };
-    const result = await actions[id](req.body || {}, context);
-    res.status(200).json({
-      result
-    });
-  } catch (error) {
-    console.error(`‎𐂐 Forket: error in server action ${id}:`, error);
-    res.status(200).json({
-      error: error.message || `Error in server action ${id}`
-    });
+    args = JSON.parse(str);
+  } catch (e) {
+    console.warn(`‎𐂐 Forket: could not parse action args:`, e);
   }
+  return args;
 }
 
 /***/ }),
@@ -389,16 +443,6 @@ async function getTotalNumberOfQuotes() {
 
 /***/ }),
 
-/***/ "body-parser":
-/*!******************************!*\
-  !*** external "body-parser" ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_body_parser_496b7721__;
-
-/***/ }),
-
 /***/ "express":
 /*!**************************!*\
   !*** external "express" ***!
@@ -429,6 +473,16 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_forket_lib_utils_serializeProps_js_ae
 
 /***/ }),
 
+/***/ "form-data":
+/*!****************************!*\
+  !*** external "form-data" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_form_data_737738cd__;
+
+/***/ }),
+
 /***/ "http":
 /*!***********************!*\
   !*** external "http" ***!
@@ -436,6 +490,16 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_forket_lib_utils_serializeProps_js_ae
 /***/ ((module) => {
 
 module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("http");
+
+/***/ }),
+
+/***/ "multer":
+/*!*************************!*\
+  !*** external "multer" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_multer__;
 
 /***/ }),
 
@@ -559,12 +623,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! http */ "http");
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! express */ "express");
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! url */ "url");
-/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! body-parser */ "body-parser");
-/* harmony import */ var forket__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! forket */ "forket");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/App */ "./build/server/components/App.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-dev-runtime */ "react/jsx-dev-runtime");
+/* harmony import */ var forket__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! forket */ "forket");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/App */ "./build/server/components/App.tsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-dev-runtime */ "react/jsx-dev-runtime");
 var _jsxFileName = "/Users/krasimir/Work/Krasimir/forket/examples/webpack/build/server/server.js";
-
 
 
 
@@ -580,16 +642,15 @@ const __dirname = path__WEBPACK_IMPORTED_MODULE_3__.dirname(__filename);
 const port = 8087;
 const app = (0,express__WEBPACK_IMPORTED_MODULE_5__["default"])();
 const server = http__WEBPACK_IMPORTED_MODULE_4__.createServer(app);
-app.use(body_parser__WEBPACK_IMPORTED_MODULE_7__["default"].json());
 app.use(express__WEBPACK_IMPORTED_MODULE_5__["default"]["static"](path__WEBPACK_IMPORTED_MODULE_3__.resolve(path__WEBPACK_IMPORTED_MODULE_3__.join(__dirname, "..", "..", "dist", "public"))));
-(0,forket__WEBPACK_IMPORTED_MODULE_8__["default"])().then(forket => {
+(0,forket__WEBPACK_IMPORTED_MODULE_7__["default"])().then(forket => {
   app.use("/@forket", forket.forketServerActions(_forketServerActions_js__WEBPACK_IMPORTED_MODULE_0__["default"]));
   const handler = forket.serveApp({
-    factory: req => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_components_App__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    factory: req => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_components_App__WEBPACK_IMPORTED_MODULE_8__["default"], {
       request: req
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 19,
       columnNumber: 25
     }, undefined)
   });
