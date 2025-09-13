@@ -87,7 +87,7 @@
       "format": "cjs"
     },
     "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
-      "bytes": 591,
+      "bytes": 696,
       "imports": [
         {
           "path": "node_modules/react/index.js",
@@ -212,7 +212,7 @@
       "format": "esm"
     },
     "build/client/client.tsx": {
-      "bytes": 6959,
+      "bytes": 6841,
       "imports": [
         {
           "path": "node_modules/react-dom/client.js",
@@ -283,7 +283,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 894330
+      "bytes": 894285
     },
     "dist/public/bundle.js": {
       "imports": [],
@@ -315,10 +315,10 @@
           "bytesInOutput": 253
         },
         "build/client/client.tsx": {
-          "bytesInOutput": 5959
+          "bytesInOutput": 5841
         },
         "build/client/components/server-functions-with-form-actions/UpdateName.tsx": {
-          "bytesInOutput": 395
+          "bytesInOutput": 479
         },
         "build/client/components/server-functions-with-actions/UpdateMyName.tsx": {
           "bytesInOutput": 574
@@ -351,7 +351,7 @@
           "bytesInOutput": 186
         }
       },
-      "bytes": 194305
+      "bytes": 194271
     }
   }
 }

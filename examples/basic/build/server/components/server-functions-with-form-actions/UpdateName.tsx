@@ -7,6 +7,8 @@ export default function UpdateName() {
   const [name, setName] = useState("");
   const [state, submitAction, isPending] = useActionState(updateUsername, { error: null });
 
+  console.log(state);
+
   return (
     <form action={submitAction}>
       <input
@@ -17,6 +19,7 @@ export default function UpdateName() {
         onChange={(e) => setName(e.target.value)}
         placeholder="type your name here"
       />
+      {state.error && <p style={{ color: "red" }}>{state.error}</p>}
     </form>
   );
 }

@@ -284,7 +284,17 @@
         fd.append('__kind', 'formdata');
       } else {
         fd = new FormData();
-        fd.append('__args', JSON.stringify(args));
+        fd.append('__args', JSON.stringify(args.map(a => {
+          if (typeof FormData !== "undefined" && a instanceof FormData) {
+            const serializedFD = {};
+            serializedFD.__fd = true;
+            for (const [key, value] of a.entries()) {
+              serializedFD[key] = value;
+            }
+            return serializedFD;
+          }
+          return a;
+        })));
         fd.append("__kind", "json");
       }
       fd.append("__actionId", id);

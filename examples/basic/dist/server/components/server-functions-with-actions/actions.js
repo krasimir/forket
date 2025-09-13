@@ -1,6 +1,6 @@
 "use server";
 import db from "./db.js";
-async function updateMyName({ data: [name] }) {
+async function updateMyName(name) {
   if (!name) {
     return {
       error: "Name is required"

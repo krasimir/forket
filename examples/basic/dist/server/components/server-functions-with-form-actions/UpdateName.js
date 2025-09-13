@@ -4,6 +4,7 @@ import { updateUsername } from "./actions.js";
 function UpdateName() {
   const [name, setName] = useState("");
   const [state, submitAction, isPending] = useActionState(updateUsername, { error: null });
+  console.log(state);
   return /* @__PURE__ */ React.createElement("form", { action: submitAction }, /* @__PURE__ */ React.createElement(
     "input",
     {
@@ -14,7 +15,7 @@ function UpdateName() {
       onChange: (e) => setName(e.target.value),
       placeholder: "type your name here"
     }
-  ));
+  ), state.error && /* @__PURE__ */ React.createElement("p", { style: { color: "red" } }, state.error));
 }
 export {
   UpdateName as default
