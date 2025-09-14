@@ -22,7 +22,6 @@ Forket is a tool that splits your code to client and server so you have [RSC (Re
 
 <img width="500" src="https://raw.githubusercontent.com/krasimir/forket/refs/heads/main/assets/project_whitebg.png">
 ‎
-
 ## Examples/Templates
 
 * esbuild / [Basic code snippets](./examples/basic/) - app that covers the examples from the [official server components](https://react.dev/reference/rsc/server-components) docs.
@@ -40,7 +39,6 @@ I'm quite happy with the result so far. The libarry is supporting almost everyth
 * The server’s entry point also need to be processed by Forket. This means that it needs to be inside the `src` directory. Usually that's the case but who knows.
 * There must be at least one file in the root directory with “use client” directive. Forket need to inject some client-side utilities in order to operate.
 * The client entry points (the components that have “use client” need to default export a component)
-* Your http server should provide a parsed body in the request object. Or in other words “request.body”. Usually you have this already set up.
 
 ## Materials/inspiration
 
